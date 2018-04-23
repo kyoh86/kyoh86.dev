@@ -197,15 +197,7 @@ ga('send', 'pageview');
         </div>
         <div class='excerpt-content'>
           <article>
-             SSHトンネリングに必要な情報を得るための手順が多くて忘れるのでメモ。 うっかりsudo忘れる。
-前提 goのpprofについては
- http://blog.livedoor.jp/sonots/archives/39879160.html  とか
- http://qiita.com/ikawaha/items/e3b35f09fb49e9217924  とか参照。 当然profiler動いてなきゃ話にならんので注意。
-トンネリング  ECSのタスク選ぶ instanceのIP見る sshで入ってsudo su - docker psで、対象サービスのコンテナ探してIDを確認
-$ docker ps -f name=api-server --format=&quot;{{.ID}}&quot; 123a456b78  docker inspectで、対象コンテナIDからコンテナのIPアドレス取得
-$ docker inspect --format=&quot;{{ .NetworkSettings.IPAddress }}&quot; 123a456b78 172.17.0.1  ssh抜ける
- localhostの適当なポートに、指定インスタンス経由でコンテナのプロファイラのポートをトンネリングさせる
-# ssh &lt;instanceIP&gt; -L &lt;port&gt;:&lt;container IP&gt;:&lt;prof port&gt; $ ssh 56.64.122.32 -L 9999:172.17.0.1:33680   プロファイラ見る go tool pprof localhost:9999/debug/pprof/profile  
+            SSHトンネリングに必要な情報を得るための手順が多くて忘れるのでメモ。 うっかりsudo忘れる。 前提 goのpprofについては http://blog.livedoor.jp/sonots/archives/39879160.html とか http://qiita.com/ikawaha/items/e3b35f09fb49e9217924 とか参照
             <div class="more-link-wrapper"><a class="more-link" href="https://kyoh86.work/posts/2016-09-14_15-42-22/">Read the post<span class="screen-reader-text">This is a Standard Post</span></a></div>
           </article>
         </div>
@@ -231,13 +223,7 @@ $ docker inspect --format=&quot;{{ .NetworkSettings.IPAddress }}&quot; 123a456b7
         </div>
         <div class='excerpt-content'>
           <article>
-            CSV（Character-Separated Values）ってなんだかとってもアレですよね！ 某Excelの場合、Tab区切りのUTF-16LE with BOMじゃないと素直には開けなかったりするし。
-JSON to CSV(TSV) ツールは色々あるけど、jq か csvkit がよさげ。
- jq -r '(.[]|[.name,.age])|@tsv' in2csv -fjson|csvformat -TU1'  ただのCSVにするなら、in2csv -fjson だけでいい   utf-8 to utf-16LEBOM nkf または iconv
- nkf -W8 -w16L iconv -f UTF-8 -t UTF-16  繋げば・・・ csvkit×nkfの例：
-cat hoge.json|in2csv -fjson|csvformat -TU1|nkf -W8 -w16L&gt;hoge.csv'
-ってな感じ。
-某M$ utf-8のCSV(Comma-Separated Values)をもっと素直に開けるように対応してくれないかなあ。
+            CSV（Character-Separated Values）ってなんだかとってもアレですよね！ 某Excelの場合、Tab区切りのUTF-16
             <div class="more-link-wrapper"><a class="more-link" href="https://kyoh86.work/posts/2016-06-03_11-11-54/">Read the post<span class="screen-reader-text">This is a Standard Post</span></a></div>
           </article>
         </div>
@@ -263,7 +249,7 @@ cat hoge.json|in2csv -fjson|csvformat -TU1|nkf -W8 -w16L&gt;hoge.csv'
         </div>
         <div class='excerpt-content'>
           <article>
-             say &quot;生&quot;~&amp;&quot;死&quot;  参考  愛が生まれた - Qiita なんで愛が生まれるのか - Qiita  
+            say &quot;生&quot;~&amp;&quot;死&quot; 参考 愛が生まれた - Qiita なんで愛が生まれるのか - Qiita
             <div class="more-link-wrapper"><a class="more-link" href="https://kyoh86.work/posts/2016-05-09_22-33-33/">Read the post<span class="screen-reader-text">This is a Standard Post</span></a></div>
           </article>
         </div>
@@ -289,8 +275,7 @@ cat hoge.json|in2csv -fjson|csvformat -TU1|nkf -W8 -w16L&gt;hoge.csv'
         </div>
         <div class='excerpt-content'>
           <article>
-            OSX上でphp -S localhost:8080なんぞして、mb_send_mailなアプリを作ってたんですが、メール送信テストしたくてもまーなかなか上手く行かないもので。やっとの思いで一通したのでここに眠らせる。R.I.P.
-ベースとなった環境  OSX El Capitan 10.11.4 postfix (mail_version = 2.11.0) PHP 5.6.21 (cli) (built: Apr 29 2016 02:31:44)  これだけhomebrewによる。   用意する各種設定ファイル  postfix 設定ファイル  # : # : 前略 # : # CUSTOM ######## # Minimum Postfix-specific configurations. mail_owner = _postfix setgid_group = _postdrop myhostname = smtp.gmail.com relayhost=[smtp.gmail.com]:587 smtp_sasl_auth_enable = yes smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd smtp_sasl_tls_security_options = noanonymous smtp_use_tls = yes smtp_sasl_mechanism_filter = plain   postfix パスワードファイル (/etc/postfix/sasl_passwd)
+            OSX上でphp -S localhost:8080なんぞして、mb_send_mailなアプリを作ってたんですが、メール送信テストしたくてもまー
             <div class="more-link-wrapper"><a class="more-link" href="https://kyoh86.work/posts/2016-05-06_23-13-18/">Read the post<span class="screen-reader-text">This is a Standard Post</span></a></div>
           </article>
         </div>
@@ -316,11 +301,7 @@ cat hoge.json|in2csv -fjson|csvformat -TU1|nkf -W8 -w16L&gt;hoge.csv'
         </div>
         <div class='excerpt-content'>
           <article>
-            動機 開発環境とリリース前確認用の環境で、MongoDBのデータに差異が無いか確認しようと思ったけど、 数十万件あるデータを比べるとか無理じゃね？と思った時に。
-mongoexport使う mongoexportで出力して、ちょいちょいと整形してやればよろし。 クエリも投げられるので、対象データの絞り込みは容易。
-一致するはず！と期待しているフィールドを選んで、--fields と --sort にそれぞれ指定してあげる。
-mongoexport --host example.mongo --db hoge --collection piyo --query '{userId:ObjectId(&quot;xxxxx&quot;)}' --fields name,credit,zip --sort '{name:1,credit:1,zip:1}' --out hoge.json mongoexport --host example.mongo --db fuga --collection piyo --query '{userId:ObjectId(&quot;xxxxx&quot;)}' --fields name,credit,zip --sort '{name:1,credit:1,zip:1}' --out fuga.json  そんままでは_idが当然のように一致しないので、除去する。_idが無いなら気にしなくていい。
- cat hoge.json | perl -pe 's/&quot;_id&quot; : \{ &quot;\$oid&quot; : &quot;[a-f0-9]+&quot; \}, //g' &gt; hoge-trim.json cat fuga.json | perl -pe 's/&quot;_id&quot; : \{ &quot;\$oid&quot; : &quot;[a-f0-9]+&quot; \}, //g' &gt; fuga-trim.
+            動機 開発環境とリリース前確認用の環境で、MongoDBのデータに差異が無いか確認しようと思ったけど、 数十万件あるデータを比べるとか無理じゃね
             <div class="more-link-wrapper"><a class="more-link" href="https://kyoh86.work/posts/2016-04-13_13-10-56/">Read the post<span class="screen-reader-text">This is a Standard Post</span></a></div>
           </article>
         </div>

@@ -199,20 +199,7 @@ ga('send', 'pageview');
         </div>
         <div class='excerpt-content'>
           <article>
-            TL;DR  VSCodeで日本語入力マジ鬼門 VSCode側では対応予定ないみたい pre-commit hookでもって、せめてコードには残らないようにしてやろう  対象読者 or 前提条件 or 環境 VSCodeで、バックスペースの混入に悩まされている人
-さらばATOM 最近ATOMのgoプラグインの開発が滞ってる感があったので、Visual Studio Codeへ乗り換え中です。 ところがどっこい、罠がありました。
-VSCodeの日本語入力問題 最近Slackでも問題になった「Mac・IME・Chromiumの組み合わせでバックスペースがゴミとして入力されちゃう問題」が、Visual Studio Codeでも一部影響を受けているようです。 Markdownなどを書いていると、日本語の合間合間に \b（backspace;0x08) が入ってしまいます。
-https://github.com/Microsoft/vscode/issues/24981 https://bugs.chromium.org/p/chromium/issues/detail?id=714771
-特段の対応予定は無いみたい VSCode的には、Chromiumの最新版が来るのを待つらしい。 それはエディタとしてどうなの。
-https://github.com/Microsoft/vscode/issues/24981
-だからvimを使えと
-ATOMは？ Electronといやあ、Atomはどうなんだよと思ったら、Electronのバージョンが古いために問題になってないみたい。 （現時点での最新は1.6.x)
-それはそれでどうなんだ…
-いくらなんでもCommitされるのは困る 編集時に意図しない文字が紛れ込むのは１億歩くらいゆずって エディタではなくクソを吐く何かとして 認めてやるとして、いくらなんでもそれがcommitされてしまうのはあまりにもダサいので、pre-commit hook でなんとかしようと思います。
-必要なもの  ggrep(gnu-grep)  brew install grep とかしましょう
-やるべきこと .git/hooks/pre-commit に、以下コマンドを追加（または新規作成）します。
-! git diff --cached --name-only | xargs -n1 ggrep -Hne $'\b'  .git/hooks/pre-commit に実行権限を付与するのを忘れないように。
-参考情報 pre-commit hook の使い方
+            TL;DR VSCodeで日本語入力マジ鬼門 VSCode側では対応予定ないみたい pre-commit hookでもって、せめてコードには残らないようにしてやろう 対象読者 or
             <div class="more-link-wrapper"><a class="more-link" href="https://kyoh86.work/posts/2017-06-20_19-42-46/">Read the post<span class="screen-reader-text">This is a Standard Post</span></a></div>
           </article>
         </div>
@@ -238,8 +225,7 @@ ATOMは？ Electronといやあ、Atomはどうなんだよと思ったら、Ele
         </div>
         <div class='excerpt-content'>
           <article>
-            動機 golangでforループを回すと、中でうっかりクロージャやリファレンスを取れません。
-package example import &quot;fmt&quot; func readme() { values := []string{&quot;a&quot;, &quot;b&quot;, &quot;c&quot;} var funcs []func() for _, val := range values { funcs = append(funcs, func() { fmt.Println(val) }) } for _, f := range funcs { f() } /*output: c c c */ var copies []*string for _, val := range values { copies = append(copies, &amp;val) } /*(in copies) &amp;&quot;c&quot; &amp;&quot;c&quot; &amp;&quot;c&quot; */ }  意外と気づきにくいバグの元になってプログラマは容易に死にます。 一応一部のケースは go vet でも検出できますが、万能ではありません。（なぜか go func(){ }() だけは気をつけてくれる)
+            動機 golangでforループを回すと、中でうっかりクロージャやリファレンスを取れません。 package example import &quot;fmt&quot; func readme() { values := []string{&quot;a&quot;, &quot;b&quot;, &quot;c&quot;} var funcs []func() for _, val := range values { funcs = append(funcs,
             <div class="more-link-wrapper"><a class="more-link" href="https://kyoh86.work/posts/2017-04-11_06-48-23/">Read the post<span class="screen-reader-text">This is a Standard Post</span></a></div>
           </article>
         </div>
@@ -265,19 +251,7 @@ package example import &quot;fmt&quot; func readme() { values := []string{&quot;
         </div>
         <div class='excerpt-content'>
           <article>
-            JSON SchemaのRFCを読むのが苦痛すぎるので、日本語訳をしてみる。
-当翻訳文書上の注意  著作権は原文書に帰属します。 訳者の注についてはカッコ付き斜体で_（訳注：このように）_表記します。 意図的・偶発的問わずtypoについては本来の語を推定し、その箇所には訳注を入れています。 英語力が低いので、あちこち誤訳がありそうです。編集リクエスト待ってます。  以下訳文 JSON Schema：JSONドキュメント定義のためのメディアタイプ 概要 JSON Schemaは、JSONデータの構造を記述するための application/schema+jsonメディアタイプ を定義します。JSON Schemaの記述自体もJSONで形式で行われます。 JSON Schemaは、JSONドキュメントがどのように見えるか、情報をどのように抽出すればよいか、そしてその情報をどのようにやりとりするかを宣言します。他にハイパーメディアコントロールや機械的可読性を持たない、既存のAPIに注釈をつけるのに理想的です。
-読者への注意 このドラフトのIssueリストは &lt;https://github.com/json-schema-org/json-schema-spec/issues&gt; にあります。 追加情報については &lt;http://json-schema.org&gt; を参照してください。 フィードバックは前述のIssueリスト、ホームページに記載された連絡先、または著者にメールでお知らせください。
-この文書のステータス このInternet Draftは、BCP78およびBCP79の規定に完全に準拠して提出されています。
-インターネットドラフトは、インターネットエンジニアリングタスクフォース（IETF）の作業文書です。他のグループがインターネットドラフトとして作業文書を配布することもできることに注意してください。現在のインターネットドラフトのリストはhttp://datatracker.ietf.org/drafts/current/にあります。
-インターネットドラフトは、最大6か月間有効なドラフト文書であり、いつでも他の文書によって更新、置き換え、または廃止される可能性があります。参考資料としてインターネットドラフトを使用したり、「進行中の作業」以外のものを引用することは不適切です。
-このインターネットドラフトは2017年4月16日に期限切れになります。
-著作権 （訳注：略。原文参照のこと）
-目次 （訳注：略。Qiitaの目次機能利用のこと）
-1. はじめに JSON Schemaは、JSONデータの構造を定義するためのJSONメディアタイプです。JSON Schemaは、JSONデータのバリデーション、ドキュメンテーション、ハイパーリンクのナビゲーション、相互作用の制御を定義することを目的としています。
-この仕様では、JSON referenceによる外部JSON Schemaへの参照と参照解決 （訳注：dereferencing） 、JSON Schemaで使用される vocabulary の明確化、および schema に対するインスタンスの処理に必要な最小機能の宣言といった、JSON Schema Coreの用語とメカニズムを定義しています。
-バリデーション、リンク、アノテーション、ナビゲーション、相互作用に関する宣言のための vocabulary は、他の仕様で記述しています。
-2.表記と用語 この文書内の&rdquo;MUST&rdquo; &ldquo;MUST NOT&rdquo; &ldquo;REQUIRED&rdquo; &ldquo;SHALL&rdquo; &ldquo;SHALL NOT&rdquo; &ldquo;SHOULD&rdquo; &ldquo;SHOULD NOT&rdquo; &ldquo;RECOMMENDED&rdquo; &ldquo;MAY&rdquo; &ldquo;OPTIONAL&rdquo;といったキーワードは、RFC 2119に沿って解釈しなくてはなりません。
+            JSON SchemaのRFCを読むのが苦痛すぎるので、日本語訳をしてみる。 当翻訳文書上の注意 著作権は原文書に帰属します。 訳者の注についてはカッコ付
             <div class="more-link-wrapper"><a class="more-link" href="https://kyoh86.work/posts/2017-01-22_23-02-52/">Read the post<span class="screen-reader-text">This is a Standard Post</span></a></div>
           </article>
         </div>
@@ -303,16 +277,7 @@ package example import &quot;fmt&quot; func readme() { values := []string{&quot;
         </div>
         <div class='excerpt-content'>
           <article>
-            go test してますか。 標準テストライブラリの出力を見やすくするツール richgo を作ったので、紹介をば。
-TL;DR Goには公式でリッチなテストフレームワークがないですね。 思想[1][2]は好きなんですが、とはいえ出力の見づらさはなんとかならんものか・・・。 あまりにも見づらいので、go をラップして、 test の出力を無理やり色付けするツールを作りました。
-richgo
-使うと、こんな感じになります。 
-インストール方法 おなじみ go get
-go get -u github.com/kyoh86/richgo  使い方 richgo test ./...  他の機能を阻害することはないので go のエイリアスとしてしまうのがおすすめです。
-alias go=richgo go test ./...  スタイルの設定変更 設定ファイルでスタイルを変えることもできます。 実行時に、次の順番で設定ファイルを読む仕様になっています。
- ${CWD}/.richstyle ${CWD}/.richstyle.yaml ${CWD}/.richstyle.yml ${GOPATH}/.richstyle ${GOPATH}/.richstyle.yaml ${GOPATH}/.richstyle.yml ${GOROOT}/.richstyle ${GOROOT}/.richstyle.yaml ${GOROOT}/.richstyle.yml ${HOME}/.richstyle ${HOME}/.richstyle.yaml ${HOME}/.richstyle.yml  環境変数に RICHGO_LOCAL=1 とすれば、カレントディレクトリの設定ファイル（${CWD}/.richstyle*）だけを読み込むようになります。
-設定ファイルのフォーマット 設定は、YAML形式で次のような形で記載します。 すべての項目は、設定しなければデフォルト／または先に読み込んだ設定ファイルの内容が反映されます。
-# ラベルの見せ方 labelType: (long | short | none) # ビルドログの見た目 buildStyle: # 出力しない hide: (true | false) # 太字 bold: (true | false) # 淡い字、または細い字 faint: (true | false) # 斜体 italic: (true | false) # アンダーライン underline: (true | false) # 点滅（ゆっくり） blinkSlow: (true | false) # 点滅（はやい） blinkRapid: (true | false) # 前景色と背景色を入れ替える inverse: (true | false) # 前景色と背景色を同色にする conceal: (true | false) # 取り消し線を引く crossOut: (true | false) frame: (true | false) encircle: (true | false) # アッパーライン overline: (true | false) # 文字前景色 foreground: (#xxxxxx | rgb(0-256,0-256,0-256) | rgb(0x00-0xFF,0x00-0xFF,0x00-0xFF) | (name of colors)) # 文字背景色 background: # Same format as `foreground` # テスト開始ログの見た目 startStyle: # Same format as `buildStyle` # テスト通過ログの見た目 passStyle: # Same format as `buildStyle` # テスト失敗ログの見た目 failStyle: # Same format as `buildStyle` # テストスキップログの見た目 skipStyle: # Same format as `buildStyle` # テスト対象ファイル名の見た目 fileStyle: # Same format as `buildStyle` # エラーログ行番号の見た目 lineStyle: # Same format as `buildStyle` # 行ごと出力したくない行を、正規表現で指定 removals: - (regexp)  ログの種類 設定ファイルのフォーマットに書いたように、 richgo はテストの出力を一行ごとにカテゴライズして、 それぞれに独自のスタイルを設定しています。
+            go test してますか。 標準テストライブラリの出力を見やすくするツール richgo を作ったので、紹介をば。 TL;DR Goには公式でリッチなテストフレームワークがないで
             <div class="more-link-wrapper"><a class="more-link" href="https://kyoh86.work/posts/2017-01-15_01-15-03/">Read the post<span class="screen-reader-text">This is a Standard Post</span></a></div>
           </article>
         </div>
@@ -338,11 +303,7 @@ alias go=richgo go test ./...  スタイルの設定変更 設定ファイルで
         </div>
         <div class='excerpt-content'>
           <article>
-            誰か作ってくれないかなぁ、でも最近、何も作ってないし何か作りたいなあと思っているもののリスト。 随時更新予定。
-ATOM-fuzzy-finderをまともにする  .atomignoreとか、agignore対応とか。genコード無視とかリポジトリごとの都合ってもんがあるべや。 AHOのように重すぎる。git ls-fileを使った高速化とかできるんじゃないの（雑）  colorgoをまともにする  https://github.com/songgao/colorgo t.Runとかでサブに入った時カラーリングされない。雑か FAILとかこそ色つけろよ的な。雑か  ATOM-Go-guru Goggles is written &ldquo;ゴーグル&rdquo; [goːgɯɽɯ] in katakana, so Go-guru is.
-いい加減guru誰か頑張れよと思いつつ楽しそうなので作る
-ATOM-Japanesque-theme Japanesque
-ふつくしい。 コーディングにも適用して使いやすい・見やすいかは未知数
+            誰か作ってくれないかなぁ、でも最近、何も作ってないし何か作りたいなあと思っているもののリスト。 随時更新予定。 ATOM-fuzzy-finde
             <div class="more-link-wrapper"><a class="more-link" href="https://kyoh86.work/posts/2016-12-12_12-25-45/">Read the post<span class="screen-reader-text">This is a Standard Post</span></a></div>
           </article>
         </div>

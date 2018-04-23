@@ -223,16 +223,7 @@ ga('send', 'pageview');
         </div>
         <div class='excerpt-content'>
           <article>
-            結論 Pull-Request時にCIで差分lintかけるといい感じ。
-背景 Goでの開発においては、型付け言語の利点を最大限に活かしたいところです。 go-vetやgolintを通していれば、潜在的バグに悩まされる確率を、劇的に下げることができる・・・実に素晴らしいですよね。
-ですが、時にプロダクトの黎明期にあって、「こまいコト気にしてたらやってらんないから、とにかく作る！」と勢いに任せて作るのも大事なことだったりします。
-しかしその結果、
- ふと気づけばソースコードの総量は10万行が見えてくる・・・ golint ./... を叩いてみれば、エラーが数千個・・・  なんてこともままあることでしょう。
-それでも取り組むべき価値がある ですが、そんな時でも遅くはありません。 GitHubのPull-RequestとCIツールを組み合わせれば、
-今まさに修正した場所に、golintで問題とされるような箇所がないか
-をチェックすることができます。 数千のエラーといっぺんに闘うことは難しくても、一度のPRで数十のエラーと戦い続ければ、いずれエラーはゼロになっていくはずです。 そう、バグを潰す気持ちと何ら変わらない、シンプルな作業ゲーと化すことができるのです。
-解決策 用意するものはgoghだけ1です。
-owner= # 対象リポジトリ名（オーナー名）を設定 repos= # 対象リポジトリ名を設定 min_confidence=0.9 # 警告のレベル head=$(git rev-parse --abbrev-ref @) # 現在のブランチを取得 if [ -n &quot;${head}&quot; ] then # 現在のブランチをheadとするpull-requestを探す base=$(gogh pr ls --repo ${owner}/${repos} --head ${owner}:${head} --state open --row-format $'{{.Base.Ref}}') if [ -z &quot;${base}&quot; ] then # pull-requestが見つからなければそのまま終了 echo &quot;pull-request is not found&quot; else # pull-requestのbaseブランチと、差分のあるファイルの一覧を取得 tmpfile=$(mktemp) git fetch origin ${base}:${base} git diff ${base}.
+            結論 Pull-Request時にCIで差分lintかけるといい感じ。 背景 Goでの開発においては、型付け言語の利点を最大限に活かしたいところで
             <div class="more-link-wrapper"><a class="more-link" href="https://kyoh86.work/posts/2016-02-09_01-21-41/">Read the post<span class="screen-reader-text">This is a Standard Post</span></a></div>
           </article>
         </div>
@@ -258,11 +249,7 @@ owner= # 対象リポジトリ名（オーナー名）を設定 repos= # 対象�
         </div>
         <div class='excerpt-content'>
           <article>
-            【コメント頂いて書き直しました】
-homebrew でパッケージの管理をするのはいいんですが、開発の都合上一部のツールのバージョンを上げられない・・・というシーンはままあるかと思います。 かといってoutdatedなパッケージを放置するのも気持ち悪いですよね。
-そんな「brew upgradeで全てのパッケージをアップデートしたら色々死ぬわ！」という場合によく使うのでメモ書き。
-$ brew update &amp;&amp; brew outdated # 更新が必要なパッケージの一覧を取得、確認。 ... ... $ brew outdated \ | awk '{print $1}' \ | grep -v 'elasticsearch' \ | grep -v 'mongo' \ | xargs -n 1 brew upgrade  brew outdatedで リスト化して、grep -v 1 でそっとしておいて欲しいパッケージ（例ではElasticsearchとMongo DB）を除外して、xargsでbrew upgrade。シンプル。 fzf とか peco とか駆使すれば、もっとホスピタリティの高い感じにできると思うけど、まァ良いかという気持ち。
- grepはcoreutils入れてる環境とか考えると、BSD/GNUの仕様誤差がめんどくさいので、grep -v &lsquo;hoge&rsquo;を二重にパイプしてます。 [return]   
+            【コメント頂いて書き直しました】 homebrew でパッケージの管理をするのはいいんですが、開発の都合上一部のツールのバージョンを上げられない・・・というシ
             <div class="more-link-wrapper"><a class="more-link" href="https://kyoh86.work/posts/2016-02-08_14-34-13/">Read the post<span class="screen-reader-text">This is a Standard Post</span></a></div>
           </article>
         </div>
@@ -288,10 +275,7 @@ $ brew update &amp;&amp; brew outdated # 更新が必要なパッケージの一
         </div>
         <div class='excerpt-content'>
           <article>
-            Goで文字の省略処理（Ellipsis）しようとしたら、初歩的なことで躓いたのでメモ程度に。
-結論 package main // Ellipsis a text func Ellipsis(length int, text string) string { r := []rune(text) if len(r) &gt; length { return string(r[0:length]) + &quot;...&quot; } return text }  要点  len(string)は鬼門  バイト数返す。考えてみたら当然だよね☆  string[n:m]は鬼門  バイト位置で切る。考えてみたら当ｚ   蛇足 string 系の関数作るときは、func(params..., string)の形に作るとちょっとだけ便利。
-text/templateのFuncMapにそのまま放り込めたりする。些細だなー！
-package main import ( &quot;bytes&quot; &quot;fmt&quot; &quot;text/template&quot; ) func main() { var buf bytes.Buffer template.New(&quot;text&quot;). Funcs(template.FuncMap{&quot;ellipsis&quot;: Ellipse}). Parse(`{{.value | ellipsis 5}}`). Execute(buf, map[string]string{&quot;value&quot;: &quot;みんみんみらくる☆&quot;}) fmt.
+            Goで文字の省略処理（Ellipsis）しようとしたら、初歩的なことで躓いたのでメモ程度に。 結論 package main // Ellipsis a text func Ellipsis(length int, text string) string { r := []rune(text) if len(r) &gt; length { return
             <div class="more-link-wrapper"><a class="more-link" href="https://kyoh86.work/posts/2016-02-01_11-05-36/">Read the post<span class="screen-reader-text">This is a Standard Post</span></a></div>
           </article>
         </div>
@@ -317,16 +301,7 @@ package main import ( &quot;bytes&quot; &quot;fmt&quot; &quot;text/template&quot
         </div>
         <div class='excerpt-content'>
           <article>
-            結論 brew list | grep -v '^lib' | while read line; do echo -n ${line}$'\t' brew info $line | grep -P '^https?://' | head -n1 done | column -t -s $'\t' &gt; brew-list.txt  atk https://library.gnome.org/devel/atk/ autoconf https://www.gnu.org/software/autoconf automake https://www.gnu.org/software/automake/ autotrace http://autotrace.sourceforge.net awscli https://aws.amazon.com/cli/ :  そこそこ便利。
-背景 Homebrewは、OSX界じゃあデファクトスタンダードといった趣です。
-ただ、最近 zplug でzsh上にplugin commandとして放り込んだほうが良いものも多々あるなァ、brewで何インストールしたっけな、とbrew listしたら絶望的な気持ちになりました。
-あらあらまぁまぁ。
-最初は「見覚えあるなァ、こいつ」と思ったものにアタリを付けて、検索して調べて・・・とやってましたが、正直やってられません。
-brew info [formula] とすれば、各インストールの詳細も見れます。
-が、 詳細ったって・・・なァ・・・。
-こういう時こそ軽めのシェル芸だな、と思ったので飛び出しましたるのが冒頭のシェルです。
-fzf なり、 peco なりと組み合わせてもいいかも。
-brew list | grep -v '^lib' | while read line; do echo -n ${line}$'\t' brew info $line | grep -P '^https?
+            結論 brew list | grep -v '^lib' | while read line; do echo -n ${line}$'\t' brew info $line | grep -P '^https?://' | head -n1 done | column -t -s $'\t' &gt; brew-list.txt atk https://library.gnome.org/devel/atk/ autoconf https://www.gnu.org/software/autoconf automake https://www.gnu.org/software/automake/ autotrace http://autotrace.sourceforge.net awscli https://aws.amazon.com/cli/ : そこそこ便利。 背景 Homebrewは、OSX界じゃ
             <div class="more-link-wrapper"><a class="more-link" href="https://kyoh86.work/posts/2016-01-09_09-44-27/">Read the post<span class="screen-reader-text">This is a Standard Post</span></a></div>
           </article>
         </div>
