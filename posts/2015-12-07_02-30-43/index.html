@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <title>簡易リバースプロキシ「ichigo」でWebアプリ開発が捗る話 </title>
+
+
+
+<meta name="description" content="Works of kyoh86">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="all,follow">
+<meta name="googlebot" content="index,follow,snippet,archive">
+<meta name="theme-color" content="#4d4d4d">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Raleway%3A400%2C700&amp;subset=latin%2Clatin-ext&amp;ver=4.7.2" type="text/css" media="all">
+<link rel="stylesheet" href="https://kyoh86.work/css/font-awesome.min.css" type='text/css' media='all'>
+
+<link href="https://kyoh86.work/css/style.css" rel="stylesheet" type='text/css' media='all'>
+
+<link href="https://kyoh86.work/css/custom.css" rel="stylesheet" type='text/css' media='all'>
+<link rel="shortcut icon" href="https://kyoh86.work/img/favicon.ico" type="image/x-icon">
+<link rel="icon" href="https://kyoh86.work/img/favicon.ico" type="image/x-icon">
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-70974996-2', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+
+<body class="post-template-default singular singular-post standard">
+
+  <div id="overflow-container" class="overflow-container">
+    <a class="skip-content" href="#main">Skip to content</a>
+    <header id="site-header" class="site-header" role="banner">
+      <div class="top-navigation">
+        <div class="container">
+
+  <div id="menu-secondary" class="menu-container menu-secondary" role="navigation">
+    <button id="toggle-secondary-navigation" class="toggle-secondary-navigation" aria-label="menu"><i class="fa fa-plus"></i></button>
+    <div class="menu">
+      <ul id="menu-secondary-items" class="menu-secondary-items">
+        
+        <li id="menu-item" class="menu-item">
+          <a href="/categories/tech">tech</a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    <ul class="social-media-icons">
+    
+      <li>
+        <a class="facebook" target="_blank"
+           href="https://www.facebook.com/kyoh.86" >
+          <i class="fa fa-facebook" title="facebook"></i>
+          <span class="screen-reader-text">facebook</span>
+        </a>
+      </li>
+    
+
+    
+      <li>
+        <a class="googleplus" target="_blank"
+           href="https://plus.google.com/u/0/100199074642864423892" >
+          <i class="fa fa-google-plus" title="googleplus"></i>
+          <span class="screen-reader-text">googleplus</span>
+        </a>
+      </li>
+    
+
+
+    
+      <li>
+      <a href="https://twitter.com/kyoh86"  class="twitter" target="_blank">
+          <i class="fa fa-twitter-square" title="twitter"></i>
+          <span class="screen-reader-text">twitter</span>
+      </a>
+      </li>
+    
+
+    
+      <li>
+      <a href="https://www.instagram.com/kyoh86"  class="twitter" target="_blank">
+          <i class="fa fa-instagram" title="instagram"></i>
+          <span class="screen-reader-text">instagram</span>
+      </a>
+      </li>
+    
+
+    
+
+    
+      <li>
+      <a href="https://www.linkedin.com/in/kyoh86/" class="linkedin" target="_blank">
+          <i class="fa fa-linkedin" title="linkedin"></i>
+          <span class="screen-reader-text">linkedin</span>
+      </a>
+      </li>
+    
+
+    
+      <li>
+      <a href="https://stackoverflow.com/users/3610769/kyoh86"  class="stackoverflow" target="_blank">
+          <i class="fa fa-stack-overflow" title="stackoverflow"></i>
+          <span class="screen-reader-text">stackoverflow</span>
+      </a>
+      </li>
+    
+
+
+    
+      <li>
+      <a href="https://github.com/kyoh86"  class="github" target="_blank">
+          <i class="fa fa-github" title="github"></i>
+          <span class="screen-reader-text">github</span>
+      </a>
+      </li>
+    
+  </ul>
+
+
+</div>
+
+      </div>
+
+      <div class="container">
+        <div id="title-info" class="title-info">
+  <div class="site-title">
+    
+    <a href="/"> kyoh86.work </a>
+    </div>
+  </div>
+  <button id="toggle-navigation" class="toggle-navigation" aria-label="menu">
+    <i class="fa fa-bars"></i>
+  </button>
+
+  <div id="menu-primary-tracks" class="menu-primary-tracks"></div>
+  <div id="menu-primary" class="menu-container menu-primary" role="navigation">
+    
+    <p class="site-description">Works of kyoh86</p>
+    
+
+    <div class="menu">
+      <ul id="menu-primary-items" class="menu-primary-items">
+        
+        
+        <li id="menu-item" class="menu-item">
+          <a href="https://kyoh86.work/">Home</a>
+        </li>
+        
+        <li id="menu-item" class="menu-item">
+          <a href="https://kyoh86.work/about">About</a>
+        </li>
+        
+        <li id="menu-item" class="menu-item">
+          <a href="https://kyoh86.work/products/">Products</a>
+        </li>
+        
+      </ul>
+    </div>
+
+  </div>
+
+      </div>
+    </header>
+
+    <div id="main" class="main" role="main">
+      
+  <div class="loop-container">
+    
+    <div class="post entry">
+    
+      <div class="entry-meta">
+        <span class="date">December 07</span>
+        
+          <span class="category">
+            <span> / </span>
+            <a href="/categories/tech">tech</a>
+          </span>
+        
+
+      </div>
+      <div class='entry-header'>
+        <h1 class='entry-title'> 簡易リバースプロキシ「ichigo」でWebアプリ開発が捗る話</h1>
+      </div>
+      <div class="entry-container">
+        <div class="entry-content">
+          <article>
+            
+
+<h2 id="概要">概要</h2>
+
+<p>自社サービスの開発中、必要にかられてGOで簡単なリバースプロキシツールを作った話を書いてみます。</p>
+
+<h2 id="前提">前提</h2>
+
+<p>自社サービスの開発を、次のような構成で進めています。</p>
+
+<ul>
+<li>フロントエンドとバックエンド（APIなど）をパスで振り分け
+
+<ul>
+<li><code>/</code>の下はフロントエンド</li>
+<li><code>/api/</code>の下はAPI</li>
+<li>その他にも色々・・・</li>
+</ul></li>
+<li>フロントエンドとバックエンドは、担当者もリポジトリも、動いているサーバも別</li>
+<li>それぞれサーバが開発環境、本番環境とテスト環境、のように複数の環境をもっている</li>
+</ul>
+
+<h2 id="やりたいこと">やりたいこと</h2>
+
+<p>前提の環境をもって、いざ開発をしようとローカル環境を構築するとなれば、</p>
+
+<ul>
+<li>ローカルにnginxでリバースプロキシを立てて管理するのは面倒くさい</li>
+<li>ちょっとした環境の変更があると共有がいちいち面倒くさい</li>
+<li>フロントエンド担当者がわざわざバックエンドをcloneだのpullだの面倒くさい</li>
+<li>環境間でテストするためにわざわざnginxの設定書き換えるのも面倒くさい</li>
+</ul>
+
+<p>と、面倒くさいことばかりになりがちです。</p>
+
+<p>そこで、簡単なプロキシツールを作って、</p>
+
+<ul>
+<li>ローカルには自分の担当するサーバ（とプロキシツール）だけが動いていればいい</li>
+<li>接続先の環境を容易に切り替えられる</li>
+</ul>
+
+<p>ようになったら便利だなァ、というのが動機です。</p>
+
+<h2 id="作ってみた">作ってみた</h2>
+
+<p>これを手軽に実現できるよう、簡単なリバースプロキシツールを作ってみました。</p>
+
+<p><a href="https://github.com/wacul/ichigo">Ichigo (GitHub)</a>
+<img src="https://raw.githubusercontent.com/wacul/ichigo/master/ichigo.png" alt="ichigo" /></p>
+
+<p>いちごです。美味しいですよね、いちご。</p>
+
+<h2 id="使い方">使い方</h2>
+
+<p>詳しい使い方は、GitHubのREADMEを御覧ください。
+ここではかんたんな機能紹介まで。</p>
+
+<ul>
+<li>Ichigo経由でアクセスすると、画面左下にコントローラーが現れます。
+<img src="https://raw.githubusercontent.com/wacul/ichigo/master/capture1.png" alt="ichigo" /></li>
+<li>各サーバーのプロキシ先を、コントローラで切り替えられます。
+<img src="https://raw.githubusercontent.com/wacul/ichigo/master/capture2.png" alt="ichigo" /></li>
+</ul>
+
+<h2 id="愚痴-開発中のあれこれ"><del>愚痴</del> 開発中のあれこれ</h2>
+
+<ul>
+<li>この程度のツールを作るなら、Goってホント良い感じ。
+
+<ul>
+<li>Goっていい感じ。</li>
+</ul></li>
+<li>世の中にありそうなもんだけどなァ、と思ったらなかなかなかった。
+
+<ul>
+<li>もっと賢いやり方あったら教えてほしい</li>
+</ul></li>
+<li>TypeScriptで頑張ってみたけど、やっぱりフロントエンド苦手。
+
+<ul>
+<li>でもやっぱりTypeScript最高。型付き言語最高。愛してる。（異論は認めます）</li>
+</ul></li>
+<li>Goっていい感じ。</li>
+<li><a href="https://github.com/gorilla/mux">gorilla/mux</a>とか、mux系は色々なライブラリがあるのに、もそっと柔らかいライブラリはないものなのか・・・。
+
+<ul>
+<li><code>/*</code>はこっち、<code>/api/*</code>はあっち、とかやろうとすると、全部<code>/*</code>に吸い取られる罠</li>
+<li><code>net/http/httputil.ReverseProxy</code>最高！</li>
+</ul></li>
+<li>Goっていい感じ。
+
+<ul>
+<li>Goっていい感じ。</li>
+<li>Gopher君ぺろぺろしたい</li>
+</ul></li>
+</ul>
+
+<h2 id="thanks">Thanks</h2>
+
+<p>ちょっとした面倒を避けて、みんなの苺が美味しくなりますように</p>
+
+          </article>
+        </div>
+        <div class='entry-meta-bottom'>
+
+          
+            <div class="entry-tags"><p><span>Tags</span>
+              
+                <a href="/tags/atom" title="View all posts tagged ATOM">ATOM</a>
+              
+                <a href="/tags/applescript" title="View all posts tagged AppleScript">AppleScript</a>
+              
+                <a href="/tags/csv" title="View all posts tagged CSV">CSV</a>
+              
+                <a href="/tags/ecs" title="View all posts tagged ECS">ECS</a>
+              
+                <a href="/tags/excel" title="View all posts tagged Excel">Excel</a>
+              
+                <a href="/tags/git" title="View all posts tagged Git">Git</a>
+              
+                <a href="/tags/github" title="View all posts tagged GitHub">GitHub</a>
+              
+                <a href="/tags/go" title="View all posts tagged Go">Go</a>
+              
+                <a href="/tags/json" title="View all posts tagged JSON">JSON</a>
+              
+                <a href="/tags/json-schema" title="View all posts tagged JSON-schema">JSON-schema</a>
+              
+                <a href="/tags/javascript" title="View all posts tagged JavaScript">JavaScript</a>
+              
+                <a href="/tags/mongodb" title="View all posts tagged MongoDB">MongoDB</a>
+              
+                <a href="/tags/osx" title="View all posts tagged OSX">OSX</a>
+              
+                <a href="/tags/php" title="View all posts tagged PHP">PHP</a>
+              
+                <a href="/tags/perl6" title="View all posts tagged Perl6">Perl6</a>
+              
+                <a href="/tags/semanticversioning" title="View all posts tagged SemanticVersioning">SemanticVersioning</a>
+              
+                <a href="/tags/vscode" title="View all posts tagged VSCode">VSCode</a>
+              
+                <a href="/tags/visualstudiocode" title="View all posts tagged VisualStudioCode">VisualStudioCode</a>
+              
+                <a href="/tags/web" title="View all posts tagged Web">Web</a>
+              
+                <a href="/tags/zsh" title="View all posts tagged Zsh">Zsh</a>
+              
+                <a href="/tags/cli" title="View all posts tagged cli">cli</a>
+              
+                <a href="/tags/golang" title="View all posts tagged golang">golang</a>
+              
+                <a href="/tags/homebrew" title="View all posts tagged homebrew">homebrew</a>
+              
+                <a href="/tags/jxa" title="View all posts tagged jXA">jXA</a>
+              
+                <a href="/tags/memo" title="View all posts tagged memo">memo</a>
+              
+                <a href="/tags/pecoshellanyframezsh" title="View all posts tagged peco,shell,anyframe,zsh">peco,shell,anyframe,zsh</a>
+              
+                <a href="/tags/postfix" title="View all posts tagged postfix">postfix</a>
+              
+                <a href="/tags/proxy" title="View all posts tagged proxy">proxy</a>
+              
+                <a href="/tags/scaffold" title="View all posts tagged scaffold">scaffold</a>
+              
+                <a href="/tags/semver" title="View all posts tagged semver">semver</a>
+              
+                <a href="/tags/shell" title="View all posts tagged shell">shell</a>
+              
+                <a href="/tags/tag" title="View all posts tagged tag">tag</a>
+              
+                <a href="/tags/%E3%82%A2%E3%82%A4%E3%83%87%E3%82%A3%E3%82%A2" title="View all posts tagged アイディア">アイディア</a>
+              
+                <a href="/tags/%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3" title="View all posts tagged バージョン">バージョン</a>
+              
+                <a href="/tags/%E3%83%9D%E3%82%A8%E3%83%A0" title="View all posts tagged ポエム">ポエム</a>
+              
+                <a href="/tags/%E3%83%A1%E3%83%A2" title="View all posts tagged メモ">メモ</a>
+              
+            </p></div>
+          
+        </div>
+      </div>
+    </div>
+
+    <nav class="navigation pagination" role="navigation">
+      <h2 class="screen-reader-text">Posts navigation</h2>
+      <div class="nav-links">
+        
+        
+        <a class="next page-numbers" href="https://kyoh86.work/posts/2015-12-17_00-03-03/">GitHubのPullRequest一覧イマイチ使いづらくね？→捗るツール作ったった</a>
+        
+      </div>
+    </nav>
+
+    <section class="comments">
+    
+    </section>
+  </div>
+
+
+    </div>
+
+    <footer id="site-footer" class="site-footer" role="contentinfo">
+  <h1>
+    
+      <a href=""> kyoh86.work </a>
+    
+  </h1>
+
+  
+    <p class="site-description">Works of kyoh86</p>
+  
+
+  <div class="menu-footer" role="navigation">
+    <div class="menu">
+      <ul class="menu-footer-items">
+        
+      </ul>
+    </div>
+  </div>
+
+    <ul class="social-media-icons">
+    
+      <li>
+        <a class="facebook" target="_blank"
+           href="https://www.facebook.com/kyoh.86" >
+          <i class="fa fa-facebook" title="facebook"></i>
+          <span class="screen-reader-text">facebook</span>
+        </a>
+      </li>
+    
+
+    
+      <li>
+        <a class="googleplus" target="_blank"
+           href="https://plus.google.com/u/0/100199074642864423892" >
+          <i class="fa fa-google-plus" title="googleplus"></i>
+          <span class="screen-reader-text">googleplus</span>
+        </a>
+      </li>
+    
+
+
+    
+      <li>
+      <a href="https://twitter.com/kyoh86"  class="twitter" target="_blank">
+          <i class="fa fa-twitter-square" title="twitter"></i>
+          <span class="screen-reader-text">twitter</span>
+      </a>
+      </li>
+    
+
+    
+      <li>
+      <a href="https://www.instagram.com/kyoh86"  class="twitter" target="_blank">
+          <i class="fa fa-instagram" title="instagram"></i>
+          <span class="screen-reader-text">instagram</span>
+      </a>
+      </li>
+    
+
+    
+
+    
+      <li>
+      <a href="https://www.linkedin.com/in/kyoh86/" class="linkedin" target="_blank">
+          <i class="fa fa-linkedin" title="linkedin"></i>
+          <span class="screen-reader-text">linkedin</span>
+      </a>
+      </li>
+    
+
+    
+      <li>
+      <a href="https://stackoverflow.com/users/3610769/kyoh86"  class="stackoverflow" target="_blank">
+          <i class="fa fa-stack-overflow" title="stackoverflow"></i>
+          <span class="screen-reader-text">stackoverflow</span>
+      </a>
+      </li>
+    
+
+
+    
+      <li>
+      <a href="https://github.com/kyoh86"  class="github" target="_blank">
+          <i class="fa fa-github" title="github"></i>
+          <span class="screen-reader-text">github</span>
+      </a>
+      </li>
+    
+  </ul>
+
+
+  <div class="design-credit">
+    
+      <p>&copy; 2018 kyoh86</p>
+    
+  </div>
+</footer>
+
+  </div>
+  <script src="https://kyoh86.work/js/jquery.min.js"></script>
+<script src="https://kyoh86.work/js/jquerymigrate.js"></script>
+<script src="https://kyoh86.work/js/production.min.js"></script>
+
+</body>
+</html>

@@ -49,6 +49,10 @@ ga('send', 'pageview');
     <div class="menu">
       <ul id="menu-secondary-items" class="menu-secondary-items">
         
+        <li id="menu-item" class="menu-item">
+          <a href="/categories/tech">tech</a>
+        </li>
+        
       </ul>
     </div>
   </div>
@@ -176,9 +180,244 @@ ga('send', 'pageview');
   
   <div class="loop-container">
   
+    <div class="post zoom full-without-featured excerpt odd">
+      
+      <div class="excerpt-container">
+        <div class="excerpt-meta">
+          <span class="date">March 25</span>
+          
+            <span> / </span>
+            <span class="category">
+              <a href="/categories/tech">tech</a>
+            </span>
+          
+        </div>
+        <div class='excerpt-header'>
+          <h2 class='excerpt-title'>
+            <a href="https://kyoh86.work/posts/2018-03-25_12-05-01/ ">golangのstrings.TrimLeftはイケてない</a>
+          </h2>
+        </div>
+        <div class='excerpt-content'>
+          <article>
+            ツイートしたりもしたけど、やはり気になるのでつらつらとポエムる。
+strings.TrimLeftわかりづらくね？ golangのstrings.TrimLeft(Right)とstrings.TrimPrefix(Suffix)の関係が嫌い。
+TrimLeftの方は概念的にはTrimLeft(s string, cutset set&lt;rune&gt;)のはずなのに、TrimLeft(s string, cutset string)となってる。 結果、型としてはTrimLeft(string, string)とTrimPrefix(string, string)は見分けがつかない。 Prefixの存在を知らないとTrimLeft(&quot;abc-back&quot;, &quot;abc-&quot;)とか書かれてたときに想像する結果が二通りに分岐してしまう。 正解は&quot;k&quot;なわけだけど、&quot;back&quot;かな、と思っちゃう場合もある。というかgolangを2年触ってる僕だってそう思う。
+すべての関数は型で中身が想像できるべきだ！なんて1ミリも思わないけど、こればっかりはわかりづらすぎないか？
+じゃあどうするか golangにはset&lt;T&gt;がない（と言うかジェネリクスないし）わけだけど、代わりに何使うか。 形式的にはmap[T]struct{}とか定番だけど、
+strings.TrimLeft(&quot;abcback&quot;, map[rune]struct{}{ 'a':struct{}{}, 'b':struct{}{}, 'c':struct{}{} })  悍ましくて書きたくない。
+結局、arrayじゃね？ということで、strings.TrimLeft(string, []rune)としてほしい。 結局stringと似た何かなんだけど、配列はシーケンシャルであると同時に集合としてのニュアンスを（stringよりは）持つと思うんだよね。
+2に期待 golang 2でstrings.TrimLeft(string, []rune)への変更が為されないかと密かに期待している。 RFC書きたいけど、議論が紛糾しそうで、そんな場に英語で参戦する勇気が出ない。
+            <div class="more-link-wrapper"><a class="more-link" href="https://kyoh86.work/posts/2018-03-25_12-05-01/">Read the post<span class="screen-reader-text">This is a Standard Post</span></a></div>
+          </article>
+        </div>
+      </div>
+    </div>
+  
+    <div class="post zoom full-without-featured excerpt even">
+      
+      <div class="excerpt-container">
+        <div class="excerpt-meta">
+          <span class="date">March 03</span>
+          
+            <span> / </span>
+            <span class="category">
+              <a href="/categories/tech">tech</a>
+            </span>
+          
+        </div>
+        <div class='excerpt-header'>
+          <h2 class='excerpt-title'>
+            <a href="https://kyoh86.work/posts/2018-03-03_11-37-00/ ">【作りたいもの】golangでLCSVパーサ</a>
+          </h2>
+        </div>
+        <div class='excerpt-content'>
+          <article>
+            メモ
+LCSV (Labeled-CSV) のパーサがほしい できればstruct tagのパースできるやつ
+使い方は2種類あって、CSVパーサみたいに各行パースするやつと、JSON的にワンライナーの文字列をパースするやつ。
+イメージ（csvと同じ感じで） values := `name: John, country: US, sex: male name: Hana, country: JP, sex: female name: Kim, country: CH` var datum map[string]string var err error reader := lcsv.NewReader(strings.NewReader(values)) for err == nil { datum, err = reader.Read() fmt.Println(datum) } /* Output: map[name:John country:US sex:male] map[name:Hana country:JP sex:female] map[name:Kim country:CH] */  イメージ（jsonな使い方） GoのStruct Tagは、tagName:&quot;HOST_NAME,required,default=example.com&quot;みたいな書かれ方しがち。 tagName をキーに HOST_NAME,required,default=example.com はカンタンに取得できるけど、 中身は各々勝手にルール決めてパースしてる感じ。 でも要はこれLCSVだよねと思うので、&rdquo;クォーテーションできない(Unquoted)&ldquo;、&rdquo;値とラベルの区切り文字が= (LabelSeparator('='))とかオプション指定できれば、json.Decoderみたいにやれそう。
+var key string var options map[string]string tagValue := `required,default=example.
+            <div class="more-link-wrapper"><a class="more-link" href="https://kyoh86.work/posts/2018-03-03_11-37-00/">Read the post<span class="screen-reader-text">This is a Standard Post</span></a></div>
+          </article>
+        </div>
+      </div>
+    </div>
+  
+    <div class="post zoom full-without-featured excerpt odd">
+      
+      <div class="excerpt-container">
+        <div class="excerpt-meta">
+          <span class="date">December 10</span>
+          
+            <span> / </span>
+            <span class="category">
+              <a href="/categories/tech">tech</a>
+            </span>
+          
+        </div>
+        <div class='excerpt-header'>
+          <h2 class='excerpt-title'>
+            <a href="https://kyoh86.work/posts/2017-12-10_13-13-49/ ">Goの俺的scaffoldはこれだ！2017年版</a>
+          </h2>
+        </div>
+        <div class='excerpt-content'>
+          <article>
+            Boom Boom Hello, gophers! Go書いてるかい！
+tl;dr 今年も色々、汚物に似た何かをGitHub上に吐き散らかしてきましたが、 来年はもうちょっとキレイな汚物にしようと考え、自分なりに Goで何か作り始めるならここがスタート という物をまとめてみようと思います。
+実物 go-initというのを作って運用してます。 中には init.sh が入ってるので、 init.sh ${OWNER} ${NAME} とかすると、 github.com/${OWNER}/${NAME} で運用する前提のディレクトリが出来上がるので、 git init とかして遊ぶといいと思います。 本当はこいつをscaffoldingツールとして仕上げてこの記事を書きたかったんですが、時間切れです。 yeomanでいいじゃん
+動機づけ 2017年私的プロジェクト振り返り この2017年、なんやかんや自分なりに色々開発してきて、あれがねえな、これもねえなと思うたびにshell書く代わりぐらいのテンションでgolang書いてきました。
+今年メンテしていた自分のリポジトリを雑に振り返ってみると…
+ ask  CLIでダイアログだすやーつ。Y/NとかStringとか取れちゃう。嬉しい！ 何番煎じだよ  deject  ローカルリポジトリ管理する君。dog fooding しちゃいるものの、将来性が見えない。 何番煎じｄ  git-branches  git-branch --list 見にくいよ、fzfとかと繋げた時に見やすいの作ろ、と思ったやつ git-for-each-refでいいじゃん  git-prompt  tmuxとか、zshのプロンプトにさ、gitの情報出したいじゃん zshのvcs_infoはさ、スゲーはえーけど、情報足んないじゃん shellでやってもいいけどさ、重いじゃん そうだ、goでやろう。 結構速いよ！（当社比）  git-vertag  segverタグ管理したいけど、npm 。俺のローカルに node がいくつ入ってると思ってるんだ。 何番線  go-spdx  SPDX Licenses（MIT+APSL-1.
+            <div class="more-link-wrapper"><a class="more-link" href="https://kyoh86.work/posts/2017-12-10_13-13-49/">Read the post<span class="screen-reader-text">This is a Standard Post</span></a></div>
+          </article>
+        </div>
+      </div>
+    </div>
+  
+    <div class="post zoom full-without-featured excerpt even">
+      
+      <div class="excerpt-container">
+        <div class="excerpt-meta">
+          <span class="date">December 08</span>
+          
+            <span> / </span>
+            <span class="category">
+              <a href="/categories/tech">tech</a>
+            </span>
+          
+        </div>
+        <div class='excerpt-header'>
+          <h2 class='excerpt-title'>
+            <a href="https://kyoh86.work/posts/2017-12-08_00-00-21/ ">GitHubでセマンティックバージョニングを運用する</a>
+          </h2>
+        </div>
+        <div class='excerpt-content'>
+          <article>
+            tl;dr ちょうど dep (golang用のvendoringツール）を使っている中で、妙なバージョン運用をしているリポジトリに悩まされたので、 いまさらとは思いつつも「GitHubでバージョン管理するならこうだよね」ということをまとめてみました。
+Semantics Versioning バージョン番号自体の運用方法については、割と大きなスタンダードがすでにあって、Semantics Versioning(以下semver)がよく使われています。 意外と細かいところで悩まされることも多いので、一度文書には目を通しておいたほうがいいでしょう。英語が難しいという人には日本語の文書も公開されています。
+GitHubでの運用 GitHubでこのsemverで運用しようと思った場合、やりかたは色々あるとは思いますが、基本はTagsとブランチの運用になるでしょう。　先の文書に示されたスタンダードと、いくつかsemver関連のツールを触ってみた感じ、次のような運用が良さそうです。
+ブランチ  masterブランチは、最新の 安定した バージョン
+ バージョニングなんてしらん！というツールやユーザーのためには、masterは安定していることが大切  メジャーバージョンごとにブランチ（以下メジャーブランチとする）を用意する
+ 過去のメジャーバージョンにもメンテの可能性が当然ある 破壊的変更を企んだ瞬間、新しいメジャーブランチを用意する  masterは安定していることが大切（大切なことなのでｒｙ）  昔懐かしいjQueryとか、1.xと2.xの共存期間が長かったですね。 ~python2?え？~  メジャーブランチの名は v1.x の様に、 vメジャーバージョン番号 + .x(固定文字列) とする
+ 一部のツールは、タグもブランチも一絡げに捉えようとする &ldquo;ブランチ&rdquo; はあくまで開発が行われる場所なので、単一のバージョンを指している &ldquo;タグ&rdquo; とは命名規則を分けたほうがいい semverに詳しくない人にとっては、 v1 ブランチと v1.0.0 タグの両方がある世界は混乱するだけ  .x がどの程度効くかは不明だけど    タグ  作業ブランチでは打たず、メジャーブランチのコミットに対して打つ
+ squash mergeなんかされて、対象のコミットがない、みたいな話もちょっと悲しい  命名はsemverの仕様に則る（大事）
+ 例：1.0.0-alpha &lt; 1.0.0-alpha.1 &lt; 1.0.0-alpha.beta &lt; 1.
+            <div class="more-link-wrapper"><a class="more-link" href="https://kyoh86.work/posts/2017-12-08_00-00-21/">Read the post<span class="screen-reader-text">This is a Standard Post</span></a></div>
+          </article>
+        </div>
+      </div>
+    </div>
+  
+    <div class="post zoom full-without-featured excerpt odd">
+      
+      <div class="excerpt-container">
+        <div class="excerpt-meta">
+          <span class="date">August 29</span>
+          
+            <span> / </span>
+            <span class="category">
+              <a href="/categories/tech">tech</a>
+            </span>
+          
+        </div>
+        <div class='excerpt-header'>
+          <h2 class='excerpt-title'>
+            <a href="https://kyoh86.work/posts/2017-08-29_10-55-31/ ">$GOPATH/binにいるバイナリ群の出自を探る方法</a>
+          </h2>
+        </div>
+        <div class='excerpt-content'>
+          <article>
+             Goを使っていると、ある日突然に日頃使っていたコマンドが全く違う何かに置き換えられていたりして、驚くことがあります。 $GOPATH/bin の下に色々入ってはいるものの、どこの誰かは名前だけではわかりません。
+結論 シェルスクリプト go list　を使って、インストールパッケージパス一覧を出してみます。
+go list -f &quot;{{if eq \&quot;${GOPATH}/bin/\&quot; (printf \&quot;%.$((${#GOPATH}+5))s\&quot; .Target)}}{{.Target}},{{.ImportPath}}{{end}}&quot; all  結果サンプル パス見てみると、 vendor とか、 examples とか、ちらほらと治安悪いですね。 examples/.../server は鬼畜の所業としか思えないですね。（またgo-swaggerか…）
+/Users/user/go/bin/toml-test-decoder,github.com/BurntSushi/toml/cmd/toml-test-decoder /Users/user/go/bin/toml-test-encoder,github.com/BurntSushi/toml/cmd/toml-test-encoder /Users/user/go/bin/tomlv,github.com/BurntSushi/toml/cmd/tomlv /Users/user/go/bin/go-symbols,github.com/acroca/go-symbols /Users/user/go/bin/gometalinter,github.com/alecthomas/gometalinter /Users/user/go/bin/codegen,github.com/alecthomas/gometalinter/vendor/github.com/nicksnyder/go-i18n/i18n/language/codegen /Users/user/go/bin/embedi18n,github.com/alecthomas/gometalinter/vendor/gopkg.in/alecthomas/kingpin.v3-unstable/cmd/embedi18n /Users/user/go/bin/genvalues,github.com/alecthomas/gometalinter/vendor/gopkg.in/alecthomas/kingpin.v3-unstable/cmd/genvalues /Users/user/go/bin/gotests,github.com/cweill/gotests/gotests /Users/user/go/bin/gomodifytags,github.com/fatih/gomodifytags /Users/user/go/bin/motion,github.com/fatih/motion /Users/user/go/bin/swagger,github.com/go-swagger/go-swagger/cmd/swagger /Users/user/go/bin/server,github.com/go-swagger/go-swagger/examples/2.0/petstore/server /Users/user/go/bin/petstore-server,github.com/go-swagger/go-swagger/examples/generated/cmd/petstore-server /Users/user/go/bin/countdown-server,github.com/go-swagger/go-swagger/examples/stream-server/cmd/countdown-server /Users/user/go/bin/agg,github.com/go-swagger/go-swagger/vendor/github.com/kr/text/cmd/agg /Users/user/go/bin/mc,github.com/go-swagger/go-swagger/vendor/github.com/kr/text/mc /Users/user/go/bin/cmd,github.com/go-swagger/go-swagger/vendor/github.com/pelletier/go-toml/cmd /Users/user/go/bin/tomljson,github.com/go-swagger/go-swagger/vendor/github.com/pelletier/go-toml/cmd/tomljson /Users/user/go/bin/tomll,github.com/go-swagger/go-swagger/vendor/github.com/pelletier/go-toml/cmd/tomll  解説 追記予定
+余談 server という python -m SimpleServer をちょっと拡張しただけのシェルを自作で使っていたのですが、いつのまにか使えなくなってしまい、 which server としてみたところ、 ~/go/bin/server が返ってきてなんじゃこりゃと思ったり…割と怖い話。
+追記予定  package mainを迂闊に書くべきじゃない sampleならsampleのタグを入れるといいかも？ // +build sample その辺ガイドライン的なものは無いのか $PATHに$GOPATH/binを入れるべきではないかもしれない  
+            <div class="more-link-wrapper"><a class="more-link" href="https://kyoh86.work/posts/2017-08-29_10-55-31/">Read the post<span class="screen-reader-text">This is a Standard Post</span></a></div>
+          </article>
+        </div>
+      </div>
+    </div>
+  
 </div>
 
   
+
+<nav class="navigation pagination" role="navigation">
+	<h2 class="screen-reader-text">Posts navigation</h2>
+	<div class="nav-links">
+		
+			
+			
+			
+			
+			
+			
+				
+				
+			
+				
+					<a href="/">1</a>
+				
+			
+			
+			
+			
+			
+				
+				
+			
+				
+					<a href="/page/2/">2</a>
+				
+			
+			
+			
+			
+			
+				
+				
+			
+				
+					<a href="/page/3/">3</a>
+				
+			
+			
+			
+			
+			
+				
+				
+			
+				
+					<span aria-current="page" class="current">4</span>
+				
+			
+			
+			
+			
+			
+				
+				
+			
+				
+			
+			
+			
+			
+			
+				
+				
+			
+				
+					<a href="/page/6/">6</a>
+				
+			
+		
+			<a class="next" href="/page/2/">Next</a>
+		
+	</div>
+</nav>
 
 
 

@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <title>ズボラな僕らだからこそ「正しそうで正しくない少し正しいgitの使い方」 </title>
+
+
+
+<meta name="description" content="Works of kyoh86">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="all,follow">
+<meta name="googlebot" content="index,follow,snippet,archive">
+<meta name="theme-color" content="#4d4d4d">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Raleway%3A400%2C700&amp;subset=latin%2Clatin-ext&amp;ver=4.7.2" type="text/css" media="all">
+<link rel="stylesheet" href="https://kyoh86.work/css/font-awesome.min.css" type='text/css' media='all'>
+
+<link href="https://kyoh86.work/css/style.css" rel="stylesheet" type='text/css' media='all'>
+
+<link href="https://kyoh86.work/css/custom.css" rel="stylesheet" type='text/css' media='all'>
+<link rel="shortcut icon" href="https://kyoh86.work/img/favicon.ico" type="image/x-icon">
+<link rel="icon" href="https://kyoh86.work/img/favicon.ico" type="image/x-icon">
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-70974996-2', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+
+<body class="post-template-default singular singular-post standard">
+
+  <div id="overflow-container" class="overflow-container">
+    <a class="skip-content" href="#main">Skip to content</a>
+    <header id="site-header" class="site-header" role="banner">
+      <div class="top-navigation">
+        <div class="container">
+
+  <div id="menu-secondary" class="menu-container menu-secondary" role="navigation">
+    <button id="toggle-secondary-navigation" class="toggle-secondary-navigation" aria-label="menu"><i class="fa fa-plus"></i></button>
+    <div class="menu">
+      <ul id="menu-secondary-items" class="menu-secondary-items">
+        
+        <li id="menu-item" class="menu-item">
+          <a href="/categories/tech">tech</a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    <ul class="social-media-icons">
+    
+      <li>
+        <a class="facebook" target="_blank"
+           href="https://www.facebook.com/kyoh.86" >
+          <i class="fa fa-facebook" title="facebook"></i>
+          <span class="screen-reader-text">facebook</span>
+        </a>
+      </li>
+    
+
+    
+      <li>
+        <a class="googleplus" target="_blank"
+           href="https://plus.google.com/u/0/100199074642864423892" >
+          <i class="fa fa-google-plus" title="googleplus"></i>
+          <span class="screen-reader-text">googleplus</span>
+        </a>
+      </li>
+    
+
+
+    
+      <li>
+      <a href="https://twitter.com/kyoh86"  class="twitter" target="_blank">
+          <i class="fa fa-twitter-square" title="twitter"></i>
+          <span class="screen-reader-text">twitter</span>
+      </a>
+      </li>
+    
+
+    
+      <li>
+      <a href="https://www.instagram.com/kyoh86"  class="twitter" target="_blank">
+          <i class="fa fa-instagram" title="instagram"></i>
+          <span class="screen-reader-text">instagram</span>
+      </a>
+      </li>
+    
+
+    
+
+    
+      <li>
+      <a href="https://www.linkedin.com/in/kyoh86/" class="linkedin" target="_blank">
+          <i class="fa fa-linkedin" title="linkedin"></i>
+          <span class="screen-reader-text">linkedin</span>
+      </a>
+      </li>
+    
+
+    
+      <li>
+      <a href="https://stackoverflow.com/users/3610769/kyoh86"  class="stackoverflow" target="_blank">
+          <i class="fa fa-stack-overflow" title="stackoverflow"></i>
+          <span class="screen-reader-text">stackoverflow</span>
+      </a>
+      </li>
+    
+
+
+    
+      <li>
+      <a href="https://github.com/kyoh86"  class="github" target="_blank">
+          <i class="fa fa-github" title="github"></i>
+          <span class="screen-reader-text">github</span>
+      </a>
+      </li>
+    
+  </ul>
+
+
+</div>
+
+      </div>
+
+      <div class="container">
+        <div id="title-info" class="title-info">
+  <div class="site-title">
+    
+    <a href="/"> kyoh86.work </a>
+    </div>
+  </div>
+  <button id="toggle-navigation" class="toggle-navigation" aria-label="menu">
+    <i class="fa fa-bars"></i>
+  </button>
+
+  <div id="menu-primary-tracks" class="menu-primary-tracks"></div>
+  <div id="menu-primary" class="menu-container menu-primary" role="navigation">
+    
+    <p class="site-description">Works of kyoh86</p>
+    
+
+    <div class="menu">
+      <ul id="menu-primary-items" class="menu-primary-items">
+        
+        
+        <li id="menu-item" class="menu-item">
+          <a href="https://kyoh86.work/">Home</a>
+        </li>
+        
+        <li id="menu-item" class="menu-item">
+          <a href="https://kyoh86.work/about">About</a>
+        </li>
+        
+        <li id="menu-item" class="menu-item">
+          <a href="https://kyoh86.work/products/">Products</a>
+        </li>
+        
+      </ul>
+    </div>
+
+  </div>
+
+      </div>
+    </header>
+
+    <div id="main" class="main" role="main">
+      
+  <div class="loop-container">
+    
+    <div class="post entry">
+    
+      <div class="entry-meta">
+        <span class="date">December 02</span>
+        
+          <span class="category">
+            <span> / </span>
+            <a href="/categories/tech">tech</a>
+          </span>
+        
+
+      </div>
+      <div class='entry-header'>
+        <h1 class='entry-title'> ズボラな僕らだからこそ「正しそうで正しくない少し正しいgitの使い方」</h1>
+      </div>
+      <div class="entry-container">
+        <div class="entry-content">
+          <article>
+            
+
+<p>本日のいまさら記事はこちらです。</p>
+
+<h1 id="この記事の対象読者">この記事の対象読者</h1>
+
+<ul class="task-list">
+<li><label><input type="checkbox" checked disabled class="task-list-item"> commit messageは <code>wip</code> <code>fix</code> が9割を超える</label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> 「宇宙人」と書いて「マメな人」と読む</label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> 夏休みの宿題を9/1までに終える人は未来人である</label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> 「毎日1分頑張るだけ」などと言える超能力者がいるらしい</label></li>
+</ul>
+
+<blockquote>
+<p>ただの人間にしか興味ありません。
+この中に宇宙人、未来人、異世界人、超能力者がいたら、そっと記事を「いいね」して閉じなさい。以上！</p>
+</blockquote>
+
+<h2 id="コミットの正しい運用って">コミットの正しい運用って？</h2>
+
+<p>色んな世界線の人が参考になる記事を書いています。</p>
+
+<p><a href="http://qiita.com/kozyty@github/items/87fa95a236b6142f7c10">http://qiita.com/kozyty@github/items/87fa95a236b6142f7c10</a>
+<a href="http://qiita.com/itosho/items/9565c6ad2ffc24c09364">http://qiita.com/itosho/items/9565c6ad2ffc24c09364</a>
+<a href="http://qiita.com/risacan/items/f4cbabc62b684ab9296d">http://qiita.com/risacan/items/f4cbabc62b684ab9296d</a>
+<a href="http://qiita.com/crifff/items/1abf08bca4ce51db4775">http://qiita.com/crifff/items/1abf08bca4ce51db4775</a></p>
+
+<p>などなど。</p>
+
+<p>正しい世界の人はこれらの記事を参考にしましょう。</p>
+
+<h1 id="正しいコミットを常に意識しろ-なんて面倒くさい-ならどうすればいい">正しいコミットを常に意識しろ、なんて面倒くさい。ならどうすればいい？</h1>
+
+<p>ズボラなコミットメッセージ、適当なプルリクエスト、<code>File Changes(243)</code> は嫌われます。
+チームメンバーのMPを削っても、良いことはありません。</p>
+
+<p><img src="https://qiita-image-store.s3.amazonaws.com/0/31053/a00c7f4f-f5ed-800b-d943-d018bde8be10.png" alt="adv2016-12-02-01.png" /></p>
+
+<p>ですから、次の事<strong>だけ</strong>は気を付けましょう。</p>
+
+<h2 id="みんなで作業するブランチは汚さない">みんなで作業するブランチは汚さない</h2>
+
+<ul>
+<li>自分だけのブランチで作業して、できあがったらPR！PR！！PR！！！</li>
+<li>マージするときはGitHubの<a href="https://github.com/blog/2141-squash-your-commits">Squash and Merge</a>を使おう</li>
+</ul>
+
+<h2 id="人の目に触れるもの-プルリクエスト-はキレイにする">人の目に触れるもの（≒プルリクエスト）はキレイにする</h2>
+
+<ul>
+<li>プルリクエストの description で何を目的とした変更なのか明確に説明する
+
+<ul>
+<li>ポエムにしない。</li>
+<li><strong>せめて</strong>新機能の追加なのか、バグフィクスなのか、リファクタリングなのかだけでも書く。</li>
+</ul></li>
+<li>どこを重点的に見てほしいのか、小さな単位で説明する
+
+<ul>
+<li>もちろん「小さい変更・小さいPR」が良いけど、<del>面倒くさい</del>諸事情により大きくなることもある。</li>
+<li><strong>「●●ってファイルの✕✕行目、△△のためにこうしたけど、□□かもしれんので見て欲しい」</strong></li>
+</ul></li>
+</ul>
+
+<h1 id="ファイルの-行目-って-もっとなんか良いのあるだろ">「●●ファイルの✕✕行目」って・・・もっとなんか良いのあるだろ！</h1>
+
+<p>はい。そこまで来て初めて、「コミットは小さくしよう、メッセージは適切に」という言葉が身にしみ得るんです。最近実感しました。</p>
+
+<p>とはいえ、「あれやってる最中にここが気になってこっちも直した」は普通の人ならよくあることです。
+実装中には<strong>面倒くさくて</strong>、「あ、コレ違う、別のブランチ切ろう、あの時点に戻ってここからブランチ切って・・・」なんて、<strong>面倒くさくて</strong>やってられません。<strong>面倒くさくて</strong>。</p>
+
+<p>例えばSlackに投稿する前に、間違いがないか厳密に推敲するでしょうか？しませんよね。
+とりあえずEnterキーをターン！で、後からEditすりゃいいですよね。あとで見えなきゃいいんです。</p>
+
+<h2 id="あとでキレイにすればいいや">「あとでキレイにすればいいや」。</h2>
+
+<p>そもそもVersion管理を<strong>とても乱暴に</strong>言ってしまえば、「あとで何があったか見返すためのもの」「あとで過去の編集を改めるためのもの」です。
+ですから、コミットなんて最初は適当でいいんです。
+実装中は直したいところを直して、やりたい放題コミットしまくりましょう。</p>
+
+<p><strong>ただし、自分用の作業ブランチで。</strong>他人様に迷惑をかけることだけはやめましょう。</p>
+
+<h2 id="こんなふうに出来たらいいな">こんなふうに出来たらいいな</h2>
+
+<blockquote>
+<p>●●の機能を追加するため、…</p>
+
+<ul>
+<li>●●の実装: <font color="#337ab7">9xd4941</font></li>
+<li>●●のテスト: <font color="#337ab7">0979xd2</font></li>
+<li>ついでにやった✕✕のリファクタリング: <font color="#337ab7">337xab7</font></li>
+<li>自動生成コード部分: <font color="#337ab7">6exd364</font></li>
+</ul>
+</blockquote>
+
+<p>見やすいですね。もっとキレイにすることはできるでしょうが…</p>
+
+<p><a href="http://qiita.com/umanoda/items/93aec41213f8e3ce14c8">http://qiita.com/umanoda/items/93aec41213f8e3ce14c8</a></p>
+
+<h1 id="あとでキレイにする-ための色々">「あとでキレイにする」ための色々</h1>
+
+<h2 id="ユースケースごとに便利な-git-コマンド">ユースケースごとに便利な git コマンド</h2>
+
+<p>では実際、一度コミットしてしまった内容をキレイにするために、ユースケース別に使えるgitコマンドを少しばかり。</p>
+
+<h3 id="過去のコミットをまとめたい-並び替えたい">過去のコミットをまとめたい・並び替えたい</h3>
+
+<p>さて、貴方の目前には作業中に作った大量のwipコミットがあります。</p>
+
+<pre><code class="language-shell-session">$ git branch
+
+  master
+* wip-branch
+
+$ git log
+
+commit 035a324a7e9e03822be202536a89d3bd27451c95
+Author: kyoh86 &lt;yamada@wacul.co.jp&gt;
+Date:   Tue Nov 22 08:15:42 2016 +0900
+
+    wip まだゴミあった
+
+commit d387cf8dd21b297d9b8c427db8b7007fe9dee108
+Author: kyoh86 &lt;yamada@wacul.co.jp&gt;
+Date:   Tue Nov 22 07:57:33 2016 +0900
+
+    wip バグ直し
+
+commit 101f652a9dd51a29269fa818b91d2fac8a2e3d0c
+Author: kyoh86 &lt;yamada@wacul.co.jp&gt;
+Date:   Tue Nov 22 07:51:02 2016 +0900
+
+    wip できた？
+
+commit 59be7f5930f6d3fe7d3cda89ddb1dd252d170b77
+Author: kyoh86 &lt;yamada@wacul.co.jp&gt;
+Date:   Tue Nov 22 06:53:42 2016 +0900
+
+    wop ごみ掃除
+
+commit df735e2e2b31df94d73ad134fa02692996e3ad9d
+Author: kyoh86 &lt;yamada@wacul.co.jp&gt;
+Date:   Tue Nov 22 05:09:27 2016 +0900
+
+    functions 再整理 (#42)
+</code></pre>
+
+<p><code>df735e2</code> (functions 再整理 (#42)) より後のコミットがすべてwipのようです。
+さほど複雑な状況にはなっていません。ただ、「ゴミ掃除」コミットが２個あったり、「出来た？」と「バグ直し」のように作業の途中経過がコミットされていたりします。
+本来は「ゴミ掃除」で１コミット、「◯◯機能の実装」で1コミット、というのが望ましいところです。</p>
+
+<p>そこで、<code>git rebase -i</code> でコミットを並び替えて、いくつか一つにまとめてしまいます。</p>
+
+<pre><code class="language-shell-session">$ git rebase -i df735e2e2b31df94d73ad134fa02692996e3ad9d # ← &quot;functions 再整理 (#42)&quot; のコミットハッシュ
+
+pick 59be7f5 wop ごみ掃除
+pick 101f652 wip できた？
+pick d387cf8 wip バグ直し
+pick 035a324 wip まだゴミあった
+
+# Rebase 326fc9f..0d4a808 onto d286baa
+#
+# Commands:
+#  p, pick = use commit
+#  r, reword = use commit, but edit the commit message
+#  e, edit = use commit, but stop for amending
+#  s, squash = use commit, but meld into previous commit
+#  f, fixup = like &quot;squash&quot;, but discard this commit's log message
+#  x, exec = run command (the rest of the line) using shell
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+# However, if you remove everything, the rebase will be aborted.
+#
+</code></pre>
+
+<p>エディタ（デフォルトではvim）が開いて、説明通りに編集すれば、</p>
+
+<ul>
+<li>並び替える</li>
+<li>１つにまとめる</li>
+<li>コミットメッセージを変える</li>
+<li>コミット内容を修正する</li>
+</ul>
+
+<p>といったコミットの操作を行えます。
+ここでは、以下のようにいじってみます。</p>
+
+<pre><code class="language-shell-session">reword 59be7f5 wop ごみ掃除
+squash 035a324 wip まだゴミあった
+reword 101f652 wip できた？
+squash d387cf8 wip バグ直し
+</code></pre>
+
+<p>結果、git logは次のようになりました。</p>
+
+<pre><code>commit 4641774bde2c85eaa3ce905e1e6d9b4e1cebf60a
+Author: kyoh86 &lt;yamada@wacul.co.jp&gt;
+Date:   Tue Nov 22 07:51:02 2016 +0900
+
+    ◯◯の実装
+
+commit 398acba7019ca7f7d915b55711c9ac53d7b22d3e
+Author: kyoh86 &lt;yamada@wacul.co.jp&gt;
+Date:   Tue Nov 22 06:53:42 2016 +0900
+
+    リファクタリング：使用していない✕✕パッケージを削除
+
+commit df735e2e2b31df94d73ad134fa02692996e3ad9d
+Author: kyoh86 &lt;yamada@wacul.co.jp&gt;
+Date:   Tue Nov 22 05:09:27 2016 +0900
+
+    functions 再整理 (#42)
+</code></pre>
+
+<p>めでたしめでたし。</p>
+
+<p><code>git rebase -i</code> による編集の詳細は、別の記事でまとめている人がたくさんいらっしゃいます。</p>
+
+<p><a href="http://qiita.com/takke/items/3400b55becfd72769214">http://qiita.com/takke/items/3400b55becfd72769214</a></p>
+
+<h3 id="過去のコミットをやりなおしたい">過去のコミットをやりなおしたい</h3>
+
+<p>さて、貴方の目前にはまたしても大量の wip コミットがあります。</p>
+
+<pre><code class="language-shell-session">$ git log
+
+commit eb8b87a08098fc2fd7df9805970dd197ab850447
+Author: Kyoichiro Yamada &lt;yamada@wacul.co.jp&gt;
+Date:   Tue Sep 27 21:52:57 2016 +0900
+
+    fix
+
+commit 61a476ba015556e167a46c3e29fcada60c510e9b
+Author: Kyoichiro Yamada &lt;yamada@wacul.co.jp&gt;
+Date:   Tue Sep 27 21:48:03 2016 +0900
+
+    fix
+
+commit c2df90e8bc50446b736249ecaaac89f2c4c4dc9e
+Author: Kyoichiro Yamada &lt;yamada@wacul.co.jp&gt;
+Date:   Tue Sep 27 21:44:01 2016 +0900
+
+    fix
+
+commit 37d070c710f4df384686a27a99b9a2e9dcf84610
+Author: Kyoichiro Yamada &lt;yamada@wacul.co.jp&gt;
+Date:   Tue Sep 27 21:41:06 2016 +0900
+
+    fix
+
+commit b3293ccd4420938941843aa70d4b85d5ac4f3acc
+Author: Kyoichiro Yamada &lt;yamada@wacul.co.jp&gt;
+Date:   Tue Sep 27 21:40:45 2016 +0900
+
+    fix
+
+commit 490e1c0c46b67594aee31e38fcb28076ed6c1fdb
+Author: Kyoichiro Yamada &lt;yamada@wacul.co.jp&gt;
+Date:   Sun Sep 25 16:35:56 2016 +0900
+
+    fix
+
+commit df735e2e2b31df94d73ad134fa02692996e3ad9d
+Author: kyoh86 &lt;yamada@wacul.co.jp&gt;
+Date:   Tue Nov 22 05:09:27 2016 +0900
+
+    ◯◯機能の実装 (#43)
+</code></pre>
+
+<p>さて、rebaseしますか・・と思ったものの、今度は<strong>どのコミットで何をしたか、メッセージは何も語りかけてはくれません</strong>。
+過去の自分をぶん殴りたいですか？<strong>ぶん殴りましょう。</strong></p>
+
+<p><img src="https://qiita-image-store.s3.amazonaws.com/0/31053/1e0ae2d5-6329-c8b3-0324-e90706a73d34.png" alt="adv2016-12-02-02.png" /></p>
+
+<p><code>git reset</code> で、巻き戻りたい過去のコミットを指定します。
+この目的では<strong>間違っても <code>--hard</code> は使わないよう</strong>に気を付けましょう。</p>
+
+<pre><code class="language-shell-session">$ git reset df735e2e2b31df94d73ad134fa02692996e3ad9d # ← &quot;◯◯機能の実装 (#43)&quot; のコミットハッシュ
+</code></pre>
+
+<p>これで、過去の自分の愚かなコミットたちはなかったことになりました。
+ただし、<code>--hard</code> オプションは使用していないので、<strong>ファイルの変更は生き残ったままです</strong>。
+あとは正しい commit を生産するだけです。</p>
+
+<pre><code class="language-shell-session">$ git add foo.go
+$ git add foo_test.go
+$ git commit -m '△△機能の実装'
+$
+$ git rm bar.go
+$ git rm -r baz/
+$ git commit -m '□□機能の廃止'
+</code></pre>
+
+<h3 id="同じファイルの中に-違う目的の変更が混じってしまった">同じファイルの中に、違う目的の変更が混じってしまった！</h3>
+
+<p>前述の <code>git reset</code> が要るようなケースではママあることですが、
+<strong>単一のファイル内に</strong>違う目的の変更が混じってしまった場合、どうすれば良いんでしょう。</p>
+
+<p><code>git add</code> には、 <code>-p</code> というオプションがあります。<code>partial</code> の <code>p</code> でしょうね。
+実行すると、対象ファイルのdiffが表示され、必要な変更だけを選択して <code>add</code> することができます。</p>
+
+<p>詳細はこちらを参考にしましょう。</p>
+
+<p><a href="http://qiita.com/crifff/items/1abf08bca4ce51db4775">http://qiita.com/crifff/items/1abf08bca4ce51db4775</a></p>
+
+<h3 id="ブランチ名にwipって入ってるんだよね">ブランチ名にwipって入ってるんだよね…</h3>
+
+<p><strong>誰かが自分の作業ブランチから新しくブランチを切ってしまう</strong> という悲劇を少しでも避けるため、
+作業ブランチ等には<code>wip-xxxxx</code>のようなそれと分かる名前を付けることもあります。（というか付けたほうが良い）</p>
+
+<p>ですが、いざPRを出す段になって、ブランチ名が<code>wip-xxxxx</code> では締まりません。
+「もうコレは特定の新しい要件を満たしたブランチだよ」ということを示すためにも、名前を変えてしまいましょう。</p>
+
+<pre><code class="language-shell-session">$ git branch -M feature-xxx
+$ git push -u origin feature-xxx
+
+# 作業ブランチを既にリモートにプッシュしていた場合、リモートのゴミも残さずキレイにしましょう。
+$ git push origin :wip-xxxxx 
+</code></pre>
+
+<p>これらのコマンドを使いこなせると、作業中は気持ちよくコミットし、
+終わった後の「キレイにする」際もミス少なく、気楽に挑むことが出来ます。</p>
+
+<h2 id="もっと気持ちよく作業するために">もっと気持ちよく作業するために</h2>
+
+<h3 id="tig">tig</h3>
+
+<p><code>git log</code> や、 <code>git add -p</code> は便利ですが、随所で痒いところに手が届きません。
+<a href="https://github.com/jonas/tig">tig</a>を使うことで、そのあたりで楽をすることができます。</p>
+
+<p>詳細はこちらの記事を参考にして下さい。</p>
+
+<p><a href="http://qiita.com/suino/items/b0dae7e00bd7165f79ea">http://qiita.com/suino/items/b0dae7e00bd7165f79ea</a></p>
+
+<p>また、この記事では取り上げられていませんが、「tigの画面で選択したコミットのハッシュをコピーする」keybindを設定すると、
+特定のコミットに遡ったり、rebaseしたりがとても楽になります。</p>
+
+<pre><code class="language-~/.tigrc"># main viewの左端にコミットIDを表示する
+set main-view = id:width=12 date author commit-title:graph=yes,refs=yes
+# デフォルト
+# set main-view = date author commit-title:graph=yes,refs=yes
+
+# 水平分割したウィンドウの下画面サイズを % で指定（行数指定も可）
+set split-view-height = 80%
+
+# Shift-Cで、選択行のコミットのハッシュをクリップボードにコピー（macOS用）
+bind main C !@git pbcopy %(commit)
+</code></pre>
+
+<h3 id="作業用ブランチを猛烈に切り替える">作業用ブランチを猛烈に切り替える</h3>
+
+<p>自分用の作業用ブランチは、用途ごとに作りまくります。
+ですから、どれが何のためのブランチか、忘れがちです。</p>
+
+<p><code>fzf</code>や<code>peco</code>を使いこなしましょう。<a href="https://github.com/junegunn/fzf/wiki/examples#git">https://github.com/junegunn/fzf/wiki/examples#git</a> を参考にしてもいいですし、
+コレのためだけの拙作、ブランチリスト出す君<a href="https://github.com/kyoh86/git-branches">git-branches</a> を使ってもいいかもしれません。</p>
+
+<pre><code class="language-function/checkout-git-branch.zsh">function checkout-git-branch() {
+  git-branches --color --exclude-current \
+    | fzf \
+    | awk '{print $2}' \
+    | xargs -r git checkout
+}
+autoload -Uz checkout-git-branch
+bindkey '^xgb' checkout-git-branch
+bindkey '^xg^b' checkout-git-branch
+bindkey '^x^gb' checkout-git-branch
+bindkey '^x^g^b' checkout-git-branch
+</code></pre>
+
+<h1 id="終わりに">終わりに</h1>
+
+<p>いかがだったでしょうか。
+几帳面な人や、真面目な人が読んだら卒倒するか、罵倒の声が挙がりそうな記事ですね。
+マメにコミットしたり、丁寧にメッセージ書いたりを継続的にできない・・・僕のような人たちの、お役に立てれば幸いです。</p>
+
+<p>間違いなく言えることは、「正しくコミット運用できるに越したことはありません」。
+チームメンバーに厳しい人がいたり、マメな人がいるのであれば、あえて道を踏み外すようなことはせず、みんなに歩調を合わせて「正しい運用」ができるよう、心がけましょう（自戒）。</p>
+
+          </article>
+        </div>
+        <div class='entry-meta-bottom'>
+
+          
+            <div class="entry-tags"><p><span>Tags</span>
+              
+                <a href="/tags/atom" title="View all posts tagged ATOM">ATOM</a>
+              
+                <a href="/tags/applescript" title="View all posts tagged AppleScript">AppleScript</a>
+              
+                <a href="/tags/csv" title="View all posts tagged CSV">CSV</a>
+              
+                <a href="/tags/ecs" title="View all posts tagged ECS">ECS</a>
+              
+                <a href="/tags/excel" title="View all posts tagged Excel">Excel</a>
+              
+                <a href="/tags/git" title="View all posts tagged Git">Git</a>
+              
+                <a href="/tags/github" title="View all posts tagged GitHub">GitHub</a>
+              
+                <a href="/tags/go" title="View all posts tagged Go">Go</a>
+              
+                <a href="/tags/json" title="View all posts tagged JSON">JSON</a>
+              
+                <a href="/tags/json-schema" title="View all posts tagged JSON-schema">JSON-schema</a>
+              
+                <a href="/tags/javascript" title="View all posts tagged JavaScript">JavaScript</a>
+              
+                <a href="/tags/mongodb" title="View all posts tagged MongoDB">MongoDB</a>
+              
+                <a href="/tags/osx" title="View all posts tagged OSX">OSX</a>
+              
+                <a href="/tags/php" title="View all posts tagged PHP">PHP</a>
+              
+                <a href="/tags/perl6" title="View all posts tagged Perl6">Perl6</a>
+              
+                <a href="/tags/semanticversioning" title="View all posts tagged SemanticVersioning">SemanticVersioning</a>
+              
+                <a href="/tags/vscode" title="View all posts tagged VSCode">VSCode</a>
+              
+                <a href="/tags/visualstudiocode" title="View all posts tagged VisualStudioCode">VisualStudioCode</a>
+              
+                <a href="/tags/web" title="View all posts tagged Web">Web</a>
+              
+                <a href="/tags/zsh" title="View all posts tagged Zsh">Zsh</a>
+              
+                <a href="/tags/cli" title="View all posts tagged cli">cli</a>
+              
+                <a href="/tags/golang" title="View all posts tagged golang">golang</a>
+              
+                <a href="/tags/homebrew" title="View all posts tagged homebrew">homebrew</a>
+              
+                <a href="/tags/jxa" title="View all posts tagged jXA">jXA</a>
+              
+                <a href="/tags/memo" title="View all posts tagged memo">memo</a>
+              
+                <a href="/tags/pecoshellanyframezsh" title="View all posts tagged peco,shell,anyframe,zsh">peco,shell,anyframe,zsh</a>
+              
+                <a href="/tags/postfix" title="View all posts tagged postfix">postfix</a>
+              
+                <a href="/tags/proxy" title="View all posts tagged proxy">proxy</a>
+              
+                <a href="/tags/scaffold" title="View all posts tagged scaffold">scaffold</a>
+              
+                <a href="/tags/semver" title="View all posts tagged semver">semver</a>
+              
+                <a href="/tags/shell" title="View all posts tagged shell">shell</a>
+              
+                <a href="/tags/tag" title="View all posts tagged tag">tag</a>
+              
+                <a href="/tags/%E3%82%A2%E3%82%A4%E3%83%87%E3%82%A3%E3%82%A2" title="View all posts tagged アイディア">アイディア</a>
+              
+                <a href="/tags/%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3" title="View all posts tagged バージョン">バージョン</a>
+              
+                <a href="/tags/%E3%83%9D%E3%82%A8%E3%83%A0" title="View all posts tagged ポエム">ポエム</a>
+              
+                <a href="/tags/%E3%83%A1%E3%83%A2" title="View all posts tagged メモ">メモ</a>
+              
+            </p></div>
+          
+        </div>
+      </div>
+    </div>
+
+    <nav class="navigation pagination" role="navigation">
+      <h2 class="screen-reader-text">Posts navigation</h2>
+      <div class="nav-links">
+        
+        <a class="prev page-numbers" href="https://kyoh86.work/posts/2016-10-06_08-48-48/">goのinterfaceのstub生成する君</a>
+        
+        
+        <a class="next page-numbers" href="https://kyoh86.work/posts/2016-12-07_03-06-32/">GitHubで自動生成コードをDiffに表示しない方法</a>
+        
+      </div>
+    </nav>
+
+    <section class="comments">
+    
+    </section>
+  </div>
+
+
+    </div>
+
+    <footer id="site-footer" class="site-footer" role="contentinfo">
+  <h1>
+    
+      <a href=""> kyoh86.work </a>
+    
+  </h1>
+
+  
+    <p class="site-description">Works of kyoh86</p>
+  
+
+  <div class="menu-footer" role="navigation">
+    <div class="menu">
+      <ul class="menu-footer-items">
+        
+      </ul>
+    </div>
+  </div>
+
+    <ul class="social-media-icons">
+    
+      <li>
+        <a class="facebook" target="_blank"
+           href="https://www.facebook.com/kyoh.86" >
+          <i class="fa fa-facebook" title="facebook"></i>
+          <span class="screen-reader-text">facebook</span>
+        </a>
+      </li>
+    
+
+    
+      <li>
+        <a class="googleplus" target="_blank"
+           href="https://plus.google.com/u/0/100199074642864423892" >
+          <i class="fa fa-google-plus" title="googleplus"></i>
+          <span class="screen-reader-text">googleplus</span>
+        </a>
+      </li>
+    
+
+
+    
+      <li>
+      <a href="https://twitter.com/kyoh86"  class="twitter" target="_blank">
+          <i class="fa fa-twitter-square" title="twitter"></i>
+          <span class="screen-reader-text">twitter</span>
+      </a>
+      </li>
+    
+
+    
+      <li>
+      <a href="https://www.instagram.com/kyoh86"  class="twitter" target="_blank">
+          <i class="fa fa-instagram" title="instagram"></i>
+          <span class="screen-reader-text">instagram</span>
+      </a>
+      </li>
+    
+
+    
+
+    
+      <li>
+      <a href="https://www.linkedin.com/in/kyoh86/" class="linkedin" target="_blank">
+          <i class="fa fa-linkedin" title="linkedin"></i>
+          <span class="screen-reader-text">linkedin</span>
+      </a>
+      </li>
+    
+
+    
+      <li>
+      <a href="https://stackoverflow.com/users/3610769/kyoh86"  class="stackoverflow" target="_blank">
+          <i class="fa fa-stack-overflow" title="stackoverflow"></i>
+          <span class="screen-reader-text">stackoverflow</span>
+      </a>
+      </li>
+    
+
+
+    
+      <li>
+      <a href="https://github.com/kyoh86"  class="github" target="_blank">
+          <i class="fa fa-github" title="github"></i>
+          <span class="screen-reader-text">github</span>
+      </a>
+      </li>
+    
+  </ul>
+
+
+  <div class="design-credit">
+    
+      <p>&copy; 2018 kyoh86</p>
+    
+  </div>
+</footer>
+
+  </div>
+  <script src="https://kyoh86.work/js/jquery.min.js"></script>
+<script src="https://kyoh86.work/js/jquerymigrate.js"></script>
+<script src="https://kyoh86.work/js/production.min.js"></script>
+
+</body>
+</html>

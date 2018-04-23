@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <title>go testの出力を見やすくするツール作ったった </title>
+
+
+
+<meta name="description" content="Works of kyoh86">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="all,follow">
+<meta name="googlebot" content="index,follow,snippet,archive">
+<meta name="theme-color" content="#4d4d4d">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Raleway%3A400%2C700&amp;subset=latin%2Clatin-ext&amp;ver=4.7.2" type="text/css" media="all">
+<link rel="stylesheet" href="https://kyoh86.work/css/font-awesome.min.css" type='text/css' media='all'>
+
+<link href="https://kyoh86.work/css/style.css" rel="stylesheet" type='text/css' media='all'>
+
+<link href="https://kyoh86.work/css/custom.css" rel="stylesheet" type='text/css' media='all'>
+<link rel="shortcut icon" href="https://kyoh86.work/img/favicon.ico" type="image/x-icon">
+<link rel="icon" href="https://kyoh86.work/img/favicon.ico" type="image/x-icon">
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-70974996-2', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+
+<body class="post-template-default singular singular-post standard">
+
+  <div id="overflow-container" class="overflow-container">
+    <a class="skip-content" href="#main">Skip to content</a>
+    <header id="site-header" class="site-header" role="banner">
+      <div class="top-navigation">
+        <div class="container">
+
+  <div id="menu-secondary" class="menu-container menu-secondary" role="navigation">
+    <button id="toggle-secondary-navigation" class="toggle-secondary-navigation" aria-label="menu"><i class="fa fa-plus"></i></button>
+    <div class="menu">
+      <ul id="menu-secondary-items" class="menu-secondary-items">
+        
+        <li id="menu-item" class="menu-item">
+          <a href="/categories/tech">tech</a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    <ul class="social-media-icons">
+    
+      <li>
+        <a class="facebook" target="_blank"
+           href="https://www.facebook.com/kyoh.86" >
+          <i class="fa fa-facebook" title="facebook"></i>
+          <span class="screen-reader-text">facebook</span>
+        </a>
+      </li>
+    
+
+    
+      <li>
+        <a class="googleplus" target="_blank"
+           href="https://plus.google.com/u/0/100199074642864423892" >
+          <i class="fa fa-google-plus" title="googleplus"></i>
+          <span class="screen-reader-text">googleplus</span>
+        </a>
+      </li>
+    
+
+
+    
+      <li>
+      <a href="https://twitter.com/kyoh86"  class="twitter" target="_blank">
+          <i class="fa fa-twitter-square" title="twitter"></i>
+          <span class="screen-reader-text">twitter</span>
+      </a>
+      </li>
+    
+
+    
+      <li>
+      <a href="https://www.instagram.com/kyoh86"  class="twitter" target="_blank">
+          <i class="fa fa-instagram" title="instagram"></i>
+          <span class="screen-reader-text">instagram</span>
+      </a>
+      </li>
+    
+
+    
+
+    
+      <li>
+      <a href="https://www.linkedin.com/in/kyoh86/" class="linkedin" target="_blank">
+          <i class="fa fa-linkedin" title="linkedin"></i>
+          <span class="screen-reader-text">linkedin</span>
+      </a>
+      </li>
+    
+
+    
+      <li>
+      <a href="https://stackoverflow.com/users/3610769/kyoh86"  class="stackoverflow" target="_blank">
+          <i class="fa fa-stack-overflow" title="stackoverflow"></i>
+          <span class="screen-reader-text">stackoverflow</span>
+      </a>
+      </li>
+    
+
+
+    
+      <li>
+      <a href="https://github.com/kyoh86"  class="github" target="_blank">
+          <i class="fa fa-github" title="github"></i>
+          <span class="screen-reader-text">github</span>
+      </a>
+      </li>
+    
+  </ul>
+
+
+</div>
+
+      </div>
+
+      <div class="container">
+        <div id="title-info" class="title-info">
+  <div class="site-title">
+    
+    <a href="/"> kyoh86.work </a>
+    </div>
+  </div>
+  <button id="toggle-navigation" class="toggle-navigation" aria-label="menu">
+    <i class="fa fa-bars"></i>
+  </button>
+
+  <div id="menu-primary-tracks" class="menu-primary-tracks"></div>
+  <div id="menu-primary" class="menu-container menu-primary" role="navigation">
+    
+    <p class="site-description">Works of kyoh86</p>
+    
+
+    <div class="menu">
+      <ul id="menu-primary-items" class="menu-primary-items">
+        
+        
+        <li id="menu-item" class="menu-item">
+          <a href="https://kyoh86.work/">Home</a>
+        </li>
+        
+        <li id="menu-item" class="menu-item">
+          <a href="https://kyoh86.work/about">About</a>
+        </li>
+        
+        <li id="menu-item" class="menu-item">
+          <a href="https://kyoh86.work/products/">Products</a>
+        </li>
+        
+      </ul>
+    </div>
+
+  </div>
+
+      </div>
+    </header>
+
+    <div id="main" class="main" role="main">
+      
+  <div class="loop-container">
+    
+    <div class="post entry">
+    
+      <div class="entry-meta">
+        <span class="date">January 15</span>
+        
+          <span class="category">
+            <span> / </span>
+            <a href="/categories/tech">tech</a>
+          </span>
+        
+
+      </div>
+      <div class='entry-header'>
+        <h1 class='entry-title'> go testの出力を見やすくするツール作ったった</h1>
+      </div>
+      <div class="entry-container">
+        <div class="entry-content">
+          <article>
+            
+
+<p><code>go test</code> してますか。
+標準テストライブラリの出力を見やすくするツール <a href="https://github.com/kyoh86/richgo">richgo</a> を作ったので、紹介をば。</p>
+
+<h1 id="tl-dr">TL;DR</h1>
+
+<p>Goには公式でリッチなテストフレームワークがないですね。
+思想[<a href="https://golang.org/doc/faq#assertions">1</a>][<a href="https://golang.org/doc/faq#testing_framework">2</a>]は好きなんですが、とはいえ出力の見づらさはなんとかならんものか・・・。
+あまりにも見づらいので、<code>go</code> をラップして、 <code>test</code> の出力を無理やり色付けするツールを作りました。</p>
+
+<p><a href="https://github.com/kyoh86/richgo">richgo</a></p>
+
+<p>使うと、こんな感じになります。
+<a href="https://asciinema.org/a/99292"><img src="https://asciinema.org/a/99292.png" alt="asciicast"></a></p>
+
+<h1 id="インストール方法">インストール方法</h1>
+
+<p>おなじみ <code>go get</code></p>
+
+<pre><code>go get -u github.com/kyoh86/richgo
+</code></pre>
+
+<h2 id="使い方">使い方</h2>
+
+<pre><code class="language-sh">richgo test ./...
+</code></pre>
+
+<p>他の機能を阻害することはないので <code>go</code> のエイリアスとしてしまうのがおすすめです。</p>
+
+<pre><code class="language-zsh">alias go=richgo
+go test ./...
+</code></pre>
+
+<h3 id="スタイルの設定変更">スタイルの設定変更</h3>
+
+<p>設定ファイルでスタイルを変えることもできます。
+実行時に、次の順番で設定ファイルを読む仕様になっています。</p>
+
+<ul>
+<li><code>${CWD}/.richstyle</code></li>
+<li><code>${CWD}/.richstyle.yaml</code></li>
+<li><code>${CWD}/.richstyle.yml</code></li>
+<li><code>${GOPATH}/.richstyle</code></li>
+<li><code>${GOPATH}/.richstyle.yaml</code></li>
+<li><code>${GOPATH}/.richstyle.yml</code></li>
+<li><code>${GOROOT}/.richstyle</code></li>
+<li><code>${GOROOT}/.richstyle.yaml</code></li>
+<li><code>${GOROOT}/.richstyle.yml</code></li>
+<li><code>${HOME}/.richstyle</code></li>
+<li><code>${HOME}/.richstyle.yaml</code></li>
+<li><code>${HOME}/.richstyle.yml</code></li>
+</ul>
+
+<p>環境変数に <code>RICHGO_LOCAL=1</code> とすれば、カレントディレクトリの設定ファイル（<code>${CWD}/.richstyle*</code>）だけを読み込むようになります。</p>
+
+<h3 id="設定ファイルのフォーマット">設定ファイルのフォーマット</h3>
+
+<p>設定は、YAML形式で次のような形で記載します。
+すべての項目は、設定しなければデフォルト／または先に読み込んだ設定ファイルの内容が反映されます。</p>
+
+<pre><code class="language-yaml"># ラベルの見せ方
+labelType: (long | short | none)
+
+# ビルドログの見た目
+buildStyle:
+  # 出力しない
+  hide: (true | false)
+  # 太字
+  bold: (true | false)
+  # 淡い字、または細い字
+  faint: (true | false)
+  # 斜体
+  italic: (true | false)
+  # アンダーライン
+  underline: (true | false)
+  # 点滅（ゆっくり）
+  blinkSlow: (true | false)
+  # 点滅（はやい）
+  blinkRapid: (true | false)
+  # 前景色と背景色を入れ替える
+  inverse: (true | false)
+  # 前景色と背景色を同色にする
+  conceal: (true | false)
+  # 取り消し線を引く
+  crossOut: (true | false)
+  frame: (true | false)
+  encircle: (true | false)
+  # アッパーライン
+  overline: (true | false)
+  # 文字前景色
+  foreground: (#xxxxxx | rgb(0-256,0-256,0-256) | rgb(0x00-0xFF,0x00-0xFF,0x00-0xFF) | (name of colors))
+  # 文字背景色
+  background: # Same format as `foreground`
+
+# テスト開始ログの見た目
+startStyle:
+  # Same format as `buildStyle`
+
+# テスト通過ログの見た目
+passStyle:
+  # Same format as `buildStyle`
+
+# テスト失敗ログの見た目
+failStyle:
+  # Same format as `buildStyle`
+
+# テストスキップログの見た目
+skipStyle:
+  # Same format as `buildStyle`
+
+# テスト対象ファイル名の見た目
+fileStyle:
+  # Same format as `buildStyle`
+
+# エラーログ行番号の見た目
+lineStyle:
+  # Same format as `buildStyle`
+
+# 行ごと出力したくない行を、正規表現で指定
+removals:
+  - (regexp)
+</code></pre>
+
+<h3 id="ログの種類">ログの種類</h3>
+
+<p>設定ファイルのフォーマットに書いたように、 <code>richgo</code> はテストの出力を一行ごとにカテゴライズして、
+それぞれに独自のスタイルを設定しています。</p>
+
+<ul>
+<li><p>ビルドログ</p>
+
+<ul>
+<li>ビルドに失敗したりすると出るログ</li>
+<li>例： <pre><code># github.com/kyoh86/richgo/sample/buildfail
+sample/buildfail/buildfail_test.go:6: t.Foo undefined (type testing.T has no field or method Foo)</code></pre></li>
+</ul></li>
+
+<li><p>テスト開始ログ</p>
+
+<ul>
+<li>テスト関数の先頭や、 <code>testing.T.Run</code> の先頭で表示される、テスト名のログ</li>
+<li>例：<pre><code>=== RUN   TestSampleOK/SubtestOK</code></pre></li>
+</ul></li>
+
+<li><p>テスト通過ログ</p>
+
+<ul>
+<li>テストが通った時に表示されるログ</li>
+<li>例：<pre><code>    &mdash;PASS: TestSampleOK/SubtestOK</code></pre></li>
+</ul></li>
+
+<li><p>テスト失敗ログ</p>
+
+<ul>
+<li>テストがコケた時に表示されるログ</li>
+<li>例：<pre><code>&mdash; FAIL: TestSampleNG (0.00s)
+sample_ng_test.go:9: It&rsquo;s not OK&hellip; :(</code></pre></li>
+</ul></li>
+
+<li><p>テストスキップログ</p>
+
+<ul>
+<li>テストを <code>testing.T.Skip</code> でスキップさせたり、テストファイル（<code>*_test.go</code>）がない時に表示されるログ</li>
+<li>例：<pre><code>&mdash; SKIP: TestSampleSkip (0.00s)
+sample_skip_test.go:6:
+?     github.com/kyoh86/richgo/sample/notest  [no test files]</code></pre></li>
+</ul></li>
+</ul>
+
+<h3 id="ラベルの種類">ラベルの種類</h3>
+
+<p>各カテゴリのログには、左側にそれと分かるようにラベルを出力しています。
+ラベルの見せ方も、次の3種類を選べます。</p>
+
+<ul>
+<li><p>Long</p>
+
+<ul>
+<li>Build: &ldquo;BUILD&rdquo;</li>
+<li>Start: &ldquo;START&rdquo;</li>
+<li>Pass: &ldquo;PASS&rdquo;</li>
+<li>Fail: &ldquo;FAIL&rdquo;</li>
+<li>Skip: &ldquo;SKIP&rdquo;</li>
+</ul></li>
+
+<li><p>Short</p>
+
+<ul>
+<li>Build: &ldquo;!!&rdquo;</li>
+<li>Start: &ldquo;&gt;&rdquo;</li>
+<li>Pass: &ldquo;o&rdquo;</li>
+<li>Fail: &ldquo;x&rdquo;</li>
+<li>Skip: &ldquo;-&rdquo;</li>
+</ul></li>
+
+<li><p>None
+ラベルを表示しません。</p></li>
+</ul>
+
+<h3 id="デフォルト設定値">デフォルト設定値</h3>
+
+<pre><code class="language-yaml">labelType: long
+buildStyle:
+  bold: true
+  foreground: yellow
+startStyle:
+  foreground: lightBlack
+passStyle:
+  foreground: green
+failStyle:
+  bold: true
+  foreground: red
+skipStyle:
+  foreground: lightBlack
+fileStyle:
+  foreground: cyan
+lineStyle:
+  foreground: magenta
+</code></pre>
+
+<h1 id="あとがき">あとがき</h1>
+
+<p><code>goconvey</code> のようにリッチな出力をしてくれるテストフレームワークもありますが、やはり <code>testing</code> パッケージだけで構成されたテストは見通しが良いものです。
+アサーションばかりは辛いので、<a href="https://godoc.org/github.com/stretchr/testify">testify</a> の <code>assert</code> と <code>require</code> だけは使っていますが・・・。</p>
+
+<p><code>richgo</code> を使えば見た目の問題も解決できるので、ぜひ Go のポリシーに沿ったテストで素敵な Go ライフを。</p>
+
+          </article>
+        </div>
+        <div class='entry-meta-bottom'>
+
+          
+            <div class="entry-tags"><p><span>Tags</span>
+              
+                <a href="/tags/atom" title="View all posts tagged ATOM">ATOM</a>
+              
+                <a href="/tags/applescript" title="View all posts tagged AppleScript">AppleScript</a>
+              
+                <a href="/tags/csv" title="View all posts tagged CSV">CSV</a>
+              
+                <a href="/tags/ecs" title="View all posts tagged ECS">ECS</a>
+              
+                <a href="/tags/excel" title="View all posts tagged Excel">Excel</a>
+              
+                <a href="/tags/git" title="View all posts tagged Git">Git</a>
+              
+                <a href="/tags/github" title="View all posts tagged GitHub">GitHub</a>
+              
+                <a href="/tags/go" title="View all posts tagged Go">Go</a>
+              
+                <a href="/tags/json" title="View all posts tagged JSON">JSON</a>
+              
+                <a href="/tags/json-schema" title="View all posts tagged JSON-schema">JSON-schema</a>
+              
+                <a href="/tags/javascript" title="View all posts tagged JavaScript">JavaScript</a>
+              
+                <a href="/tags/mongodb" title="View all posts tagged MongoDB">MongoDB</a>
+              
+                <a href="/tags/osx" title="View all posts tagged OSX">OSX</a>
+              
+                <a href="/tags/php" title="View all posts tagged PHP">PHP</a>
+              
+                <a href="/tags/perl6" title="View all posts tagged Perl6">Perl6</a>
+              
+                <a href="/tags/semanticversioning" title="View all posts tagged SemanticVersioning">SemanticVersioning</a>
+              
+                <a href="/tags/vscode" title="View all posts tagged VSCode">VSCode</a>
+              
+                <a href="/tags/visualstudiocode" title="View all posts tagged VisualStudioCode">VisualStudioCode</a>
+              
+                <a href="/tags/web" title="View all posts tagged Web">Web</a>
+              
+                <a href="/tags/zsh" title="View all posts tagged Zsh">Zsh</a>
+              
+                <a href="/tags/cli" title="View all posts tagged cli">cli</a>
+              
+                <a href="/tags/golang" title="View all posts tagged golang">golang</a>
+              
+                <a href="/tags/homebrew" title="View all posts tagged homebrew">homebrew</a>
+              
+                <a href="/tags/jxa" title="View all posts tagged jXA">jXA</a>
+              
+                <a href="/tags/memo" title="View all posts tagged memo">memo</a>
+              
+                <a href="/tags/pecoshellanyframezsh" title="View all posts tagged peco,shell,anyframe,zsh">peco,shell,anyframe,zsh</a>
+              
+                <a href="/tags/postfix" title="View all posts tagged postfix">postfix</a>
+              
+                <a href="/tags/proxy" title="View all posts tagged proxy">proxy</a>
+              
+                <a href="/tags/scaffold" title="View all posts tagged scaffold">scaffold</a>
+              
+                <a href="/tags/semver" title="View all posts tagged semver">semver</a>
+              
+                <a href="/tags/shell" title="View all posts tagged shell">shell</a>
+              
+                <a href="/tags/tag" title="View all posts tagged tag">tag</a>
+              
+                <a href="/tags/%E3%82%A2%E3%82%A4%E3%83%87%E3%82%A3%E3%82%A2" title="View all posts tagged アイディア">アイディア</a>
+              
+                <a href="/tags/%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3" title="View all posts tagged バージョン">バージョン</a>
+              
+                <a href="/tags/%E3%83%9D%E3%82%A8%E3%83%A0" title="View all posts tagged ポエム">ポエム</a>
+              
+                <a href="/tags/%E3%83%A1%E3%83%A2" title="View all posts tagged メモ">メモ</a>
+              
+            </p></div>
+          
+        </div>
+      </div>
+    </div>
+
+    <nav class="navigation pagination" role="navigation">
+      <h2 class="screen-reader-text">Posts navigation</h2>
+      <div class="nav-links">
+        
+        <a class="prev page-numbers" href="https://kyoh86.work/posts/2016-12-12_12-25-45/">【メモ】作りたいモノリスト</a>
+        
+        
+        <a class="next page-numbers" href="https://kyoh86.work/posts/2017-01-22_23-02-52/">今更ながらJSON Schema Core draft 4.0を日本語訳してみた</a>
+        
+      </div>
+    </nav>
+
+    <section class="comments">
+    
+    </section>
+  </div>
+
+
+    </div>
+
+    <footer id="site-footer" class="site-footer" role="contentinfo">
+  <h1>
+    
+      <a href=""> kyoh86.work </a>
+    
+  </h1>
+
+  
+    <p class="site-description">Works of kyoh86</p>
+  
+
+  <div class="menu-footer" role="navigation">
+    <div class="menu">
+      <ul class="menu-footer-items">
+        
+      </ul>
+    </div>
+  </div>
+
+    <ul class="social-media-icons">
+    
+      <li>
+        <a class="facebook" target="_blank"
+           href="https://www.facebook.com/kyoh.86" >
+          <i class="fa fa-facebook" title="facebook"></i>
+          <span class="screen-reader-text">facebook</span>
+        </a>
+      </li>
+    
+
+    
+      <li>
+        <a class="googleplus" target="_blank"
+           href="https://plus.google.com/u/0/100199074642864423892" >
+          <i class="fa fa-google-plus" title="googleplus"></i>
+          <span class="screen-reader-text">googleplus</span>
+        </a>
+      </li>
+    
+
+
+    
+      <li>
+      <a href="https://twitter.com/kyoh86"  class="twitter" target="_blank">
+          <i class="fa fa-twitter-square" title="twitter"></i>
+          <span class="screen-reader-text">twitter</span>
+      </a>
+      </li>
+    
+
+    
+      <li>
+      <a href="https://www.instagram.com/kyoh86"  class="twitter" target="_blank">
+          <i class="fa fa-instagram" title="instagram"></i>
+          <span class="screen-reader-text">instagram</span>
+      </a>
+      </li>
+    
+
+    
+
+    
+      <li>
+      <a href="https://www.linkedin.com/in/kyoh86/" class="linkedin" target="_blank">
+          <i class="fa fa-linkedin" title="linkedin"></i>
+          <span class="screen-reader-text">linkedin</span>
+      </a>
+      </li>
+    
+
+    
+      <li>
+      <a href="https://stackoverflow.com/users/3610769/kyoh86"  class="stackoverflow" target="_blank">
+          <i class="fa fa-stack-overflow" title="stackoverflow"></i>
+          <span class="screen-reader-text">stackoverflow</span>
+      </a>
+      </li>
+    
+
+
+    
+      <li>
+      <a href="https://github.com/kyoh86"  class="github" target="_blank">
+          <i class="fa fa-github" title="github"></i>
+          <span class="screen-reader-text">github</span>
+      </a>
+      </li>
+    
+  </ul>
+
+
+  <div class="design-credit">
+    
+      <p>&copy; 2018 kyoh86</p>
+    
+  </div>
+</footer>
+
+  </div>
+  <script src="https://kyoh86.work/js/jquery.min.js"></script>
+<script src="https://kyoh86.work/js/jquerymigrate.js"></script>
+<script src="https://kyoh86.work/js/production.min.js"></script>
+
+</body>
+</html>
