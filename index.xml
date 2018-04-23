@@ -6,10 +6,19 @@
     <description>Recent content on kyoh86.work</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Sun, 25 Mar 2018 12:05:01 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 22 Apr 2018 17:39:06 +0900</lastBuildDate>
     
 	<atom:link href="https://kyoh86.work/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>About</title>
+      <link>https://kyoh86.work/about/</link>
+      <pubDate>Sun, 22 Apr 2018 17:39:06 +0900</pubDate>
+      
+      <guid>https://kyoh86.work/about/</guid>
+      <description>自己紹介 ハンドルネーム: kyoh86 名前: 山田恭一朗 趣味: プログラミング、料理、野鳥撮影 好きなもの: 漫画、アニメ、鳥 お仕事: SE → iOSアプリ開発 -&amp;gt; We</description>
+    </item>
     
     <item>
       <title>golangのstrings.TrimLeftはイケてない</title>
