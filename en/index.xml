@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>kyoh86.work</title>
+    <link>https://kyoh86.work/en/</link>
+    <description>Recent content on kyoh86.work</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Sun, 22 Apr 2018 17:39:06 +0900</lastBuildDate>
+    
+	<atom:link href="https://kyoh86.work/en/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>About</title>
+      <link>https://kyoh86.work/en/about/</link>
+      <pubDate>Sun, 22 Apr 2018 17:39:06 +0900</pubDate>
+      
+      <guid>https://kyoh86.work/en/about/</guid>
+      <description> About me  Handle: kyoh86 Name: Kyoichiro Yamada Hobby: Programming, cooking and bird-watching Loves: Comics, animations Job: Programmer (COBOL -&amp;gt; iOS app -&amp;gt; Web app) Language: Japanese, C#, Go, Python  About this site I&amp;rsquo;ll scrabble knowledges gaind at jobs and works.
+Categories of posts:
+ Development / programming  Knowledges Products  Cooking  Pictures Recipes  Bird-watching  Pictures Knowledges Tools and gadgets   </description>
+    </item>
+    
+  </channel>
+</rss>
