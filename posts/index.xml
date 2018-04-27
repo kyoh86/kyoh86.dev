@@ -6,10 +6,19 @@
     <description>Recent content in Posts on kyoh86.work</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Sun, 25 Mar 2018 12:05:01 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 28 Apr 2018 00:05:33 +0900</lastBuildDate>
     
 	<atom:link href="https://kyoh86.work/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>自動タグ付け機能でも作ってみる - 1</title>
+      <link>https://kyoh86.work/posts/auto-tagger-1/</link>
+      <pubDate>Sat, 28 Apr 2018 00:05:33 +0900</pubDate>
+      
+      <guid>https://kyoh86.work/posts/auto-tagger-1/</guid>
+      <description>動機づけ ふと、最近自然言語処理なんてやってないし何か良いテーマはないだろうか、と考えてみたところ、 このブログを始めるにあたって、「最も面倒く</description>
+    </item>
     
     <item>
       <title>golangのstrings.TrimLeftはイケてない</title>

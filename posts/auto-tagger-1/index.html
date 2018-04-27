@@ -2,7 +2,7 @@
 <html lang="ja-jp">
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
- <title>golangのループ変数の使い方をチェックするlinter作ってみた </title>
+ <title>自動タグ付け機能でも作ってみる - 1 </title>
 
 
 
@@ -175,7 +175,7 @@ ga('send', 'pageview');
     <div class="post entry">
     
       <div class="entry-meta">
-        <span class="date">April 11</span>
+        <span class="date">April 28</span>
         
           <span class="category">
             <span> / </span>
@@ -185,77 +185,48 @@ ga('send', 'pageview');
 
       </div>
       <div class='entry-header'>
-        <h1 class='entry-title'> golangのループ変数の使い方をチェックするlinter作ってみた</h1>
+        <h1 class='entry-title'> 自動タグ付け機能でも作ってみる - 1</h1>
       </div>
       <div class="entry-container">
         <div class="entry-content">
           <article>
             
 
-<h2 id="動機">動機</h2>
+<h2 id="動機づけ">動機づけ</h2>
 
-<p>golangでforループを回すと、中でうっかりクロージャやリファレンスを取れません。</p>
+<p>ふと、最近自然言語処理なんてやってないし何か良いテーマはないだろうか、と考えてみたところ、
+このブログを始めるにあたって、「最も面倒くさい課題」について取り組んでみてはどうだろうと思いついた。</p>
 
-<pre><code class="language-example/readme.go">package example
+<p>「タグ」を考えるのがだるいのである。僕はこの記事を書くにあたっても、ハテこの記事に適したタグはなんであろう、と考えるのが嫌なのである。
+記事の検索や分類において「タグ」は極めて有用だと感じているが、いざこれを「つける」側に回ってみると、何も嬉しくない。</p>
 
-import &quot;fmt&quot;
+<p>そこで、この「タグ付け」を自動でやれないか、と思い立った。</p>
 
-func readme() {
-	values := []string{&quot;a&quot;, &quot;b&quot;, &quot;c&quot;}
-	var funcs []func()
-	for _, val := range values {
-		funcs = append(funcs, func() {
-			fmt.Println(val)
-		})
-	}
-	for _, f := range funcs {
-		f()
-	}
-	/*output:
-	  c
-	  c
-	  c
-	*/
-	var copies []*string
-	for _, val := range values {
-		copies = append(copies, &amp;val)
-	}
-	/*(in copies)
-	  &amp;&quot;c&quot;
-	  &amp;&quot;c&quot;
-	  &amp;&quot;c&quot;
-	*/
-}
-</code></pre>
-
-<p>意外と気づきにくいバグの元になってプログラマは容易に死にます。
-一応一部のケースは <code>go vet</code> でも検出できますが、万能ではありません。（なぜか <code>go func(){ }()</code> だけは気をつけてくれる)</p>
-
-<p>ならチェックしようぜ！ということでlinter作りました。</p>
-
-<p><a href="https://github.com/kyoh86/scopelint">scopelint</a></p>
-
-<h2 id="使い方">使い方</h2>
-
-<p><a href="https://github.com/golang/lint">golint</a> とほぼ同じです。
-<code>go get -u github.com/kyoh86/scopelint</code> でインストールして、雑にパッケージとかディレクトリとかファイルを渡してください。</p>
-
-<pre><code>scopelint github.com/kyoh86/scopelint/example
-scopelint ./...
-</code></pre>
-
-<p>幾つかオプションも用意しました。</p>
+<p>理想的な未来:</p>
 
 <ul>
-<li><code>--set-exit-status</code> : golintに同じ。エラーがあれば終了コードを <code>1</code> に設定する。毎回指定するのアホらしいので、デフォルト <code>true</code> 。</li>
-<li><code>--vendor</code> : <code>vendor</code> ディレクトリの下は見ない。これもデフォルト <code>true</code> 。</li>
-<li><code>--test</code> : <code>*_test.go</code> なファイルは見ない。これもデフォry</li>
+<li>タグなんて考えなくていい</li>
+<li>CIでデプロイする際に自動でつけてくれる</li>
+<li>さらにいい感じのタグからアイキャッチ画像も見つけてきたりして</li>
 </ul>
 
-<h2 id="終わりに">終わりに</h2>
+<h2 id="手法">手法</h2>
 
-<p>あちこち <a href="https://github.com/golang/lint">golint</a> のソースをコピペして作っています。ライセンス書かなきゃ…
-とまれ、良きgopherライフを！</p>
+<p>検索観点での「単語の重み付け」は色々な手法がある。
+自然言語処理だのなんだのなんて縁遠い世界にいた僕ですら、TF-IDFくらいは小耳に挟んだこともある。
+TF-IDFがどうやら「今ひとつ」だという話も耳にしたので、その改良版というBM25でも取り組んで見ようかと思う。</p>
+
+<p>イマドキは自然言語処理といえばPython、という程でもなくなりつつあるが、思いつきで突っ走りたい気持ちもあり、枯れたPythonにお世話になろうと思う。</p>
+
+<p>採用したい手法:</p>
+
+<ul>
+<li>Python</li>
+<li>Okpai BM25</li>
+<li>MeCab / Neologd</li>
+</ul>
+
+<p>一通り動機も手法も決まったので、ボチボチ作業していきたい</p>
 
           </article>
         </div>
@@ -350,10 +321,8 @@ scopelint ./...
       <h2 class="screen-reader-text">Posts navigation</h2>
       <div class="nav-links">
         
-        <a class="prev page-numbers" href="https://kyoh86.work/posts/2017-01-22_23-02-52/">今更ながらJSON Schema Core draft 4.0を日本語訳してみた</a>
+        <a class="prev page-numbers" href="https://kyoh86.work/posts/2018-03-25_12-05-01/">golangのstrings.TrimLeftはイケてない</a>
         
-        
-        <a class="next page-numbers" href="https://kyoh86.work/posts/2017-06-20_19-42-46/">Visual Studio Codeでバックスペースに悩まされたら</a>
         
       </div>
     </nav>
