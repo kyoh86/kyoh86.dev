@@ -92,7 +92,7 @@ var _encoder = require('./encoder.js');
 window.addEventListener("load", function () {
   document.querySelectorAll('code.language-uml').forEach(function (a) {
     var b = a.textContent,
-        c = "http://plantuml.com/plantuml/img/" + _encoder.Encoder.compress(b);
+        c = "//plantuml.com/plantuml/img/" + _encoder.Encoder.compress(b);
 
     a.parentNode.outerHTML = '<div><img src="' + c + '" /></div>';
     console.debug("encoding " + a.textContent);
