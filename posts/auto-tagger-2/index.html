@@ -2,7 +2,7 @@
 <html lang="ja-jp">
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
- <title>【メモ】作りたいモノリスト </title>
+ <title>自動タグ付け機能でも作ってみる - 2 </title>
 
 
 
@@ -177,53 +177,118 @@ ga('send', 'pageview');
     <div class="post entry">
     
       <div class="entry-meta">
-        <span class="date">December 12</span>
-        
-          <span class="category">
-            <span> / </span>
-            <a href="/categories/tech">tech</a>
-          </span>
+        <span class="date">April 30</span>
         
 
       </div>
       <div class='entry-header'>
-        <h1 class='entry-title'> 【メモ】作りたいモノリスト</h1>
+        <h1 class='entry-title'> 自動タグ付け機能でも作ってみる - 2</h1>
       </div>
       <div class="entry-container">
         <div class="entry-content">
           <article>
             
 
-<p>誰か作ってくれないかなぁ、でも最近、何も作ってないし何か作りたいなあと思っているもののリスト。
-随時更新予定。</p>
+<h2 id="要件">要件</h2>
 
-<h2 id="atom-fuzzy-finderをまともにする">ATOM-fuzzy-finderをまともにする</h2>
+<p>自動タグ付けをするにあたって、今回はこのサイト構築に使っている Hugo を前提としたものとしたい。
+したがって、Markdownをインプットとする。</p>
 
-<ul>
-<li>.atomignoreとか、agignore対応とか。genコード無視とかリポジトリごとの都合ってもんがあるべや。</li>
-<li>AHOのように重すぎる。git ls-fileを使った高速化とかできるんじゃないの（雑）</li>
-</ul>
+<pre><code>Markdown -&gt; Tags
+</code></pre>
 
-<h2 id="colorgoをまともにする">colorgoをまともにする</h2>
+<p>ただし、ものをMarkdown専用にしてしまうのはやや勿体無い感もあるので、平文を介しておくこととする。</p>
 
-<ul>
-<li><a href="https://github.com/songgao/colorgo">https://github.com/songgao/colorgo</a></li>
-<li>t.Runとかでサブに入った時カラーリングされない。雑か</li>
-<li>FAILとかこそ色つけろよ的な。雑か</li>
-</ul>
+<pre><code>Markdown -&gt; Sentences -&gt; Tags
+</code></pre>
 
-<h2 id="atom-go-guru">ATOM-Go-guru</h2>
+<h2 id="道具">道具</h2>
 
-<p><code>Goggles</code> is written &ldquo;ゴーグル&rdquo; [goːgɯɽɯ] in katakana, so <code>Go-guru</code> is.</p>
+<p>考えた要件を満たすにあたり、ライブラリを探ってみる。</p>
 
-<p>いい加減guru誰か頑張れよと思いつつ楽しそうなので作る</p>
+<h3 id="markdownパーサー">Markdownパーサー</h3>
 
-<h2 id="atom-japanesque-theme">ATOM-Japanesque-theme</h2>
+<p>Markdownを読んで解釈したい。Lexerを自作してもいいが、面倒くさい。
+今回は <a href="https://github.com/miyuchina/mistletoe">mistletoe</a>を使ってみようと思う。
+HTMLRendererとして文の処理を行うイメージで。</p>
 
-<p><a href="http://this.aereal.org/entry/2013/01/02/222304">Japanesque</a></p>
+<h3 id="形態素解析">形態素解析</h3>
 
-<p>ふつくしい。
-コーディングにも適用して使いやすい・見やすいかは未知数</p>
+<p>ただの分かち書きでも良いかもしれない。ただ、キーワード選定にあたっては品詞が必要になりそうなので、
+形態素解析に頼っておこうと思う。
+MeCabをNeologdの辞書使ってゴリゴリするのが今のトレンドらしいので乗っかることにする。</p>
+
+<h3 id="語の重み付け">語の重み付け</h3>
+
+<p>Okpai BM25、ライブラリが多言語を扱えるのかどうか分からないものばかり。
+よく分からんものを使って苦しむのは嫌だ、という結論から、自作することとする。</p>
+
+<h2 id="構成">構成</h2>
+
+<p>ザックリとした構成</p>
+
+<pre><code class="language-uml">@startuml
+class Word {
+  word: String
+  class: Class
+  subclass: List[String]
+}
+
+class MarkdownParser {
+  render(path: String)
+}
+interface TextStorage {
+  store_text(path: String, text: String)
+}
+interface WordStorage {
+  store_word(path: String, word: Word)
+}
+
+MarkdownParser --- TextStorage : text_storage
+
+class MorphemeAnalyzer
+TextStorage &lt;|-- MorphemeAnalyzer
+MorphemeAnalyzer --- WordStorage : word_storage
+
+class KeywordRanker {
+  get_words(path: String): List[Word]
+  get_rank(path: String, word: Word)
+}
+WordStorage &lt;|-- KeywordRanker
+
+@enduml
+</code></pre>
+
+<p>ザックリとした処理の流れ</p>
+
+<pre><code class="language-uml">@startuml
+participant MarkdownParser as p
+participant MorphemeAnalyzer as a
+participant KeywordRanker as r
+
+== collect words ==
+loop all documents
+  [-&gt; p : render(path)
+  loop all blocks
+    p -&gt; a : store_text(path, text)
+    loop all words
+      a -&gt; r : store_word(path, word)
+      note over r: count words
+    end
+  end
+end
+
+== rank words ==
+loop all documents
+  ]-&gt; r : get_words(path)
+  ]&lt;-- r : List[Word]
+  loop all words
+    ]-&gt; r : get_rank(path, word)
+    ]&lt;-- r : rank : Integer
+  end
+end
+@enduml
+</code></pre>
 
           </article>
         </div>
@@ -318,10 +383,8 @@ ga('send', 'pageview');
       <h2 class="screen-reader-text">Posts navigation</h2>
       <div class="nav-links">
         
-        <a class="prev page-numbers" href="https://kyoh86.work/posts/2016-12-12_00-52-12/">zshの便利設定2016</a>
+        <a class="prev page-numbers" href="https://kyoh86.work/posts/auto-tagger-1/">自動タグ付け機能でも作ってみる - 1</a>
         
-        
-        <a class="next page-numbers" href="https://kyoh86.work/posts/2017-01-15_01-15-03/">go testの出力を見やすくするツール作ったった</a>
         
       </div>
     </nav>
