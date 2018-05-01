@@ -209,7 +209,7 @@ ga('send', 'pageview');
 </code></pre>
 
 <p>XMLの様でXMLでない、ちょっとXMLなファイルである。
-簡単なIOのラッパーを書いて、内容を <code>&lt;root&gt;...&lt;/root&gt;</code> で包み、<a href="https://docs.python.jp/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.iterparse">xml.etree.ElementTree</a> で処理できよう。</p>
+簡単なIOのラッパーを書いて、内容を <code>&lt;root&gt;...&lt;/root&gt;</code> で包み、<a href="https://docs.python.jp/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.iterparse">xml.etree.ElementTree.iterparse</a> で処理できよう。</p>
 
 <p>こいつを先の <code>MarkdownParser</code> と同じIFにしてやれば、MarkdownではなくWikipediaのダンプデータを食って単語の重み付けをできるようになるはずだ。</p>
 
@@ -232,7 +232,7 @@ participant MarkdownParser as m
 participant MorphoAnalyzer as a
 participant KeywordRanker as r
 
-== collect words ==
+== study wiki data ==
 loop all wikipages
   [-&gt; x : parse(path)
   loop all texts
@@ -244,6 +244,7 @@ loop all wikipages
   end
 end
 
+== collect words ==
 loop all documents
   [-&gt; m : parse(path)
   loop all texts
