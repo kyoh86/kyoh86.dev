@@ -6,10 +6,19 @@
     <description>Recent content in Posts on kyoh86.work</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Mon, 30 Apr 2018 14:19:20 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 01 May 2018 23:04:20 +0900</lastBuildDate>
     
 	<atom:link href="https://kyoh86.work/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>自動タグ付け機能でも作ってみる - 3</title>
+      <link>https://kyoh86.work/posts/auto-tagger-3/</link>
+      <pubDate>Tue, 01 May 2018 23:04:20 +0900</pubDate>
+      
+      <guid>https://kyoh86.work/posts/auto-tagger-3/</guid>
+      <description>ところで そもそもの前提として、このブログは記事がとても少ない。 記事が少ないために、検索のための単語重み付けをしたところで、ベースとなる文章が</description>
+    </item>
     
     <item>
       <title>自動タグ付け機能でも作ってみる - 2</title>
