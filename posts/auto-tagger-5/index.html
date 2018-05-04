@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <title>自動タグ付け機能でも作ってみる - 5 </title>
+
+
+
+<meta name="description" content="Works of kyoh86">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="all,follow">
+<meta name="googlebot" content="index,follow,snippet,archive">
+<meta name="theme-color" content="#4d4d4d">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Raleway%3A400%2C700&amp;subset=latin%2Clatin-ext&amp;ver=4.7.2" type="text/css" media="all">
+<link rel="stylesheet" href="https://kyoh86.work/css/font-awesome.min.css" type='text/css' media='all'>
+
+<link href="https://kyoh86.work/css/style.css" rel="stylesheet" type='text/css' media='all'>
+
+<link href="https://kyoh86.work/css/custom.css" rel="stylesheet" type='text/css' media='all'>
+<link rel="shortcut icon" href="https://kyoh86.work/img/favicon.ico" type="image/x-icon">
+<link rel="icon" href="https://kyoh86.work/img/favicon.ico" type="image/x-icon">
+
+<script src="https://kyoh86.work/js/lib/plantuml.js"></script>
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-70974996-2', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+
+<body class="post-template-default singular singular-post standard">
+
+  <div id="overflow-container" class="overflow-container">
+    <a class="skip-content" href="#main">Skip to content</a>
+    <header id="site-header" class="site-header" role="banner">
+      <div class="top-navigation">
+        <div class="container">
+
+  <div id="menu-secondary" class="menu-container menu-secondary" role="navigation">
+    <button id="toggle-secondary-navigation" class="toggle-secondary-navigation" aria-label="menu"><i class="fa fa-plus"></i></button>
+    <div class="menu">
+      <ul id="menu-secondary-items" class="menu-secondary-items">
+        
+        <li id="menu-item" class="menu-item">
+          <a href="/categories/tech">tech</a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    <ul class="social-media-icons">
+    
+      <li>
+        <a class="facebook" target="_blank"
+           href="https://www.facebook.com/kyoh.86" >
+          <i class="fa fa-facebook" title="facebook"></i>
+          <span class="screen-reader-text">facebook</span>
+        </a>
+      </li>
+    
+
+    
+      <li>
+        <a class="googleplus" target="_blank"
+           href="https://plus.google.com/u/0/100199074642864423892" >
+          <i class="fa fa-google-plus" title="googleplus"></i>
+          <span class="screen-reader-text">googleplus</span>
+        </a>
+      </li>
+    
+
+
+    
+      <li>
+      <a href="https://twitter.com/kyoh86"  class="twitter" target="_blank">
+          <i class="fa fa-twitter-square" title="twitter"></i>
+          <span class="screen-reader-text">twitter</span>
+      </a>
+      </li>
+    
+
+    
+      <li>
+      <a href="https://www.instagram.com/kyoh86"  class="twitter" target="_blank">
+          <i class="fa fa-instagram" title="instagram"></i>
+          <span class="screen-reader-text">instagram</span>
+      </a>
+      </li>
+    
+
+    
+
+    
+      <li>
+      <a href="https://www.linkedin.com/in/kyoh86/" class="linkedin" target="_blank">
+          <i class="fa fa-linkedin" title="linkedin"></i>
+          <span class="screen-reader-text">linkedin</span>
+      </a>
+      </li>
+    
+
+    
+      <li>
+      <a href="https://stackoverflow.com/users/3610769/kyoh86"  class="stackoverflow" target="_blank">
+          <i class="fa fa-stack-overflow" title="stackoverflow"></i>
+          <span class="screen-reader-text">stackoverflow</span>
+      </a>
+      </li>
+    
+
+
+    
+      <li>
+      <a href="https://github.com/kyoh86"  class="github" target="_blank">
+          <i class="fa fa-github" title="github"></i>
+          <span class="screen-reader-text">github</span>
+      </a>
+      </li>
+    
+  </ul>
+
+
+</div>
+
+      </div>
+
+      <div class="container">
+        <div id="title-info" class="title-info">
+  <div class="site-title">
+    
+    <a href="/"> kyoh86.work </a>
+    </div>
+  </div>
+  <button id="toggle-navigation" class="toggle-navigation" aria-label="menu">
+    <i class="fa fa-bars"></i>
+  </button>
+
+  <div id="menu-primary-tracks" class="menu-primary-tracks"></div>
+  <div id="menu-primary" class="menu-container menu-primary" role="navigation">
+    
+    <p class="site-description">Works of kyoh86</p>
+    
+
+    <div class="menu">
+      <ul id="menu-primary-items" class="menu-primary-items">
+        
+        
+        <li id="menu-item" class="menu-item">
+          <a href="https://kyoh86.work/">Home</a>
+        </li>
+        
+        <li id="menu-item" class="menu-item">
+          <a href="https://kyoh86.work/about">About</a>
+        </li>
+        
+        
+      </ul>
+    </div>
+
+  </div>
+
+      </div>
+    </header>
+
+    <div id="main" class="main" role="main">
+      
+  <div class="loop-container">
+    
+    <div class="post entry">
+    
+      <div class="entry-meta">
+        <span class="date">May 04</span>
+        
+      </div>
+
+      <div class='entry-header'>
+        <h1 class='entry-title'> 自動タグ付け機能でも作ってみる - 5</h1>
+      </div>
+      <nav class="navigation pagination" role="navigation">
+        <h2 class="screen-reader-text">Posts navigation</h2>
+        <div class="nav-links">
+          
+          <a class="prev page-numbers" href="https://kyoh86.work/posts/auto-tagger-4/">自動タグ付け機能でも作ってみる - 4</a>
+          
+          
+        </div>
+      </nav>
+      <div class="entry-container">
+        <div class="entry-content">
+          <article>
+            
+
+<h2 id="morphoanalyzerを作りきる">MorphoAnalyzerを作りきる</h2>
+
+<p><a href="/posts/auto-tagger-2/#構成">先の構成図</a> 参照。</p>
+
+<p>前の記事で実験したとおり、PythonからMeCabを呼び出して形態素の分割と品詞の種別までは取得できるようになった。</p>
+
+<p>次は、構成図のMorphoAnalyzer周辺のClassを定義してしまおう。</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">collections</span> <span style="color:#6ab825;font-weight:bold">import</span> namedtuple
+<span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf">MeCab</span>
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">abc</span> <span style="color:#6ab825;font-weight:bold">import</span> ABCMeta, abstractmethod
+
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">shlex</span> <span style="color:#6ab825;font-weight:bold">import</span> quote
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">typing</span> <span style="color:#6ab825;font-weight:bold">import</span> Optional, List
+
+<span style="color:#ed9d13">&#39;&#39;&#39;
+</span><span style="color:#ed9d13">語（形態素）。
+</span><span style="color:#ed9d13">&#39;&#39;&#39;</span>
+<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf">Word</span>(namedtuple(<span style="color:#ed9d13">&#39;Word&#39;</span>, (
+    <span style="color:#ed9d13">&#39;word&#39;</span>,                <span style="color:#999;font-style:italic"># 原形</span>
+    <span style="color:#ed9d13">&#39;feature_id&#39;</span>,          <span style="color:#999;font-style:italic"># 素性ID</span>
+))):
+
+
+<span style="color:#ed9d13">&#39;&#39;&#39;
+</span><span style="color:#ed9d13">語（形態素）を受けて保存しておくStorageのインターフェイス
+</span><span style="color:#ed9d13">&#39;&#39;&#39;</span>
+<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf">WordStorage</span>(metaclass=ABCMeta):
+    <span style="color:#ffa500">@abstractmethod</span>
+    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">push</span>(self, path: <span style="color:#24909d">str</span>, word: Word) -&gt; None:
+        <span style="color:#6ab825;font-weight:bold">pass</span>
+
+
+<span style="color:#ed9d13">&#39;&#39;&#39;
+</span><span style="color:#ed9d13">語（形態素）を受けて保存しておくStorageのインターフェイス
+</span><span style="color:#ed9d13">&#39;&#39;&#39;</span>
+<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf">TextStorage</span>(metaclass=ABCMeta):
+    <span style="color:#ffa500">@abstractmethod</span>
+    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">push</span>(self, path: <span style="color:#24909d">str</span>, text: <span style="color:#24909d">str</span>) -&gt; None:
+        <span style="color:#6ab825;font-weight:bold">pass</span></code></pre></div>
+<p><code>abc</code> 使ってインターフェイスを定義するっていうのはちょっとPythonらしくない感じはするけど、
+個人的にはこういう形になっている方が安心できるので、作っておく。</p>
+
+<p>また、neologdのWikiによると、<a href="https://github.com/neologd/mecab-ipadic-neologd/wiki/Regexp.ja#%E8%A7%A3%E6%9E%90%E5%89%8D%E3%81%AB%E8%A1%8C%E3%81%86%E3%81%93%E3%81%A8%E3%81%8C%E6%9C%9B%E3%81%BE%E3%81%97%E3%81%84%E6%96%87%E5%AD%97%E5%88%97%E3%81%AE%E6%AD%A3%E8%A6%8F%E5%8C%96%E5%87%A6%E7%90%86">解析前に行うことが望ましい文字列の正規化処理</a> というのがあるらしいので、
+Pythonコードごと拝借して、mypyと喧嘩しないように型アノテーションを追加しておく。</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf">re</span>
+<span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf">unicodedata</span>
+
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">typing</span> <span style="color:#6ab825;font-weight:bold">import</span> Dict
+
+<span style="color:#ed9d13">&#39;&#39;&#39;
+</span><span style="color:#ed9d13">copied from https://github.com/neologd/mecab-ipadic-neologd/wiki/Regexp.ja#python-written-by-hideaki-t--overlast
+</span><span style="color:#ed9d13">&#39;&#39;&#39;</span>
+
+
+<span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">unicode_normalize</span>(cls: <span style="color:#24909d">str</span>, s: <span style="color:#24909d">str</span>) -&gt; <span style="color:#24909d">str</span>:
+    pt = re.<span style="color:#24909d">compile</span>(<span style="color:#ed9d13">&#39;([{}]+)&#39;</span>.format(cls))
+
+    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">norm</span>(c: <span style="color:#24909d">str</span>) -&gt; <span style="color:#24909d">str</span>:
+        <span style="color:#6ab825;font-weight:bold">return</span> unicodedata.normalize(<span style="color:#ed9d13">&#39;NFKC&#39;</span>, c) <span style="color:#6ab825;font-weight:bold">if</span> pt.match(c) <span style="color:#6ab825;font-weight:bold">else</span> c
+
+    s = <span style="color:#ed9d13">&#39;&#39;</span>.join(norm(x) <span style="color:#6ab825;font-weight:bold">for</span> x <span style="color:#6ab825;font-weight:bold">in</span> re.split(pt, s))
+    s = re.sub(<span style="color:#ed9d13">&#39;－&#39;</span>, <span style="color:#ed9d13">&#39;-&#39;</span>, s)
+    <span style="color:#6ab825;font-weight:bold">return</span> s
+
+
+<span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">remove_extra_spaces</span>(s: <span style="color:#24909d">str</span>) -&gt; <span style="color:#24909d">str</span>:
+    s = re.sub(<span style="color:#ed9d13">&#39;[ 　]+&#39;</span>, <span style="color:#ed9d13">&#39; &#39;</span>, s)
+    blocks = <span style="color:#ed9d13">&#39;&#39;</span>.join((<span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">\u4E00</span><span style="color:#ed9d13">-</span><span style="color:#ed9d13">\u9FFF</span><span style="color:#ed9d13">&#39;</span>,  <span style="color:#999;font-style:italic"># CJK UNIFIED IDEOGRAPHS</span>
+                      <span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">\u3040</span><span style="color:#ed9d13">-</span><span style="color:#ed9d13">\u309F</span><span style="color:#ed9d13">&#39;</span>,  <span style="color:#999;font-style:italic"># HIRAGANA</span>
+                      <span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">\u30A0</span><span style="color:#ed9d13">-</span><span style="color:#ed9d13">\u30FF</span><span style="color:#ed9d13">&#39;</span>,  <span style="color:#999;font-style:italic"># KATAKANA</span>
+                      <span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">\u3000</span><span style="color:#ed9d13">-</span><span style="color:#ed9d13">\u303F</span><span style="color:#ed9d13">&#39;</span>,  <span style="color:#999;font-style:italic"># CJK SYMBOLS AND PUNCTUATION</span>
+                      <span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">\uFF00</span><span style="color:#ed9d13">-</span><span style="color:#ed9d13">\uFFEF</span><span style="color:#ed9d13">&#39;</span>   <span style="color:#999;font-style:italic"># HALFWIDTH AND FULLWIDTH FORMS</span>
+                      ))
+    basic_latin = <span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">\u0000</span><span style="color:#ed9d13">-</span><span style="color:#ed9d13">\u007F</span><span style="color:#ed9d13">&#39;</span>
+
+    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">remove_space_between</span>(cls1: <span style="color:#24909d">str</span>, cls2: <span style="color:#24909d">str</span>, s: <span style="color:#24909d">str</span>) -&gt; <span style="color:#24909d">str</span>:
+        p = re.<span style="color:#24909d">compile</span>(<span style="color:#ed9d13">&#39;([{}]) ([{}])&#39;</span>.format(cls1, cls2))
+        <span style="color:#6ab825;font-weight:bold">while</span> p.search(s):
+            s = p.sub(<span style="color:#ed9d13">r</span><span style="color:#ed9d13">&#39;\1\2&#39;</span>, s)
+        <span style="color:#6ab825;font-weight:bold">return</span> s
+
+    s = remove_space_between(blocks, blocks, s)
+    s = remove_space_between(blocks, basic_latin, s)
+    s = remove_space_between(basic_latin, blocks, s)
+    <span style="color:#6ab825;font-weight:bold">return</span> s
+
+
+<span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">normalize</span>(s: <span style="color:#24909d">str</span>) -&gt; <span style="color:#24909d">str</span>:
+    s = s.strip()
+    s = unicode_normalize(<span style="color:#ed9d13">&#39;０-９Ａ-Ｚａ-ｚ｡-ﾟ&#39;</span>, s)
+
+    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">maketrans</span>(f: <span style="color:#24909d">str</span>, t: <span style="color:#24909d">str</span>) -&gt; Dict[<span style="color:#24909d">int</span>, <span style="color:#24909d">str</span>]:
+        <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#24909d">str</span>.maketrans({x: y <span style="color:#6ab825;font-weight:bold">for</span> x, y <span style="color:#6ab825;font-weight:bold">in</span> <span style="color:#24909d">zip</span>(f, t)})
+
+    s = re.sub(<span style="color:#ed9d13">&#39;[˗֊‐‑‒–⁃⁻₋−]+&#39;</span>, <span style="color:#ed9d13">&#39;-&#39;</span>, s)  <span style="color:#999;font-style:italic"># normalize hyphens</span>
+    s = re.sub(<span style="color:#ed9d13">&#39;[﹣－ｰ—―─━ー]+&#39;</span>, <span style="color:#ed9d13">&#39;ー&#39;</span>, s)  <span style="color:#999;font-style:italic"># normalize choonpus</span>
+    s = re.sub(<span style="color:#ed9d13">&#39;[~∼∾〜〰～]&#39;</span>, <span style="color:#ed9d13">&#39;&#39;</span>, s)  <span style="color:#999;font-style:italic"># remove tildes</span>
+    s = s.translate(
+        maketrans(<span style="color:#ed9d13">&#39;!&#34;#$%&amp;</span><span style="color:#ed9d13">\&#39;</span><span style="color:#ed9d13">()*+,-./:;&lt;=&gt;?@[¥]^_`{|}~｡､･｢｣&#39;</span>,
+                  <span style="color:#ed9d13">&#39;！”＃＄％＆’（）＊＋，－．／：；＜＝＞？＠［￥］＾＿｀｛｜｝〜。、・「」&#39;</span>))
+
+    s = remove_extra_spaces(s)
+    s = unicode_normalize(<span style="color:#ed9d13">&#39;！”＃＄％＆’（）＊＋，－．／：；＜＞？＠［￥］＾＿｀｛｜｝〜&#39;</span>, s)  <span style="color:#999;font-style:italic"># keep ＝,・,「,」</span>
+    s = re.sub(<span style="color:#ed9d13">&#39;[’]&#39;</span>, <span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">\&#39;</span><span style="color:#ed9d13">&#39;</span>, s)
+    s = re.sub(<span style="color:#ed9d13">&#39;[”]&#39;</span>, <span style="color:#ed9d13">&#39;&#34;&#39;</span>, s)
+    <span style="color:#6ab825;font-weight:bold">return</span> s
+
+
+<span style="color:#6ab825;font-weight:bold">if</span> __name__ == <span style="color:#ed9d13">&#34;__main__&#34;</span>:
+    <span style="color:#6ab825;font-weight:bold">assert</span> <span style="color:#ed9d13">&#34;0123456789&#34;</span> == normalize(<span style="color:#ed9d13">&#34;０１２３４５６７８９&#34;</span>)
+    <span style="color:#6ab825;font-weight:bold">assert</span> <span style="color:#ed9d13">&#34;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#34;</span> == normalize(
+        <span style="color:#ed9d13">&#34;ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ&#34;</span>)
+    <span style="color:#6ab825;font-weight:bold">assert</span> <span style="color:#ed9d13">&#34;abcdefghijklmnopqrstuvwxyz&#34;</span> == normalize(
+        <span style="color:#ed9d13">&#34;ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ&#34;</span>)
+    <span style="color:#6ab825;font-weight:bold">assert</span> <span style="color:#ed9d13">&#34;!</span><span style="color:#ed9d13">\&#34;</span><span style="color:#ed9d13">#$%&amp;&#39;()*+,-./:;&lt;&gt;?@[¥]^_`{|}&#34;</span> == normalize(
+        <span style="color:#ed9d13">&#34;！”＃＄％＆’（）＊＋，－．／：；＜＞？＠［￥］＾＿｀｛｜｝&#34;</span>)
+    <span style="color:#6ab825;font-weight:bold">assert</span> <span style="color:#ed9d13">&#34;＝。、・「」&#34;</span> == normalize(<span style="color:#ed9d13">&#34;＝。、・「」&#34;</span>)
+    <span style="color:#6ab825;font-weight:bold">assert</span> <span style="color:#ed9d13">&#34;ハンカク&#34;</span> == normalize(<span style="color:#ed9d13">&#34;ﾊﾝｶｸ&#34;</span>)
+    <span style="color:#6ab825;font-weight:bold">assert</span> <span style="color:#ed9d13">&#34;o-o&#34;</span> == normalize(<span style="color:#ed9d13">&#34;o₋o&#34;</span>)
+    <span style="color:#6ab825;font-weight:bold">assert</span> <span style="color:#ed9d13">&#34;majikaー&#34;</span> == normalize(<span style="color:#ed9d13">&#34;majika━&#34;</span>)
+    <span style="color:#6ab825;font-weight:bold">assert</span> <span style="color:#ed9d13">&#34;わい&#34;</span> == normalize(<span style="color:#ed9d13">&#34;わ〰い&#34;</span>)
+    <span style="color:#6ab825;font-weight:bold">assert</span> <span style="color:#ed9d13">&#34;スーパー&#34;</span> == normalize(<span style="color:#ed9d13">&#34;スーパーーーー&#34;</span>)
+    <span style="color:#6ab825;font-weight:bold">assert</span> <span style="color:#ed9d13">&#34;!#&#34;</span> == normalize(<span style="color:#ed9d13">&#34;!#&#34;</span>)
+    <span style="color:#6ab825;font-weight:bold">assert</span> <span style="color:#ed9d13">&#34;ゼンカクスペース&#34;</span> == normalize(<span style="color:#ed9d13">&#34;ゼンカク　スペース&#34;</span>)
+    <span style="color:#6ab825;font-weight:bold">assert</span> <span style="color:#ed9d13">&#34;おお&#34;</span> == normalize(<span style="color:#ed9d13">&#34;お             お&#34;</span>)
+    <span style="color:#6ab825;font-weight:bold">assert</span> <span style="color:#ed9d13">&#34;おお&#34;</span> == normalize(<span style="color:#ed9d13">&#34;      おお&#34;</span>)
+    <span style="color:#6ab825;font-weight:bold">assert</span> <span style="color:#ed9d13">&#34;おお&#34;</span> == normalize(<span style="color:#ed9d13">&#34;おお      &#34;</span>)
+    <span style="color:#6ab825;font-weight:bold">assert</span> <span style="color:#ed9d13">&#34;検索エンジン自作入門を買いました!!!&#34;</span> == \
+        normalize(<span style="color:#ed9d13">&#34;検索 エンジン 自作 入門 を 買い ました!!!&#34;</span>)
+    <span style="color:#6ab825;font-weight:bold">assert</span> <span style="color:#ed9d13">&#34;アルゴリズムC&#34;</span> == normalize(<span style="color:#ed9d13">&#34;アルゴリズム C&#34;</span>)
+    <span style="color:#6ab825;font-weight:bold">assert</span> <span style="color:#ed9d13">&#34;PRML副読本&#34;</span> == normalize(<span style="color:#ed9d13">&#34;　　　ＰＲＭＬ　　副　読　本　　　&#34;</span>)
+    <span style="color:#6ab825;font-weight:bold">assert</span> <span style="color:#ed9d13">&#34;Coding the Matrix&#34;</span> == normalize(<span style="color:#ed9d13">&#34;Coding the Matrix&#34;</span>)
+    <span style="color:#6ab825;font-weight:bold">assert</span> <span style="color:#ed9d13">&#34;南アルプスの天然水Sparking Lemonレモン一絞り&#34;</span> == \
+        normalize(<span style="color:#ed9d13">&#34;南アルプスの　天然水　Ｓｐａｒｋｉｎｇ　Ｌｅｍｏｎ　レモン一絞り&#34;</span>)
+    <span style="color:#6ab825;font-weight:bold">assert</span> <span style="color:#ed9d13">&#34;南アルプスの天然水-Sparking*Lemon+レモン一絞り&#34;</span> == \
+        normalize(<span style="color:#ed9d13">&#34;南アルプスの　天然水-　Ｓｐａｒｋｉｎｇ*　Ｌｅｍｏｎ+　レモン一絞り&#34;</span>)</code></pre></div>
+<p>下準備ができてしまえば、難しいことは何もなく、 <code>MorphoAnalyzer</code> の出来上がり。
+与えられた文章を <code>normalize</code> した後、 <code>MeCab.Tagger.parse</code> の出力を改行区切りで形態素に分解し、タブ区切りで形態素とその品詞IDを取得すればよい。</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf">MorphoAnalyzer</span>(TextStorage):
+    <span style="color:#6ab825;font-weight:bold">def</span> __init__(self, storage: WordStorage, mecab_dicdir: Optional[<span style="color:#24909d">str</span>] = None, use_base: <span style="color:#24909d">bool</span> = False) -&gt; None:
+        node_format: <span style="color:#24909d">str</span> = <span style="color:#ed9d13">&#39;%m</span><span style="color:#ed9d13">\\</span><span style="color:#ed9d13">t%h</span><span style="color:#ed9d13">\\</span><span style="color:#ed9d13">n&#39;</span>
+        args: List[<span style="color:#24909d">str</span>] = [
+            <span style="color:#ed9d13">&#39;--node-format &#39;</span> + node_format,
+            <span style="color:#ed9d13">&#39;--unk-format &#39;</span> + node_format,
+            <span style="color:#ed9d13">&#39;--eos-format EOS</span><span style="color:#ed9d13">\\</span><span style="color:#ed9d13">t</span><span style="color:#ed9d13">\\</span><span style="color:#ed9d13">n&#39;</span>,
+        ]
+        <span style="color:#6ab825;font-weight:bold">if</span> mecab_dicdir <span style="color:#6ab825;font-weight:bold">is</span> <span style="color:#6ab825;font-weight:bold">not</span> None:
+            args.append(<span style="color:#ed9d13">&#34;-d&#34;</span>)
+            args.append(quote(mecab_dicdir))
+        arg: <span style="color:#24909d">str</span> = <span style="color:#ed9d13">&#39; &#39;</span>.join(args)
+        self.tagger = MeCab.Tagger(arg)
+        self.storage = storage
+        self.tagger.parse(<span style="color:#ed9d13">&#39;&#39;</span>)
+
+    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">push</span>(self, path: <span style="color:#24909d">str</span>, text: <span style="color:#24909d">str</span>) -&gt; None:
+        parsed = self.tagger.parse(normalize(text))
+        <span style="color:#6ab825;font-weight:bold">for</span> line <span style="color:#6ab825;font-weight:bold">in</span> parsed.split(<span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#39;</span>):
+            <span style="color:#6ab825;font-weight:bold">if</span> line == <span style="color:#ed9d13">&#39;&#39;</span>:
+                <span style="color:#6ab825;font-weight:bold">continue</span>
+            base_format, feature_id = line.split(<span style="color:#ed9d13">&#39;</span><span style="color:#ed9d13">\t</span><span style="color:#ed9d13">&#39;</span>)
+            <span style="color:#6ab825;font-weight:bold">if</span> base_format == <span style="color:#ed9d13">&#39;EOS&#39;</span>:
+                <span style="color:#6ab825;font-weight:bold">continue</span>
+            word = Word(word=base_format, feature_id=feature_id)
+            self.storage.push(path, word)</code></pre></div>
+          </article>
+        </div>
+        <div class='entry-meta-bottom'>
+
+          
+            <div class="entry-tags"><p><span>Tags</span>
+              
+                <a href="/tags/atom" title="View all posts tagged ATOM">ATOM</a>
+              
+                <a href="/tags/applescript" title="View all posts tagged AppleScript">AppleScript</a>
+              
+                <a href="/tags/csv" title="View all posts tagged CSV">CSV</a>
+              
+                <a href="/tags/ecs" title="View all posts tagged ECS">ECS</a>
+              
+                <a href="/tags/excel" title="View all posts tagged Excel">Excel</a>
+              
+                <a href="/tags/git" title="View all posts tagged Git">Git</a>
+              
+                <a href="/tags/github" title="View all posts tagged GitHub">GitHub</a>
+              
+                <a href="/tags/go" title="View all posts tagged Go">Go</a>
+              
+                <a href="/tags/json" title="View all posts tagged JSON">JSON</a>
+              
+                <a href="/tags/json-schema" title="View all posts tagged JSON-schema">JSON-schema</a>
+              
+                <a href="/tags/javascript" title="View all posts tagged JavaScript">JavaScript</a>
+              
+                <a href="/tags/mongodb" title="View all posts tagged MongoDB">MongoDB</a>
+              
+                <a href="/tags/osx" title="View all posts tagged OSX">OSX</a>
+              
+                <a href="/tags/php" title="View all posts tagged PHP">PHP</a>
+              
+                <a href="/tags/perl6" title="View all posts tagged Perl6">Perl6</a>
+              
+                <a href="/tags/semanticversioning" title="View all posts tagged SemanticVersioning">SemanticVersioning</a>
+              
+                <a href="/tags/vscode" title="View all posts tagged VSCode">VSCode</a>
+              
+                <a href="/tags/visualstudiocode" title="View all posts tagged VisualStudioCode">VisualStudioCode</a>
+              
+                <a href="/tags/web" title="View all posts tagged Web">Web</a>
+              
+                <a href="/tags/zsh" title="View all posts tagged Zsh">Zsh</a>
+              
+                <a href="/tags/cli" title="View all posts tagged cli">cli</a>
+              
+                <a href="/tags/golang" title="View all posts tagged golang">golang</a>
+              
+                <a href="/tags/homebrew" title="View all posts tagged homebrew">homebrew</a>
+              
+                <a href="/tags/jxa" title="View all posts tagged jXA">jXA</a>
+              
+                <a href="/tags/memo" title="View all posts tagged memo">memo</a>
+              
+                <a href="/tags/pecoshellanyframezsh" title="View all posts tagged peco,shell,anyframe,zsh">peco,shell,anyframe,zsh</a>
+              
+                <a href="/tags/postfix" title="View all posts tagged postfix">postfix</a>
+              
+                <a href="/tags/proxy" title="View all posts tagged proxy">proxy</a>
+              
+                <a href="/tags/python" title="View all posts tagged python">python</a>
+              
+                <a href="/tags/scaffold" title="View all posts tagged scaffold">scaffold</a>
+              
+                <a href="/tags/semver" title="View all posts tagged semver">semver</a>
+              
+                <a href="/tags/shell" title="View all posts tagged shell">shell</a>
+              
+                <a href="/tags/tag" title="View all posts tagged tag">tag</a>
+              
+                <a href="/tags/%E3%82%A2%E3%82%A4%E3%83%87%E3%82%A3%E3%82%A2" title="View all posts tagged アイディア">アイディア</a>
+              
+                <a href="/tags/%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3" title="View all posts tagged バージョン">バージョン</a>
+              
+                <a href="/tags/%E3%83%9D%E3%82%A8%E3%83%A0" title="View all posts tagged ポエム">ポエム</a>
+              
+                <a href="/tags/%E3%83%A1%E3%83%A2" title="View all posts tagged メモ">メモ</a>
+              
+                <a href="/tags/%E8%87%AA%E7%84%B6%E8%A8%80%E8%AA%9E%E5%87%A6%E7%90%86" title="View all posts tagged 自然言語処理">自然言語処理</a>
+              
+            </p></div>
+          
+        </div>
+      </div>
+    </div>
+
+    <nav class="navigation pagination" role="navigation">
+      <h2 class="screen-reader-text">Posts navigation</h2>
+      <div class="nav-links">
+        
+        <a class="prev page-numbers" href="https://kyoh86.work/posts/auto-tagger-4/">自動タグ付け機能でも作ってみる - 4</a>
+        
+        
+      </div>
+    </nav>
+
+    <section class="comments">
+    
+    </section>
+  </div>
+
+
+    </div>
+
+    <footer id="site-footer" class="site-footer" role="contentinfo">
+  <h1>
+    
+      <a href=""> kyoh86.work </a>
+    
+  </h1>
+
+  
+    <p class="site-description">Works of kyoh86</p>
+  
+
+  <div class="menu-footer" role="navigation">
+    <div class="menu">
+      <ul class="menu-footer-items">
+        
+      </ul>
+    </div>
+  </div>
+
+    <ul class="social-media-icons">
+    
+      <li>
+        <a class="facebook" target="_blank"
+           href="https://www.facebook.com/kyoh.86" >
+          <i class="fa fa-facebook" title="facebook"></i>
+          <span class="screen-reader-text">facebook</span>
+        </a>
+      </li>
+    
+
+    
+      <li>
+        <a class="googleplus" target="_blank"
+           href="https://plus.google.com/u/0/100199074642864423892" >
+          <i class="fa fa-google-plus" title="googleplus"></i>
+          <span class="screen-reader-text">googleplus</span>
+        </a>
+      </li>
+    
+
+
+    
+      <li>
+      <a href="https://twitter.com/kyoh86"  class="twitter" target="_blank">
+          <i class="fa fa-twitter-square" title="twitter"></i>
+          <span class="screen-reader-text">twitter</span>
+      </a>
+      </li>
+    
+
+    
+      <li>
+      <a href="https://www.instagram.com/kyoh86"  class="twitter" target="_blank">
+          <i class="fa fa-instagram" title="instagram"></i>
+          <span class="screen-reader-text">instagram</span>
+      </a>
+      </li>
+    
+
+    
+
+    
+      <li>
+      <a href="https://www.linkedin.com/in/kyoh86/" class="linkedin" target="_blank">
+          <i class="fa fa-linkedin" title="linkedin"></i>
+          <span class="screen-reader-text">linkedin</span>
+      </a>
+      </li>
+    
+
+    
+      <li>
+      <a href="https://stackoverflow.com/users/3610769/kyoh86"  class="stackoverflow" target="_blank">
+          <i class="fa fa-stack-overflow" title="stackoverflow"></i>
+          <span class="screen-reader-text">stackoverflow</span>
+      </a>
+      </li>
+    
+
+
+    
+      <li>
+      <a href="https://github.com/kyoh86"  class="github" target="_blank">
+          <i class="fa fa-github" title="github"></i>
+          <span class="screen-reader-text">github</span>
+      </a>
+      </li>
+    
+  </ul>
+
+
+  <div class="design-credit">
+    
+      <p>&copy; 2018 kyoh86</p>
+    
+  </div>
+</footer>
+
+  </div>
+  <script src="https://kyoh86.work/js/jquery.min.js"></script>
+<script src="https://kyoh86.work/js/jquerymigrate.js"></script>
+<script src="https://kyoh86.work/js/production.min.js"></script>
+
+</body>
+</html>

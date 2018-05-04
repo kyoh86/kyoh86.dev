@@ -6,10 +6,19 @@
     <description>Recent content on kyoh86.work</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Fri, 04 May 2018 14:01:18 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 04 May 2018 15:03:02 +0900</lastBuildDate>
     
 	<atom:link href="https://kyoh86.work/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>自動タグ付け機能でも作ってみる - 5</title>
+      <link>https://kyoh86.work/posts/auto-tagger-5/</link>
+      <pubDate>Fri, 04 May 2018 15:03:02 +0900</pubDate>
+      
+      <guid>https://kyoh86.work/posts/auto-tagger-5/</guid>
+      <description>MorphoAnalyzerを作りきる 先の構成図 参照。 前の記事で実験したとおり、PythonからMeCabを呼び出して形態素の分割と品詞の種</description>
+    </item>
     
     <item>
       <title>自動タグ付け機能でも作ってみる - 4</title>

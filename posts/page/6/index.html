@@ -181,6 +181,32 @@ ga('send', 'pageview');
       
       <div class="excerpt-container">
         <div class="excerpt-meta">
+          <span class="date">April 06</span>
+          
+            <span> / </span>
+            <span class="category">
+              <a href="/categories/tech">tech</a>
+            </span>
+          
+        </div>
+        <div class='excerpt-header'>
+          <h2 class='excerpt-title'>
+            <a href="https://kyoh86.work/posts/2016-04-06_11-07-31/ ">【メモ】【OSX】peco/fzf でブランチ切替</a>
+          </h2>
+        </div>
+        <div class='excerpt-content'>
+          <article>
+            git branch -a \ | perl -ne&#39;m|[^/\* ]+$|;next if$_{$&amp;};$_{$&amp;}=1;next if m,^\*|remotes/.+/HEAD,;$s=&#34;\e[0m&lt;S&gt;&#34;;s|.*/([^/]+)/|\e[31m$1$s|; s|^ +([^/]+)$|\e[34mlocal$s$1|;print&#39; \ | column -ts&#39;&lt;S&gt;&#39; \ | fzf --ansi \ | xargs git checkout
+            <div class="more-link-wrapper"><a class="more-link" href="https://kyoh86.work/posts/2016-04-06_11-07-31/">Read the post<span class="screen-reader-text">This is a Standard Post</span></a></div>
+          </article>
+        </div>
+      </div>
+    </div>
+  
+    <div class="post zoom full-without-featured excerpt even">
+      
+      <div class="excerpt-container">
+        <div class="excerpt-meta">
           <span class="date">February 09</span>
           
             <span> / </span>
@@ -203,7 +229,7 @@ ga('send', 'pageview');
       </div>
     </div>
   
-    <div class="post zoom full-without-featured excerpt even">
+    <div class="post zoom full-without-featured excerpt odd">
       
       <div class="excerpt-container">
         <div class="excerpt-meta">
@@ -229,7 +255,7 @@ ga('send', 'pageview');
       </div>
     </div>
   
-    <div class="post zoom full-without-featured excerpt odd">
+    <div class="post zoom full-without-featured excerpt even">
       
       <div class="excerpt-container">
         <div class="excerpt-meta">
@@ -255,7 +281,7 @@ ga('send', 'pageview');
       </div>
     </div>
   
-    <div class="post zoom full-without-featured excerpt even">
+    <div class="post zoom full-without-featured excerpt odd">
       
       <div class="excerpt-container">
         <div class="excerpt-meta">
@@ -276,32 +302,6 @@ ga('send', 'pageview');
           <article>
             結論 brew list | grep -v &#39;^lib&#39; | while read line; do echo -n ${line}$&#39;\t&#39; brew info $line | grep -P &#39;^https?://&#39; | head -n1 done | column -t -s $&#39;\t&#39; &gt; brew-list.txtatk https://library.gnome.org/devel/atk/ autoconf https://www.gnu.org/software/autoconf automake https://www.gnu.org/software/automake/ autotrace http://autotrace.sourceforge.net awscli https://aws.amazon.com/cli/ : そこそこ便利。 背景 Homebrewは、OSX界じゃあ
             <div class="more-link-wrapper"><a class="more-link" href="https://kyoh86.work/posts/2016-01-09_09-44-27/">Read the post<span class="screen-reader-text">This is a Standard Post</span></a></div>
-          </article>
-        </div>
-      </div>
-    </div>
-  
-    <div class="post zoom full-without-featured excerpt odd">
-      
-      <div class="excerpt-container">
-        <div class="excerpt-meta">
-          <span class="date">December 24</span>
-          
-            <span> / </span>
-            <span class="category">
-              <a href="/categories/tech">tech</a>
-            </span>
-          
-        </div>
-        <div class='excerpt-header'>
-          <h2 class='excerpt-title'>
-            <a href="https://kyoh86.work/posts/2015-12-24_10-53-07/ ">go で AggregationException(.NET)的なことをする</a>
-          </h2>
-        </div>
-        <div class='excerpt-content'>
-          <article>
-            おはようございます。皆さん、せい・・聖夜は如何お過ごしの予定でしょうか。 さてさて、Goのエラー処理についてはやいやい言われていますね。 エラー
-            <div class="more-link-wrapper"><a class="more-link" href="https://kyoh86.work/posts/2015-12-24_10-53-07/">Read the post<span class="screen-reader-text">This is a Standard Post</span></a></div>
           </article>
         </div>
       </div>
