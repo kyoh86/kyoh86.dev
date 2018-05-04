@@ -507,6 +507,7 @@ a img {
   opacity: 0.6;
   -webkit-transition: opacity 0.2s ease;
           transition: opacity 0.2s ease;
+  margin-top: 1em;
 }
 .toggle-navigation:hover, .toggle-navigation:active, .toggle-navigation:focus {
   opacity: 1;
@@ -864,7 +865,7 @@ a img {
   left: 0;
   right: 0;
   margin: 0 auto;
-  bottom: -0.75em;
+  bottom: -1em;
 }
 
 .excerpt-content {
