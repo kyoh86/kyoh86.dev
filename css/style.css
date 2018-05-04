@@ -65,7 +65,7 @@ body {
   font-size: 100%;
   margin: 0;
   padding: 0;
-  font-family: "raleway", sans-serif;
+  font-family: "Noto Sans Japanese", sans-serif;
   line-height: 1.5;
   color: #4d4d4d;
   background: #222;
@@ -122,7 +122,7 @@ fieldset {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "raleway", sans-serif;
+  font-family: "Noto Sans Japanese", sans-serif;
   margin: 0;
   padding: 0;
   font-weight: 400;
@@ -191,6 +191,12 @@ pre {
   white-space: pre-wrap;
   padding: 0.75em;
   background: #f5f5f5;
+}
+
+code {
+  font-family: "SFMono-Regular",Consolas,"Liberation Mono",Menlo,Courier,monospace;
+  font-size: 0.9em;
+  letter-spacing: 0.2px;
 }
 
 code:not([class^=language-]) {
@@ -314,7 +320,7 @@ textarea {
   min-height: 45px;
   outline: solid 1px #000;
   border: none;
-  font-family: "raleway", sans-serif;
+  font-family: "Noto Sans Japanese", sans-serif;
   font-size: 0.813em;
   line-height: 1.85;
   border-radius: 0;
@@ -337,7 +343,7 @@ input[type="submit"] {
   min-height: 45px;
   outline: none;
   border: none;
-  font-family: "raleway", sans-serif;
+  font-family: "Noto Sans Japanese", sans-serif;
   font-size: 0.813em;
   line-height: 1.85;
   border-radius: 0;
@@ -1262,14 +1268,15 @@ a img {
   }
 
   .entry-header h1 {
-    font-size: 3.0em;
+    font-size: 2.5em;
     line-height: 1.06;
   }
 
   .entry-meta {
     font-size: 1em;
     line-height: 1.5;
-    padding-top: 3em;
+    padding-top: 2.5em;
+    padding-bottom: 0.5em;
     letter-spacing: 0.08em;
   }
 
@@ -2330,7 +2337,7 @@ li.pingback:first-child {
 .gallery-caption {
   color: #8c8c8c;
   display: block;
-  font-family: "raleway", sans-serif;
+  font-family: "Noto Sans Japanese", sans-serif;
   font-size: 12px;
   padding: 0.5em 0;
 }
@@ -2729,7 +2736,7 @@ li.pingback:first-child {
   min-height: 45px;
   outline: none;
   border: none;
-  font-family: "raleway", sans-serif;
+  font-family: "Noto Sans Japanese", sans-serif;
   font-size: 0.813em;
   line-height: 1.85;
   border-radius: 0;
