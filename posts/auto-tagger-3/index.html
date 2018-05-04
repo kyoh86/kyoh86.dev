@@ -212,8 +212,7 @@ ga('send', 'pageview');
 簡単なIOのラッパーを書いて、内容を <code>&lt;root&gt;...&lt;/root&gt;</code> で包み、<a href="https://docs.python.jp/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.iterparse">xml.etree.ElementTree.iterparse</a> で処理できよう。</p>
 
 <p>こいつを先の <code>MarkdownParser</code> と同じIFにしてやれば、MarkdownではなくWikipediaのダンプデータを食って単語の重み付けをできるようになるはずだ。</p>
-
-<pre><code class="language-uml">@startuml
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-uml" data-lang="uml">@startuml
 interface Parser {
   parse(path: String)
 }
@@ -221,12 +220,9 @@ class MarkdownParser
 class WikiXMLParser 
 Parser &lt;|-- MarkdownParser
 Parser &lt;|-- WikiXMLParser
-@enduml
-</code></pre>
-
+@enduml</code></pre></div>
 <h2 id="処理の流れ-学習フェーズを含む">処理の流れ（学習フェーズを含む）</h2>
-
-<pre><code class="language-uml">@startuml
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-uml" data-lang="uml">@startuml
 participant WikiXMLParser as x
 participant MarkdownParser as m
 participant MorphoAnalyzer as a
@@ -265,9 +261,7 @@ loop all documents
     ]&lt;-- r : rank : Integer
   end
 end
-@enduml
-</code></pre>
-
+@enduml</code></pre></div>
 <h2 id="いざ実装">いざ実装</h2>
 
 <p>考えるべきことは一通り考えきったはずなので、実装に入っていこうと思う。</p>
@@ -367,6 +361,8 @@ end
         
         <a class="prev page-numbers" href="https://kyoh86.work/posts/auto-tagger-2/">自動タグ付け機能でも作ってみる - 2</a>
         
+        
+        <a class="next page-numbers" href="https://kyoh86.work/posts/auto-tagger-4/">自動タグ付け機能でも作ってみる - 4</a>
         
       </div>
     </nav>

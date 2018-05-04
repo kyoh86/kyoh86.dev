@@ -202,11 +202,9 @@ ga('send', 'pageview');
 <a href="http://qiita.com/tenntenn/items/4b9587120176c2d4b454">GoでOSXのアプリを書く #golang</a></p>
 
 <p>OSXなら、別にNode動かさんでもJavaScriptでそこそこのことができる。</p>
-
-<pre><code class="language-js">#!/usr/bin/osascript -l JavaScript
-console.log(&quot;baz&quot;);
-</code></pre>
-
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#999;font-style:italic">#!/usr/bin/osascript -l JavaScript
+</span><span style="color:#999;font-style:italic"></span>console.log(<span style="color:#ed9d13">&#34;baz&#34;</span>);
+</code></pre></div>
 <p>こんな感じで書いて、適当なファイル名で保存して、<code>chmod +x foobar</code>で実行権限与えとけば、<code>foobar</code>で実行できる。
 所謂AppleScriptのエンジンがJavaScriptも解する様になったことで、いい感じにやってくれてる。
 Yosemiteからだよ〜とか、もうそれ１年前の話やよ〜、って事実にも衝撃を受けてる。</p>

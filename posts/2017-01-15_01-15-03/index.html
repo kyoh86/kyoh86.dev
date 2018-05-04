@@ -216,16 +216,10 @@ ga('send', 'pageview');
 </code></pre>
 
 <h2 id="使い方">使い方</h2>
-
-<pre><code class="language-sh">richgo test ./...
-</code></pre>
-
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">richgo <span style="color:#24909d">test</span> ./...</code></pre></div>
 <p>他の機能を阻害することはないので <code>go</code> のエイリアスとしてしまうのがおすすめです。</p>
-
-<pre><code class="language-zsh">alias go=richgo
-go test ./...
-</code></pre>
-
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh"><span style="color:#24909d">alias</span> <span style="color:#40ffff">go</span>=richgo
+go <span style="color:#24909d">test</span> ./...</code></pre></div>
 <h3 id="スタイルの設定変更">スタイルの設定変更</h3>
 
 <p>設定ファイルでスタイルを変えることもできます。
@@ -252,70 +246,67 @@ go test ./...
 
 <p>設定は、YAML形式で次のような形で記載します。
 すべての項目は、設定しなければデフォルト／または先に読み込んだ設定ファイルの内容が反映されます。</p>
-
-<pre><code class="language-yaml"># ラベルの見せ方
-labelType: (long | short | none)
-
-# ビルドログの見た目
-buildStyle:
-  # 出力しない
-  hide: (true | false)
-  # 太字
-  bold: (true | false)
-  # 淡い字、または細い字
-  faint: (true | false)
-  # 斜体
-  italic: (true | false)
-  # アンダーライン
-  underline: (true | false)
-  # 点滅（ゆっくり）
-  blinkSlow: (true | false)
-  # 点滅（はやい）
-  blinkRapid: (true | false)
-  # 前景色と背景色を入れ替える
-  inverse: (true | false)
-  # 前景色と背景色を同色にする
-  conceal: (true | false)
-  # 取り消し線を引く
-  crossOut: (true | false)
-  frame: (true | false)
-  encircle: (true | false)
-  # アッパーライン
-  overline: (true | false)
-  # 文字前景色
-  foreground: (#xxxxxx | rgb(0-256,0-256,0-256) | rgb(0x00-0xFF,0x00-0xFF,0x00-0xFF) | (name of colors))
-  # 文字背景色
-  background: # Same format as `foreground`
-
-# テスト開始ログの見た目
-startStyle:
-  # Same format as `buildStyle`
-
-# テスト通過ログの見た目
-passStyle:
-  # Same format as `buildStyle`
-
-# テスト失敗ログの見た目
-failStyle:
-  # Same format as `buildStyle`
-
-# テストスキップログの見た目
-skipStyle:
-  # Same format as `buildStyle`
-
-# テスト対象ファイル名の見た目
-fileStyle:
-  # Same format as `buildStyle`
-
-# エラーログ行番号の見た目
-lineStyle:
-  # Same format as `buildStyle`
-
-# 行ごと出力したくない行を、正規表現で指定
-removals:
-  - (regexp)
-</code></pre>
-
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#999;font-style:italic"># ラベルの見せ方</span><span style="color:#666">
+</span><span style="color:#666"></span>labelType:<span style="color:#666"> </span>(long<span style="color:#666"> </span><span style="color:#ed9d13">| short | none)</span><span style="color:#666">
+</span><span style="color:#666">
+</span><span style="color:#666"></span><span style="color:#999;font-style:italic"># ビルドログの見た目</span><span style="color:#666">
+</span><span style="color:#666"></span>buildStyle:<span style="color:#666">
+</span><span style="color:#666">  </span><span style="color:#999;font-style:italic"># 出力しない</span><span style="color:#666">
+</span><span style="color:#666">  </span>hide:<span style="color:#666"> </span>(<span style="color:#6ab825;font-weight:bold">true</span><span style="color:#666"> </span><span style="color:#ed9d13">| false)
+</span><span style="color:#ed9d13">  # 太字
+</span><span style="color:#ed9d13">  bold: (true | false)
+</span><span style="color:#ed9d13">  # 淡い字、または細い字
+</span><span style="color:#ed9d13">  faint: (true | false)
+</span><span style="color:#ed9d13">  # 斜体
+</span><span style="color:#ed9d13">  italic: (true | false)
+</span><span style="color:#ed9d13">  # アンダーライン
+</span><span style="color:#ed9d13">  underline: (true | false)
+</span><span style="color:#ed9d13">  # 点滅（ゆっくり）
+</span><span style="color:#ed9d13">  blinkSlow: (true | false)
+</span><span style="color:#ed9d13">  # 点滅（はやい）
+</span><span style="color:#ed9d13">  blinkRapid: (true | false)
+</span><span style="color:#ed9d13">  # 前景色と背景色を入れ替える
+</span><span style="color:#ed9d13">  inverse: (true | false)
+</span><span style="color:#ed9d13">  # 前景色と背景色を同色にする
+</span><span style="color:#ed9d13">  conceal: (true | false)
+</span><span style="color:#ed9d13">  # 取り消し線を引く
+</span><span style="color:#ed9d13">  crossOut: (true | false)
+</span><span style="color:#ed9d13">  frame: (true | false)
+</span><span style="color:#ed9d13">  encircle: (true | false)
+</span><span style="color:#ed9d13">  # アッパーライン
+</span><span style="color:#ed9d13">  overline: (true | false)
+</span><span style="color:#ed9d13">  # 文字前景色
+</span><span style="color:#ed9d13">  foreground: (#xxxxxx | rgb(0-256,0-256,0-256) | rgb(0x00-0xFF,0x00-0xFF,0x00-0xFF) | (name of colors))
+</span><span style="color:#ed9d13">  # 文字背景色
+</span><span style="color:#ed9d13">  background: # Same format as `foreground`</span><span style="color:#666">
+</span><span style="color:#666">
+</span><span style="color:#666"></span><span style="color:#999;font-style:italic"># テスト開始ログの見た目</span><span style="color:#666">
+</span><span style="color:#666"></span>startStyle:<span style="color:#666">
+</span><span style="color:#666">  </span><span style="color:#999;font-style:italic"># Same format as `buildStyle`</span><span style="color:#666">
+</span><span style="color:#666">
+</span><span style="color:#666"></span><span style="color:#999;font-style:italic"># テスト通過ログの見た目</span><span style="color:#666">
+</span><span style="color:#666"></span>passStyle:<span style="color:#666">
+</span><span style="color:#666">  </span><span style="color:#999;font-style:italic"># Same format as `buildStyle`</span><span style="color:#666">
+</span><span style="color:#666">
+</span><span style="color:#666"></span><span style="color:#999;font-style:italic"># テスト失敗ログの見た目</span><span style="color:#666">
+</span><span style="color:#666"></span>failStyle:<span style="color:#666">
+</span><span style="color:#666">  </span><span style="color:#999;font-style:italic"># Same format as `buildStyle`</span><span style="color:#666">
+</span><span style="color:#666">
+</span><span style="color:#666"></span><span style="color:#999;font-style:italic"># テストスキップログの見た目</span><span style="color:#666">
+</span><span style="color:#666"></span>skipStyle:<span style="color:#666">
+</span><span style="color:#666">  </span><span style="color:#999;font-style:italic"># Same format as `buildStyle`</span><span style="color:#666">
+</span><span style="color:#666">
+</span><span style="color:#666"></span><span style="color:#999;font-style:italic"># テスト対象ファイル名の見た目</span><span style="color:#666">
+</span><span style="color:#666"></span>fileStyle:<span style="color:#666">
+</span><span style="color:#666">  </span><span style="color:#999;font-style:italic"># Same format as `buildStyle`</span><span style="color:#666">
+</span><span style="color:#666">
+</span><span style="color:#666"></span><span style="color:#999;font-style:italic"># エラーログ行番号の見た目</span><span style="color:#666">
+</span><span style="color:#666"></span>lineStyle:<span style="color:#666">
+</span><span style="color:#666">  </span><span style="color:#999;font-style:italic"># Same format as `buildStyle`</span><span style="color:#666">
+</span><span style="color:#666">
+</span><span style="color:#666"></span><span style="color:#999;font-style:italic"># 行ごと出力したくない行を、正規表現で指定</span><span style="color:#666">
+</span><span style="color:#666"></span>removals:<span style="color:#666">
+</span><span style="color:#666">  </span>-<span style="color:#666"> </span>(regexp)</code></pre></div>
 <h3 id="ログの種類">ログの種類</h3>
 
 <p>設定ファイルのフォーマットに書いたように、 <code>richgo</code> はテストの出力を一行ごとにカテゴライズして、
@@ -393,26 +384,23 @@ sample_skip_test.go:6:
 </ul>
 
 <h3 id="デフォルト設定値">デフォルト設定値</h3>
-
-<pre><code class="language-yaml">labelType: long
-buildStyle:
-  bold: true
-  foreground: yellow
-startStyle:
-  foreground: lightBlack
-passStyle:
-  foreground: green
-failStyle:
-  bold: true
-  foreground: red
-skipStyle:
-  foreground: lightBlack
-fileStyle:
-  foreground: cyan
-lineStyle:
-  foreground: magenta
-</code></pre>
-
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">labelType:<span style="color:#666"> </span>long<span style="color:#666">
+</span><span style="color:#666"></span>buildStyle:<span style="color:#666">
+</span><span style="color:#666">  </span>bold:<span style="color:#666"> </span><span style="color:#6ab825;font-weight:bold">true</span><span style="color:#666">
+</span><span style="color:#666">  </span>foreground:<span style="color:#666"> </span>yellow<span style="color:#666">
+</span><span style="color:#666"></span>startStyle:<span style="color:#666">
+</span><span style="color:#666">  </span>foreground:<span style="color:#666"> </span>lightBlack<span style="color:#666">
+</span><span style="color:#666"></span>passStyle:<span style="color:#666">
+</span><span style="color:#666">  </span>foreground:<span style="color:#666"> </span>green<span style="color:#666">
+</span><span style="color:#666"></span>failStyle:<span style="color:#666">
+</span><span style="color:#666">  </span>bold:<span style="color:#666"> </span><span style="color:#6ab825;font-weight:bold">true</span><span style="color:#666">
+</span><span style="color:#666">  </span>foreground:<span style="color:#666"> </span>red<span style="color:#666">
+</span><span style="color:#666"></span>skipStyle:<span style="color:#666">
+</span><span style="color:#666">  </span>foreground:<span style="color:#666"> </span>lightBlack<span style="color:#666">
+</span><span style="color:#666"></span>fileStyle:<span style="color:#666">
+</span><span style="color:#666">  </span>foreground:<span style="color:#666"> </span>cyan<span style="color:#666">
+</span><span style="color:#666"></span>lineStyle:<span style="color:#666">
+</span><span style="color:#666">  </span>foreground:<span style="color:#666"> </span>magenta</code></pre></div>
 <h1 id="あとがき">あとがき</h1>
 
 <p><code>goconvey</code> のようにリッチな出力をしてくれるテストフレームワークもありますが、やはり <code>testing</code> パッケージだけで構成されたテストは見通しが良いものです。

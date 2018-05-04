@@ -198,17 +198,14 @@ ga('send', 'pageview');
 かといって<code>outdated</code>なパッケージを放置するのも気持ち悪いですよね。</p>
 
 <p>そんな「<code>brew upgrade</code>で全てのパッケージをアップデートしたら色々死ぬわ！」という場合によく使うのでメモ書き。</p>
-
-<pre><code class="language-zsh">$ brew update &amp;&amp; brew outdated # 更新が必要なパッケージの一覧を取得、確認。
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">$ brew update &amp;&amp; brew outdated <span style="color:#999;font-style:italic"># 更新が必要なパッケージの一覧を取得、確認。
+</span><span style="color:#999;font-style:italic"></span>  ...
   ...
-  ...
-$ brew outdated \
-    | awk '{print $1}' \
-    | grep -v 'elasticsearch' \
-    | grep -v 'mongo'         \
-    | xargs -n 1 brew upgrade
-</code></pre>
-
+$ brew outdated <span style="color:#ed9d13">\
+</span><span style="color:#ed9d13"></span>    | awk <span style="color:#ed9d13">&#39;{print $1}&#39;</span> <span style="color:#ed9d13">\
+</span><span style="color:#ed9d13"></span>    | grep -v <span style="color:#ed9d13">&#39;elasticsearch&#39;</span> <span style="color:#ed9d13">\
+</span><span style="color:#ed9d13"></span>    | grep -v <span style="color:#ed9d13">&#39;mongo&#39;</span>         <span style="color:#ed9d13">\
+</span><span style="color:#ed9d13"></span>    | xargs -n <span style="color:#3677a9">1</span> brew upgrade</code></pre></div>
 <p><code>brew outdated</code>で リスト化して、<code>grep -v</code> <sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup> でそっとしておいて欲しいパッケージ（例では<code>Elasticsearch</code>と<code>Mongo DB</code>）を除外して、<code>xargs</code>で<code>brew upgrade</code>。シンプル。
 <a href="https://github.com/junegunn/fzf">fzf</a> とか <a href="https://github.com/peco/peco">peco</a> とか駆使すれば、もっとホスピタリティの高い感じにできると思うけど、まァ良いかという気持ち。</p>
 <div class="footnotes">

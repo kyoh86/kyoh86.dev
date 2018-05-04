@@ -197,19 +197,16 @@ ga('send', 'pageview');
 <p>Goで文字の省略処理（Ellipsis）しようとしたら、初歩的なことで躓いたのでメモ程度に。</p>
 
 <h1 id="結論">結論</h1>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ellipsis.go" data-lang="ellipsis.go"><span style="color:#6ab825;font-weight:bold">package</span> main
 
-<pre><code class="language-ellipsis.go">package main
-
-// Ellipsis a text
-func Ellipsis(length int, text string) string {
-	r := []rune(text)
-	if len(r) &gt; length {
-		return string(r[0:length]) + &quot;...&quot;
+<span style="color:#999;font-style:italic">// Ellipsis a text
+</span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">func</span> Ellipsis(length <span style="color:#6ab825;font-weight:bold">int</span>, text <span style="color:#6ab825;font-weight:bold">string</span>) <span style="color:#6ab825;font-weight:bold">string</span> {
+	r := []<span style="color:#24909d">rune</span>(text)
+	<span style="color:#6ab825;font-weight:bold">if</span> <span style="color:#24909d">len</span>(r) &gt; length {
+		<span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#24909d">string</span>(r[<span style="color:#3677a9">0</span>:length]) + <span style="color:#ed9d13">&#34;...&#34;</span>
 	}
-	return text
-}
-</code></pre>
-
+	<span style="color:#6ab825;font-weight:bold">return</span> text
+}</code></pre></div>
 <h1 id="要点">要点</h1>
 
 <ul>
@@ -230,25 +227,22 @@ func Ellipsis(length int, text string) string {
 <p><code>string</code> 系の関数作るときは、<code>func(params..., string)</code>の形に作るとちょっとだけ便利。</p>
 
 <p><code>text/template</code>の<code>FuncMap</code>にそのまま放り込めたりする。些細だなー！</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sample.go" data-lang="sample.go"><span style="color:#6ab825;font-weight:bold">package</span> main
 
-<pre><code class="language-sample.go">package main
-
-import (
-	&quot;bytes&quot;
-	&quot;fmt&quot;
-	&quot;text/template&quot;
+<span style="color:#6ab825;font-weight:bold">import</span> (
+	<span style="color:#ed9d13">&#34;bytes&#34;</span>
+	<span style="color:#ed9d13">&#34;fmt&#34;</span>
+	<span style="color:#ed9d13">&#34;text/template&#34;</span>
 )
 
-func main() {
-	var buf bytes.Buffer
-	template.New(&quot;text&quot;).
-		Funcs(template.FuncMap{&quot;ellipsis&quot;: Ellipse}).
-		Parse(`{{.value | ellipsis 5}}`).
-		Execute(buf, map[string]string{&quot;value&quot;: &quot;みんみんみらくる☆&quot;})
+<span style="color:#6ab825;font-weight:bold">func</span> main() {
+	<span style="color:#6ab825;font-weight:bold">var</span> buf bytes.Buffer
+	template.New(<span style="color:#ed9d13">&#34;text&#34;</span>).
+		Funcs(template.FuncMap{<span style="color:#ed9d13">&#34;ellipsis&#34;</span>: Ellipse}).
+		Parse(<span style="color:#ed9d13">`</span><span style="color:#cd2828;font-weight:bold">{{</span><span style="color:#bbb">.value</span><span style="color:#666"> </span>|<span style="color:#666"> </span>ellipsis<span style="color:#666"> </span>5<span style="color:#cd2828;font-weight:bold">}}</span><span style="color:#ed9d13">`</span>).
+		Execute(buf, <span style="color:#6ab825;font-weight:bold">map</span>[<span style="color:#6ab825;font-weight:bold">string</span>]<span style="color:#6ab825;font-weight:bold">string</span>{<span style="color:#ed9d13">&#34;value&#34;</span>: <span style="color:#ed9d13">&#34;みんみんみらくる☆&#34;</span>})
 	fmt.Println(buf.String())
-}
-</code></pre>
-
+}</code></pre></div>
           </article>
         </div>
         <div class='entry-meta-bottom'>

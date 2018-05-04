@@ -202,10 +202,7 @@ ga('send', 'pageview');
 <h2 id="シェルスクリプト">シェルスクリプト</h2>
 
 <p><code>go list</code>　を使って、インストールパッケージパス一覧を出してみます。</p>
-
-<pre><code class="language-bash">go list -f &quot;{{if eq \&quot;${GOPATH}/bin/\&quot; (printf \&quot;%.$((${#GOPATH}+5))s\&quot; .Target)}}{{.Target}},{{.ImportPath}}{{end}}&quot; all
-</code></pre>
-
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">go list -f <span style="color:#ed9d13">&#34;{{if eq \&#34;</span><span style="color:#ed9d13">${</span><span style="color:#40ffff">GOPATH</span><span style="color:#ed9d13">}</span><span style="color:#ed9d13">/bin/\&#34; (printf \&#34;%.</span><span style="color:#6ab825;font-weight:bold">$((</span><span style="color:#ed9d13">${#</span><span style="color:#40ffff">GOPATH</span><span style="color:#ed9d13">}</span>+<span style="color:#3677a9">5</span><span style="color:#6ab825;font-weight:bold">))</span><span style="color:#ed9d13">s\&#34; .Target)}}{{.Target}},{{.ImportPath}}{{end}}&#34;</span> all</code></pre></div>
 <h2 id="結果サンプル">結果サンプル</h2>
 
 <p>パス見てみると、 <code>vendor</code> とか、 <code>examples</code> とか、ちらほらと治安悪いですね。

@@ -197,39 +197,36 @@ ga('send', 'pageview');
 <h2 id="動機">動機</h2>
 
 <p>golangでforループを回すと、中でうっかりクロージャやリファレンスを取れません。</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-example/readme.go" data-lang="example/readme.go"><span style="color:#6ab825;font-weight:bold">package</span> example
 
-<pre><code class="language-example/readme.go">package example
+<span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#ed9d13">&#34;fmt&#34;</span>
 
-import &quot;fmt&quot;
-
-func readme() {
-	values := []string{&quot;a&quot;, &quot;b&quot;, &quot;c&quot;}
-	var funcs []func()
-	for _, val := range values {
-		funcs = append(funcs, func() {
+<span style="color:#6ab825;font-weight:bold">func</span> readme() {
+	values := []<span style="color:#6ab825;font-weight:bold">string</span>{<span style="color:#ed9d13">&#34;a&#34;</span>, <span style="color:#ed9d13">&#34;b&#34;</span>, <span style="color:#ed9d13">&#34;c&#34;</span>}
+	<span style="color:#6ab825;font-weight:bold">var</span> funcs []<span style="color:#6ab825;font-weight:bold">func</span>()
+	<span style="color:#6ab825;font-weight:bold">for</span> _, val := <span style="color:#6ab825;font-weight:bold">range</span> values {
+		funcs = <span style="color:#24909d">append</span>(funcs, <span style="color:#6ab825;font-weight:bold">func</span>() {
 			fmt.Println(val)
 		})
 	}
-	for _, f := range funcs {
+	<span style="color:#6ab825;font-weight:bold">for</span> _, f := <span style="color:#6ab825;font-weight:bold">range</span> funcs {
 		f()
 	}
-	/*output:
-	  c
-	  c
-	  c
-	*/
-	var copies []*string
-	for _, val := range values {
-		copies = append(copies, &amp;val)
+	<span style="color:#999;font-style:italic">/*output:
+</span><span style="color:#999;font-style:italic">	  c
+</span><span style="color:#999;font-style:italic">	  c
+</span><span style="color:#999;font-style:italic">	  c
+</span><span style="color:#999;font-style:italic">	*/</span>
+	<span style="color:#6ab825;font-weight:bold">var</span> copies []*<span style="color:#6ab825;font-weight:bold">string</span>
+	<span style="color:#6ab825;font-weight:bold">for</span> _, val := <span style="color:#6ab825;font-weight:bold">range</span> values {
+		copies = <span style="color:#24909d">append</span>(copies, &amp;val)
 	}
-	/*(in copies)
-	  &amp;&quot;c&quot;
-	  &amp;&quot;c&quot;
-	  &amp;&quot;c&quot;
-	*/
-}
-</code></pre>
-
+	<span style="color:#999;font-style:italic">/*(in copies)
+</span><span style="color:#999;font-style:italic">	  &amp;&#34;c&#34;
+</span><span style="color:#999;font-style:italic">	  &amp;&#34;c&#34;
+</span><span style="color:#999;font-style:italic">	  &amp;&#34;c&#34;
+</span><span style="color:#999;font-style:italic">	*/</span>
+}</code></pre></div>
 <p>意外と気づきにくいバグの元になってプログラマは容易に死にます。
 一応一部のケースは <code>go vet</code> でも検出できますが、万能ではありません。（なぜか <code>go func(){ }()</code> だけは気をつけてくれる)</p>
 

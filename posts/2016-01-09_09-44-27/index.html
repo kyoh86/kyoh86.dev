@@ -195,21 +195,15 @@ ga('send', 'pageview');
             
 
 <h2 id="結論">結論</h2>
-
-<pre><code class="language-brew-list-v.sh">brew list | grep -v '^lib' | while read line; do
-  echo -n ${line}$'\t'
-  brew info $line | grep -P '^https?://' | head -n1
-done | column -t -s $'\t' &gt; brew-list.txt
-</code></pre>
-
-<pre><code class="language-brew-list.txt">atk                        https://library.gnome.org/devel/atk/
-autoconf                   https://www.gnu.org/software/autoconf
-automake                   https://www.gnu.org/software/automake/
-autotrace                  http://autotrace.sourceforge.net
-awscli                     https://aws.amazon.com/cli/
-:
-</code></pre>
-
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-brew-list-v.sh" data-lang="brew-list-v.sh">brew list | grep -v <span style="color:#ed9d13">&#39;^lib&#39;</span> | <span style="color:#6ab825;font-weight:bold">while</span> <span style="color:#24909d">read</span> line; <span style="color:#6ab825;font-weight:bold">do</span>
+  <span style="color:#24909d">echo</span> -n <span style="color:#ed9d13">${</span><span style="color:#40ffff">line</span><span style="color:#ed9d13">}</span><span style="color:#ed9d13">$&#39;\t&#39;</span>
+  brew info <span style="color:#40ffff">$line</span> | grep -P <span style="color:#ed9d13">&#39;^https?://&#39;</span> | head -n1
+<span style="color:#6ab825;font-weight:bold">done</span> | column -t -s <span style="color:#ed9d13">$&#39;\t&#39;</span> &gt; brew-list.txt</code></pre></div><div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-brew-list.txt" data-lang="brew-list.txt">atk                        https:<span style="color:#999;font-style:italic">//library.gnome.org/devel/atk/</span>
+autoconf                   https:<span style="color:#999;font-style:italic">//www.gnu.org/software/autoconf</span>
+automake                   https:<span style="color:#999;font-style:italic">//www.gnu.org/software/automake/</span>
+autotrace                  http:<span style="color:#999;font-style:italic">//autotrace.sourceforge.net</span>
+awscli                     https:<span style="color:#999;font-style:italic">//aws.amazon.com/cli/</span>
+:</code></pre></div>
 <p>そこそこ便利。</p>
 
 <h2 id="背景">背景</h2>
@@ -232,28 +226,22 @@ awscli                     https://aws.amazon.com/cli/
 <p>こういう時こそ軽めのシェル芸だな、と思ったので飛び出しましたるのが冒頭のシェルです。</p>
 
 <p><a href="http://qiita.com/b4b4r07/items/9e1bbffb1be70b6ce033">fzf</a> なり、 <a href="https://github.com/peco/peco">peco</a> なりと組み合わせてもいいかも。</p>
-
-<pre><code class="language-brew-list-openurl.sh">brew list | grep -v '^lib' | while read line; do
-  echo -n ${line}$'\t'
-  brew info $line | grep -P '^https?://' | head -n1
-done |
-  column -t -s $'\t' |
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-brew-list-openurl.sh" data-lang="brew-list-openurl.sh">brew list | grep -v <span style="color:#ed9d13">&#39;^lib&#39;</span> | <span style="color:#6ab825;font-weight:bold">while</span> <span style="color:#24909d">read</span> line; <span style="color:#6ab825;font-weight:bold">do</span>
+  <span style="color:#24909d">echo</span> -n <span style="color:#ed9d13">${</span><span style="color:#40ffff">line</span><span style="color:#ed9d13">}</span><span style="color:#ed9d13">$&#39;\t&#39;</span>
+  brew info <span style="color:#40ffff">$line</span> | grep -P <span style="color:#ed9d13">&#39;^https?://&#39;</span> | head -n1
+<span style="color:#6ab825;font-weight:bold">done</span> |
+  column -t -s <span style="color:#ed9d13">$&#39;\t&#39;</span> |
   fzf |
-  awk '{print $2} |
-  xargs -n1 --no-run-if-empty open
-</code></pre>
-
+  awk <span style="color:#a61717;background-color:#e3d2d2">&#39;</span>{print <span style="color:#40ffff">$2</span>} |
+  xargs -n1 --no-run-if-empty open</code></pre></div>
 <p>うーん、brewの整理、頑張ろ。</p>
 
 <h2 id="追記-2016-02-17">追記 2016-02-17</h2>
 
 <p>よくよく見たら、<code>brew</code>には<code>home</code>というサブコマンドがあったのですね</p>
-
-<pre><code class="language-brew-list-openurl.sh">brew list |
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-brew-list-openurl.sh" data-lang="brew-list-openurl.sh">brew list |
   fzf |
-  xargs -n1 --no-run-if-empty brew home
-</code></pre>
-
+  xargs -n1 --no-run-if-empty brew home</code></pre></div>
           </article>
         </div>
         <div class='entry-meta-bottom'>

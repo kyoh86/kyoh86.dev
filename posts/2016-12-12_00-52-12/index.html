@@ -288,30 +288,27 @@ bindkey '^x^l' insert-launchctl
 <p>めんどうなので、 <code>brew</code> も <code>cask</code> も <code>mas</code> も、インストールしている内容を自動的に <code>dotfiles</code> 配下に保存するようにしています。</p>
 
 <p><a href="https://github.com/kyoh86/dotfiles/blob/master/dots/userjob">https://github.com/kyoh86/dotfiles/blob/master/dots/userjob</a></p>
-
-<pre><code class="language-userjob"># Update mas-cli:
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-userjob" data-lang="userjob"># Update mas-cli:
 if [ -f /usr/local/bin/mas ] ; then
-  echo '#!/bin/sh' &gt; ~/.install_mas
+  echo &#39;#!/bin/sh&#39; &gt; ~/.install_mas
   /usr/local/bin/mas upgrade
   /usr/local/bin/mas list \
-    | awk '{printf &quot;mas install %s # %s %s %s\n&quot;, $1, $2, $3, $4}' &gt;&gt; ~/.install_mas
+    | awk &#39;{printf &#34;mas install %s # %s %s %s\n&#34;, $1, $2, $3, $4}&#39; &gt;&gt; ~/.install_mas
 fi
 
 # Update brew cask:
 if [ -f /usr/local/bin/brew ] ; then
-  echo '#!/bin/sh' &gt; ~/.install_cask
+  echo &#39;#!/bin/sh&#39; &gt; ~/.install_cask
   /usr/local/bin/brew cask list \
-    | awk '{printf &quot;brew cask install %s\n&quot;, $1}' &gt;&gt; ~/.install_cask
+    | awk &#39;{printf &#34;brew cask install %s\n&#34;, $1}&#39; &gt;&gt; ~/.install_cask
 fi
 
 # Update brew:
 if [ -f /usr/local/bin/brew ] ; then
-  echo '#!/bin/sh' &gt; ~/.install_brew
+  echo &#39;#!/bin/sh&#39; &gt; ~/.install_brew
   /usr/local/bin/brew leaves \
-    | awk '{printf &quot;brew install %s\n&quot;, $1}' &gt;&gt; ~/.install_brew
-fi
-</code></pre>
-
+    | awk &#39;{printf &#34;brew install %s\n&#34;, $1}&#39; &gt;&gt; ~/.install_brew
+fi</code></pre></div>
 <p>こういうshellを書いておいて、</p>
 
 <pre><code>ln -fs ${dotfiles}/userjob ~/.userjob

@@ -6,10 +6,19 @@
     <description>Recent content in Posts on kyoh86.work</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Tue, 01 May 2018 23:04:20 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 04 May 2018 14:01:18 +0900</lastBuildDate>
     
 	<atom:link href="https://kyoh86.work/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>自動タグ付け機能でも作ってみる - 4</title>
+      <link>https://kyoh86.work/posts/auto-tagger-4/</link>
+      <pubDate>Fri, 04 May 2018 14:01:18 +0900</pubDate>
+      
+      <guid>https://kyoh86.work/posts/auto-tagger-4/</guid>
+      <description>MeCab＋Pythonしてみる まずは、形態素解析を使って文章→単語（形態素）の分割部分を作る。 先の構成図で言うところの、 MorphoAnalyzer である。 インスト</description>
+    </item>
     
     <item>
       <title>自動タグ付け機能でも作ってみる - 3</title>
@@ -98,7 +107,7 @@
       <pubDate>Tue, 11 Apr 2017 06:48:23 +0900</pubDate>
       
       <guid>https://kyoh86.work/posts/2017-04-11_06-48-23/</guid>
-      <description>動機 golangでforループを回すと、中でうっかりクロージャやリファレンスを取れません。 package example import &amp;quot;fmt&amp;quot; func readme() { values := []string{&amp;quot;a&amp;quot;, &amp;quot;b&amp;quot;, &amp;quot;c&amp;quot;} var funcs []func() for _, val := range values { funcs = append(funcs,</description>
+      <description>動機 golangでforループを回すと、中でうっかりクロージャやリファレンスを取れません。 package example import &amp;#34;fmt&amp;#34; func readme() { values := []string{&amp;#34;a&amp;#34;, &amp;#34;b&amp;#34;, &amp;#34;c&amp;#34;} var funcs []func() for _, val := range values { funcs = append(funcs,</description>
     </item>
     
     <item>
@@ -197,7 +206,7 @@
       <pubDate>Mon, 09 May 2016 22:33:33 +0900</pubDate>
       
       <guid>https://kyoh86.work/posts/2016-05-09_22-33-33/</guid>
-      <description>say &amp;quot;生&amp;quot;~&amp;amp;&amp;quot;死&amp;quot; 参考 愛が生まれた - Qiita なんで愛が生まれるのか - Qiita</description>
+      <description>say &amp;#34;生&amp;#34;~&amp;amp;&amp;#34;死&amp;#34; 参考 愛が生まれた - Qiita なんで愛が生まれるのか - Qiita</description>
     </item>
     
     <item>
@@ -224,7 +233,7 @@
       <pubDate>Wed, 06 Apr 2016 11:07:31 +0900</pubDate>
       
       <guid>https://kyoh86.work/posts/2016-04-06_11-07-31/</guid>
-      <description>git branch -a \ | perl -ne&#39;m|[^/\* ]+$|;next if$_{$&amp;amp;};$_{$&amp;amp;}=1;next if m,^\*|remotes/.+/HEAD,;$s=&amp;quot;\e[0m&amp;lt;S&amp;gt;&amp;quot;;s|.*/([^/]+)/|\e[31m$1$s|; s|^ +([^/]+)$|\e[34mlocal$s$1|;print&#39; \ | column -ts&#39;&amp;lt;S&amp;gt;&#39; \ | fzf --ansi \ | xargs git checkout  </description>
+      <description>git branch -a \ | perl -ne&amp;#39;m|[^/\* ]+$|;next if$_{$&amp;amp;};$_{$&amp;amp;}=1;next if m,^\*|remotes/.+/HEAD,;$s=&amp;#34;\e[0m&amp;lt;S&amp;gt;&amp;#34;;s|.*/([^/]+)/|\e[31m$1$s|; s|^ +([^/]+)$|\e[34mlocal$s$1|;print&amp;#39; \ | column -ts&amp;#39;&amp;lt;S&amp;gt;&amp;#39; \ | fzf --ansi \ | xargs git checkout</description>
     </item>
     
     <item>
@@ -260,7 +269,7 @@
       <pubDate>Sat, 09 Jan 2016 09:44:27 +0900</pubDate>
       
       <guid>https://kyoh86.work/posts/2016-01-09_09-44-27/</guid>
-      <description>結論 brew list | grep -v &#39;^lib&#39; | while read line; do echo -n ${line}$&#39;\t&#39; brew info $line | grep -P &#39;^https?://&#39; | head -n1 done | column -t -s $&#39;\t&#39; &amp;gt; brew-list.txt atk https://library.gnome.org/devel/atk/ autoconf https://www.gnu.org/software/autoconf automake https://www.gnu.org/software/automake/ autotrace http://autotrace.sourceforge.net awscli https://aws.amazon.com/cli/ : そこそこ便利。 背景 Homebrewは、OSX界じゃ</description>
+      <description>結論 brew list | grep -v &amp;#39;^lib&amp;#39; | while read line; do echo -n ${line}$&amp;#39;\t&amp;#39; brew info $line | grep -P &amp;#39;^https?://&amp;#39; | head -n1 done | column -t -s $&amp;#39;\t&amp;#39; &amp;gt; brew-list.txtatk https://library.gnome.org/devel/atk/ autoconf https://www.gnu.org/software/autoconf automake https://www.gnu.org/software/automake/ autotrace http://autotrace.sourceforge.net awscli https://aws.amazon.com/cli/ : そこそこ便利。 背景 Homebrewは、OSX界じゃあ</description>
     </item>
     
     <item>

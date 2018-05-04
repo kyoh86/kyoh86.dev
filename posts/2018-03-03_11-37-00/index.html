@@ -202,45 +202,39 @@ ga('send', 'pageview');
 <p>使い方は2種類あって、CSVパーサみたいに各行パースするやつと、JSON的にワンライナーの文字列をパースするやつ。</p>
 
 <h2 id="イメージ-csvと同じ感じで">イメージ（csvと同じ感じで）</h2>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang">values := <span style="color:#ed9d13">`name: John, country: US, sex: male
+</span><span style="color:#ed9d13">name: Hana, country: JP, sex: female
+</span><span style="color:#ed9d13">name: Kim, country: CH`</span>
 
-<pre><code class="language-golang">values := `name: John, country: US, sex: male
-name: Hana, country: JP, sex: female
-name: Kim, country: CH`
-
-var datum map[string]string
-var err error
+<span style="color:#6ab825;font-weight:bold">var</span> datum <span style="color:#6ab825;font-weight:bold">map</span>[<span style="color:#6ab825;font-weight:bold">string</span>]<span style="color:#6ab825;font-weight:bold">string</span>
+<span style="color:#6ab825;font-weight:bold">var</span> err <span style="color:#6ab825;font-weight:bold">error</span>
 reader := lcsv.NewReader(strings.NewReader(values))
-for err == nil {
+<span style="color:#6ab825;font-weight:bold">for</span> err == <span style="color:#6ab825;font-weight:bold">nil</span> {
     datum, err = reader.Read()
     fmt.Println(datum)
 }
-/* Output:
-map[name:John country:US sex:male]
-map[name:Hana country:JP sex:female]
-map[name:Kim country:CH]
-*/
-</code></pre>
-
+<span style="color:#999;font-style:italic">/* Output:
+</span><span style="color:#999;font-style:italic">map[name:John country:US sex:male]
+</span><span style="color:#999;font-style:italic">map[name:Hana country:JP sex:female]
+</span><span style="color:#999;font-style:italic">map[name:Kim country:CH]
+</span><span style="color:#999;font-style:italic">*/</span></code></pre></div>
 <h2 id="イメージ-jsonな使い方">イメージ（jsonな使い方）</h2>
 
 <p>GoのStruct Tagは、<code>tagName:&quot;HOST_NAME,required,default=example.com&quot;</code>みたいな書かれ方しがち。
 <code>tagName</code> をキーに <code>HOST_NAME,required,default=example.com</code> はカンタンに取得できるけど、
 中身は各々勝手にルール決めてパースしてる感じ。
 でも要はこれLCSVだよねと思うので、&rdquo;クォーテーションできない(<code>Unquoted</code>)&ldquo;、&rdquo;値とラベルの区切り文字が<code>=</code> (<code>LabelSeparator('=')</code>)とかオプション指定できれば、json.Decoderみたいにやれそう。</p>
-
-<pre><code class="language-golang">var key string
-var options map[string]string
-tagValue := `required,default=example.com`
-decoder := lcsv.NewDecoder(lcsv.Separator(','), lcsv.Unquoted(), lcsv.LabelSeparator('='))
-if err := decoder.Decode(tagValue, options); err != nil {
-    panic(err)
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#6ab825;font-weight:bold">var</span> key <span style="color:#6ab825;font-weight:bold">string</span>
+<span style="color:#6ab825;font-weight:bold">var</span> options <span style="color:#6ab825;font-weight:bold">map</span>[<span style="color:#6ab825;font-weight:bold">string</span>]<span style="color:#6ab825;font-weight:bold">string</span>
+tagValue := <span style="color:#ed9d13">`required,default=example.com`</span>
+decoder := lcsv.NewDecoder(lcsv.Separator(<span style="color:#ed9d13">&#39;,&#39;</span>), lcsv.Unquoted(), lcsv.LabelSeparator(<span style="color:#ed9d13">&#39;=&#39;</span>))
+<span style="color:#6ab825;font-weight:bold">if</span> err := decoder.Decode(tagValue, options); err != <span style="color:#6ab825;font-weight:bold">nil</span> {
+    <span style="color:#24909d">panic</span>(err)
 }
 fmt.Println(options)
-/* Output:
-map[required: default:example.com]
-*/
-</code></pre>
-
+<span style="color:#999;font-style:italic">/* Output:
+</span><span style="color:#999;font-style:italic">map[required: default:example.com]
+</span><span style="color:#999;font-style:italic">*/</span></code></pre></div>
 <h2 id="メンドクサポイント">メンドクサポイント</h2>
 
 <p>エスケープシーケンス。

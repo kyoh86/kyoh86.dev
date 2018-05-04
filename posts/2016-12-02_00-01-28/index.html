@@ -300,8 +300,7 @@ ga('send', 'pageview');
 <h3 id="過去のコミットをまとめたい-並び替えたい">過去のコミットをまとめたい・並び替えたい</h3>
 
 <p>さて、貴方の目前には作業中に作った大量のwipコミットがあります。</p>
-
-<pre><code class="language-shell-session">$ git branch
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell-session" data-lang="shell-session">$ git branch
 
   master
 * wip-branch
@@ -336,16 +335,13 @@ commit df735e2e2b31df94d73ad134fa02692996e3ad9d
 Author: kyoh86 &lt;yamada@wacul.co.jp&gt;
 Date:   Tue Nov 22 05:09:27 2016 +0900
 
-    functions 再整理 (#42)
-</code></pre>
-
+    functions 再整理 (#42)</code></pre></div>
 <p><code>df735e2</code> (functions 再整理 (#42)) より後のコミットがすべてwipのようです。
 さほど複雑な状況にはなっていません。ただ、「ゴミ掃除」コミットが２個あったり、「出来た？」と「バグ直し」のように作業の途中経過がコミットされていたりします。
 本来は「ゴミ掃除」で１コミット、「◯◯機能の実装」で1コミット、というのが望ましいところです。</p>
 
 <p>そこで、<code>git rebase -i</code> でコミットを並び替えて、いくつか一つにまとめてしまいます。</p>
-
-<pre><code class="language-shell-session">$ git rebase -i df735e2e2b31df94d73ad134fa02692996e3ad9d # ← &quot;functions 再整理 (#42)&quot; のコミットハッシュ
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell-session" data-lang="shell-session">$ git rebase -i df735e2e2b31df94d73ad134fa02692996e3ad9d # ← &#34;functions 再整理 (#42)&#34; のコミットハッシュ
 
 pick 59be7f5 wop ごみ掃除
 pick 101f652 wip できた？
@@ -359,14 +355,12 @@ pick 035a324 wip まだゴミあった
 #  r, reword = use commit, but edit the commit message
 #  e, edit = use commit, but stop for amending
 #  s, squash = use commit, but meld into previous commit
-#  f, fixup = like &quot;squash&quot;, but discard this commit's log message
+#  f, fixup = like &#34;squash&#34;, but discard this commit&#39;s log message
 #  x, exec = run command (the rest of the line) using shell
 #
 # If you remove a line here THAT COMMIT WILL BE LOST.
 # However, if you remove everything, the rebase will be aborted.
-#
-</code></pre>
-
+#</code></pre></div>
 <p>エディタ（デフォルトではvim）が開いて、説明通りに編集すれば、</p>
 
 <ul>
@@ -378,13 +372,10 @@ pick 035a324 wip まだゴミあった
 
 <p>といったコミットの操作を行えます。
 ここでは、以下のようにいじってみます。</p>
-
-<pre><code class="language-shell-session">reword 59be7f5 wop ごみ掃除
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell-session" data-lang="shell-session">reword 59be7f5 wop ごみ掃除
 squash 035a324 wip まだゴミあった
 reword 101f652 wip できた？
-squash d387cf8 wip バグ直し
-</code></pre>
-
+squash d387cf8 wip バグ直し</code></pre></div>
 <p>結果、git logは次のようになりました。</p>
 
 <pre><code>commit 4641774bde2c85eaa3ce905e1e6d9b4e1cebf60a
@@ -415,8 +406,7 @@ Date:   Tue Nov 22 05:09:27 2016 +0900
 <h3 id="過去のコミットをやりなおしたい">過去のコミットをやりなおしたい</h3>
 
 <p>さて、貴方の目前にはまたしても大量の wip コミットがあります。</p>
-
-<pre><code class="language-shell-session">$ git log
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell-session" data-lang="shell-session">$ git log
 
 commit eb8b87a08098fc2fd7df9805970dd197ab850447
 Author: Kyoichiro Yamada &lt;yamada@wacul.co.jp&gt;
@@ -458,9 +448,7 @@ commit df735e2e2b31df94d73ad134fa02692996e3ad9d
 Author: kyoh86 &lt;yamada@wacul.co.jp&gt;
 Date:   Tue Nov 22 05:09:27 2016 +0900
 
-    ◯◯機能の実装 (#43)
-</code></pre>
-
+    ◯◯機能の実装 (#43)</code></pre></div>
 <p>さて、rebaseしますか・・と思ったものの、今度は<strong>どのコミットで何をしたか、メッセージは何も語りかけてはくれません</strong>。
 過去の自分をぶん殴りたいですか？<strong>ぶん殴りましょう。</strong></p>
 
@@ -468,23 +456,17 @@ Date:   Tue Nov 22 05:09:27 2016 +0900
 
 <p><code>git reset</code> で、巻き戻りたい過去のコミットを指定します。
 この目的では<strong>間違っても <code>--hard</code> は使わないよう</strong>に気を付けましょう。</p>
-
-<pre><code class="language-shell-session">$ git reset df735e2e2b31df94d73ad134fa02692996e3ad9d # ← &quot;◯◯機能の実装 (#43)&quot; のコミットハッシュ
-</code></pre>
-
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell-session" data-lang="shell-session">$ git reset df735e2e2b31df94d73ad134fa02692996e3ad9d # ← &#34;◯◯機能の実装 (#43)&#34; のコミットハッシュ</code></pre></div>
 <p>これで、過去の自分の愚かなコミットたちはなかったことになりました。
 ただし、<code>--hard</code> オプションは使用していないので、<strong>ファイルの変更は生き残ったままです</strong>。
 あとは正しい commit を生産するだけです。</p>
-
-<pre><code class="language-shell-session">$ git add foo.go
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell-session" data-lang="shell-session">$ git add foo.go
 $ git add foo_test.go
-$ git commit -m '△△機能の実装'
+$ git commit -m &#39;△△機能の実装&#39;
 $
 $ git rm bar.go
 $ git rm -r baz/
-$ git commit -m '□□機能の廃止'
-</code></pre>
-
+$ git commit -m &#39;□□機能の廃止&#39;</code></pre></div>
 <h3 id="同じファイルの中に-違う目的の変更が混じってしまった">同じファイルの中に、違う目的の変更が混じってしまった！</h3>
 
 <p>前述の <code>git reset</code> が要るようなケースではママあることですが、
@@ -504,14 +486,11 @@ $ git commit -m '□□機能の廃止'
 
 <p>ですが、いざPRを出す段になって、ブランチ名が<code>wip-xxxxx</code> では締まりません。
 「もうコレは特定の新しい要件を満たしたブランチだよ」ということを示すためにも、名前を変えてしまいましょう。</p>
-
-<pre><code class="language-shell-session">$ git branch -M feature-xxx
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell-session" data-lang="shell-session">$ git branch -M feature-xxx
 $ git push -u origin feature-xxx
 
 # 作業ブランチを既にリモートにプッシュしていた場合、リモートのゴミも残さずキレイにしましょう。
-$ git push origin :wip-xxxxx 
-</code></pre>
-
+$ git push origin :wip-xxxxx </code></pre></div>
 <p>これらのコマンドを使いこなせると、作業中は気持ちよくコミットし、
 終わった後の「キレイにする」際もミス少なく、気楽に挑むことが出来ます。</p>
 
@@ -528,8 +507,7 @@ $ git push origin :wip-xxxxx
 
 <p>また、この記事では取り上げられていませんが、「tigの画面で選択したコミットのハッシュをコピーする」keybindを設定すると、
 特定のコミットに遡ったり、rebaseしたりがとても楽になります。</p>
-
-<pre><code class="language-~/.tigrc"># main viewの左端にコミットIDを表示する
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-~/.tigrc" data-lang="~/.tigrc"># main viewの左端にコミットIDを表示する
 set main-view = id:width=12 date author commit-title:graph=yes,refs=yes
 # デフォルト
 # set main-view = date author commit-title:graph=yes,refs=yes
@@ -538,9 +516,7 @@ set main-view = id:width=12 date author commit-title:graph=yes,refs=yes
 set split-view-height = 80%
 
 # Shift-Cで、選択行のコミットのハッシュをクリップボードにコピー（macOS用）
-bind main C !@git pbcopy %(commit)
-</code></pre>
-
+bind main C !@git pbcopy %(commit)</code></pre></div>
 <h3 id="作業用ブランチを猛烈に切り替える">作業用ブランチを猛烈に切り替える</h3>
 
 <p>自分用の作業用ブランチは、用途ごとに作りまくります。
@@ -548,20 +524,17 @@ bind main C !@git pbcopy %(commit)
 
 <p><code>fzf</code>や<code>peco</code>を使いこなしましょう。<a href="https://github.com/junegunn/fzf/wiki/examples#git">https://github.com/junegunn/fzf/wiki/examples#git</a> を参考にしてもいいですし、
 コレのためだけの拙作、ブランチリスト出す君<a href="https://github.com/kyoh86/git-branches">git-branches</a> を使ってもいいかもしれません。</p>
-
-<pre><code class="language-function/checkout-git-branch.zsh">function checkout-git-branch() {
-  git-branches --color --exclude-current \
-    | fzf \
-    | awk '{print $2}' \
-    | xargs -r git checkout
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-function/checkout-git-branch.zsh" data-lang="function/checkout-git-branch.zsh"><span style="color:#6ab825;font-weight:bold">function</span> checkout-git-branch() {
+  git-branches --color --exclude-current <span style="color:#ed9d13">\
+</span><span style="color:#ed9d13"></span>    | fzf <span style="color:#ed9d13">\
+</span><span style="color:#ed9d13"></span>    | awk <span style="color:#ed9d13">&#39;{print $2}&#39;</span> <span style="color:#ed9d13">\
+</span><span style="color:#ed9d13"></span>    | xargs -r git checkout
 }
 autoload -Uz checkout-git-branch
-bindkey '^xgb' checkout-git-branch
-bindkey '^xg^b' checkout-git-branch
-bindkey '^x^gb' checkout-git-branch
-bindkey '^x^g^b' checkout-git-branch
-</code></pre>
-
+bindkey <span style="color:#ed9d13">&#39;^xgb&#39;</span> checkout-git-branch
+bindkey <span style="color:#ed9d13">&#39;^xg^b&#39;</span> checkout-git-branch
+bindkey <span style="color:#ed9d13">&#39;^x^gb&#39;</span> checkout-git-branch
+bindkey <span style="color:#ed9d13">&#39;^x^g^b&#39;</span> checkout-git-branch</code></pre></div>
 <h1 id="終わりに">終わりに</h1>
 
 <p>いかがだったでしょうか。

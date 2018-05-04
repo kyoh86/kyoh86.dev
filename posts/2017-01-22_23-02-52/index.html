@@ -338,15 +338,12 @@ JSON Schemaは、JSONドキュメントがどのように見えるか、情報�
 <p>ルートスキーマは、対象のJSONドキュメント全体を構成するスキーマです。</p>
 
 <p>一部のキーワードはスキーマ自体を取り、JSON Schemaをネストすることができます。</p>
-
-<pre><code class="language-json">{
-    &quot;title&quot;: &quot;root&quot;,
-    &quot;items&quot;: {
-        &quot;title&quot;: &quot;array item&quot;
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#6ab825;font-weight:bold">&#34;title&#34;</span>: <span style="color:#ed9d13">&#34;root&#34;</span>,
+    <span style="color:#6ab825;font-weight:bold">&#34;items&#34;</span>: {
+        <span style="color:#6ab825;font-weight:bold">&#34;title&#34;</span>: <span style="color:#ed9d13">&#34;array item&#34;</span>
     }
-}
-</code></pre>
-
+}</code></pre></div>
 <p>この例のドキュメントでは、「配列アイテム」というスキーマはサブスキーマであり、「ルート」というスキーマはルートスキーマです。</p>
 
 <h2 id="5-一般的な考慮事項">5. 一般的な考慮事項</h2>
@@ -408,25 +405,22 @@ JSON Schemaは、JSONドキュメントがどのように見えるか、情報�
 <p>JSON Schema ドキュメントのルートスキーマには、絶対URI（スキームを含むが、フラグメントは含まない）を持つ <code>id</code> キーワードが必要です（SHOULD）。</p>
 
 <p>JSON Schemaドキュメント内のサブスキーマに名前を付けるために、<code>id</code> を使用してドキュメントローカルの識別子を定義することができます。この形式の &ldquo;id&rdquo;キーワードは、フラグメントURI参照であることを示す <code>#</code> に続けてアルファベット（[A-Za-z]）、続けて任意の数のアルファベット（[A-Za-z]）、数字（[0-9]）、ハイフン（<code>-</code>）、アンダースコア（<code>-</code>）、コロン（<code>:</code>）、またはピリオド（<code>.</code>）の羅列で記述されなくてはなりません（MUST）。</p>
-
-<pre><code class="language-json">{
-    &quot;id&quot;: &quot;http://example.com/root.json&quot;,
-    &quot;definitions&quot;: {
-        &quot;A&quot;: { &quot;id&quot;: &quot;#foo&quot; },
-        &quot;B&quot;: {
-            &quot;id&quot;: &quot;other.json&quot;,
-            &quot;definitions&quot;: {
-                &quot;X&quot;: { &quot;id&quot;: &quot;#bar&quot; },
-                &quot;Y&quot;: { &quot;id&quot;: &quot;t/inner.json&quot; }
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#6ab825;font-weight:bold">&#34;id&#34;</span>: <span style="color:#ed9d13">&#34;http://example.com/root.json&#34;</span>,
+    <span style="color:#6ab825;font-weight:bold">&#34;definitions&#34;</span>: {
+        <span style="color:#6ab825;font-weight:bold">&#34;A&#34;</span>: { <span style="color:#6ab825;font-weight:bold">&#34;id&#34;</span>: <span style="color:#ed9d13">&#34;#foo&#34;</span> },
+        <span style="color:#6ab825;font-weight:bold">&#34;B&#34;</span>: {
+            <span style="color:#6ab825;font-weight:bold">&#34;id&#34;</span>: <span style="color:#ed9d13">&#34;other.json&#34;</span>,
+            <span style="color:#6ab825;font-weight:bold">&#34;definitions&#34;</span>: {
+                <span style="color:#6ab825;font-weight:bold">&#34;X&#34;</span>: { <span style="color:#6ab825;font-weight:bold">&#34;id&#34;</span>: <span style="color:#ed9d13">&#34;#bar&#34;</span> },
+                <span style="color:#6ab825;font-weight:bold">&#34;Y&#34;</span>: { <span style="color:#6ab825;font-weight:bold">&#34;id&#34;</span>: <span style="color:#ed9d13">&#34;t/inner.json&#34;</span> }
             }
         },
-        &quot;C&quot;: {
-            &quot;id&quot;: &quot;urn:uuid:ee564b8a-7a87-4125-8c96-e9f123d6766f&quot;
+        <span style="color:#6ab825;font-weight:bold">&#34;C&#34;</span>: {
+            <span style="color:#6ab825;font-weight:bold">&#34;id&#34;</span>: <span style="color:#ed9d13">&#34;urn:uuid:ee564b8a-7a87-4125-8c96-e9f123d6766f&#34;</span>
         }
     }
-}
-</code></pre>
-
+}</code></pre></div>
 <p>上記の例における各スキーマはそれぞれ以下に示すように、ルートスキーマからの相対的なJSON Pointer(<a href="http://json-schema.org/latest/json-schema-core.html#RFC6901">RFC6901</a>)と　base　URI を持ち、どちらでも一意に識別できます。</p>
 
 <ul>
@@ -469,22 +463,19 @@ JSON Schemaは、JSONドキュメントがどのように見えるか、情報�
 <p>実装 <em>（訳注：Tools）</em> は、スキーマ自身が<code>id</code>プロパティで提供しているURIを記憶しなくてはなりません（SHOULD）。これは「内部参照」と呼ばれます。</p>
 
 <p>例として、次のスキーマを考えます。</p>
-
-<pre><code class="language-json">{
-    &quot;id&quot;: &quot;http://example.net/root.json&quot;,
-    &quot;items&quot;: {
-        &quot;type&quot;: &quot;array&quot;,
-        &quot;items&quot;: { &quot;$ref&quot;: &quot;#item&quot; }
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#6ab825;font-weight:bold">&#34;id&#34;</span>: <span style="color:#ed9d13">&#34;http://example.net/root.json&#34;</span>,
+    <span style="color:#6ab825;font-weight:bold">&#34;items&#34;</span>: {
+        <span style="color:#6ab825;font-weight:bold">&#34;type&#34;</span>: <span style="color:#ed9d13">&#34;array&#34;</span>,
+        <span style="color:#6ab825;font-weight:bold">&#34;items&#34;</span>: { <span style="color:#6ab825;font-weight:bold">&#34;$ref&#34;</span>: <span style="color:#ed9d13">&#34;#item&#34;</span> }
     },
-    &quot;definitions&quot;: {
-        &quot;single&quot;: {
-            &quot;id&quot;: &quot;#item&quot;,
-            &quot;type&quot;: &quot;integer&quot;
+    <span style="color:#6ab825;font-weight:bold">&#34;definitions&#34;</span>: {
+        <span style="color:#6ab825;font-weight:bold">&#34;single&#34;</span>: {
+            <span style="color:#6ab825;font-weight:bold">&#34;id&#34;</span>: <span style="color:#ed9d13">&#34;#item&#34;</span>,
+            <span style="color:#6ab825;font-weight:bold">&#34;type&#34;</span>: <span style="color:#ed9d13">&#34;integer&#34;</span>
         },
     }
-}
-</code></pre>
-
+}</code></pre></div>
 <p>実装が <code>#/definitions/single</code> スキーマを見つけた時、その時点でのbase URIに対する <code>id</code> のURI参照を解決して <code>http://example.net/root.json#item</code> という形にします。
 また、実装が<code>#/items</code> スキーマの中を見ようとすると <code>#item</code> 参照にぶつかりますが、これは <code>http://example.net/root.json#item</code> と解決され、同じドキュメント内の他の場所で定義されたスキーマを指すものとして扱われます。</p>
 

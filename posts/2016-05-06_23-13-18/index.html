@@ -213,25 +213,22 @@ ga('send', 'pageview');
 <ul>
 <li>postfix 設定ファイル</li>
 </ul>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-/etc/postfix/main.cf" data-lang="/etc/postfix/main.cf"><span style="color:#999;font-style:italic"># :
+</span><span style="color:#999;font-style:italic"># : 前略
+</span><span style="color:#999;font-style:italic"># :
+</span><span style="color:#999;font-style:italic"></span>
+<span style="color:#999;font-style:italic"># CUSTOM ########
+</span><span style="color:#999;font-style:italic"># Minimum Postfix-specific configurations.
+</span><span style="color:#999;font-style:italic"></span><span style="color:#447fcf">mail_owner</span> <span style="color:#a61717;background-color:#e3d2d2">=</span> <span style="color:#447fcf">_postfix</span>
+<span style="color:#447fcf">setgid_group</span> <span style="color:#a61717;background-color:#e3d2d2">=</span> <span style="color:#447fcf">_postdrop</span>
 
-<pre><code class="language-/etc/postfix/main.cf"># :
-# : 前略
-# :
-
-# CUSTOM ########
-# Minimum Postfix-specific configurations.
-mail_owner = _postfix
-setgid_group = _postdrop
-
-myhostname = smtp.gmail.com
-relayhost=[smtp.gmail.com]:587
-smtp_sasl_auth_enable = yes
-smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
-smtp_sasl_tls_security_options = noanonymous
-smtp_use_tls = yes
-smtp_sasl_mechanism_filter = plain
-</code></pre>
-
+<span style="color:#447fcf">myhostname</span> <span style="color:#a61717;background-color:#e3d2d2">=</span> <span style="color:#447fcf">smtp</span><span style="color:#a61717;background-color:#e3d2d2">.</span><span style="color:#447fcf">gmail</span><span style="color:#a61717;background-color:#e3d2d2">.</span><span style="color:#447fcf">com</span>
+<span style="color:#447fcf">relayhost</span><span style="color:#a61717;background-color:#e3d2d2">=[</span><span style="color:#447fcf">smtp</span><span style="color:#a61717;background-color:#e3d2d2">.</span><span style="color:#447fcf">gmail</span><span style="color:#a61717;background-color:#e3d2d2">.</span><span style="color:#447fcf">com</span><span style="color:#a61717;background-color:#e3d2d2">]:</span><span style="color:#3677a9">587</span>
+<span style="color:#447fcf">smtp_sasl_auth_enable</span> <span style="color:#a61717;background-color:#e3d2d2">=</span> <span style="color:#447fcf">yes</span>
+<span style="color:#447fcf">smtp_sasl_password_maps</span> <span style="color:#a61717;background-color:#e3d2d2">=</span> <span style="color:#6ab825;font-weight:bold">hash</span>:<span style="color:#a61717;background-color:#e3d2d2">/</span><span style="color:#447fcf">etc</span><span style="color:#a61717;background-color:#e3d2d2">/</span><span style="color:#447fcf">postfix</span><span style="color:#a61717;background-color:#e3d2d2">/</span><span style="color:#447fcf">sasl_passwd</span>
+<span style="color:#447fcf">smtp_sasl_tls_security_options</span> <span style="color:#a61717;background-color:#e3d2d2">=</span> <span style="color:#447fcf">noanonymous</span>
+<span style="color:#447fcf">smtp_use_tls</span> <span style="color:#a61717;background-color:#e3d2d2">=</span> <span style="color:#447fcf">yes</span>
+<span style="color:#447fcf">smtp_sasl_mechanism_filter</span> <span style="color:#a61717;background-color:#e3d2d2">=</span> <span style="color:#447fcf">plain</span></code></pre></div>
 <ul>
 <li><p>postfix パスワードファイル (<code>/etc/postfix/sasl_passwd</code>)</p>
 
@@ -244,34 +241,31 @@ smtp_sasl_mechanism_filter = plain
 </ul></li>
 
 <li><p>PHP 設定ファイル</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-/usr/local/etc/php/5.6/php.ini" data-lang="/usr/local/etc/php/5.6/php.ini"><span style="color:#999;font-style:italic">;</span>
+<span style="color:#999;font-style:italic">; 前略</span>
+<span style="color:#999;font-style:italic">;</span>
+<span style="color:#6ab825;font-weight:bold">[mail function]</span>
+<span style="color:#999;font-style:italic">; For Win32 only.</span>
+<span style="color:#999;font-style:italic">; http://php.net/smtp</span>
+<span style="color:#bbb">SMTP</span> = <span style="color:#ed9d13">smtp.gmail.com</span>
+<span style="color:#999;font-style:italic">; http://php.net/smtp-port</span>
+<span style="color:#bbb">smtp_port</span> = <span style="color:#ed9d13">587</span>
 
-<pre><code class="language-/usr/local/etc/php/5.6/php.ini">;
-; 前略
-;
-[mail function]
-; For Win32 only.
-; http://php.net/smtp
-SMTP = smtp.gmail.com
-; http://php.net/smtp-port
-smtp_port = 587
+<span style="color:#999;font-style:italic">; For Win32 only.</span>
+<span style="color:#999;font-style:italic">; http://php.net/sendmail-from</span>
+<span style="color:#bbb">sendmail_from</span> = <span style="color:#ed9d13">hoge@hoge.com</span>
 
-; For Win32 only.
-; http://php.net/sendmail-from
-sendmail_from = hoge@hoge.com
+<span style="color:#999;font-style:italic">; For Unix only.  You may supply arguments as well (default: &#34;sendmail -t -i&#34;).</span>
+<span style="color:#999;font-style:italic">; http://php.net/sendmail-path</span>
+<span style="color:#bbb">sendmail_path</span> =<span style="color:#ed9d13">/usr/sbin/sendmail -t -i</span>
 
-; For Unix only.  You may supply arguments as well (default: &quot;sendmail -t -i&quot;).
-; http://php.net/sendmail-path
-sendmail_path =/usr/sbin/sendmail -t -i
+<span style="color:#999;font-style:italic">; Force the addition of the specified parameters to be passed as extra parameters</span>
+<span style="color:#999;font-style:italic">; to the sendmail binary. These parameters will always replace the value of</span>
+<span style="color:#999;font-style:italic">; the 5th parameter to mail().</span>
+<span style="color:#999;font-style:italic">;mail.force_extra_parameters =</span>
 
-; Force the addition of the specified parameters to be passed as extra parameters
-; to the sendmail binary. These parameters will always replace the value of
-; the 5th parameter to mail().
-;mail.force_extra_parameters =
-
-; Add X-PHP-Originating-Script: that will include uid of the script followed by the filename
-mail.add_x_header = On
-</code></pre>
-
+<span style="color:#999;font-style:italic">; Add X-PHP-Originating-Script: that will include uid of the script followed by the filename</span>
+<span style="color:#bbb">mail.add_x_header</span> = <span style="color:#ed9d13">On</span></code></pre></div>
 <ul>
 <li><code>sendmail_from</code> のところは、さきと同じくGoogleアカウントのアドレスを設定すること</li>
 <li>homebrewでインストールしたPHPはこのパスに設定ファイルがある。</li>
@@ -283,27 +277,23 @@ mail.add_x_header = On
 
 <ul>
 <li><p>postfix用のパスワードファイルをハッシュ化して、postfixを再起動する</p>
-
-<pre><code class="language-sh">sudo postmap hash:/etc/postfix/sasl_passwd
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo postmap hash:/etc/postfix/sasl_passwd
 sudo postfix reload
 sudo postfix stop
-sudo postfix start
-</code></pre></li>
+sudo postfix start</code></pre></div></li>
 </ul>
 
 <h2 id="試す">試す</h2>
-
-<pre><code class="language-sample.php">&lt;?php
-date_default_timezone_set('Asia/Tokyo');
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sample.php" data-lang="sample.php"><span style="color:#cd2828;font-weight:bold">&lt;?php</span>
+date_default_timezone_set(<span style="color:#ed9d13">&#39;Asia/Tokyo&#39;</span>);
 mb_send_mail(
-    &quot;hoge@hoge.com&quot;,
-    &quot;test for postfix&quot;,
-    &quot;test for PHP+postfix with Gmail on El Capitan&quot;,
-    &quot;From: hoge@hoge.com&quot;
+    <span style="color:#ed9d13">&#34;hoge@hoge.com&#34;</span>,
+    <span style="color:#ed9d13">&#34;test for postfix&#34;</span>,
+    <span style="color:#ed9d13">&#34;test for PHP+postfix with Gmail on El Capitan&#34;</span>,
+    <span style="color:#ed9d13">&#34;From: hoge@hoge.com&#34;</span>
 );
-?&gt;
-</code></pre>
-
+<span style="color:#cd2828;font-weight:bold">?&gt;</span>
+</code></pre></div>
 <ul>
 <li>ここのFromは先のグーグルアカウントを使っておくこと。</li>
 </ul>

@@ -203,17 +203,11 @@ ga('send', 'pageview');
 <hr />
 
 <h1 id="事象1-version違いのimport">事象1: version違いのimport</h1>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-A/alpha.go" data-lang="A/alpha.go"><span style="color:#6ab825;font-weight:bold">package</span> A
 
-<pre><code class="language-A/alpha.go">package A
+<span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#ed9d13">&#34;gopkg.in/foo/bar.v2&#34;</span></code></pre></div><div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-B/bravo.go" data-lang="B/bravo.go"><span style="color:#6ab825;font-weight:bold">package</span> B
 
-import &quot;gopkg.in/foo/bar.v2&quot;
-</code></pre>
-
-<pre><code class="language-B/bravo.go">package B
-
-import &quot;gopkg.in/foo/bar.v1&quot;
-</code></pre>
-
+<span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#ed9d13">&#34;gopkg.in/foo/bar.v1&#34;</span></code></pre></div>
 <p>みたいなことが起きる。</p>
 
 <ol>

@@ -192,13 +192,11 @@ ga('send', 'pageview');
       <div class="entry-container">
         <div class="entry-content">
           <article>
-            <pre><code class="language-git-branch">git branch -a \
-  | perl -ne'm|[^/\* ]+$|;next if$_{$&amp;};$_{$&amp;}=1;next if m,^\*|remotes/.+/HEAD,;$s=&quot;\e[0m&lt;S&gt;&quot;;s|.*/([^/]+)/|\e[31m$1$s|; s|^ +([^/]+)$|\e[34mlocal$s$1|;print' \
-  | column -ts'&lt;S&gt;' \
+            <div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-git-branch" data-lang="git-branch">git branch -a \
+  | perl -ne&#39;m|[^/\* ]+$|;next if$_{$&amp;};$_{$&amp;}=1;next if m,^\*|remotes/.+/HEAD,;$s=&#34;\e[0m&lt;S&gt;&#34;;s|.*/([^/]+)/|\e[31m$1$s|; s|^ +([^/]+)$|\e[34mlocal$s$1|;print&#39; \
+  | column -ts&#39;&lt;S&gt;&#39; \
   | fzf --ansi \
-  | xargs git checkout
-</code></pre>
-
+  | xargs git checkout</code></pre></div>
           </article>
         </div>
         <div class='entry-meta-bottom'>
