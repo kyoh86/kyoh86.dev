@@ -1018,6 +1018,7 @@ a img {
 .singular-post .pagination {
   background: white;
   padding-bottom: 1.5em;
+  padding-top: 3em;
 }
 
 .singular-post .pagination .page-numbers {
@@ -1273,7 +1274,7 @@ a img {
   }
 
   .entry-content {
-    margin-top: 4.5em;
+    margin-top: 2.5em;
   }
   .entry-content img.full-width {
     width: 150%;
