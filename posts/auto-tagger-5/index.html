@@ -2,7 +2,7 @@
 <html lang="ja-jp">
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
- <title>自動タグ付け機能でも作ってみる - 5 </title>
+ <title>自動タグ付け機能でも作ってみる - 5: MorphoAnalyzer を作り切る </title>
 
 
 
@@ -188,7 +188,7 @@ ga('send', 'pageview');
       <h2 class="screen-reader-text">Posts navigation</h2>
       <div class="nav-links">
         
-        <a class="prev page-numbers" href="https://kyoh86.work/posts/auto-tagger-4/">自動タグ付け機能でも作ってみる - 4</a>
+        <a class="prev page-numbers" href="https://kyoh86.work/posts/auto-tagger-4/">自動タグ付け機能でも作ってみる - 4: MeCab &#43; Python を試してみる</a>
         
         
       </div>
@@ -207,20 +207,28 @@ ga('send', 'pageview');
       </div>
 
       <div class='entry-header'>
-        <h1 class='entry-title'> 自動タグ付け機能でも作ってみる - 5</h1>
+        <h1 class='entry-title'> 自動タグ付け機能でも作ってみる - 5: MorphoAnalyzer を作り切る</h1>
       </div>
       <div class="entry-container">
         <div class="entry-content">
           <article>
             
 
-<h2 id="morphoanalyzerを作りきる">MorphoAnalyzerを作りきる</h2>
+<h2 id="前提">前提</h2>
 
 <p><a href="/posts/auto-tagger-2/#構成">先の構成図</a> 参照。</p>
 
 <p>前の記事で実験したとおり、PythonからMeCabを呼び出して形態素の分割と品詞の種別までは取得できるようになった。</p>
 
+<h2 id="周辺のclass定義">周辺のClass定義</h2>
+
 <p>次は、構成図のMorphoAnalyzer周辺のClassを定義してしまおう。</p>
+
+<ul>
+<li><code>Word</code></li>
+<li><code>WordStorage</code></li>
+<li><code>TextStorage</code></li>
+</ul>
 <div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">collections</span> <span style="color:#6ab825;font-weight:bold">import</span> namedtuple
 <span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf">MeCab</span>
 <span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">abc</span> <span style="color:#6ab825;font-weight:bold">import</span> ABCMeta, abstractmethod
@@ -255,6 +263,8 @@ ga('send', 'pageview');
         <span style="color:#6ab825;font-weight:bold">pass</span></code></pre></div>
 <p><code>abc</code> 使ってインターフェイスを定義するっていうのはちょっとPythonらしくない感じはするけど、
 個人的にはこういう形になっている方が安心できるので、作っておく。</p>
+
+<h2 id="形態素解析前の正規化処理">形態素解析前の正規化処理</h2>
 
 <p>また、neologdのWikiによると、<a href="https://github.com/neologd/mecab-ipadic-neologd/wiki/Regexp.ja#%E8%A7%A3%E6%9E%90%E5%89%8D%E3%81%AB%E8%A1%8C%E3%81%86%E3%81%93%E3%81%A8%E3%81%8C%E6%9C%9B%E3%81%BE%E3%81%97%E3%81%84%E6%96%87%E5%AD%97%E5%88%97%E3%81%AE%E6%AD%A3%E8%A6%8F%E5%8C%96%E5%87%A6%E7%90%86">解析前に行うことが望ましい文字列の正規化処理</a> というのがあるらしいので、
 Pythonコードごと拝借して、mypyと喧嘩しないように型アノテーションを追加しておく。</p>
@@ -350,8 +360,20 @@ Pythonコードごと拝借して、mypyと喧嘩しないように型アノテ�
         normalize(<span style="color:#ed9d13">&#34;南アルプスの　天然水　Ｓｐａｒｋｉｎｇ　Ｌｅｍｏｎ　レモン一絞り&#34;</span>)
     <span style="color:#6ab825;font-weight:bold">assert</span> <span style="color:#ed9d13">&#34;南アルプスの天然水-Sparking*Lemon+レモン一絞り&#34;</span> == \
         normalize(<span style="color:#ed9d13">&#34;南アルプスの　天然水-　Ｓｐａｒｋｉｎｇ*　Ｌｅｍｏｎ+　レモン一絞り&#34;</span>)</code></pre></div>
-<p>下準備ができてしまえば、難しいことは何もなく、 <code>MorphoAnalyzer</code> の出来上がり。
-与えられた文章を <code>normalize</code> した後、 <code>MeCab.Tagger.parse</code> の出力を改行区切りで形態素に分解し、タブ区切りで形態素とその品詞IDを取得すればよい。</p>
+<h2 id="morphoanalyzer">MorphoAnalyzer!</h2>
+
+<p>下準備ができてしまえば、難しいことは何もない。</p>
+
+<ol>
+<li><code>normalize</code> （形態素解析前の正規化処理）をする</li>
+<li>MeCabで <code>parse</code> する</li>
+<li>結果を改行区切り</li>
+<li>一行一行をタブ区切りで単語と品詞IDに分ける</li>
+<li>EOSは除去する</li>
+<li><code>WordStorage</code> にpushする</li>
+</ol>
+
+<p><code>MorphoAnalyzer</code> の出来上がり。</p>
 <div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf">MorphoAnalyzer</span>(TextStorage):
     <span style="color:#6ab825;font-weight:bold">def</span> __init__(self, storage: WordStorage, mecab_dicdir: Optional[<span style="color:#24909d">str</span>] = None, use_base: <span style="color:#24909d">bool</span> = False) -&gt; None:
         node_format: <span style="color:#24909d">str</span> = <span style="color:#ed9d13">&#39;%m</span><span style="color:#ed9d13">\\</span><span style="color:#ed9d13">t%h</span><span style="color:#ed9d13">\\</span><span style="color:#ed9d13">n&#39;</span>
@@ -471,7 +493,7 @@ Pythonコードごと拝借して、mypyと喧嘩しないように型アノテ�
       <h2 class="screen-reader-text">Posts navigation</h2>
       <div class="nav-links">
         
-        <a class="prev page-numbers" href="https://kyoh86.work/posts/auto-tagger-4/">自動タグ付け機能でも作ってみる - 4</a>
+        <a class="prev page-numbers" href="https://kyoh86.work/posts/auto-tagger-4/">自動タグ付け機能でも作ってみる - 4: MeCab &#43; Python を試してみる</a>
         
         
       </div>

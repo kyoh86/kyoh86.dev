@@ -2,7 +2,7 @@
 <html lang="ja-jp">
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
- <title>自動タグ付け機能でも作ってみる - 4 </title>
+ <title>自動タグ付け機能でも作ってみる - 4: MeCab &#43; Python を試してみる </title>
 
 
 
@@ -188,10 +188,10 @@ ga('send', 'pageview');
       <h2 class="screen-reader-text">Posts navigation</h2>
       <div class="nav-links">
         
-        <a class="prev page-numbers" href="https://kyoh86.work/posts/auto-tagger-3/">自動タグ付け機能でも作ってみる - 3</a>
+        <a class="prev page-numbers" href="https://kyoh86.work/posts/auto-tagger-3/">自動タグ付け機能でも作ってみる - 3 : Wikipediaによる事前単語重み付けを考える</a>
         
         
-        <a class="next page-numbers" href="https://kyoh86.work/posts/auto-tagger-5/">自動タグ付け機能でも作ってみる - 5</a>
+        <a class="next page-numbers" href="https://kyoh86.work/posts/auto-tagger-5/">自動タグ付け機能でも作ってみる - 5: MorphoAnalyzer を作り切る</a>
         
       </div>
     </nav>
@@ -209,24 +209,24 @@ ga('send', 'pageview');
       </div>
 
       <div class='entry-header'>
-        <h1 class='entry-title'> 自動タグ付け機能でも作ってみる - 4</h1>
+        <h1 class='entry-title'> 自動タグ付け機能でも作ってみる - 4: MeCab &#43; Python を試してみる</h1>
       </div>
       <div class="entry-container">
         <div class="entry-content">
           <article>
             
 
-<h2 id="mecab-pythonしてみる">MeCab＋Pythonしてみる</h2>
+<h2 id="前提">前提</h2>
 
 <p>まずは、形態素解析を使って文章→単語（形態素）の分割部分を作る。</p>
 
 <p><a href="/posts/auto-tagger-2/#構成">先の構成図</a>で言うところの、 <code>MorphoAnalyzer</code> である。</p>
 
-<h3 id="インストール">インストール</h3>
+<h2 id="インストール">インストール</h2>
 
 <p>MeCabのインストールは、MacならHomebrewに頼ってしまいたい。</p>
 <div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">brew install mecab</code></pre></div>
-<h3 id="試しに使ってみる">試しに使ってみる</h3>
+<h2 id="試しに使ってみる">試しに使ってみる</h2>
 
 <p>まずはものは試し、お定まり（？）の <a href="https://www.aozora.gr.jp/cards/000035/files/1567_14913.html">走れメロス</a> をぶち込んでみる。</p>
 <div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ <span style="color:#24909d">echo</span> <span style="color:#ed9d13">&#34;メロスは激怒した。必ず、かの邪智暴虐の王を除かなければならぬと決意した。&#34;</span> | mecab
@@ -255,7 +255,11 @@ ga('send', 'pageview');
 た      助動詞,*,*,*,特殊・タ,基本形,た,タ,タ
 。      記号,句点,*,*,*,*,。,。,。
 EOS</code></pre></div>
-<p>ふむ。Pythonで呼び出すとどうかな。</p>
+<p>ふむ。</p>
+
+<h2 id="pythonから使ってみる">Pythonから使ってみる</h2>
+
+<p>Pythonで呼び出すとどうかな。</p>
 <div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf">MeCab</span>
 
 
@@ -302,6 +306,8 @@ EOS</code></pre></div>
 </blockquote>
 
 <p>となっているらしい。</p>
+
+<h2 id="出力をプログラムチックに扱いやすくする">出力をプログラムチックに扱いやすくする</h2>
 
 <p>活用とか読みとか発音は要らないので、 <a href="https://taku910.github.io/mecab/format.html">出力フォーマット</a> をいじってみる。
 ついでに、品詞も「名詞」とか「形容詞」といった文字列で扱うのはあまりにもナンセンスなので、 <a href="https://taku910.github.io/mecab/posid.html">品詞ID</a> で出力したほうが扱いやすい。</p>
@@ -357,8 +363,11 @@ EOS</code></pre></div>
 。      <span style="color:#3677a9">7</span>
 EOS</code></pre></div>
 <p><code>EOS</code> なんて要らないから消したい！と思ったのだけれど、どうやっても消せず。
-あとで除去することにしようと思う。
-ついでに、品詞ID→品詞名の一覧も作っておく。先の公式の「品詞ID」からコピペしただけだけど。</p>
+あとで除去することにしようと思う。</p>
+
+<h2 id="出力やデバッグのことも考える">出力やデバッグのことも考える</h2>
+
+<p>品詞ID→品詞名の一覧も作っておく。先の公式の「品詞ID」からコピペしただけだけど。</p>
 <div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf">Feature</span>(<span style="color:#24909d">object</span>):
     <span style="color:#6ab825;font-weight:bold">def</span> __init__(self, clazz: <span style="color:#24909d">str</span>, subclazz: List[<span style="color:#24909d">str</span>] = []) -&gt; None:
         self.clazz = clazz
@@ -529,10 +538,10 @@ _features: Dict[<span style="color:#24909d">int</span>, Feature] = {
       <h2 class="screen-reader-text">Posts navigation</h2>
       <div class="nav-links">
         
-        <a class="prev page-numbers" href="https://kyoh86.work/posts/auto-tagger-3/">自動タグ付け機能でも作ってみる - 3</a>
+        <a class="prev page-numbers" href="https://kyoh86.work/posts/auto-tagger-3/">自動タグ付け機能でも作ってみる - 3 : Wikipediaによる事前単語重み付けを考える</a>
         
         
-        <a class="next page-numbers" href="https://kyoh86.work/posts/auto-tagger-5/">自動タグ付け機能でも作ってみる - 5</a>
+        <a class="next page-numbers" href="https://kyoh86.work/posts/auto-tagger-5/">自動タグ付け機能でも作ってみる - 5: MorphoAnalyzer を作り切る</a>
         
       </div>
     </nav>

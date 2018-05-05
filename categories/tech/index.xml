@@ -12,25 +12,25 @@
     
     
     <item>
-      <title>自動タグ付け機能でも作ってみる - 5</title>
+      <title>自動タグ付け機能でも作ってみる - 5: MorphoAnalyzer を作り切る</title>
       <link>https://kyoh86.work/posts/auto-tagger-5/</link>
       <pubDate>Fri, 04 May 2018 15:03:02 +0900</pubDate>
       
       <guid>https://kyoh86.work/posts/auto-tagger-5/</guid>
-      <description>MorphoAnalyzerを作りきる 先の構成図 参照。 前の記事で実験したとおり、PythonからMeCabを呼び出して形態素の分割と品詞の種</description>
+      <description>前提 先の構成図 参照。 前の記事で実験したとおり、PythonからMeCabを呼び出して形態素の分割と品詞の種別までは取得できるようになった。 周</description>
     </item>
     
     <item>
-      <title>自動タグ付け機能でも作ってみる - 4</title>
+      <title>自動タグ付け機能でも作ってみる - 4: MeCab &#43; Python を試してみる</title>
       <link>https://kyoh86.work/posts/auto-tagger-4/</link>
       <pubDate>Fri, 04 May 2018 14:01:18 +0900</pubDate>
       
       <guid>https://kyoh86.work/posts/auto-tagger-4/</guid>
-      <description>MeCab＋Pythonしてみる まずは、形態素解析を使って文章→単語（形態素）の分割部分を作る。 先の構成図で言うところの、 MorphoAnalyzer である。 インスト</description>
+      <description>前提 まずは、形態素解析を使って文章→単語（形態素）の分割部分を作る。 先の構成図で言うところの、 MorphoAnalyzer である。 インストール MeCabのインストール</description>
     </item>
     
     <item>
-      <title>自動タグ付け機能でも作ってみる - 3</title>
+      <title>自動タグ付け機能でも作ってみる - 3 : Wikipediaによる事前単語重み付けを考える</title>
       <link>https://kyoh86.work/posts/auto-tagger-3/</link>
       <pubDate>Tue, 01 May 2018 23:04:20 +0900</pubDate>
       
@@ -39,7 +39,7 @@
     </item>
     
     <item>
-      <title>自動タグ付け機能でも作ってみる - 2</title>
+      <title>自動タグ付け機能でも作ってみる - 2 : 要件詰め</title>
       <link>https://kyoh86.work/posts/auto-tagger-2/</link>
       <pubDate>Mon, 30 Apr 2018 14:19:20 +0900</pubDate>
       
