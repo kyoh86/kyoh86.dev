@@ -223,9 +223,9 @@ interface Parser {
   parse(path: String)
 }
 class MarkdownParser
-class WikiXMLParser 
+class TextParser 
 Parser &lt;|-- MarkdownParser
-Parser &lt;|-- WikiXMLParser
+Parser &lt;|-- TextParser
 interface TextStorage {
   push(path: String, text: String)
 }
@@ -256,7 +256,7 @@ WordStorage &lt;|-- KeywordRanker
 
 <p>併せて処理の流れも少し変更する。</p>
 <div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-uml" data-lang="uml">@startuml
-participant WikiXMLParser as x
+participant TextParser as t
 participant MarkdownParser as m
 participant MorphoAnalyzer as a
 participant KeywordRanker as r
@@ -264,9 +264,9 @@ database pickle as p
 
 == study wiki data ==
 loop all wikipages
-  [-&gt; x : parse(path)
+  [-&gt; t : parse(path)
   loop all texts
-    x -&gt; a : push(path, text)
+    t -&gt; a : push(path, text)
     loop all words
       a -&gt; r : push(path, word)
       note over r: count words
