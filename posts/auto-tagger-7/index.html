@@ -2,7 +2,7 @@
 <html lang="ja-jp">
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
- <title>簡易リバースプロキシ「ichigo」でWebアプリ開発が捗る話 </title>
+ <title>自動タグ付け機能でも作ってみる - 7: BM25の実装 </title>
 
 
 
@@ -188,8 +188,8 @@ ga('send', 'pageview');
       <h2 class="screen-reader-text">Posts navigation</h2>
       <div class="nav-links">
         
+        <a class="prev page-numbers" href="https://kyoh86.work/posts/auto-tagger-6/">自動タグ付け機能でも作ってみる - 6: Wikipediaの出力を形態素解析してみる</a>
         
-        <a class="next page-numbers" href="https://kyoh86.work/posts/2015-12-17_00-03-03/">GitHubのPullRequest一覧イマイチ使いづらくね？→捗るツール作ったった</a>
         
       </div>
     </nav>
@@ -197,7 +197,7 @@ ga('send', 'pageview');
     <div class="post entry">
     
       <div class="entry-meta">
-        <span class="date">December 07</span>
+        <span class="date">May 06</span>
         
           <span class="category">
             <span> / </span>
@@ -207,112 +207,161 @@ ga('send', 'pageview');
       </div>
 
       <div class='entry-header'>
-        <h1 class='entry-title'> 簡易リバースプロキシ「ichigo」でWebアプリ開発が捗る話</h1>
+        <h1 class='entry-title'> 自動タグ付け機能でも作ってみる - 7: BM25の実装</h1>
       </div>
       <div class="entry-container">
         <div class="entry-content">
           <article>
             
 
-<h2 id="概要">概要</h2>
-
-<p>自社サービスの開発中、必要にかられてGOで簡単なリバースプロキシツールを作った話を書いてみます。</p>
-
 <h2 id="前提">前提</h2>
 
-<p>自社サービスの開発を、次のような構成で進めています。</p>
+<p><a href="/posts/auto-tagger-2/#構成">先の構成図</a> 参照。</p>
+
+<p>本丸、 <code>KeywordRanker</code> を実装していく。</p>
+
+<h2 id="okapi-bm25を分解する">Okapi BM25を分解する</h2>
+
+<p>Okapi BM25 による、文書<code>d</code>、単語<code>w</code>の重み付け (<code>Combined Weight: CW</code>) は、次のような式で表される。</p>
+
+<p>$$
+CW(w,d) = IDF(w) \cdot TF(w,d) \cdot \frac{k_1 + 1}{k_1 \cdot (1 - b + (b \cdot NDL(d))) + TF(w,d)}
+$$</p>
+
+<p>まず、チューニングパラメータが2つある。</p>
 
 <ul>
-<li>フロントエンドとバックエンド（APIなど）をパスで振り分け
+<li>k<sub>1</sub>: 単語出現頻度に係るチューニングパラメータ。
 
 <ul>
-<li><code>/</code>の下はフロントエンド</li>
-<li><code>/api/</code>の下はAPI</li>
-<li>その他にも色々・・・</li>
+<li>$ k_1 \in [1.2,2.0] $</li>
+<li>今回は <code>2.0</code> とする</li>
 </ul></li>
-<li>フロントエンドとバックエンドは、担当者もリポジトリも、動いているサーバも別</li>
-<li>それぞれサーバが開発環境、本番環境とテスト環境、のように複数の環境をもっている</li>
-</ul>
-
-<h2 id="やりたいこと">やりたいこと</h2>
-
-<p>前提の環境をもって、いざ開発をしようとローカル環境を構築するとなれば、</p>
+<li>b: 文書の長さに係るチューニングパラメータ。
 
 <ul>
-<li>ローカルにnginxでリバースプロキシを立てて管理するのは面倒くさい</li>
-<li>ちょっとした環境の変更があると共有がいちいち面倒くさい</li>
-<li>フロントエンド担当者がわざわざバックエンドをcloneだのpullだの面倒くさい</li>
-<li>環境間でテストするためにわざわざnginxの設定書き換えるのも面倒くさい</li>
-</ul>
-
-<p>と、面倒くさいことばかりになりがちです。</p>
-
-<p>そこで、簡単なプロキシツールを作って、</p>
-
-<ul>
-<li>ローカルには自分の担当するサーバ（とプロキシツール）だけが動いていればいい</li>
-<li>接続先の環境を容易に切り替えられる</li>
-</ul>
-
-<p>ようになったら便利だなァ、というのが動機です。</p>
-
-<h2 id="作ってみた">作ってみた</h2>
-
-<p>これを手軽に実現できるよう、簡単なリバースプロキシツールを作ってみました。</p>
-
-<p><a href="https://github.com/wacul/ichigo">Ichigo (GitHub)</a>
-<img src="https://raw.githubusercontent.com/wacul/ichigo/master/ichigo.png" alt="ichigo" /></p>
-
-<p>いちごです。美味しいですよね、いちご。</p>
-
-<h2 id="使い方">使い方</h2>
-
-<p>詳しい使い方は、GitHubのREADMEを御覧ください。
-ここではかんたんな機能紹介まで。</p>
-
-<ul>
-<li>Ichigo経由でアクセスすると、画面左下にコントローラーが現れます。
-<img src="https://raw.githubusercontent.com/wacul/ichigo/master/capture1.png" alt="ichigo" /></li>
-<li>各サーバーのプロキシ先を、コントローラで切り替えられます。
-<img src="https://raw.githubusercontent.com/wacul/ichigo/master/capture2.png" alt="ichigo" /></li>
-</ul>
-
-<h2 id="愚痴-開発中のあれこれ"><del>愚痴</del> 開発中のあれこれ</h2>
-
-<ul>
-<li>この程度のツールを作るなら、Goってホント良い感じ。
-
-<ul>
-<li>Goっていい感じ。</li>
-</ul></li>
-<li>世の中にありそうなもんだけどなァ、と思ったらなかなかなかった。
-
-<ul>
-<li>もっと賢いやり方あったら教えてほしい</li>
-</ul></li>
-<li>TypeScriptで頑張ってみたけど、やっぱりフロントエンド苦手。
-
-<ul>
-<li>でもやっぱりTypeScript最高。型付き言語最高。愛してる。（異論は認めます）</li>
-</ul></li>
-<li>Goっていい感じ。</li>
-<li><a href="https://github.com/gorilla/mux">gorilla/mux</a>とか、mux系は色々なライブラリがあるのに、もそっと柔らかいライブラリはないものなのか・・・。
-
-<ul>
-<li><code>/*</code>はこっち、<code>/api/*</code>はあっち、とかやろうとすると、全部<code>/*</code>に吸い取られる罠</li>
-<li><code>net/http/httputil.ReverseProxy</code>最高！</li>
-</ul></li>
-<li>Goっていい感じ。
-
-<ul>
-<li>Goっていい感じ。</li>
-<li>Gopher君ぺろぺろしたい</li>
+<li>$ 0 &lt; b &lt; 1 $</li>
+<li>今回は <code>0.75</code> とする</li>
 </ul></li>
 </ul>
 
-<h2 id="thanks">Thanks</h2>
+<p>また、数式中の各関数は、次のような意味を持つ。</p>
 
-<p>ちょっとした面倒を避けて、みんなの苺が美味しくなりますように</p>
+<ul>
+<li>IDF (Inverse Document Frequency): 単語の出現する文書の頻度。
+
+<ul>
+<li>$ IDF(w) = log( \frac{\text{文書の総数}}{\text{単語wが出現する文書数}} ) $</li>
+</ul></li>
+<li>TF (Term Frequency): 文書中における出現頻度の高さ。
+
+<ul>
+<li>$ TF(w, d) = \frac{\text{単語wの文書dにおける出現回数}}{\text{文書dの単語数}} $</li>
+</ul></li>
+<li>NDL (Normalized Document Length): ある文書の単語数の文書群全体における多さ。
+
+<ul>
+<li>$ NDL(d) = \frac{\text{文書dの単語数}}{\text{すべての文書の平均単語数}} = \frac{\text{文書dの単語数} \cdot \text{文書の総数}}{\text{総単語数}} $</li>
+</ul></li>
+</ul>
+
+<p>つまり、 <code>KeywordRanker (WordStorage)</code> は、文書と単語ごとに次の5つを集計していけばいい。</p>
+
+<ul>
+<li>単語wの文書dにおける出現回数</li>
+<li>文書dの単語数</li>
+<li>総単語数</li>
+<li>文書の総数</li>
+<li>単語wが出現する文書数</li>
+</ul>
+
+<h2 id="単語集計の実装">単語集計の実装</h2>
+
+<p>後者2つは他の集計するべき項目に従属しているので、簡略化すると&hellip;</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">math</span> <span style="color:#6ab825;font-weight:bold">import</span> log
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">typing</span> <span style="color:#6ab825;font-weight:bold">import</span> Dict, List
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">collections</span> <span style="color:#6ab825;font-weight:bold">import</span> defaultdict <span style="color:#6ab825;font-weight:bold">as</span> dd
+
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">.word</span> <span style="color:#6ab825;font-weight:bold">import</span> Word
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">.word_storage</span> <span style="color:#6ab825;font-weight:bold">import</span> WordStorage
+
+
+<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf">KeywordRanker</span>(WordStorage):
+
+    <span style="color:#6ab825;font-weight:bold">def</span> __init__(self) -&gt; None:
+        <span style="color:#24909d">super</span>().__init__()
+
+        <span style="color:#999;font-style:italic"># 単語wの文書dにおける出現回数</span>
+        self.query_freq: Dict[Word, Dict[<span style="color:#24909d">str</span>, <span style="color:#24909d">int</span>]] = dd(<span style="color:#6ab825;font-weight:bold">lambda</span>: dd(<span style="color:#24909d">int</span>))
+        <span style="color:#999;font-style:italic"># 文書dの単語数</span>
+        self.doc_length: Dict[<span style="color:#24909d">str</span>, <span style="color:#24909d">int</span>] = dd(<span style="color:#24909d">int</span>)
+        <span style="color:#999;font-style:italic"># 総単語数</span>
+        self.word_count: <span style="color:#24909d">int</span> = <span style="color:#3677a9">0</span>
+        <span style="color:#999;font-style:italic"># 文書の総数 = len(self.doc_length)</span>
+        <span style="color:#999;font-style:italic"># 単語wが出現する文書数 = len(self.query_freq[w])</span>
+
+
+    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">push</span>(self, path: <span style="color:#24909d">str</span>, word: Word) -&gt; None:
+        self.doc_length[path] += <span style="color:#3677a9">1</span>
+        self.query_freq[word][path] += <span style="color:#3677a9">1</span>
+        self.word_count += <span style="color:#3677a9">1</span></code></pre></div>
+<p>となる。</p>
+
+<h2 id="bm25-combined-weightの実装">BM25 Combined Weightの実装</h2>
+
+<p>集計された値を元に、すべての文書、すべての単語ごとの重みは次のように得られる。</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">weighted_keywords</span>(self) -&gt; Dict[<span style="color:#24909d">str</span>, List[Word]]:
+    K1 = <span style="color:#3677a9">2</span>
+    B = <span style="color:#3677a9">0.75</span>
+
+    <span style="color:#999;font-style:italic"># 文書の総数</span>
+    doc_count = <span style="color:#24909d">len</span>(self.doc_length)
+
+    <span style="color:#ed9d13">&#39;&#39;&#39;
+</span><span style="color:#ed9d13">    すべての文書の平均単語数の逆数
+</span><span style="color:#ed9d13">    (文書の総数) / (総単語数)
+</span><span style="color:#ed9d13">    &#39;&#39;&#39;</span>
+    adli = doc_count / self.word_count
+
+    ret: Dict[<span style="color:#24909d">str</span>, List[Word]] = dd(<span style="color:#6ab825;font-weight:bold">lambda</span>: [])
+
+    <span style="color:#6ab825;font-weight:bold">for</span> word, freq <span style="color:#6ab825;font-weight:bold">in</span> self.query_freq.items():
+        idf = log(doc_count / <span style="color:#24909d">len</span>(freq))
+
+        <span style="color:#6ab825;font-weight:bold">for</span> path, count <span style="color:#6ab825;font-weight:bold">in</span> freq.items():
+            tf = freq[path] / self.doc_length[path]
+            ndl = self.doc_length[path] * adli
+
+            props = word._asdict()
+            props[<span style="color:#ed9d13">&#34;weight&#34;</span>] = (tf * idf * (K1 + <span style="color:#3677a9">1</span>)) / \
+                (K1 * (<span style="color:#3677a9">1</span> - B + (B * ndl)) + tf)
+
+            ret[path].append(Word(**props))
+
+    <span style="color:#6ab825;font-weight:bold">for</span> path, words <span style="color:#6ab825;font-weight:bold">in</span> ret.items():
+        ret[path] = <span style="color:#24909d">sorted</span>(words, key=<span style="color:#6ab825;font-weight:bold">lambda</span> w: -w.weight)
+
+    <span style="color:#6ab825;font-weight:bold">return</span> ret</code></pre></div>
+<p>ただし、重みを単語 (<code>Word</code>) に突っ込んでいるので、 <code>Word</code> クラスの定義に <code>weight</code> を追加している。</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf">Word</span>(namedtuple(<span style="color:#ed9d13">&#39;Word&#39;</span>, (
+    <span style="color:#ed9d13">&#39;word&#39;</span>,                <span style="color:#999;font-style:italic"># 原形</span>
+    <span style="color:#ed9d13">&#39;feature_id&#39;</span>,          <span style="color:#999;font-style:italic"># 素性ID</span>
+    <span style="color:#ed9d13">&#39;weight&#39;</span>,              <span style="color:#999;font-style:italic"># 重み付け</span>
+))):
+    <span style="color:#6ab825;font-weight:bold">pass</span></code></pre></div>
+<p>実際動かしてみると、2時間ほどかかった上で、大量の単語辞書が得られた。
+出力が多すぎたので、割愛。</p>
+
+<h2 id="残課題">残課題</h2>
+
+<p>Wikipediaの集計に2時間かかるので、</p>
+
+<ul>
+<li>集計結果をしかるべき形でDump</li>
+<li>タグとなるキーワードの抽出を行いたい文書を投入する際に、Restore</li>
+</ul>
+
+<p>する仕組みを作る必要がある。</p>
 
           </article>
         </div>
@@ -407,8 +456,8 @@ ga('send', 'pageview');
       <h2 class="screen-reader-text">Posts navigation</h2>
       <div class="nav-links">
         
+        <a class="prev page-numbers" href="https://kyoh86.work/posts/auto-tagger-6/">自動タグ付け機能でも作ってみる - 6: Wikipediaの出力を形態素解析してみる</a>
         
-        <a class="next page-numbers" href="https://kyoh86.work/posts/2015-12-17_00-03-03/">GitHubのPullRequest一覧イマイチ使いづらくね？→捗るツール作ったった</a>
         
       </div>
     </nav>
