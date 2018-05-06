@@ -6,10 +6,19 @@
     <description>Recent content on kyoh86.work</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Fri, 04 May 2018 15:03:02 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 05 May 2018 18:21:09 +0900</lastBuildDate>
     
 	<atom:link href="https://kyoh86.work/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>自動タグ付け機能でも作ってみる - 6: Wikipediaの出力を形態素解析してみる</title>
+      <link>https://kyoh86.work/posts/auto-tagger-6/</link>
+      <pubDate>Sat, 05 May 2018 18:21:09 +0900</pubDate>
+      
+      <guid>https://kyoh86.work/posts/auto-tagger-6/</guid>
+      <description>前提 先の構成図 参照。 MorphoAnalyzerはできたので、Wikipediaの記事をパースしてみる。 準備 WikiExtractor を使うと、 Wikipediaか</description>
+    </item>
     
     <item>
       <title>自動タグ付け機能でも作ってみる - 5: MorphoAnalyzer を作り切る</title>
