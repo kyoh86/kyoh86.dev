@@ -6,10 +6,19 @@
     <description>Recent content in Tech on kyoh86.work</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Sun, 06 May 2018 23:20:33 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 07 May 2018 07:47:34 +0900</lastBuildDate>
     
 	<atom:link href="https://kyoh86.work/categories/tech/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>自動タグ付け機能でも作ってみる - 8: Dump/Restoreを実装する</title>
+      <link>https://kyoh86.work/posts/auto-tagger-8/</link>
+      <pubDate>Mon, 07 May 2018 07:47:34 +0900</pubDate>
+      
+      <guid>https://kyoh86.work/posts/auto-tagger-8/</guid>
+      <description>再構成 学習データ（？）としてWikipediaの解析に時間がかかるので、 Wikipediaの解析結果を保存しておいて、キーワードの選定時には</description>
+    </item>
     
     <item>
       <title>自動タグ付け機能でも作ってみる - 7: BM25の実装</title>

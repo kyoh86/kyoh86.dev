@@ -2,7 +2,7 @@
 <html lang="ja-jp">
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
- <title>自動タグ付け機能でも作ってみる - 3 : Wikipediaによる事前単語重み付けを考える </title>
+ <title>自動タグ付け機能でも作ってみる - 8: Dump/Restoreを実装する </title>
 
 
 
@@ -188,10 +188,8 @@ ga('send', 'pageview');
       <h2 class="screen-reader-text">Posts navigation</h2>
       <div class="nav-links">
         
-        <a class="prev page-numbers" href="https://kyoh86.work/posts/auto-tagger-2/">自動タグ付け機能でも作ってみる - 2 : 要件詰め</a>
+        <a class="prev page-numbers" href="https://kyoh86.work/posts/auto-tagger-7/">自動タグ付け機能でも作ってみる - 7: BM25の実装</a>
         
-        
-        <a class="next page-numbers" href="https://kyoh86.work/posts/auto-tagger-4/">自動タグ付け機能でも作ってみる - 4: MeCab &#43; Python を試してみる</a>
         
       </div>
     </nav>
@@ -199,7 +197,7 @@ ga('send', 'pageview');
     <div class="post entry">
     
       <div class="entry-meta">
-        <span class="date">May 01</span>
+        <span class="date">May 07</span>
         
           <span class="category">
             <span> / </span>
@@ -209,36 +207,17 @@ ga('send', 'pageview');
       </div>
 
       <div class='entry-header'>
-        <h1 class='entry-title'> 自動タグ付け機能でも作ってみる - 3 : Wikipediaによる事前単語重み付けを考える</h1>
+        <h1 class='entry-title'> 自動タグ付け機能でも作ってみる - 8: Dump/Restoreを実装する</h1>
       </div>
       <div class="entry-container">
         <div class="entry-content">
           <article>
             
 
-<h2 id="ところで">ところで</h2>
+<h2 id="再構成">再構成</h2>
 
-<p>そもそもの前提として、このブログは記事がとても少ない。
-記事が少ないために、検索のための単語重み付けをしたところで、ベースとなる文章が少なすぎて、まともに機能しないだろう。</p>
-
-<p>その為、学習（？）データとして、Wikipediaの日本語版データを拝借することにした。</p>
-
-<h2 id="日本語wikipediaのダンプデータから本文を抽出する">日本語Wikipediaのダンプデータから本文を抽出する</h2>
-
-<p><a href="http://taka-say.hateblo.jp/entry/2016/05/20/221817">【Python】日本語Wikipediaのダンプデータから本文を抽出する - プログラムは、用いる言葉の選択で決まる</a> に詳しい。</p>
-
-<p>WikiExtractorを使うと、最終的には次のようなファイルが大量に作られる。</p>
-
-<pre><code>&lt;doc id=&quot;...&quot; url=&quot;...&quot;&gt;プレーンテキスト...&lt;/doc&gt;
-&lt;doc id=&quot;...&quot; url=&quot;...&quot;&gt;プレーンテキスト...&lt;/doc&gt;
-&lt;doc id=&quot;...&quot; url=&quot;...&quot;&gt;プレーンテキスト...&lt;/doc&gt;
-...
-</code></pre>
-
-<p>XMLの様でXMLでない、ちょっとXMLなファイルである。
-簡単なIOのラッパーを書いて、内容を <code>&lt;root&gt;...&lt;/root&gt;</code> で包み、<a href="https://docs.python.jp/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.iterparse">xml.etree.ElementTree.iterparse</a> で処理できよう。</p>
-
-<p>こいつを先の <code>MarkdownParser</code> と同じIFにしてやれば、MarkdownではなくWikipediaのダンプデータを食って単語の重み付けをできるようになるはずだ。</p>
+<p>学習データ（？）としてWikipediaの解析に時間がかかるので、
+Wikipediaの解析結果を保存しておいて、キーワードの選定時にはその解析結果を読み込んで使用するよう再構成する。</p>
 <div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-uml" data-lang="uml">@startuml
 interface Parser {
   parse(path: String)
@@ -247,14 +226,43 @@ class MarkdownParser
 class WikiXMLParser 
 Parser &lt;|-- MarkdownParser
 Parser &lt;|-- WikiXMLParser
+interface TextStorage {
+  push(path: String, text: String)
+}
+interface WordStorage {
+  push(path: String, word: Word)
+}
+MarkdownParser --- TextStorage : text_storage
+class MorphoAnalyzer
+TextStorage &lt;|-- MorphoAnalyzer
+MorphoAnalyzer --- WordStorage : word_storage
+class KeywordRanker {
+  weighted_keywords()
+
+  dump(file)
+  restore(file)
+}
+class Word {
+  word: String
+  feature_id String
+  class(): Class
+  subclass(): List[String]
+}
+WordStorage &lt;|-- KeywordRanker
 @enduml</code></pre></div>
-<h2 id="処理の流れ-学習フェーズを含む">処理の流れ（学習フェーズを含む）</h2>
+<p><code>dump</code>/<code>restore</code>を<code>KeywordRanker</code> に追加した。</p>
+
+<h2 id="処理の流れ-再修正版">処理の流れ（再修正版）</h2>
+
+<p>併せて処理の流れも少し変更する。</p>
 <div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-uml" data-lang="uml">@startuml
 participant WikiXMLParser as x
 participant MarkdownParser as m
 participant MorphoAnalyzer as a
 participant KeywordRanker as r
+database pickle as p
 
+== study wiki data ==
 loop all wikipages
   [-&gt; x : parse(path)
   loop all texts
@@ -265,6 +273,12 @@ loop all wikipages
     end
   end
 end
+
+r -&gt; p : dump
+
+== rank words ==
+
+r &lt;- p : restore
 
 loop all documents
   [-&gt; m : parse(path)
@@ -277,9 +291,93 @@ loop all documents
   end
 end
 @enduml</code></pre></div>
-<h2 id="いざ実装">いざ実装</h2>
+<h2 id="dumpする内容">Dumpする内容</h2>
 
-<p>考えるべきことは一通り考えきったはずなので、実装に入っていこうと思う。</p>
+<p>BM25の関数も、学習時に使用するWikipediaの文書と、タグ付けしたい文書（以下「対象文書」）を分離した形に変えておく。</p>
+
+<p>$$
+CW(w,d) = IDF_D(w) \cdot IDF_W(w) \cdot TF(w,d) \cdot \frac{k_1 + 1}{k_1 \cdot (1 - b + (b \cdot NDL(d))) + TF(w,d)}
+$$</p>
+
+<ul>
+<li>$ IDF_W(w) $ : WikipediaにおけるIDF
+
+<ul>
+<li>$ IDF_W(w) = log( \frac{\text{Wikipedia文書の総数}}{\text{単語wが出現するWikipediaの文書数}} ) $</li>
+</ul></li>
+<li>$ IDF_D(w) $ : 対象文書群におけるIDF
+
+<ul>
+<li>$ IDF_D(w) = log( \frac{\text{対象文書群の総数}}{\text{単語wが出現する対象文書数}} ) $</li>
+</ul></li>
+</ul>
+
+<p>NDLも少し意味が変わっているので注意が必要。</p>
+
+<ul>
+<li>$ NDL(d) = \frac{(\text{文書dの単語数}) \cdot (\text{Wikipedia文書の総数} + \text{対象文書群の総数})}{\text{Wikipediaの総単語数 + 対象文書群の総単語数}} $</li>
+</ul>
+
+<p>つまり、Wikipediaの情報として保存するべきデータは次の通り。</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-uml" data-lang="uml">class DumpData {
+doc_count: int # Wikipediaの文書数
+word_count: int # Wikipediaの総単語数
+word_freq: Dict[Word, int] # 単語ごとの出現Wikipedia文書数
+}</code></pre></div>
+<h2 id="実装">実装</h2>
+
+<p>JSON?とも思ったけど、Wikipediaに登場するすべての単語を保存するとなると、
+それなりに大きいものになりそうなので、おとなしく <code>pickle</code> パッケージでバイナリにダンプしておく。</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">def</span> __init__(self) -&gt; None:
+    <span style="color:#24909d">super</span>().__init__()
+
+    <span style="color:#999;font-style:italic"># 単語wの文書dにおける出現回数</span>
+    self.query_freq: Dict[Word, Dict[<span style="color:#24909d">str</span>, <span style="color:#24909d">int</span>]] = dd(<span style="color:#6ab825;font-weight:bold">lambda</span>: dd(<span style="color:#24909d">int</span>))
+    <span style="color:#999;font-style:italic"># 文書dの単語数</span>
+    self.doc_length: Dict[<span style="color:#24909d">str</span>, <span style="color:#24909d">int</span>] = dd(<span style="color:#24909d">int</span>)
+    <span style="color:#999;font-style:italic"># 総単語数</span>
+    self.word_count: <span style="color:#24909d">int</span> = <span style="color:#3677a9">0</span>
+
+    <span style="color:#999;font-style:italic"># 集計済み全文書数</span>
+    self.stored_doc_count: <span style="color:#24909d">int</span> = <span style="color:#3677a9">0</span>
+    <span style="color:#999;font-style:italic"># 集計済み全単語数</span>
+    self.stored_word_count: <span style="color:#24909d">int</span> = <span style="color:#3677a9">0</span>
+    <span style="color:#999;font-style:italic"># 集計済み単語出現文書数</span>
+    self.stored_word_freq: Dict[Word, <span style="color:#24909d">int</span>] = dd(<span style="color:#24909d">int</span>)
+
+<span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">dump</span>(self, stream: BinaryIO) -&gt; None:
+    pickle.dump({
+        <span style="color:#ed9d13">&#34;doc_count&#34;</span>: <span style="color:#24909d">len</span>(self.doc_length),
+        <span style="color:#ed9d13">&#34;word_count&#34;</span>: self.word_count,
+        <span style="color:#ed9d13">&#34;word_freq&#34;</span>: {word: <span style="color:#24909d">len</span>(freq) <span style="color:#6ab825;font-weight:bold">for</span> word, freq <span style="color:#6ab825;font-weight:bold">in</span> self.query_freq.items()},
+    }, stream)
+
+<span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">restore</span>(self, stream: BinaryIO) -&gt; None:
+    raw = pickle.load(stream)
+    self.stored_doc_count = raw[<span style="color:#ed9d13">&#39;doc_count&#39;</span>]
+    self.stored_word_count = raw[<span style="color:#ed9d13">&#39;word_count&#39;</span>]
+    self.stored_word_freq = raw[<span style="color:#ed9d13">&#39;word_freq&#39;</span>]</code></pre></div>
+<p>こう書いてみると、インクリメンタルに学習できたほうが良さそうに見える。
+<code>restore</code> して追加の学習データを取り込んで、再度 <code>dump</code> できるように書き換え。</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">dump</span>(self, stream: BinaryIO) -&gt; None:
+    word_freq: Dict[Word, <span style="color:#24909d">int</span>] =
+        {word: <span style="color:#24909d">len</span>(freq) <span style="color:#6ab825;font-weight:bold">for</span> word, freq <span style="color:#6ab825;font-weight:bold">in</span> self.query_freq.items()}
+    <span style="color:#6ab825;font-weight:bold">for</span> word, count <span style="color:#6ab825;font-weight:bold">in</span> self.stored_word_freq.items():
+        word_freq[word] += count
+
+    pickle.dump({
+        <span style="color:#ed9d13">&#34;doc_count&#34;</span>: <span style="color:#24909d">len</span>(self.doc_length) + self.stored_doc_count,
+        <span style="color:#ed9d13">&#34;word_count&#34;</span>: self.word_count + self.stored_word_count,
+        <span style="color:#ed9d13">&#34;word_freq&#34;</span>: word_freq
+    }, stream)
+
+<span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">restore</span>(self, stream: BinaryIO) -&gt; None:
+    raw = pickle.load(stream)
+    self.stored_doc_count = raw[<span style="color:#ed9d13">&#39;doc_count&#39;</span>]
+    self.stored_word_count = raw[<span style="color:#ed9d13">&#39;word_count&#39;</span>]
+    self.stored_word_freq = raw[<span style="color:#ed9d13">&#39;word_freq&#39;</span>]</code></pre></div>
+<p>次は、学習データじゃなくてタグ付けしたい対象文書を読み込みできるようにする。
+<code>MarkdownParser</code> の実装…</p>
 
           </article>
         </div>
@@ -374,10 +472,8 @@ end
       <h2 class="screen-reader-text">Posts navigation</h2>
       <div class="nav-links">
         
-        <a class="prev page-numbers" href="https://kyoh86.work/posts/auto-tagger-2/">自動タグ付け機能でも作ってみる - 2 : 要件詰め</a>
+        <a class="prev page-numbers" href="https://kyoh86.work/posts/auto-tagger-7/">自動タグ付け機能でも作ってみる - 7: BM25の実装</a>
         
-        
-        <a class="next page-numbers" href="https://kyoh86.work/posts/auto-tagger-4/">自動タグ付け機能でも作ってみる - 4: MeCab &#43; Python を試してみる</a>
         
       </div>
     </nav>

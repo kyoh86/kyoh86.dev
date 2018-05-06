@@ -268,13 +268,13 @@ class MorphoAnalyzer
 TextStorage &lt;|-- MorphoAnalyzer
 MorphoAnalyzer --- WordStorage : word_storage
 class KeywordRanker {
-  get_words(path: String): List[Word]
-  get_rank(path: String, word: Word)
+  weighted_keywords(): Dict[str, List[Word]]
 }
 class Word {
   word: String
-  class: Class
-  subclass: List[String]
+  feature_id: int
+  clazz(): Class
+  subclazz(): List[String]
 }
 WordStorage &lt;|-- KeywordRanker
 @enduml</code></pre></div>
@@ -284,7 +284,6 @@ participant MarkdownParser as p
 participant MorphoAnalyzer as a
 participant KeywordRanker as r
 
-== collect words ==
 loop all documents
   [-&gt; p : parse(path)
   loop all texts
@@ -293,16 +292,6 @@ loop all documents
       a -&gt; r : push(path, word)
       note over r: count words
     end
-  end
-end
-
-== rank words ==
-loop all documents
-  ]-&gt; r : get_words(path)
-  ]&lt;-- r : List[Word]
-  loop all words
-    ]-&gt; r : get_rank(path, word)
-    ]&lt;-- r : rank : Integer
   end
 end
 @enduml</code></pre></div>
