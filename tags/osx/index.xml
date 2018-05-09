@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OSX on kyoh86.work</title>
+    <link>https://kyoh86.work/tags/osx/</link>
+    <description>Recent content in OSX on kyoh86.work</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Thu, 06 Oct 2016 08:12:34 +0900</lastBuildDate>
+    
+	<atom:link href="https://kyoh86.work/tags/osx/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>【メモ】Node.js? io.js? なんのことです？</title>
+      <link>https://kyoh86.work/posts/2016-10-06_08-12-34/</link>
+      <pubDate>Thu, 06 Oct 2016 08:12:34 +0900</pubDate>
+      
+      <guid>https://kyoh86.work/posts/2016-10-06_08-12-34/</guid>
+      <description>（勝手に）割と衝撃を受けたのでメモ。 元ネタ 知らないうちにMacがシステム標準でJavaScriptで操作できるようになってた (JXA) GoでOSXの</description>
+    </item>
+    
+    <item>
+      <title>【メモ】【OSX】peco/fzf でブランチ切替</title>
+      <link>https://kyoh86.work/posts/2016-04-06_11-07-31/</link>
+      <pubDate>Wed, 06 Apr 2016 11:07:31 +0900</pubDate>
+      
+      <guid>https://kyoh86.work/posts/2016-04-06_11-07-31/</guid>
+      <description>git branch -a \ | perl -ne&amp;#39;m|[^/\* ]+$|;next if$_{$&amp;amp;};$_{$&amp;amp;}=1;next if m,^\*|remotes/.+/HEAD,;$s=&amp;#34;\e[0m&amp;lt;S&amp;gt;&amp;#34;;s|.*/([^/]+)/|\e[31m$1$s|; s|^ +([^/]+)$|\e[34mlocal$s$1|;print&amp;#39; \ | column -ts&amp;#39;&amp;lt;S&amp;gt;&amp;#39; \ | fzf --ansi \ | xargs git checkout</description>
+    </item>
+    
+  </channel>
+</rss>

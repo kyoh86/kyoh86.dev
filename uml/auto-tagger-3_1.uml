@@ -1,0 +1,9 @@
+@startuml
+interface Parser {
+  parse(path: String)
+}
+class MarkdownParser
+class WikiXMLParser 
+Parser <|-- MarkdownParser
+Parser <|-- WikiXMLParser
+@enduml

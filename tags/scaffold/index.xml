@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Scaffold on kyoh86.work</title>
+    <link>https://kyoh86.work/tags/scaffold/</link>
+    <description>Recent content in Scaffold on kyoh86.work</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Sun, 10 Dec 2017 13:13:49 +0900</lastBuildDate>
+    
+	<atom:link href="https://kyoh86.work/tags/scaffold/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Goの俺的scaffoldはこれだ！2017年版</title>
+      <link>https://kyoh86.work/posts/2017-12-10_13-13-49/</link>
+      <pubDate>Sun, 10 Dec 2017 13:13:49 +0900</pubDate>
+      
+      <guid>https://kyoh86.work/posts/2017-12-10_13-13-49/</guid>
+      <description>Boom Boom Hello, gophers! Go書いてるかい！ tl;dr 今年も色々、汚物に似た何かをGitHub上に吐き散らかしてきましたが、 来年はもうちょっとキレイな汚物にしようと考</description>
+    </item>
+    
+  </channel>
+</rss>

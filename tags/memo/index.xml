@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Memo on kyoh86.work</title>
+    <link>https://kyoh86.work/tags/memo/</link>
+    <description>Recent content in Memo on kyoh86.work</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Sat, 03 Mar 2018 11:37:00 +0900</lastBuildDate>
+    
+	<atom:link href="https://kyoh86.work/tags/memo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>【作りたいもの】golangでLCSVパーサ</title>
+      <link>https://kyoh86.work/posts/2018-03-03_11-37-00/</link>
+      <pubDate>Sat, 03 Mar 2018 11:37:00 +0900</pubDate>
+      
+      <guid>https://kyoh86.work/posts/2018-03-03_11-37-00/</guid>
+      <description>メモ LCSV (Labeled-CSV) のパーサがほしい できればstruct tagのパースできるやつ 使い方は2種類あって、CSVパーサみたいに各行パースするやつと、JSON</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Git on kyoh86.work</title>
+    <link>https://kyoh86.work/tags/git/</link>
+    <description>Recent content in Git on kyoh86.work</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Mon, 12 Dec 2016 00:52:12 +0900</lastBuildDate>
+    
+	<atom:link href="https://kyoh86.work/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>zshの便利設定2016</title>
+      <link>https://kyoh86.work/posts/2016-12-12_00-52-12/</link>
+      <pubDate>Mon, 12 Dec 2016 00:52:12 +0900</pubDate>
+      
+      <guid>https://kyoh86.work/posts/2016-12-12_00-52-12/</guid>
+      <description>こんばんわ。WACULのプログラマー、 @kyoh86 です。 このエントリはWACUL Advent Calendar 2016の12日目の記事です。 年末といえば大掃除ですね。 押入れ、ト</description>
+    </item>
+    
+    <item>
+      <title>ズボラな僕らだからこそ「正しそうで正しくない少し正しいgitの使い方」</title>
+      <link>https://kyoh86.work/posts/2016-12-02_00-01-28/</link>
+      <pubDate>Fri, 02 Dec 2016 00:01:28 +0900</pubDate>
+      
+      <guid>https://kyoh86.work/posts/2016-12-02_00-01-28/</guid>
+      <description>本日のいまさら記事はこちらです。 この記事の対象読者 commit messageは wip fix が9割を超える 「宇宙人」と書いて「マメな人」と読む 夏休みの宿題を9/</description>
+    </item>
+    
+    <item>
+      <title>【メモ】【OSX】peco/fzf でブランチ切替</title>
+      <link>https://kyoh86.work/posts/2016-04-06_11-07-31/</link>
+      <pubDate>Wed, 06 Apr 2016 11:07:31 +0900</pubDate>
+      
+      <guid>https://kyoh86.work/posts/2016-04-06_11-07-31/</guid>
+      <description>git branch -a \ | perl -ne&amp;#39;m|[^/\* ]+$|;next if$_{$&amp;amp;};$_{$&amp;amp;}=1;next if m,^\*|remotes/.+/HEAD,;$s=&amp;#34;\e[0m&amp;lt;S&amp;gt;&amp;#34;;s|.*/([^/]+)/|\e[31m$1$s|; s|^ +([^/]+)$|\e[34mlocal$s$1|;print&amp;#39; \ | column -ts&amp;#39;&amp;lt;S&amp;gt;&amp;#39; \ | fzf --ansi \ | xargs git checkout</description>
+    </item>
+    
+  </channel>
+</rss>

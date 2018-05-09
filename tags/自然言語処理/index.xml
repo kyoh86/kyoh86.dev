@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>自然言語処理 on kyoh86.work</title>
+    <link>https://kyoh86.work/tags/%E8%87%AA%E7%84%B6%E8%A8%80%E8%AA%9E%E5%87%A6%E7%90%86/</link>
+    <description>Recent content in 自然言語処理 on kyoh86.work</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Sat, 28 Apr 2018 00:05:33 +0900</lastBuildDate>
+    
+	<atom:link href="https://kyoh86.work/tags/%E8%87%AA%E7%84%B6%E8%A8%80%E8%AA%9E%E5%87%A6%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>自動タグ付け機能でも作ってみる - 1</title>
+      <link>https://kyoh86.work/posts/auto-tagger-1/</link>
+      <pubDate>Sat, 28 Apr 2018 00:05:33 +0900</pubDate>
+      
+      <guid>https://kyoh86.work/posts/auto-tagger-1/</guid>
+      <description>動機づけ ふと、最近自然言語処理なんてやってないし何か良いテーマはないだろうか、と考えてみたところ、 このブログを始めるにあたって、「最も面倒く</description>
+    </item>
+    
+  </channel>
+</rss>

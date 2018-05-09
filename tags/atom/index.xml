@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ATOM on kyoh86.work</title>
+    <link>https://kyoh86.work/tags/atom/</link>
+    <description>Recent content in ATOM on kyoh86.work</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Mon, 12 Dec 2016 12:25:45 +0900</lastBuildDate>
+    
+	<atom:link href="https://kyoh86.work/tags/atom/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>【メモ】作りたいモノリスト</title>
+      <link>https://kyoh86.work/posts/2016-12-12_12-25-45/</link>
+      <pubDate>Mon, 12 Dec 2016 12:25:45 +0900</pubDate>
+      
+      <guid>https://kyoh86.work/posts/2016-12-12_12-25-45/</guid>
+      <description>誰か作ってくれないかなぁ、でも最近、何も作ってないし何か作りたいなあと思っているもののリスト。 随時更新予定。 ATOM-fuzzy-finde</description>
+    </item>
+    
+    <item>
+      <title>goのinterfaceのstub生成する君</title>
+      <link>https://kyoh86.work/posts/2016-10-06_08-48-48/</link>
+      <pubDate>Thu, 06 Oct 2016 08:48:48 +0900</pubDate>
+      
+      <guid>https://kyoh86.work/posts/2016-10-06_08-48-48/</guid>
+      <description>本題 ATOMのパッケージ作ったよ！（宣伝） 何のために？ GoでDIとかゴニョゴニョしてると、しばしばinterfaceの実装を書くシーンに直面</description>
+    </item>
+    
+  </channel>
+</rss>

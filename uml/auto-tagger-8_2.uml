@@ -1,0 +1,36 @@
+@startuml
+participant TextParser as t
+participant MarkdownParser as m
+participant MorphoAnalyzer as a
+participant KeywordRanker as r
+database pickle as p
+
+== study wiki data ==
+loop all wikipages
+  [-> t : parse(path)
+  loop all texts
+    t -> a : push(path, text)
+    loop all words
+      a -> r : push(path, word)
+      note over r: count words
+    end
+  end
+end
+
+r -> p : dump
+
+== rank words ==
+
+r <- p : restore
+
+loop all documents
+  [-> m : parse(path)
+  loop all texts
+    m -> a : push(path, text)
+    loop all words
+      a -> r : push(path, word)
+      note over r: count words
+    end
+  end
+end
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+participant MarkdownParser as p
+participant MorphoAnalyzer as a
+participant KeywordRanker as r
+
+loop all documents
+  [-> p : parse(path)
+  loop all texts
+    p -> a : push(path, text)
+    loop all words
+      a -> r : push(path, word)
+      note over r: count words
+    end
+  end
+end
+@enduml

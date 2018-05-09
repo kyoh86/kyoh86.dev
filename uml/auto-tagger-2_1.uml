@@ -1,0 +1,25 @@
+@startuml
+class MarkdownParser {
+  parse(path: String)
+}
+interface TextStorage {
+  push(path: String, text: String)
+}
+interface WordStorage {
+  push(path: String, word: Word)
+}
+MarkdownParser --- TextStorage : text_storage
+class MorphoAnalyzer
+TextStorage <|-- MorphoAnalyzer
+MorphoAnalyzer --- WordStorage : word_storage
+class KeywordRanker {
+  weighted_keywords(): Dict[str, List[Word]]
+}
+class Word {
+  word: String
+  feature_id: int
+  clazz(): Class
+  subclazz(): List[String]
+}
+WordStorage <|-- KeywordRanker
+@enduml

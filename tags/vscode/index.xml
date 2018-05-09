@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VSCode on kyoh86.work</title>
+    <link>https://kyoh86.work/tags/vscode/</link>
+    <description>Recent content in VSCode on kyoh86.work</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Tue, 20 Jun 2017 19:42:46 +0900</lastBuildDate>
+    
+	<atom:link href="https://kyoh86.work/tags/vscode/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Visual Studio Codeでバックスペースに悩まされたら</title>
+      <link>https://kyoh86.work/posts/2017-06-20_19-42-46/</link>
+      <pubDate>Tue, 20 Jun 2017 19:42:46 +0900</pubDate>
+      
+      <guid>https://kyoh86.work/posts/2017-06-20_19-42-46/</guid>
+      <description>TL;DR VSCodeで日本語入力マジ鬼門 VSCode側では対応予定ないみたい pre-commit hookでもって、せめてコードには残らないようにしてやろう 対象読者 or</description>
+    </item>
+    
+  </channel>
+</rss>

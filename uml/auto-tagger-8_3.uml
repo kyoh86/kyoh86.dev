@@ -1,0 +1,5 @@
+class DumpData {
+doc_count: int # Wikipediaの文書数
+word_count: int # Wikipediaの総単語数
+word_freq: Dict[Word, int] # 単語ごとの出現Wikipedia文書数
+}

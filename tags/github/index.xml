@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GitHub on kyoh86.work</title>
+    <link>https://kyoh86.work/tags/github/</link>
+    <description>Recent content in GitHub on kyoh86.work</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Fri, 08 Dec 2017 00:00:21 +0900</lastBuildDate>
+    
+	<atom:link href="https://kyoh86.work/tags/github/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>GitHubでセマンティックバージョニングを運用する</title>
+      <link>https://kyoh86.work/posts/2017-12-08_00-00-21/</link>
+      <pubDate>Fri, 08 Dec 2017 00:00:21 +0900</pubDate>
+      
+      <guid>https://kyoh86.work/posts/2017-12-08_00-00-21/</guid>
+      <description>tl;dr ちょうど dep (golang用のvendoringツール）を使っている中で、妙なバージョン運用をしているリポジトリに悩まされたので、 いまさらと</description>
+    </item>
+    
+    <item>
+      <title>GitHubで自動生成コードをDiffに表示しない方法</title>
+      <link>https://kyoh86.work/posts/2016-12-07_03-06-32/</link>
+      <pubDate>Wed, 07 Dec 2016 03:06:32 +0900</pubDate>
+      
+      <guid>https://kyoh86.work/posts/2016-12-07_03-06-32/</guid>
+      <description>結論 ここに書いてある https://github.com/github/linguist/blob/master/lib/linguist/generated.rb 注意事項 だいぶ懐かしい記事ですが…突然、「Diffに表示しないなんてGitHubの価値を損なうものだから記事を非公開に</description>
+    </item>
+    
+    <item>
+      <title>ズボラな僕らだからこそ「正しそうで正しくない少し正しいgitの使い方」</title>
+      <link>https://kyoh86.work/posts/2016-12-02_00-01-28/</link>
+      <pubDate>Fri, 02 Dec 2016 00:01:28 +0900</pubDate>
+      
+      <guid>https://kyoh86.work/posts/2016-12-02_00-01-28/</guid>
+      <description>本日のいまさら記事はこちらです。 この記事の対象読者 commit messageは wip fix が9割を超える 「宇宙人」と書いて「マメな人」と読む 夏休みの宿題を9/</description>
+    </item>
+    
+    <item>
+      <title>GitHubのPullRequest一覧イマイチ使いづらくね？→捗るツール作ったった</title>
+      <link>https://kyoh86.work/posts/2015-12-17_00-03-03/</link>
+      <pubDate>Thu, 17 Dec 2015 00:03:03 +0900</pubDate>
+      
+      <guid>https://kyoh86.work/posts/2015-12-17_00-03-03/</guid>
+      <description>tl;dr Require status checks to pass before merging to master デプロイはjenkinsおじさんをひっぱたくだけのかんたんなお仕事 デプロイするときに、_このデプロイで何が変わるのか_を</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Zsh on kyoh86.work</title>
+    <link>https://kyoh86.work/tags/zsh/</link>
+    <description>Recent content in Zsh on kyoh86.work</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Mon, 12 Dec 2016 00:52:12 +0900</lastBuildDate>
+    
+	<atom:link href="https://kyoh86.work/tags/zsh/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>zshの便利設定2016</title>
+      <link>https://kyoh86.work/posts/2016-12-12_00-52-12/</link>
+      <pubDate>Mon, 12 Dec 2016 00:52:12 +0900</pubDate>
+      
+      <guid>https://kyoh86.work/posts/2016-12-12_00-52-12/</guid>
+      <description>こんばんわ。WACULのプログラマー、 @kyoh86 です。 このエントリはWACUL Advent Calendar 2016の12日目の記事です。 年末といえば大掃除ですね。 押入れ、ト</description>
+    </item>
+    
+    <item>
+      <title>Homebrewでインストールしまくったあいつらの正体を知りに行く</title>
+      <link>https://kyoh86.work/posts/2016-01-09_09-44-27/</link>
+      <pubDate>Sat, 09 Jan 2016 09:44:27 +0900</pubDate>
+      
+      <guid>https://kyoh86.work/posts/2016-01-09_09-44-27/</guid>
+      <description>結論 brew list | grep -v &amp;#39;^lib&amp;#39; | while read line; do echo -n ${line}$&amp;#39;\t&amp;#39; brew info $line | grep -P &amp;#39;^https?://&amp;#39; | head -n1 done | column -t -s $&amp;#39;\t&amp;#39; &amp;gt; brew-list.txtatk https://library.gnome.org/devel/atk/ autoconf https://www.gnu.org/software/autoconf automake https://www.gnu.org/software/automake/ autotrace http://autotrace.sourceforge.net awscli https://aws.amazon.com/cli/ : そこそこ便利。 背景 Homebrewは、OSX界じゃあ</description>
+    </item>
+    
+  </channel>
+</rss>

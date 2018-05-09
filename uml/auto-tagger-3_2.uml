@@ -1,0 +1,28 @@
+@startuml
+participant WikiXMLParser as x
+participant MarkdownParser as m
+participant MorphoAnalyzer as a
+participant KeywordRanker as r
+
+loop all wikipages
+  [-> x : parse(path)
+  loop all texts
+    x -> a : push(path, text)
+    loop all words
+      a -> r : push(path, word)
+      note over r: count words
+    end
+  end
+end
+
+loop all documents
+  [-> m : parse(path)
+  loop all texts
+    m -> a : push(path, text)
+    loop all words
+      a -> r : push(path, word)
+      note over r: count words
+    end
+  end
+end
+@enduml
