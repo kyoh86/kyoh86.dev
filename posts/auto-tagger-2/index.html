@@ -253,48 +253,13 @@ MeCabをNeologdの辞書使ってゴリゴリするのが今のトレンドら�
 <h2 id="構成">構成</h2>
 
 <p>ザックリとした構成</p>
-<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-uml" data-lang="uml">@startuml
-class MarkdownParser {
-  parse(path: String)
-}
-interface TextStorage {
-  push(path: String, text: String)
-}
-interface WordStorage {
-  push(path: String, word: Word)
-}
-MarkdownParser --- TextStorage : text_storage
-class MorphoAnalyzer
-TextStorage &lt;|-- MorphoAnalyzer
-MorphoAnalyzer --- WordStorage : word_storage
-class KeywordRanker {
-  weighted_keywords(): Dict[str, List[Word]]
-}
-class Word {
-  word: String
-  feature_id: int
-  clazz(): Class
-  subclazz(): List[String]
-}
-WordStorage &lt;|-- KeywordRanker
-@enduml</code></pre></div>
-<p>ザックリとした処理の流れ</p>
-<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-uml" data-lang="uml">@startuml
-participant MarkdownParser as p
-participant MorphoAnalyzer as a
-participant KeywordRanker as r
 
-loop all documents
-  [-&gt; p : parse(path)
-  loop all texts
-    p -&gt; a : push(path, text)
-    loop all words
-      a -&gt; r : push(path, word)
-      note over r: count words
-    end
-  end
-end
-@enduml</code></pre></div>
+<p><img src="/uml/auto-tagger-2_1.png" alt="figure-1" /></p>
+
+<p>ザックリとした処理の流れ</p>
+
+<p><img src="/uml/auto-tagger-2_2.png" alt="figure-2" /></p>
+
           </article>
         </div>
         <div class='entry-meta-bottom'>

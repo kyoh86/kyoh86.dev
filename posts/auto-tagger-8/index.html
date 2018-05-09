@@ -218,112 +218,37 @@ ga('send', 'pageview');
 
 <p>学習データ（？）としてWikipediaの解析に時間がかかるので、
 Wikipediaの解析結果を保存しておいて、キーワードの選定時にはその解析結果を読み込んで使用するよう再構成する。</p>
-<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-uml" data-lang="uml">@startuml
-interface Parser {
-  parse(path: String)
-}
-class MarkdownParser
-class TextParser 
-Parser &lt;|-- MarkdownParser
-Parser &lt;|-- TextParser
-interface TextStorage {
-  push(path: String, text: String)
-}
-interface WordStorage {
-  push(path: String, word: Word)
-}
-MarkdownParser --- TextStorage : text_storage
-class MorphoAnalyzer
-TextStorage &lt;|-- MorphoAnalyzer
-MorphoAnalyzer --- WordStorage : word_storage
-class KeywordRanker {
-  weighted_keywords()
 
-  dump(file)
-  restore(file)
-}
-class Word {
-  word: String
-  feature_id String
-  class(): Class
-  subclass(): List[String]
-}
-WordStorage &lt;|-- KeywordRanker
-@enduml</code></pre></div>
+<p><img src="/uml/auto-tagger-8_1.png" alt="figure-1" /></p>
+
 <p><code>dump</code>/<code>restore</code>を<code>KeywordRanker</code> に追加した。</p>
 
 <h2 id="処理の流れ-再修正版">処理の流れ（再修正版）</h2>
 
 <p>併せて処理の流れも少し変更する。</p>
-<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-uml" data-lang="uml">@startuml
-participant TextParser as t
-participant MarkdownParser as m
-participant MorphoAnalyzer as a
-participant KeywordRanker as r
-database pickle as p
 
-== study wiki data ==
-loop all wikipages
-  [-&gt; t : parse(path)
-  loop all texts
-    t -&gt; a : push(path, text)
-    loop all words
-      a -&gt; r : push(path, word)
-      note over r: count words
-    end
-  end
-end
+<p><img src="/uml/auto-tagger-8_2.png" alt="figure-2" /></p>
 
-r -&gt; p : dump
-
-== rank words ==
-
-r &lt;- p : restore
-
-loop all documents
-  [-&gt; m : parse(path)
-  loop all texts
-    m -&gt; a : push(path, text)
-    loop all words
-      a -&gt; r : push(path, word)
-      note over r: count words
-    end
-  end
-end
-@enduml</code></pre></div>
 <h2 id="dumpする内容">Dumpする内容</h2>
 
-<p>BM25の関数も、学習時に使用するWikipediaの文書と、タグ付けしたい文書（以下「対象文書」）を分離した形に変えておく。</p>
+<p>BM25の関数</p>
 
 <p>$$
-CW(w,d) = IDF_D(w) \cdot IDF_W(w) \cdot TF(w,d) \cdot \frac{k_1 + 1}{k_1 \cdot (1 - b + (b \cdot NDL(d))) + TF(w,d)}
+CW(w,d) = IDF(w) \cdot TF(w,d) \cdot \frac{k_1 + 1}{k_1 \cdot (1 - b + (b \cdot NDL(d))) + TF(w,d)}
 $$</p>
 
-<ul>
-<li>$ IDF_W(w) $ : WikipediaにおけるIDF
+<p>を、学習時に使用するWikipediaの文書と、タグ付けしたい文書（以下「対象文書」）を分離した形に変えると、
+IDFとNDLの定義が変わる。</p>
 
 <ul>
-<li>$ IDF_W(w) = log( \frac{\text{Wikipedia文書の総数}}{\text{単語wが出現するWikipediaの文書数}} ) $</li>
-</ul></li>
-<li>$ IDF_D(w) $ : 対象文書群におけるIDF
-
-<ul>
-<li>$ IDF_D(w) = log( \frac{\text{対象文書群の総数}}{\text{単語wが出現する対象文書数}} ) $</li>
-</ul></li>
-</ul>
-
-<p>NDLも少し意味が変わっているので注意が必要。</p>
-
-<ul>
+<li>$ IDF(w) = log( \frac{(\text{対象文書群の総数}) + ( \text{Wikipedia文書の総数} )}{( \text{単語wが出現する対象文書数} ) + ( \text{単語wが出現するWikipediaの文書数} )} ) $</li>
 <li>$ NDL(d) = \frac{(\text{文書dの単語数}) \cdot (\text{Wikipedia文書の総数} + \text{対象文書群の総数})}{\text{Wikipediaの総単語数 + 対象文書群の総単語数}} $</li>
 </ul>
 
 <p>つまり、Wikipediaの情報として保存するべきデータは次の通り。</p>
-<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-uml" data-lang="uml">class DumpData {
-doc_count: int # Wikipediaの文書数
-word_count: int # Wikipediaの総単語数
-word_freq: Dict[Word, int] # 単語ごとの出現Wikipedia文書数
-}</code></pre></div>
+
+<p><img src="/uml/auto-tagger-8_3.png" alt="figure-3" /></p>
+
 <h2 id="実装">実装</h2>
 
 <p>JSON?とも思ったけど、Wikipediaに登場するすべての単語を保存するとなると、
@@ -376,6 +301,30 @@ word_freq: Dict[Word, int] # 単語ごとの出現Wikipedia文書数
     self.stored_doc_count = raw[<span style="color:#ed9d13">&#39;doc_count&#39;</span>]
     self.stored_word_count = raw[<span style="color:#ed9d13">&#39;word_count&#39;</span>]
     self.stored_word_freq = raw[<span style="color:#ed9d13">&#39;word_freq&#39;</span>]</code></pre></div>
+<h2 id="restore-したデータを重み算出に使う"><code>restore</code> したデータを重み算出に使う</h2>
+
+<p><code>KeywordRanker</code> の <code>weighted_keywords</code> において、 <code>stored_*</code> を計算に組み込んでおく。</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#fff">@@ -78,16 +78,22 @@ class KeywordRanker(WordStorage):
+</span><span style="color:#fff"></span>         すべての文書の平均単語数の逆数
+         (文書の総数) / (総単語数)
+         &#39;&#39;&#39;
+<span style="color:#d22323">-        adli = doc_count / self.word_count
+</span><span style="color:#d22323"></span><span style="color:#589819">+        adli = (doc_count + self.stored_doc_count) / \
+</span><span style="color:#589819">+            (self.word_count + self.stored_word_count)
+</span><span style="color:#589819"></span>
+         ret: Dict[str, List[Word]] = dd(lambda: [])
+
+         for word, freq in self.query_freq.items():
+<span style="color:#d22323">-            idf = log(doc_count / len(freq))
+</span><span style="color:#d22323"></span><span style="color:#589819">+            idf = log(
+</span><span style="color:#589819">+                (self.stored_doc_count + doc_count) / (len(freq) + self.stored_word_freq[word]))
+</span><span style="color:#589819"></span>
+             for path, count in freq.items():
+</code></pre></div>
+<p>さほど難しくはない。</p>
+
+<h2 id="next">next</h2>
+
 <p>次は、学習データじゃなくてタグ付けしたい対象文書を読み込みできるようにする。
 <code>MarkdownParser</code> の実装…</p>
 
