@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://kyoh86.work/posts/auto-tagger-9/</loc>
+    <lastmod>2018-05-13T22:00:33+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://kyoh86.work/posts/auto-tagger-8/</loc>
     <lastmod>2018-05-07T07:47:34+09:00</lastmod>
   </url>
@@ -351,7 +356,7 @@
   
   <url>
     <loc>https://kyoh86.work/posts/</loc>
-    <lastmod>2018-05-07T07:47:34+09:00</lastmod>
+    <lastmod>2018-05-13T22:00:33+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -415,7 +420,7 @@
   
   <url>
     <loc>https://kyoh86.work/categories/tech/</loc>
-    <lastmod>2018-05-07T07:47:34+09:00</lastmod>
+    <lastmod>2018-05-13T22:00:33+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -445,7 +450,7 @@
   
   <url>
     <loc>https://kyoh86.work/</loc>
-    <lastmod>2018-05-07T07:47:34+09:00</lastmod>
+    <lastmod>2018-05-13T22:00:33+09:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"

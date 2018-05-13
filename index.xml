@@ -6,10 +6,19 @@
     <description>Recent content on kyoh86.work</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Mon, 07 May 2018 07:47:34 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 13 May 2018 22:00:33 +0900</lastBuildDate>
     
 	<atom:link href="https://kyoh86.work/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>自動タグ付け機能でも作ってみる - 9: Markdownをパースする</title>
+      <link>https://kyoh86.work/posts/auto-tagger-9/</link>
+      <pubDate>Sun, 13 May 2018 22:00:33 +0900</pubDate>
+      
+      <guid>https://kyoh86.work/posts/auto-tagger-9/</guid>
+      <description>MarkdownParser を作る MarkdownParser については、MarkdownをAST的に扱えるライブラリとして、 mistletoe を使う。 mistletoe は、Markdownのレンダリングライブラリだけれど、</description>
+    </item>
     
     <item>
       <title>自動タグ付け機能でも作ってみる - 8: Dump/Restoreを実装する</title>

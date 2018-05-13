@@ -2,7 +2,7 @@
 <html lang="ja-jp">
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
- <title>自動タグ付け機能でも作ってみる - 8: Dump/Restoreを実装する </title>
+ <title>自動タグ付け機能でも作ってみる - 9: Markdownをパースする </title>
 
 
 
@@ -188,10 +188,8 @@ ga('send', 'pageview');
       <h2 class="screen-reader-text">Posts navigation</h2>
       <div class="nav-links">
         
-        <a class="prev page-numbers" href="https://kyoh86.work/posts/auto-tagger-7/">自動タグ付け機能でも作ってみる - 7: BM25の実装</a>
+        <a class="prev page-numbers" href="https://kyoh86.work/posts/auto-tagger-8/">自動タグ付け機能でも作ってみる - 8: Dump/Restoreを実装する</a>
         
-        
-        <a class="next page-numbers" href="https://kyoh86.work/posts/auto-tagger-9/">自動タグ付け機能でも作ってみる - 9: Markdownをパースする</a>
         
       </div>
     </nav>
@@ -199,7 +197,7 @@ ga('send', 'pageview');
     <div class="post entry">
     
       <div class="entry-meta">
-        <span class="date">May 07</span>
+        <span class="date">May 13</span>
         
           <span class="category">
             <span> / </span>
@@ -209,126 +207,167 @@ ga('send', 'pageview');
       </div>
 
       <div class='entry-header'>
-        <h1 class='entry-title'> 自動タグ付け機能でも作ってみる - 8: Dump/Restoreを実装する</h1>
+        <h1 class='entry-title'> 自動タグ付け機能でも作ってみる - 9: Markdownをパースする</h1>
       </div>
       <div class="entry-container">
         <div class="entry-content">
           <article>
             
 
-<h2 id="再構成">再構成</h2>
+<h2 id="markdownparser-を作る"><code>MarkdownParser</code> を作る</h2>
 
-<p>学習データ（？）としてWikipediaの解析に時間がかかるので、
-Wikipediaの解析結果を保存しておいて、キーワードの選定時にはその解析結果を読み込んで使用するよう再構成する。</p>
+<p><code>MarkdownParser</code> については、MarkdownをAST的に扱えるライブラリとして、
+<a href="https://github.com/miyuchina/mistletoe">mistletoe</a> を使う。</p>
 
-<p><img src="/uml/auto-tagger-8_1.png" alt="figure-1" /></p>
+<p><code>mistletoe</code> は、Markdownのレンダリングライブラリだけれど、レンダリングには各種シンタックスでの出力をサポートしている。
+<a href="https://github.com/miyuchina/mistletoe/blob/master/mistletoe/base_renderer.py">BaseRenderer</a> を自前でオーバーライドすれば、AST（のようなもの）を得ることができる。</p>
 
-<p><code>dump</code>/<code>restore</code>を<code>KeywordRanker</code> に追加した。</p>
+<p>BaseRendererの実装を見ると、どうやら文書のトークン種別毎に <code>renderer_(トークン種別名)</code> を定義して、引数でトークンを受け取れるらしい。</p>
 
-<h2 id="処理の流れ-再修正版">処理の流れ（再修正版）</h2>
+<p>どんなトークン種別があるかは、<a href="https://github.com/miyuchina/mistletoe/blob/e56ed7e14c6a7de67dd42fda0d97869c98e8492e/mistletoe/base_renderer.py#L48-L72">ソースコード</a>を見れば一目瞭然だった。</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#6ab825;font-weight:bold">def</span> __init__(self, *extras):
+        self.render_map = {
+            <span style="color:#ed9d13">&#39;Strong&#39;</span>:         self.render_strong,
+            <span style="color:#ed9d13">&#39;Emphasis&#39;</span>:       self.render_emphasis,
+            <span style="color:#ed9d13">&#39;InlineCode&#39;</span>:     self.render_inline_code,
+            <span style="color:#ed9d13">&#39;RawText&#39;</span>:        self.render_raw_text,
+            <span style="color:#ed9d13">&#39;Strikethrough&#39;</span>:  self.render_strikethrough,
+            <span style="color:#ed9d13">&#39;Image&#39;</span>:          self.render_image,
+            <span style="color:#ed9d13">&#39;FootnoteImage&#39;</span>:  self.render_footnote_image,
+            <span style="color:#ed9d13">&#39;Link&#39;</span>:           self.render_link,
+            <span style="color:#ed9d13">&#39;FootnoteLink&#39;</span>:   self.render_footnote_link,
+            <span style="color:#ed9d13">&#39;AutoLink&#39;</span>:       self.render_auto_link,
+            <span style="color:#ed9d13">&#39;EscapeSequence&#39;</span>: self.render_escape_sequence,
+            <span style="color:#ed9d13">&#39;Heading&#39;</span>:        self.render_heading,
+            <span style="color:#ed9d13">&#39;SetextHeading&#39;</span>:  self.render_heading,
+            <span style="color:#ed9d13">&#39;Quote&#39;</span>:          self.render_quote,
+            <span style="color:#ed9d13">&#39;Paragraph&#39;</span>:      self.render_paragraph,
+            <span style="color:#ed9d13">&#39;CodeFence&#39;</span>:      self.render_block_code,
+            <span style="color:#ed9d13">&#39;BlockCode&#39;</span>:      self.render_block_code,
+            <span style="color:#ed9d13">&#39;List&#39;</span>:           self.render_list,
+            <span style="color:#ed9d13">&#39;ListItem&#39;</span>:       self.render_list_item,
+            <span style="color:#ed9d13">&#39;Table&#39;</span>:          self.render_table,
+            <span style="color:#ed9d13">&#39;TableRow&#39;</span>:       self.render_table_row,
+            <span style="color:#ed9d13">&#39;TableCell&#39;</span>:      self.render_table_cell,
+            <span style="color:#ed9d13">&#39;Separator&#39;</span>:      self.render_separator,
+            <span style="color:#ed9d13">&#39;Document&#39;</span>:       self.render_document,
+            }</code></pre></div>
+<p>そして、同ライブラリの <a href="https://github.com/miyuchina/mistletoe/blob/e56ed7e14c6a7de67dd42fda0d97869c98e8492e/mistletoe/html_renderer.py#L24-L26">HTMLRenderer</a> を見る感じ、入れ子に対応するため、BaseRendererの <code>render_inner(self, token)</code> を呼んで中身のレンダリングをして、適当なFormatをして返すというのが流儀らしい。</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">render_strong</span>(self, token):
+        template = <span style="color:#ed9d13">&#39;&lt;strong&gt;{}&lt;/strong&gt;&#39;</span>
+        <span style="color:#6ab825;font-weight:bold">return</span> template.format(self.render_inner(token))
 
-<p>併せて処理の流れも少し変更する。</p>
-
-<p><img src="/uml/auto-tagger-8_2.png" alt="figure-2" /></p>
-
-<h2 id="dumpする内容">Dumpする内容</h2>
-
-<p>BM25の関数</p>
-
-<p>$$
-CW(w,d) = IDF(w) \cdot TF(w,d) \cdot \frac{k_1 + 1}{k_1 \cdot (1 - b + (b \cdot NDL(d))) + TF(w,d)}
-$$</p>
-
-<p>を、学習時に使用するWikipediaの文書と、タグ付けしたい文書（以下「対象文書」）を分離した形に変えると、
-IDFとNDLの定義が変わる。</p>
+    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">render_emphasis</span>(self, token):
+        template = <span style="color:#ed9d13">&#39;&lt;em&gt;{}&lt;/em&gt;&#39;</span>
+        <span style="color:#6ab825;font-weight:bold">return</span> template.format(self.render_inner(token))
+......</code></pre></div>
+<p>今回はレンダリングが目的ではないので、</p>
 
 <ul>
-<li>$ IDF(w) = log( \frac{(\text{対象文書群の総数}) + ( \text{Wikipedia文書の総数} )}{( \text{単語wが出現する対象文書数} ) + ( \text{単語wが出現するWikipediaの文書数} )} ) $</li>
-<li>$ NDL(d) = \frac{(\text{文書dの単語数}) \cdot (\text{Wikipedia文書の総数} + \text{対象文書群の総数})}{\text{Wikipediaの総単語数 + 対象文書群の総単語数}} $</li>
+<li>入れ子になりうるトークン種別では <code>render_inner</code> した結果の文字列を返すだけ
+
+<ul>
+<li>太字(<code>Strong</code>)</li>
+<li>斜体(<code>Emphasis</code>)</li>
+<li>インラインコード(<code>InlineCode</code>)</li>
+<li>画像(<code>Image</code>)</li>
+<li>リンク(<code>Link</code>)</li>
+<li>脚注画像(<code>FootnoteImage</code>)</li>
+<li>脚注リンク(<code>FootnoteLink</code>)</li>
+<li>エスケープシーケンス(<code>EscapeSequence</code>)</li>
+<li>リスト(<code>List</code>)</li>
+<li>テーブル(<code>Table</code>)</li>
+<li>テーブル行(<code>TableRow</code>)</li>
+</ul></li>
+<li>入れ子にはならないブロック系のトークン種別では <code>render_inner</code> した結果の文字列を <code>TextStorage</code> に流し込んでから返す (<code>render_store</code>)
+
+<ul>
+<li>見出し(<code>Heading</code>)</li>
+<li>引用(<code>Quote</code>)</li>
+<li>段落(<code>Paragraph</code>)</li>
+<li>リスト項目(<code>ListItem</code>)</li>
+</ul></li>
+<li>不要なトークンは空文字列を返す (後述の <code>render_ignroe</code>)
+
+<ul>
+<li>コードブロック(<code>BlockCode</code>)</li>
+<li>テーブルのセルの中身(<code>TableCell</code>)</li>
+<li>水平線(<code>Separator</code>)</li>
+<li>URLリンク(<code>AutoLink</code>)</li>
+<li>取り消し線(<code>Strikethrough</code>)</li>
+</ul></li>
 </ul>
 
-<p>つまり、Wikipediaの情報として保存するべきデータは次の通り。</p>
+<p>という構成で良さそう。</p>
 
-<p><img src="/uml/auto-tagger-8_3.png" alt="figure-3" /></p>
+<p>BaseRendererで構築しているrender_mapに手を入れて、上記のリストごとに呼び出すメソッドをマッピングしてやればいいだろう。</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">typing</span> <span style="color:#6ab825;font-weight:bold">import</span> TextIO, Any
 
-<h2 id="実装">実装</h2>
+<span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf">frontmatter</span>
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">mistletoe.base_renderer</span> <span style="color:#6ab825;font-weight:bold">import</span> BaseRenderer
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">mistletoe.span_token</span> <span style="color:#6ab825;font-weight:bold">import</span> RawText
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">mistletoe.block_token</span> <span style="color:#6ab825;font-weight:bold">import</span> Document
 
-<p>JSON?とも思ったけど、Wikipediaに登場するすべての単語を保存するとなると、
-それなりに大きいものになりそうなので、おとなしく <code>pickle</code> パッケージでバイナリにダンプしておく。</p>
-<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">def</span> __init__(self) -&gt; None:
-    <span style="color:#24909d">super</span>().__init__()
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">.text_storage</span> <span style="color:#6ab825;font-weight:bold">import</span> TextStorage
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">.parser</span> <span style="color:#6ab825;font-weight:bold">import</span> Parser
 
-    <span style="color:#999;font-style:italic"># 単語wの文書dにおける出現回数</span>
-    self.query_freq: Dict[Word, Dict[<span style="color:#24909d">str</span>, <span style="color:#24909d">int</span>]] = dd(<span style="color:#6ab825;font-weight:bold">lambda</span>: dd(<span style="color:#24909d">int</span>))
-    <span style="color:#999;font-style:italic"># 文書dの単語数</span>
-    self.doc_length: Dict[<span style="color:#24909d">str</span>, <span style="color:#24909d">int</span>] = dd(<span style="color:#24909d">int</span>)
-    <span style="color:#999;font-style:italic"># 総単語数</span>
-    self.word_count: <span style="color:#24909d">int</span> = <span style="color:#3677a9">0</span>
 
-    <span style="color:#999;font-style:italic"># 集計済み全文書数</span>
-    self.stored_doc_count: <span style="color:#24909d">int</span> = <span style="color:#3677a9">0</span>
-    <span style="color:#999;font-style:italic"># 集計済み全単語数</span>
-    self.stored_word_count: <span style="color:#24909d">int</span> = <span style="color:#3677a9">0</span>
-    <span style="color:#999;font-style:italic"># 集計済み単語出現文書数</span>
-    self.stored_word_freq: Dict[Word, <span style="color:#24909d">int</span>] = dd(<span style="color:#24909d">int</span>)
+<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf">MarkdownParser</span>(BaseRenderer, Parser):
+    <span style="color:#6ab825;font-weight:bold">def</span> __init__(self, path: <span style="color:#24909d">str</span>, storage: TextStorage) -&gt; None:
+        <span style="color:#24909d">super</span>().__init__()
+        self.path = path
+        self.storage = storage
 
-<span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">dump</span>(self, stream: BinaryIO) -&gt; None:
-    pickle.dump({
-        <span style="color:#ed9d13">&#34;doc_count&#34;</span>: <span style="color:#24909d">len</span>(self.doc_length),
-        <span style="color:#ed9d13">&#34;word_count&#34;</span>: self.word_count,
-        <span style="color:#ed9d13">&#34;word_freq&#34;</span>: {word: <span style="color:#24909d">len</span>(freq) <span style="color:#6ab825;font-weight:bold">for</span> word, freq <span style="color:#6ab825;font-weight:bold">in</span> self.query_freq.items()},
-    }, stream)
+        <span style="color:#6ab825;font-weight:bold">for</span> plain <span style="color:#6ab825;font-weight:bold">in</span> [<span style="color:#ed9d13">&#34;Strong&#34;</span>, <span style="color:#ed9d13">&#34;Emphasis&#34;</span>, <span style="color:#ed9d13">&#34;InlineCode&#34;</span>, <span style="color:#ed9d13">&#34;Image&#34;</span>, <span style="color:#ed9d13">&#34;Link&#34;</span>, 
+                      <span style="color:#ed9d13">&#34;FootnoteImage&#34;</span>,<span style="color:#ed9d13">&#34;FootnoteLink&#34;</span>, <span style="color:#ed9d13">&#34;EscapeSequence&#34;</span>,
+                      <span style="color:#ed9d13">&#34;List&#34;</span>, <span style="color:#ed9d13">&#34;Table&#34;</span>, <span style="color:#ed9d13">&#34;TableRow&#34;</span>]:
+            self.render_map[plain] = self.render_inner
 
-<span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">restore</span>(self, stream: BinaryIO) -&gt; None:
-    raw = pickle.load(stream)
-    self.stored_doc_count = raw[<span style="color:#ed9d13">&#39;doc_count&#39;</span>]
-    self.stored_word_count = raw[<span style="color:#ed9d13">&#39;word_count&#39;</span>]
-    self.stored_word_freq = raw[<span style="color:#ed9d13">&#39;word_freq&#39;</span>]</code></pre></div>
-<p>こう書いてみると、インクリメンタルに学習できたほうが良さそうに見える。
-<code>restore</code> して追加の学習データを取り込んで、再度 <code>dump</code> できるように書き換え。</p>
-<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">dump</span>(self, stream: BinaryIO) -&gt; None:
-    word_freq: Dict[Word, <span style="color:#24909d">int</span>] =
-        {word: <span style="color:#24909d">len</span>(freq) <span style="color:#6ab825;font-weight:bold">for</span> word, freq <span style="color:#6ab825;font-weight:bold">in</span> self.query_freq.items()}
-    <span style="color:#6ab825;font-weight:bold">for</span> word, count <span style="color:#6ab825;font-weight:bold">in</span> self.stored_word_freq.items():
-        word_freq[word] += count
+        <span style="color:#6ab825;font-weight:bold">for</span> store <span style="color:#6ab825;font-weight:bold">in</span> [<span style="color:#ed9d13">&#34;Heading&#34;</span>, <span style="color:#ed9d13">&#34;Quote&#34;</span>, <span style="color:#ed9d13">&#34;Paragraph&#34;</span>, <span style="color:#ed9d13">&#34;ListItem&#34;</span>]:
+            self.render_map[store] = self.render_store
 
-    pickle.dump({
-        <span style="color:#ed9d13">&#34;doc_count&#34;</span>: <span style="color:#24909d">len</span>(self.doc_length) + self.stored_doc_count,
-        <span style="color:#ed9d13">&#34;word_count&#34;</span>: self.word_count + self.stored_word_count,
-        <span style="color:#ed9d13">&#34;word_freq&#34;</span>: word_freq
-    }, stream)
+        <span style="color:#6ab825;font-weight:bold">for</span> ignore <span style="color:#6ab825;font-weight:bold">in</span> [<span style="color:#ed9d13">&#34;BlockCode&#34;</span>, <span style="color:#ed9d13">&#34;TableCell&#34;</span>, <span style="color:#ed9d13">&#34;Separator&#34;</span>,
+                       <span style="color:#ed9d13">&#34;AutoLink&#34;</span>, <span style="color:#ed9d13">&#34;Strikethrough&#34;</span>]:
+            self.render_map[ignore] = self.render_ignore
 
-<span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">restore</span>(self, stream: BinaryIO) -&gt; None:
-    raw = pickle.load(stream)
-    self.stored_doc_count = raw[<span style="color:#ed9d13">&#39;doc_count&#39;</span>]
-    self.stored_word_count = raw[<span style="color:#ed9d13">&#39;word_count&#39;</span>]
-    self.stored_word_freq = raw[<span style="color:#ed9d13">&#39;word_freq&#39;</span>]</code></pre></div>
-<h2 id="restore-したデータを重み算出に使う"><code>restore</code> したデータを重み算出に使う</h2>
+    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">parse</span>(self, stream: TextIO) -&gt; None:
+        post = frontmatter.load(stream)
+        self.render(Document(post.content))
 
-<p><code>KeywordRanker</code> の <code>weighted_keywords</code> において、 <code>stored_*</code> を計算に組み込んでおく。</p>
-<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#fff">@@ -78,16 +78,22 @@ class KeywordRanker(WordStorage):
-</span><span style="color:#fff"></span>         すべての文書の平均単語数の逆数
-         (文書の総数) / (総単語数)
-         &#39;&#39;&#39;
-<span style="color:#d22323">-        adli = doc_count / self.word_count
-</span><span style="color:#d22323"></span><span style="color:#589819">+        adli = (doc_count + self.stored_doc_count) / \
-</span><span style="color:#589819">+            (self.word_count + self.stored_word_count)
-</span><span style="color:#589819"></span>
-         ret: Dict[str, List[Word]] = dd(lambda: [])
+    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">render_store</span>(self, token: Any) -&gt; Any:
+        inner = self.render_inner(token)
+        self.storage.push(self.path, inner)
+        <span style="color:#6ab825;font-weight:bold">return</span> inner
 
-         for word, freq in self.query_freq.items():
-<span style="color:#d22323">-            idf = log(doc_count / len(freq))
-</span><span style="color:#d22323"></span><span style="color:#589819">+            idf = log(
-</span><span style="color:#589819">+                (self.stored_doc_count + doc_count) / (len(freq) + self.stored_word_freq[word]))
-</span><span style="color:#589819"></span>
-             for path, count in freq.items():
-</code></pre></div>
-<p>さほど難しくはない。</p>
+    <span style="color:#ffa500">@staticmethod</span>
+    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">render_ignore</span>(token: Any) -&gt; Any:
+        <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#ed9d13">&#39;&#39;</span>
 
-<h2 id="next">next</h2>
+    <span style="color:#ffa500">@staticmethod</span>
+    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">render_raw_text</span>(token: RawText) -&gt; Any:
+        <span style="color:#6ab825;font-weight:bold">return</span> token.content
 
-<p>次は、学習データじゃなくてタグ付けしたい対象文書を読み込みできるようにする。
-<code>MarkdownParser</code> の実装…</p>
+    <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">render_document</span>(self, token: Document) -&gt; Any:
+        self.footnotes.update(token.footnotes)
+        <span style="color:#6ab825;font-weight:bold">return</span> self.render_inner(token)
+
+
+<span style="color:#6ab825;font-weight:bold">if</span> __name__ == <span style="color:#ed9d13">&#39;__main__&#39;</span>:
+    <span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">io</span> <span style="color:#6ab825;font-weight:bold">import</span> StringIO
+
+    <span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf">TextPrinter</span>(TextStorage):
+        <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">push</span>(self, path: <span style="color:#24909d">str</span>, text: <span style="color:#24909d">str</span>) -&gt; None:
+            <span style="color:#6ab825;font-weight:bold">print</span>(text)
+
+    stream = StringIO(<span style="color:#ed9d13">&#39;&#39;&#39;# test `code` in the H1
+</span><span style="color:#ed9d13">
+</span><span style="color:#ed9d13">paragraph contains **`strong code`**, [link](//example.com) and &lt;//example.com/autolink&gt;&#39;&#39;&#39;</span>)
+    MarkdownParser(<span style="color:#ed9d13">&#34;&#34;</span>, TextPrinter()).parse(stream)</code></pre></div>
+<p>呼び出してみる。</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ python -m gen_tags.markdown_parser
+<span style="color:#24909d">test</span> code in the H1
+paragraph contains strong code, link and</code></pre></div>
+<p>できてる感じ。</p>
 
           </article>
         </div>
@@ -423,10 +462,8 @@ IDFとNDLの定義が変わる。</p>
       <h2 class="screen-reader-text">Posts navigation</h2>
       <div class="nav-links">
         
-        <a class="prev page-numbers" href="https://kyoh86.work/posts/auto-tagger-7/">自動タグ付け機能でも作ってみる - 7: BM25の実装</a>
+        <a class="prev page-numbers" href="https://kyoh86.work/posts/auto-tagger-8/">自動タグ付け機能でも作ってみる - 8: Dump/Restoreを実装する</a>
         
-        
-        <a class="next page-numbers" href="https://kyoh86.work/posts/auto-tagger-9/">自動タグ付け機能でも作ってみる - 9: Markdownをパースする</a>
         
       </div>
     </nav>
