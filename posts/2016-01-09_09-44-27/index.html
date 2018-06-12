@@ -34,7 +34,7 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
-<script async src='//www.google-analytics.com/analytics.js'></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 </head>
 
@@ -224,11 +224,11 @@ if (!doNotTrack) {
 <div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-brew-list-v.sh" data-lang="brew-list-v.sh">brew list | grep -v <span style="color:#ed9d13">&#39;^lib&#39;</span> | <span style="color:#6ab825;font-weight:bold">while</span> <span style="color:#24909d">read</span> line; <span style="color:#6ab825;font-weight:bold">do</span>
   <span style="color:#24909d">echo</span> -n <span style="color:#ed9d13">${</span><span style="color:#40ffff">line</span><span style="color:#ed9d13">}</span><span style="color:#ed9d13">$&#39;\t&#39;</span>
   brew info <span style="color:#40ffff">$line</span> | grep -P <span style="color:#ed9d13">&#39;^https?://&#39;</span> | head -n1
-<span style="color:#6ab825;font-weight:bold">done</span> | column -t -s <span style="color:#ed9d13">$&#39;\t&#39;</span> &gt; brew-list.txt</code></pre></div><div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-brew-list.txt" data-lang="brew-list.txt">atk                        https:<span style="color:#999;font-style:italic">//library.gnome.org/devel/atk/</span>
-autoconf                   https:<span style="color:#999;font-style:italic">//www.gnu.org/software/autoconf</span>
-automake                   https:<span style="color:#999;font-style:italic">//www.gnu.org/software/automake/</span>
-autotrace                  http:<span style="color:#999;font-style:italic">//autotrace.sourceforge.net</span>
-awscli                     https:<span style="color:#999;font-style:italic">//aws.amazon.com/cli/</span>
+<span style="color:#6ab825;font-weight:bold">done</span> | column -t -s <span style="color:#ed9d13">$&#39;\t&#39;</span> &gt; brew-list.txt</code></pre></div><div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-brew-list.txt" data-lang="brew-list.txt">atk                        https://library.gnome.org/devel/atk/
+autoconf                   https://www.gnu.org/software/autoconf
+automake                   https://www.gnu.org/software/automake/
+autotrace                  http://autotrace.sourceforge.net
+awscli                     https://aws.amazon.com/cli/
 :</code></pre></div>
 <p>そこそこ便利。</p>
 
