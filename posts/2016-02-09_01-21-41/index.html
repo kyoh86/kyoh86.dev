@@ -98,7 +98,7 @@ if (!doNotTrack) {
 <h1 id="背景">背景</h1>
 
 <p>Goでの開発においては、型付け言語の利点を最大限に活かしたいところです。
-<a href="https://golang.org/cmd/vet/">go-vet</a>や<a href="https://github.com/golang/lint">golint</a>を通していれば、潜在的バグに悩まされる確率を、劇的に下げることができる・・・実に素晴らしいですよね。</p>
+<a href="https://golang.org/cmd/vet/" target="_blank">go-vet</a>や<a href="https://github.com/golang/lint" target="_blank">golint</a>を通していれば、潜在的バグに悩まされる確率を、劇的に下げることができる・・・実に素晴らしいですよね。</p>
 
 <p>ですが、時にプロダクトの黎明期にあって、「こまいコト気にしてたらやってらんないから、とにかく作る！」と勢いに任せて作るのも大事なことだったりします。</p>
 
@@ -124,7 +124,7 @@ GitHubのPull-RequestとCIツールを組み合わせれば、</p>
 
 <h1 id="解決策">解決策</h1>
 
-<p>用意するものは<a href="https://github.com/kyoh86/gogh">gogh</a>だけ<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>です。</p>
+<p>用意するものは<a href="https://github.com/kyoh86/gogh" target="_blank">gogh</a>だけ<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>です。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lint.sh" data-lang="lint.sh">owner<span style="color:#f92672">=</span>                    <span style="color:#75715e"># 対象リポジトリ名（オーナー名）を設定</span>
 repos<span style="color:#f92672">=</span>                    <span style="color:#75715e"># 対象リポジトリ名を設定</span>
 min_confidence<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>.9        <span style="color:#75715e"># 警告のレベル</span>
@@ -209,7 +209,7 @@ head<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>git
 <ol>
 <li id="fn:1">ステマです。拙作のgithubクライアントです。同様の機能があるツールがアレばそれでもいいですし、<code>cURL</code>と<code>jq</code>を組み合わせて頑張ってもいけるはず。
  <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
-<li id="fn:2">ここでは、min_confidence=0.9としてlintの基準をやや緩めに設定しています。（<a href="https://github.com/golang/lint/blob/master/lint.go">参照</a>）。<code>Id =&gt; ID</code>など、辞書ベースが必要な命名規則ってどうなの、という疑問が未だ拭えないのと、割とメジャーなライブラリ（<a href="https://labix.org/mgo">mgo</a>など）が堂々とこれを破っていることもあり、この規則の適用には慎重になっています。
+<li id="fn:2">ここでは、min_confidence=0.9としてlintの基準をやや緩めに設定しています。（<a href="https://github.com/golang/lint/blob/master/lint.go" target="_blank">参照</a>）。<code>Id =&gt; ID</code>など、辞書ベースが必要な命名規則ってどうなの、という疑問が未だ拭えないのと、割とメジャーなライブラリ（<a href="https://labix.org/mgo" target="_blank">mgo</a>など）が堂々とこれを破っていることもあり、この規則の適用には慎重になっています。
  <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
 </ol>
 </div>
@@ -258,6 +258,15 @@ head<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>git
 		<input type="hidden" name="sitesearch" value="https://kyoh86.work/" />
 	</form>
 </div>
+<div class="widget-recent widget">
+	<h4 class="widget__title"></h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/tools/gogh/">Gogh</a></li>
+			<li class="widget__item"><a class="widget__link" href="/tools/richgo/">Richgo</a></li>
+		</ul>
+	</div>
+</div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title"></h4>
 	<div class="widget__content">
@@ -277,11 +286,13 @@ head<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>git
 		<a class="widget-taglist__link widget__link btn" href="/tags/php" title="P h p">P h p (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/perl6" title="Perl6">Perl6 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/semanticversioning" title="Semantic versioning">Semantic versioning (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tool" title="Tool">Tool (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/vscode" title="V s code">V s code (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/visualstudiocode" title="Visual studio code">Visual studio code (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/web" title="Web">Web (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/zsh" title="Zsh">Zsh (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/cli" title="Cli">Cli (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/go" title="Go">Go (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/golang" title="Golang">Golang (13)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/homebrew" title="Homebrew">Homebrew (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/jxa" title="J x a">J x a (1)</a>

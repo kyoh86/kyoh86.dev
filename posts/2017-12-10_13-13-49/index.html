@@ -98,7 +98,7 @@ if (!doNotTrack) {
 
 <h1 id="実物">実物</h1>
 
-<p><a href="https://github.com/kyoh86/go-init">go-init</a>というのを作って運用してます。
+<p><a href="https://github.com/kyoh86/go-init" target="_blank">go-init</a>というのを作って運用してます。
 中には <code>init.sh</code> が入ってるので、 <code>init.sh ${OWNER} ${NAME}</code> とかすると、 <code>github.com/${OWNER}/${NAME}</code> で運用する前提のディレクトリが出来上がるので、 <code>git init</code> とかして遊ぶといいと思います。
 本当はこいつをscaffoldingツールとして仕上げてこの記事を書きたかったんですが、時間切れです。
 <del>yeomanでいいじゃん</del></p>
@@ -112,22 +112,22 @@ if (!doNotTrack) {
 <p>今年メンテしていた自分のリポジトリを雑に振り返ってみると…</p>
 
 <ul>
-<li><a href="https://github.com/kyoh86/ask">ask</a>
+<li><a href="https://github.com/kyoh86/ask" target="_blank">ask</a>
 
 <ul>
 <li>CLIでダイアログだすやーつ。Y/NとかStringとか取れちゃう。嬉しい！ <del>何番煎じだよ</del></li>
 </ul></li>
-<li><a href="https://github.com/kyoh86/deject">deject</a>
+<li><a href="https://github.com/kyoh86/deject" target="_blank">deject</a>
 
 <ul>
 <li>ローカルリポジトリ管理する君。dog fooding しちゃいるものの、将来性が見えない。 <del>何番煎じｄ</del></li>
 </ul></li>
-<li><a href="https://github.com/kyoh86/git-branches">git-branches</a>
+<li><a href="https://github.com/kyoh86/git-branches" target="_blank">git-branches</a>
 
 <ul>
 <li><code>git-branch --list</code> 見にくいよ、fzfとかと繋げた時に見やすいの作ろ、と思ったやつ <del><code>git-for-each-ref</code>でいいじゃん</del></li>
 </ul></li>
-<li><a href="https://github.com/kyoh86/git-prompt">git-prompt</a>
+<li><a href="https://github.com/kyoh86/git-prompt" target="_blank">git-prompt</a>
 
 <ul>
 <li>tmuxとか、zshのプロンプトにさ、gitの情報出したいじゃん</li>
@@ -135,28 +135,28 @@ if (!doNotTrack) {
 <li>shellでやってもいいけどさ、重いじゃん
 そうだ、goでやろう。 <strong>結構速いよ！</strong>（当社比）</li>
 </ul></li>
-<li><a href="https://github.com/kyoh86/git-vertag">git-vertag</a>
+<li><a href="https://github.com/kyoh86/git-vertag" target="_blank">git-vertag</a>
 
 <ul>
 <li>segverタグ管理したいけど、<code>npm</code> 。俺のローカルに <code>node</code> がいくつ入ってると思ってるんだ。 <del>何番線</del></li>
 </ul></li>
-<li><a href="https://github.com/kyoh86/go-spdx">go-spdx</a>
+<li><a href="https://github.com/kyoh86/go-spdx" target="_blank">go-spdx</a>
 
 <ul>
-<li><a href="https://spdx.org/licenses/">SPDX Licenses</a>（<code>MIT+APSL-1.0</code>とか）パースしてやんよ！なんならLICENSE本文も出したるぜ！ <del>誰得</del></li>
+<li><a href="https://spdx.org/licenses/" target="_blank">SPDX Licenses</a>（<code>MIT+APSL-1.0</code>とか）パースしてやんよ！なんならLICENSE本文も出したるぜ！ <del>誰得</del></li>
 </ul></li>
-<li><a href="https://github.com/kyoh86/richgo">richgo</a>
+<li><a href="https://github.com/kyoh86/richgo" target="_blank">richgo</a>
 
 <ul>
 <li>go test 見にくいんじゃ！！FAIL を赤文字にしたらんかい！！ <strong>スター結構もらったよ！ (^O^)</strong></li>
 </ul></li>
-<li><a href="https://github.com/kyoh86/xdg">xdg</a>
+<li><a href="https://github.com/kyoh86/xdg" target="_blank">xdg</a>
 
 <ul>
-<li><a href="https://specifications.freedesktop.org/basedir-spec/latest/">XDG Base Directory Specification</a> で示されるディレクトリの一覧を色々取得するやつ。</li>
+<li><a href="https://specifications.freedesktop.org/basedir-spec/latest/" target="_blank">XDG Base Directory Specification</a> で示されるディレクトリの一覧を色々取得するやつ。</li>
 <li>仕様以上でも以下でもないのがなくて、しょうがなく作った。なんで無いの？ <del>誰もいらないかｒ</del></li>
 </ul></li>
-<li><a href="https://github.com/kyoh86/zshist">zshist</a>
+<li><a href="https://github.com/kyoh86/zshist" target="_blank">zshist</a>
 
 <ul>
 <li>zshのhistってなんでvimでいじると文字化けるの。馬鹿なの。と思ってdecode&amp;encodeするやつ。shellでおｋ</li>
@@ -181,19 +181,19 @@ if (!doNotTrack) {
 <h2 id="選択した物と動機-という名の感想">選択した物と動機（という名の感想）</h2>
 
 <ul>
-<li>コマンドライン引数の処理は<a href="https://github.com/alecthomas/kingpin">kingpin</a>最強
+<li>コマンドライン引数の処理は<a href="https://github.com/alecthomas/kingpin" target="_blank">kingpin</a>最強
 
 <ul>
 <li>若干やれることが多すぎるけど、取り回しがいい</li>
 </ul></li>
-<li>CIはなんだかんだ<a href="https://circleci.com">CircleCI</a>がバランスいい
+<li>CIはなんだかんだ<a href="https://circleci.com" target="_blank">CircleCI</a>がバランスいい
 
 <ul>
-<li><a href="https://app.wercker.com">Wercker</a>シャレオツ最強かと思ったけど、<strong>漢気が足りない。</strong></li>
+<li><a href="https://app.wercker.com" target="_blank">Wercker</a>シャレオツ最強かと思ったけど、<strong>漢気が足りない。</strong></li>
 </ul></li>
-<li>Coverageは<a href="https://codecov.io">Codecov</a>が良さそう。Coverallsでもいいんだけど、ちょと見づらい</li>
+<li>Coverageは<a href="https://codecov.io" target="_blank">Codecov</a>が良さそう。Coverallsでもいいんだけど、ちょと見づらい</li>
 <li>LICENSEは何も考えずにMITでいい</li>
-<li><a href="https://github.com/goreleaser/goreleaser">goreleaser</a>で、マルチプラットフォーム対応のバイナリリリースも簡単に
+<li><a href="https://github.com/goreleaser/goreleaser" target="_blank">goreleaser</a>で、マルチプラットフォーム対応のバイナリリリースも簡単に
 
 <ul>
 <li>homebrewに載せるのすら簡単。すばら</li>
@@ -201,7 +201,7 @@ if (!doNotTrack) {
 <li>Makefileはやっぱりあったほうがいい
 
 <ul>
-<li><a href="https://github.com/golang/dep">dep</a> だ <a href="https://github.com/shuLhan/go-bindata">go-bindata</a> だと、golang周りのツール類が群雄割拠している</li>
+<li><a href="https://github.com/golang/dep" target="_blank">dep</a> だ <a href="https://github.com/shuLhan/go-bindata" target="_blank">go-bindata</a> だと、golang周りのツール類が群雄割拠している</li>
 <li>contributionのためのentrypointとして、タスクランナーはあったほうが優しみ</li>
 <li>golang開発のタスクランナーにgulpとか持ち出すのナンセンス。Makefileでいい</li>
 </ul></li>
@@ -258,6 +258,15 @@ if (!doNotTrack) {
 		<input type="hidden" name="sitesearch" value="https://kyoh86.work/" />
 	</form>
 </div>
+<div class="widget-recent widget">
+	<h4 class="widget__title"></h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/tools/gogh/">Gogh</a></li>
+			<li class="widget__item"><a class="widget__link" href="/tools/richgo/">Richgo</a></li>
+		</ul>
+	</div>
+</div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title"></h4>
 	<div class="widget__content">
@@ -277,11 +286,13 @@ if (!doNotTrack) {
 		<a class="widget-taglist__link widget__link btn" href="/tags/php" title="P h p">P h p (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/perl6" title="Perl6">Perl6 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/semanticversioning" title="Semantic versioning">Semantic versioning (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tool" title="Tool">Tool (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/vscode" title="V s code">V s code (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/visualstudiocode" title="Visual studio code">Visual studio code (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/web" title="Web">Web (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/zsh" title="Zsh">Zsh (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/cli" title="Cli">Cli (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/go" title="Go">Go (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/golang" title="Golang">Golang (13)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/homebrew" title="Homebrew">Homebrew (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/jxa" title="J x a">J x a (1)</a>

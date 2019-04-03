@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ja-jp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Gogh - kyoh86 works</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<meta name="generator" content="Hugo 0.54.0" />
+	<meta property="og:title" content="Gogh" />
+<meta property="og:description" content="gogh is the GO GitHub project manager" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kyoh86.work/tools/gogh/" />
+
+
+	<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Gogh"/>
+<meta name="twitter:description" content="gogh is the GO GitHub project manager"/>
+
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-70974996-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container">
+		<div class="logo">
+			<a class="logo__link" href="/" title="kyoh86 works" rel="home">
+				<div class="logo__title">kyoh86 works</div>
+				<div class="logo__tagline">技術とか写真とか料理とか</div>
+			</a>
+		</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1"></span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">Home</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/posts">Blog</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about">About</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Gogh</h1>
+			<div class="post__meta meta">
+<div class="meta__item-categories meta__item">
+	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+	<span class="meta__text"><a class="meta__link" href="/categories/tool" rel="category">Tool</a></span>
+</div>
+</div>
+		</header><div class="content post__content clearfix">
+			<p><a href="https://github.com/kyoh86/gogh" target="_blank">gogh</a> is the GO GitHub project manager</p>
+
+<h2 id="description">DESCRIPTION</h2>
+
+<p><strong><code>gogh</code> is forked from <a href="https://github.com/motemen/ghq" target="_blank">ghq</a>.</strong></p>
+
+<p><code>gogh</code> provides a way to organize remote repository clones, like <code>go get</code> does.
+When you clone a remote repository by <code>gogh get</code>, gogh makes a directory under a specific root directory (by default <code>~/go/src</code>) using the remote repository URL&rsquo;s host and path.
+And creating new one by <code>gogh new</code>, gogh make both of a local project and a remote repository.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ gogh get https://github.com/kyoh86/gogh
+# Runs `git clone https://github.com/kyoh86/gogh ~/go/src/github.com/kyoh86/gogh`</pre></div>
+<p>You can also list projects (local repositories) (<code>gogh list</code>), find a project (<code>gogh find</code>).</p>
+
+<h2 id="synopsis">SYNOPSIS</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">gogh [--config=&lt;CONFIG&gt;] get [--update,u] [--ssh] [--shallow] [(&lt;repository URL&gt; | &lt;user&gt;/&lt;project&gt; | &lt;project&gt;)...]
+gogh [--config=&lt;CONFIG&gt;] bulk-get [--update,u] [--ssh] [--shallow]
+gogh [--config=&lt;CONFIG&gt;] pipe-get [--update,u] [--ssh] [--shallow] &lt;command&gt; &lt;command-args&gt;...
+gogh [--config=&lt;CONFIG&gt;] fork [--update,u] [--ssh] [--shallow] [--no-remote] [--remote-name=&lt;REMOTE&gt;] [--org=&lt;ORGANIZATION] (&lt;repository URL&gt; | &lt;user&gt;/&lt;project&gt; | &lt;project&gt;)
+gogh [--config=&lt;CONFIG&gt;] new [--update,u] [--ssh] [--shallow] [--no-remote] [--remote-name=&lt;REMOTE&gt;] [--org=&lt;ORGANIZATION] (&lt;repository URL&gt; | &lt;user&gt;/&lt;project&gt; | &lt;project&gt;)
+gogh [--config=&lt;CONFIG&gt;] list [--format,f=short|full|relative|url] [--primary,p] [&lt;query&gt;]
+gogh [--config=&lt;CONFIG&gt;] dump [--primary,p] [&lt;query&gt;]
+gogh [--config=&lt;CONFIG&gt;] find (&lt;project&gt;)
+gogh [--config=&lt;CONFIG&gt;] where [--primary,p] [&lt;query&gt;]
+gogh [--config=&lt;CONFIG&gt;] repo [--user=&lt;USER&gt;] [--own] [--collaborate] [--member] [--visibility=&lt;VISIBILITY&gt;] [--sort=&lt;SORT&gt;] [--direction=&lt;DIRECTION&gt;]
+gogh [--config=&lt;CONFIG&gt;] root [--all]</pre></div>
+<h2 id="installation">INSTALLATION</h2>
+
+<p>For Golang developers:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">go get github.com/kyoh86/gogh</pre></div>
+<p>For <a href="https://brew.sh/" target="_blank">Homebrew</a> users:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">brew tap kyoh86/tap
+brew update
+brew install gogh</pre></div>
+<h2 id="configurations">CONFIGURATIONS</h2>
+
+<p>It&rsquo;s possible to change targets by a preference <strong>YAML file</strong>.
+If you don&rsquo;t set <code>--config</code> flag or <code>GOGH_CONFIG</code> environment variable,
+<code>gogh</code> loads configurations from <code>${XDG_CONFIG_HOME:-$HOME/.config}/gogh/config.yaml</code></p>
+
+<p>Each of propoerties are able to be overwritten by environment variables.</p>
+
+<h3 id="required-github-user">(REQUIRED) <code>github.user</code></h3>
+
+<p>A name of your GitHub user (i.e. <code>kyoh86</code>).</p>
+
+<p>If an environment variable <code>GOGH_GITHUB_USER</code> is set, its value is used instead.</p>
+
+<h3 id="root"><code>root</code></h3>
+
+<p>The paths to directory under which cloned repositories are placed.
+See <a href="#DIRECTORY+STRUCTURES">DIRECTORY STRUCTURES</a> below. Default: <code>~/go/src</code>.</p>
+
+<p>This property can have multiple values.
+If so, the first one becomes primary one i.e. new repository clones are always created under it.
+You may want to specify <code>$GOPATH/src</code> as a secondary root.</p>
+
+<p>If an environment variable <code>GOGH_ROOT</code> is set, its value is used instead.</p>
+
+<h3 id="log-level"><code>log.level</code></h3>
+
+<p>The level to output logs (debug, info, warn, error or panic). Default: <code>warn</code>.</p>
+
+<p>If an environment variable <code>GOGH_LOG_LEVEL</code> is set, its value is used instead.</p>
+
+<h3 id="github-token"><code>github.token</code></h3>
+
+<p>The token to connect GitHub API.</p>
+
+<p>If an environment variable <code>GOGH_GITHUB_TOKEN</code> is set, its value is used instead.</p>
+
+<h3 id="github-host"><code>github.host</code></h3>
+
+<p>The host name to connect to GitHub. Default: <code>github.com</code>.</p>
+
+<p>If an environment variable <code>GOGH_GITHUB_HOST</code> is set, its value is used instead.</p>
+
+<h3 id="log-date-time-microseconds-longfile-shortfile-utc"><code>log.(date|time|microseconds|longfile|shortfile|utc)</code></h3>
+
+<p>It can be customized that what log prints with message. Default: <code>log.time</code> is &ldquo;yes&rdquo;, others are &ldquo;no&rdquo;.
+<code>&quot;yes&quot;</code> means that its optional property should be printed.</p>
+
+<p>If an environment variable <code>GOGH_LOG_(DATE|TIME|MICROSECONDS|LONGFILE|SHORTFILE|UTC)</code> is set, its value is used instead.</p>
+
+<h2 id="commands">COMMANDS</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">gogh --long-help</pre></div>
+<h3 id="get"><code>get</code></h3>
+
+<p>Clone a remote repository under gogh root directory (see <a href="#DIRECTORY+STRUCTURES">DIRECTORY STRUCTURES</a> below).
+If the repository is already cloned to local project, nothing will happen unless <code>-u</code> (<code>--update</code>) flag is supplied,
+in which case the project (local repository) is updated (<code>git pull --ff-only</code> eg.).
+When you use <code>-p</code> option, the repository is cloned via SSH protocol.</p>
+
+<p>If there are multiple <code>gogh.root</code>s, existing local clones are searched first.
+Then a new repository clone is created under the primary root if none is found.</p>
+
+<p>With <code>--shallow</code> option, a &ldquo;shallow clone&rdquo; will be performed (for Git repositories only, <code>git clone --depth 1 ...</code> eg.).
+Be careful that a shallow-cloned repository cannot be pushed to remote.</p>
+
+<p>Currently Git and Mercurial repositories are supported.</p>
+
+<h3 id="bulk-get"><code>bulk-get</code></h3>
+
+<p>Reads repository URLs from stdin line by line and performs &lsquo;get&rsquo; for each of them.</p>
+
+<h3 id="pipe-get"><code>pipe-get</code></h3>
+
+<p>Reads repository URLs from other command output by line and performs &lsquo;get&rsquo; for each of them.</p>
+
+<h3 id="fork"><code>fork</code></h3>
+
+<p>Clone a remote repository under gogh root direcotry if the project is not exist in local.
+And fork int on remote GitHub repository with calling <code>hub fork</code></p>
+
+<h3 id="list"><code>list</code></h3>
+
+<p>List locally cloned repositories.
+If a query argument is given, only repositories whose names contain that query text are listed.
+<code>-f</code> (<code>--format</code>) specifies format of the item. Default: <code>relative</code>.</p>
+
+<ul>
+<li><code>-f=full</code> is given, the full paths to the repository will be printed.</li>
+<li><code>-f=short</code> is given, gogh prints each project as short as possible.</li>
+<li><code>-f=relative</code> is given, the relative paths from gogh root to the repository will be printed.</li>
+<li><code>-f=url</code> is given, the urls of the repository will be printed.</li>
+</ul>
+
+<h3 id="list-1"><code>list</code></h3>
+
+<p>Dump local repository list.
+This is shorthand for <code>gogh list --format=url</code>.
+It can be used to backup and restore projects.</p>
+
+<p>e.g.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ gogh dump &gt; projects.txt
+
+# copy projects.txt to another machine
+
+$ cat projects.txt | gogh bulk-get</pre></div>
+<h3 id="find"><code>find</code></h3>
+
+<p>Look into a locally cloned repository with the shell.</p>
+
+<h3 id="where"><code>where</code></h3>
+
+<p>Show where a local repository is.</p>
+
+<h3 id="repo"><code>repo</code></h3>
+
+<p>Show a list of repositories for a user.</p>
+
+<h3 id="root-1"><code>root</code></h3>
+
+<p>Print repositories&rsquo; root (i.e. <code>config get root</code>). Without <code>--all</code> option, the primary one is shown.</p>
+
+<h3 id="config-get-all"><code>config get-all</code></h3>
+
+<p>Print all configuration options value.</p>
+
+<h3 id="config-get"><code>config get</code></h3>
+
+<p>Print one configuration option value.</p>
+
+<h3 id="config-put"><code>config put</code></h3>
+
+<p>Set or add one configuration option.</p>
+
+<h3 id="config-unset"><code>config unset</code></h3>
+
+<p>Unset one configuration option.</p>
+
+<h2 id="environment-variables">ENVIRONMENT VARIABLES</h2>
+
+<p>Some environment variables are used for flags.</p>
+
+<h3 id="gogh-config">GOGH_CONFIG</h3>
+
+<p>You can set it instead of <code>--config</code> flag (configuration file path).
+Default:  <code>${XDG_CONFIG_HOME:-$HOME/.config}/gogh/config.yaml</code>.</p>
+
+<h3 id="gogh-flag-root-all">GOGH_FLAG_ROOT_ALL</h3>
+
+<p>You can set it truely value and <code>gogh root</code> shows all of the roots like <code>gogh root --all</code>.
+If we want show only primary root, call <code>gogh root --no-all</code>.</p>
+
+<p>e.g.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ echo $GOGH_ROOT
+/Users/kyoh86/Projects:/Users/kyoh86/go/src
+$ gogh root
+/Users/kyoh86/Projects
+$ gogh root --all
+/Users/kyoh86/Projects
+/Users/kyoh86/go/src
+$ GOGH_FLAG_ROOT_ALL=1 gogh root
+/Users/kyoh86/Projects
+/Users/kyoh86/go/src
+$ GOGH_FLAG_ROOT_ALL=1 gogh root --no-all
+/Users/kyoh86/Projects</pre></div>
+<h2 id="directory-structures">DIRECTORY STRUCTURES</h2>
+
+<p>Local repositories are placed under <code>gogh.root</code> with named github.com/<em>user</em>/<em>repo</em>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">~/go/src
++-- github.com/
+|-- google/
+|   +-- go-github/
+|-- kyoh86/
+|   +-- gogh/
++-- alecthomas/
+  +-- kingpin/</pre></div>
+<h2 id="shell-extentions">SHELL EXTENTIONS</h2>
+
+<p>To be enabled shell extentions (for zsh / bash), set up gogh in your shell-rc file (<code>.bashrc</code> / <code>.zshrc</code>).</p>
+
+<ul>
+<li><code>gogogh</code> command
+
+<ul>
+<li>shorthand for <code>cd $(gogh find &lt;project name&gt;)</code></li>
+</ul></li>
+<li>auto-completions</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">eval &#34;$(gogh setup)&#34;</pre></div>
+<p>If you want to rename <code>gogogh</code> command, specify <code>--cd-function-name=&lt;NAME&gt;</code> like below.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">eval &#34;$(gogh setup --cd-function-name=foobar)&#34;</pre></div>
+<h1 id="deferences-to-ghq">DEFERENCES TO <code>ghq</code></h1>
+
+<ul>
+<li><code>ghq</code> is too complex for me. That&rsquo;s why I forked this project from it.
+
+<ul>
+<li><code>ghq look</code> runs new shell only to change working directory to a project.
+
+<ul>
+<li>So I cannot back to previous by <code>cd -</code>. I need to <code>exit</code> to do it.</li>
+<li>But <code>ghq look</code> says <code>cd &lt;project to path&gt;</code> when I run it.</li>
+</ul></li>
+<li><code>ghq list --unique</code> returns a bizarre and complex list when I set multiple root.</li>
+<li><code>ghq import xxx</code> needs to setup <code>ghq.import.xxx</code> option to specify what command to run.</li>
+<li><code>git config ghq.xxx</code>&hellip;
+
+<ul>
+<li><code>gogh</code> can be configured with envars instead of git-config(1).</li>
+</ul></li>
+</ul></li>
+<li><code>gogh</code> doesn&rsquo;t support VCSs other than GitHub
+
+<ul>
+<li>If I want to manage projects in VCSs other than GitHub, I should use other tool, I think so.</li>
+</ul></li>
+<li>I wanted to merge functions of <a href="https://github.com/motemen/ghq" target="_blank">ghq</a> and <a href="https://github.com/github/hub" target="_blank">hub</a>.
+
+<ul>
+<li><code>gogh new</code> creates a new one with make both of a local project and a remote repository.
+
+<ul>
+<li>It calls <code>git init</code> and <code>hub create</code> in the gogh.root directory.</li>
+</ul></li>
+<li><code>gogh fork</code> clones a remote repository into the gogh.root directory and fork it GitHub (with calling <code>hub fork</code>).</li>
+<li>But there may be some collision in configurations of <strong>ghq</strong> and <strong>hub</strong>. It offers a challenge for me to resolve them by gogh.</li>
+</ul></li>
+<li>(nits) I don&rsquo;t like <code>github.com/onsi/gomega</code> and <code>github.com/urfave/cli</code>. But I love <code>github.com/stretchr/testify</code> and <code>github.com/alecthomas/kingpin</code>.</li>
+<li>(nits) I want gogh to be able to be used as a library (<code>github.com/kyoh86/gogh/gogh</code> package).</li>
+</ul>
+		</div>
+		
+<div class="post__tags tags clearfix">
+	<svg class="tags__icon icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item"><a class="tags__link btn" href="/tags/go/" rel="tag">go</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/tool/" rel="tag">Tool</a></li>
+	</ul>
+</div>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="kyoh86 avatar" src="/img/panda.png" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name"></span>
+	</div>
+	<div class="authorbox__description">
+		コーヒー・蕎麦・インコをこよなく愛し、あわよくば爬虫類も愛でたいダメプログラマー→マネジメント。
+	</div>
+</div>
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/tools/richgo/" rel="prev"><span class="post-nav__caption">«&thinsp;</span><p class="post-nav__post-title">Richgo</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="" value="" name="q" aria-label="">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="https://kyoh86.work/" />
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title"></h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/tools/gogh/">Gogh</a></li>
+			<li class="widget__item"><a class="widget__link" href="/tools/richgo/">Richgo</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title"></h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/atom" title="A t o m">A t o m (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/applescript" title="Apple script">Apple script (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/csv" title="C s v">C s v (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ecs" title="E c s">E c s (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/excel" title="Excel">Excel (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/git" title="Git">Git (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/github" title="Git hub">Git hub (4)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/go" title="Go">Go (14)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/json" title="J s o n">J s o n (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/json-schema" title="J s o n schema">J s o n schema (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/javascript" title="Java script">Java script (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mongodb" title="Mongo d b">Mongo d b (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/osx" title="O s x">O s x (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/php" title="P h p">P h p (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/perl6" title="Perl6">Perl6 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/semanticversioning" title="Semantic versioning">Semantic versioning (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tool" title="Tool">Tool (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vscode" title="V s code">V s code (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/visualstudiocode" title="Visual studio code">Visual studio code (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/web" title="Web">Web (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/zsh" title="Zsh">Zsh (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cli" title="Cli">Cli (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/go" title="Go">Go (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/golang" title="Golang">Golang (13)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/homebrew" title="Homebrew">Homebrew (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/jxa" title="J x a">J x a (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/memo" title="Memo">Memo (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/pecoshellanyframezsh" title="Peco,shell,anyframe,zsh">Peco,shell,anyframe,zsh (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/postfix" title="Postfix">Postfix (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/proxy" title="Proxy">Proxy (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/python" title="Python">Python (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/scaffold" title="Scaffold">Scaffold (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/semver" title="Semver">Semver (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/shell" title="Shell">Shell (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tag" title="Tag">Tag (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%e3%82%a2%e3%82%a4%e3%83%87%e3%82%a3%e3%82%a2" title="アイディア">アイディア (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%e3%83%90%e3%83%bc%e3%82%b8%e3%83%a7%e3%83%b3" title="バージョン">バージョン (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%e3%83%9d%e3%82%a8%e3%83%a0" title="ポエム">ポエム (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%e3%83%a1%e3%83%a2" title="メモ">メモ (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%e8%87%aa%e7%84%b6%e8%a8%80%e8%aa%9e%e5%87%a6%e7%90%86" title="自然言語処理">自然言語処理 (1)</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title"></h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Facebook" rel="noopener noreferrer" href="https://facebook.com/kyoh.86" target="_blank">
+				<svg class="widget-social__link-icon icon icon-facebook" width="24" height="24" viewBox="0 0 352 352"><path d="m0 32v288c0 17.5 14.5 32 32 32h288c17.5 0 32-14.5 32-32v-288c0-17.5-14.5-32-32-32h-288c-17.5 0-32 14.5-32 32zm320 0v288h-83v-108h41.5l6-48h-47.5v-31c0-14 3.5-23.5 23.5-23.5h26v-43.5c-4.4-.6-19.8-1.5-37.5-1.5-36.9 0-62 22.2-62 63.5v36h-42v48h42v108h-155v-288z"/></svg>
+				<span>Facebook</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Twitter" rel="noopener noreferrer" href="https://twitter.com/kyoh86" target="_blank">
+				<svg class="widget-social__link-icon icon icon-twitter" width="24" height="24" viewBox="0 0 384 312"><path d="m384 36.9c-14.1 6.3-29.3 10.5-45.2 12.4 16.3-9.7 28.8-25.2 34.6-43.6-15.2 9-32.1 15.6-50 19.1-14.4-15.2-34.9-24.8-57.5-24.8-43.5 0-78.8 35.3-78.8 78.8 0 6.2.7 12.2 2 17.9-65.5-3.3-123.5-34.6-162.4-82.3-6.7 11.6-10.6 25.2-10.6 39.6 0 27.3 13.9 51.4 35 65.6-12.9-.4-25.1-4-35.7-9.9v1c0 38.2 27.2 70 63.2 77.2-6.6 1.8-13.6 2.8-20.8 2.8-5.1 0-10-.5-14.8-1.4 10 31.3 39.1 54.1 73.6 54.7-27 21.1-60.9 33.7-97.8 33.7-6.4 0-12.6-.4-18.8-1.1 34.9 22.4 76.3 35.4 120.8 35.4 144.9 0 224.1-120 224.1-224.1 0-3.4-.1-6.8-.2-10.2 15.4-11.1 28.7-25 39.3-40.8z"/></svg>
+				<span>Twitter</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Instagram" rel="noopener noreferrer" href="https://www.instagram.com/kyoh86" target="_blank">
+				<svg class="widget-social__link-icon icon icon-instagram" width="24" height="24" viewBox="0 0 256 256"><circle cx="193" cy="59" r="15"/><path fill-rule="evenodd" d="M101 0h54c41 0 58.4 3.9 74.5 17C256.2 37.5 256 74.8 256 97.7v60c0 26.7 0 60.4-26.5 81.4-16 13.4-33.5 16.9-74.5 16.9h-54c-41 0-57.5-3.5-74.5-16.9C1 218.9.5 186.3.1 160.5L0 155V97.7c0-23-.2-60.2 26.5-80.7C45 2 60 0 101 0zm4.9 23h44.3c45.8 0 58.3 3.5 70.3 17.5 11.8 13.2 12 30.1 12.5 62.9V156c.2 20.8.3 45.8-12.5 59.5-12 14-24.5 17.5-70.3 17.5h-44.3c-45.9 0-57.3-3.5-70.4-17.5-12.2-13-12.3-36.5-12.4-56.7v-55.6c.4-32.6.7-49.6 12.4-62.7C48 26.5 60 23 105.9 23zm19.6 144.5a42 42 0 1 0 0-84 42 42 0 0 0 0 84zm0 22.5a64.5 64.5 0 1 0 0-129 64.5 64.5 0 0 0 0 129z"/></svg>
+				<span>Instagram</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="LinkedIn" rel="noopener noreferrer" href="https://linkedin.com/in/kyoh86" target="_blank">
+				<svg class="widget-social__link-icon icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
+				<span>LinkedIn</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/kyoh86" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2019 kyoh86.
+			<span class="footer__copyright-credits"></span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script></body>
+</html>

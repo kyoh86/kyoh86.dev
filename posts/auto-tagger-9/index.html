@@ -92,14 +92,14 @@ if (!doNotTrack) {
 <h2 id="markdownparser-を作る"><code>MarkdownParser</code> を作る</h2>
 
 <p><code>MarkdownParser</code> については、MarkdownをAST的に扱えるライブラリとして、
-<a href="https://github.com/miyuchina/mistletoe">mistletoe</a> を使う。</p>
+<a href="https://github.com/miyuchina/mistletoe" target="_blank">mistletoe</a> を使う。</p>
 
 <p><code>mistletoe</code> は、Markdownのレンダリングライブラリだけれど、レンダリングには各種シンタックスでの出力をサポートしている。
-<a href="https://github.com/miyuchina/mistletoe/blob/master/mistletoe/base_renderer.py">BaseRenderer</a> を自前でオーバーライドすれば、AST（のようなもの）を得ることができる。</p>
+<a href="https://github.com/miyuchina/mistletoe/blob/master/mistletoe/base_renderer.py" target="_blank">BaseRenderer</a> を自前でオーバーライドすれば、AST（のようなもの）を得ることができる。</p>
 
 <p>BaseRendererの実装を見ると、どうやら文書のトークン種別毎に <code>renderer_(トークン種別名)</code> を定義して、引数でトークンを受け取れるらしい。</p>
 
-<p>どんなトークン種別があるかは、<a href="https://github.com/miyuchina/mistletoe/blob/e56ed7e14c6a7de67dd42fda0d97869c98e8492e/mistletoe/base_renderer.py#L48-L72">ソースコード</a>を見れば一目瞭然だった。</p>
+<p>どんなトークン種別があるかは、<a href="https://github.com/miyuchina/mistletoe/blob/e56ed7e14c6a7de67dd42fda0d97869c98e8492e/mistletoe/base_renderer.py#L48-L72" target="_blank">ソースコード</a>を見れば一目瞭然だった。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#66d9ef">def</span> __init__(self, <span style="color:#f92672">*</span>extras):
         self<span style="color:#f92672">.</span>render_map <span style="color:#f92672">=</span> {
             <span style="color:#e6db74">&#39;Strong&#39;</span>:         self<span style="color:#f92672">.</span>render_strong,
@@ -127,7 +127,7 @@ if (!doNotTrack) {
             <span style="color:#e6db74">&#39;Separator&#39;</span>:      self<span style="color:#f92672">.</span>render_separator,
             <span style="color:#e6db74">&#39;Document&#39;</span>:       self<span style="color:#f92672">.</span>render_document,
             }</code></pre></div>
-<p>そして、同ライブラリの <a href="https://github.com/miyuchina/mistletoe/blob/e56ed7e14c6a7de67dd42fda0d97869c98e8492e/mistletoe/html_renderer.py#L24-L26">HTMLRenderer</a> を見る感じ、入れ子に対応するため、BaseRendererの <code>render_inner(self, token)</code> を呼んで中身のレンダリングをして、適当なFormatをして返すというのが流儀らしい。</p>
+<p>そして、同ライブラリの <a href="https://github.com/miyuchina/mistletoe/blob/e56ed7e14c6a7de67dd42fda0d97869c98e8492e/mistletoe/html_renderer.py#L24-L26" target="_blank">HTMLRenderer</a> を見る感じ、入れ子に対応するため、BaseRendererの <code>render_inner(self, token)</code> を呼んで中身のレンダリングをして、適当なFormatをして返すというのが流儀らしい。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">render_strong</span>(self, token):
         template <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&lt;strong&gt;{}&lt;/strong&gt;&#39;</span>
         <span style="color:#66d9ef">return</span> template<span style="color:#f92672">.</span>format(self<span style="color:#f92672">.</span>render_inner(token))
@@ -281,6 +281,15 @@ paragraph contains strong code, link and</code></pre></div>
 		<input type="hidden" name="sitesearch" value="https://kyoh86.work/" />
 	</form>
 </div>
+<div class="widget-recent widget">
+	<h4 class="widget__title"></h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/tools/gogh/">Gogh</a></li>
+			<li class="widget__item"><a class="widget__link" href="/tools/richgo/">Richgo</a></li>
+		</ul>
+	</div>
+</div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title"></h4>
 	<div class="widget__content">
@@ -300,11 +309,13 @@ paragraph contains strong code, link and</code></pre></div>
 		<a class="widget-taglist__link widget__link btn" href="/tags/php" title="P h p">P h p (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/perl6" title="Perl6">Perl6 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/semanticversioning" title="Semantic versioning">Semantic versioning (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tool" title="Tool">Tool (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/vscode" title="V s code">V s code (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/visualstudiocode" title="Visual studio code">Visual studio code (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/web" title="Web">Web (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/zsh" title="Zsh">Zsh (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/cli" title="Cli">Cli (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/go" title="Go">Go (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/golang" title="Golang">Golang (13)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/homebrew" title="Homebrew">Homebrew (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/jxa" title="J x a">J x a (1)</a>

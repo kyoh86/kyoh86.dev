@@ -89,7 +89,7 @@ if (!doNotTrack) {
 		</header><div class="content post__content clearfix">
 			<p>【コメント頂いて書き直しました】</p>
 
-<p><a href="http://brew.sh/index_ja.html">homebrew</a> でパッケージの管理をするのはいいんですが、開発の都合上一部のツールのバージョンを上げられない・・・というシーンはままあるかと思います。
+<p><a href="http://brew.sh/index_ja.html" target="_blank">homebrew</a> でパッケージの管理をするのはいいんですが、開発の都合上一部のツールのバージョンを上げられない・・・というシーンはままあるかと思います。
 かといって<code>outdated</code>なパッケージを放置するのも気持ち悪いですよね。</p>
 
 <p>そんな「<code>brew upgrade</code>で全てのパッケージをアップデートしたら色々死ぬわ！」という場合によく使うのでメモ書き。</p>
@@ -102,13 +102,13 @@ $ brew outdated <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    | grep -v <span style="color:#e6db74">&#39;mongo&#39;</span>         <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    | xargs -n <span style="color:#ae81ff">1</span> brew upgrade</code></pre></div>
 <p><code>brew outdated</code>で リスト化して、<code>grep -v</code> <sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup> でそっとしておいて欲しいパッケージ（例では<code>Elasticsearch</code>と<code>Mongo DB</code>）を除外して、<code>xargs</code>で<code>brew upgrade</code>。シンプル。
-<a href="https://github.com/junegunn/fzf">fzf</a> とか <a href="https://github.com/peco/peco">peco</a> とか駆使すれば、もっとホスピタリティの高い感じにできると思うけど、まァ良いかという気持ち。</p>
+<a href="https://github.com/junegunn/fzf" target="_blank">fzf</a> とか <a href="https://github.com/peco/peco" target="_blank">peco</a> とか駆使すれば、もっとホスピタリティの高い感じにできると思うけど、まァ良いかという気持ち。</p>
 <div class="footnotes">
 
 <hr />
 
 <ol>
-<li id="fn:1"><code>grep</code>は<a href="http://www.gnu.org/software/coreutils/coreutils.html">coreutils</a>入れてる環境とか考えると、BSD/GNUの仕様誤差がめんどくさいので、grep -v &lsquo;hoge&rsquo;を二重にパイプしてます。</small>
+<li id="fn:1"><code>grep</code>は<a href="http://www.gnu.org/software/coreutils/coreutils.html" target="_blank">coreutils</a>入れてる環境とか考えると、BSD/GNUの仕様誤差がめんどくさいので、grep -v &lsquo;hoge&rsquo;を二重にパイプしてます。</small>
  <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
 </ol>
 </div>
@@ -156,6 +156,15 @@ $ brew outdated <span style="color:#ae81ff">\
 		<input type="hidden" name="sitesearch" value="https://kyoh86.work/" />
 	</form>
 </div>
+<div class="widget-recent widget">
+	<h4 class="widget__title"></h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/tools/gogh/">Gogh</a></li>
+			<li class="widget__item"><a class="widget__link" href="/tools/richgo/">Richgo</a></li>
+		</ul>
+	</div>
+</div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title"></h4>
 	<div class="widget__content">
@@ -175,11 +184,13 @@ $ brew outdated <span style="color:#ae81ff">\
 		<a class="widget-taglist__link widget__link btn" href="/tags/php" title="P h p">P h p (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/perl6" title="Perl6">Perl6 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/semanticversioning" title="Semantic versioning">Semantic versioning (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tool" title="Tool">Tool (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/vscode" title="V s code">V s code (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/visualstudiocode" title="Visual studio code">Visual studio code (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/web" title="Web">Web (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/zsh" title="Zsh">Zsh (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/cli" title="Cli">Cli (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/go" title="Go">Go (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/golang" title="Golang">Golang (13)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/homebrew" title="Homebrew">Homebrew (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/jxa" title="J x a">J x a (1)</a>

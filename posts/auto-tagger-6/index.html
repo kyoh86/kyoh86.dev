@@ -91,16 +91,16 @@ if (!doNotTrack) {
 
 <h2 id="前提">前提</h2>
 
-<p><a href="/posts/auto-tagger-2/#構成">先の構成図</a> 参照。</p>
+<p><a href="/posts/auto-tagger-2/#構成" target="_blank">先の構成図</a> 参照。</p>
 
 <p>MorphoAnalyzerはできたので、Wikipediaの記事をパースしてみる。</p>
 
 <h2 id="準備">準備</h2>
 
-<p><a href="https://github.com/attardi/wikiextractor">WikiExtractor</a> を使うと、
+<p><a href="https://github.com/attardi/wikiextractor" target="_blank">WikiExtractor</a> を使うと、
 Wikipediaからダウンロードした全記事分のデータを展開してPlaintextにしてくれる。</p>
 
-<p>参考: <a href="http://taka-say.hateblo.jp/entry/2016/05/20/221817">【Python】日本語Wikipediaのダンプデータから本文を抽出する - プログラムは、用いる言葉の選択で決まる</a> に詳しい。</p>
+<p>参考: <a href="http://taka-say.hateblo.jp/entry/2016/05/20/221817" target="_blank">【Python】日本語Wikipediaのダンプデータから本文を抽出する - プログラムは、用いる言葉の選択で決まる</a> に詳しい。</p>
 
 <p>WikiExtractorを使うと、最終的には次のようなファイルが大量に作られる。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;doc id=&#34;...&#34; url=&#34;...&#34;&gt;プレーンテキスト...&lt;/doc&gt;
@@ -165,7 +165,7 @@ Wikipediaからダウンロードした全記事分のデータを展開してPl
 
 <h2 id="xmlparserを作ってみる">XMLParserを作ってみる</h2>
 
-<p>1つ1つのファイルもそう小さくはないので、一度にパースするよりは <a href="https://docs.python.jp/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.iterparse">iterparse</a> したいところ。
+<p>1つ1つのファイルもそう小さくはないので、一度にパースするよりは <a href="https://docs.python.jp/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.iterparse" target="_blank">iterparse</a> したいところ。
 ということで、ザックリ書くと、こう。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> xml.etree.ElementTree <span style="color:#f92672">import</span> iterparse
 <span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> Any, TextIO
@@ -236,7 +236,7 @@ xml.etree.ElementTree.ParseError: not well-formed <span style="color:#f92672">(<
 ということで、普通に <code>WikiExtractor</code> を使うだけだと、パース不可能な意味のない出力を作ってくれる。
 作者いわく「これはXMLではない。Plaintextだ」ということなので、<code>&lt;doc&gt;</code>という謎表記についての釈明が待たれる。</p>
 
-<p><a href="https://github.com/attardi/wikiextractor/issues/6">参考</a></p>
+<p><a href="https://github.com/attardi/wikiextractor/issues/6" target="_blank">参考</a></p>
 
 <h2 id="wikiextractor-plaintext">WikiExtractor -&gt; Plaintext</h2>
 
@@ -343,6 +343,15 @@ TextParserを作る。</p>
 		<input type="hidden" name="sitesearch" value="https://kyoh86.work/" />
 	</form>
 </div>
+<div class="widget-recent widget">
+	<h4 class="widget__title"></h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/tools/gogh/">Gogh</a></li>
+			<li class="widget__item"><a class="widget__link" href="/tools/richgo/">Richgo</a></li>
+		</ul>
+	</div>
+</div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title"></h4>
 	<div class="widget__content">
@@ -362,11 +371,13 @@ TextParserを作る。</p>
 		<a class="widget-taglist__link widget__link btn" href="/tags/php" title="P h p">P h p (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/perl6" title="Perl6">Perl6 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/semanticversioning" title="Semantic versioning">Semantic versioning (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tool" title="Tool">Tool (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/vscode" title="V s code">V s code (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/visualstudiocode" title="Visual studio code">Visual studio code (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/web" title="Web">Web (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/zsh" title="Zsh">Zsh (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/cli" title="Cli">Cli (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/go" title="Go">Go (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/golang" title="Golang">Golang (13)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/homebrew" title="Homebrew">Homebrew (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/jxa" title="J x a">J x a (1)</a>

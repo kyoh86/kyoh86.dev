@@ -1,140 +1,31 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Go on kyoh86 works</title>
+    <title>go on kyoh86 works</title>
     <link>https://kyoh86.work/tags/go/</link>
-    <description>Recent content in Go on kyoh86 works</description>
+    <description>Recent content in go on kyoh86 works</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Sun, 10 Dec 2017 13:13:49 +0900</lastBuildDate>
     
 	<atom:link href="https://kyoh86.work/tags/go/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Goの俺的scaffoldはこれだ！2017年版</title>
-      <link>https://kyoh86.work/posts/2017-12-10_13-13-49/</link>
-      <pubDate>Sun, 10 Dec 2017 13:13:49 +0900</pubDate>
+      <title>Gogh</title>
+      <link>https://kyoh86.work/tools/gogh/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://kyoh86.work/posts/2017-12-10_13-13-49/</guid>
-      <description>Boom Boom Hello, gophers! Go書いてるかい！ tl;dr 今年も色々、汚物に似た何かをGitHub上に吐き散らかしてきましたが、 来年はもうちょっとキレイな汚物にしようと考</description>
+      <guid>https://kyoh86.work/tools/gogh/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/kyoh86/gogh&#34; target=&#34;_blank&#34;&gt;gogh&lt;/a&gt; is the GO GitHub project manager&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>$GOPATH/binにいるバイナリ群の出自を探る方法</title>
-      <link>https://kyoh86.work/posts/2017-08-29_10-55-31/</link>
-      <pubDate>Tue, 29 Aug 2017 10:55:31 +0900</pubDate>
+      <title>Richgo</title>
+      <link>https://kyoh86.work/tools/richgo/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://kyoh86.work/posts/2017-08-29_10-55-31/</guid>
-      <description>Goを使っていると、ある日突然に日頃使っていたコマンドが全く違う何かに置き換えられていたりして、驚くことがあります。 $GOPATH/bin の下に色々入ってはいる</description>
-    </item>
-    
-    <item>
-      <title>golangのループ変数の使い方をチェックするlinter作ってみた</title>
-      <link>https://kyoh86.work/posts/2017-04-11_06-48-23/</link>
-      <pubDate>Tue, 11 Apr 2017 06:48:23 +0900</pubDate>
-      
-      <guid>https://kyoh86.work/posts/2017-04-11_06-48-23/</guid>
-      <description>動機 golangでforループを回すと、中でうっかりクロージャやリファレンスを取れません。 package example import &amp;#34;fmt&amp;#34; func readme() { values := []string{&amp;#34;a&amp;#34;, &amp;#34;b&amp;#34;, &amp;#34;c&amp;#34;} var funcs []func() for _, val := range values { funcs = append(funcs,</description>
-    </item>
-    
-    <item>
-      <title>go testの出力を見やすくするツール作ったった</title>
-      <link>https://kyoh86.work/posts/2017-01-15_01-15-03/</link>
-      <pubDate>Sun, 15 Jan 2017 01:15:03 +0900</pubDate>
-      
-      <guid>https://kyoh86.work/posts/2017-01-15_01-15-03/</guid>
-      <description>go test してますか。 標準テストライブラリの出力を見やすくするツール richgo を作ったので、紹介をば。 TL;DR Goには公式でリッチなテストフレームワークがないで</description>
-    </item>
-    
-    <item>
-      <title>【メモ】作りたいモノリスト</title>
-      <link>https://kyoh86.work/posts/2016-12-12_12-25-45/</link>
-      <pubDate>Mon, 12 Dec 2016 12:25:45 +0900</pubDate>
-      
-      <guid>https://kyoh86.work/posts/2016-12-12_12-25-45/</guid>
-      <description>誰か作ってくれないかなぁ、でも最近、何も作ってないし何か作りたいなあと思っているもののリスト。 随時更新予定。 ATOM-fuzzy-finde</description>
-    </item>
-    
-    <item>
-      <title>GitHubで自動生成コードをDiffに表示しない方法</title>
-      <link>https://kyoh86.work/posts/2016-12-07_03-06-32/</link>
-      <pubDate>Wed, 07 Dec 2016 03:06:32 +0900</pubDate>
-      
-      <guid>https://kyoh86.work/posts/2016-12-07_03-06-32/</guid>
-      <description>結論 ここに書いてある https://github.com/github/linguist/blob/master/lib/linguist/generated.rb 注意事項 だいぶ懐かしい記事ですが…突然、「Diffに表示しないなんてGitHubの価値を損なうものだから記事を非公開に</description>
-    </item>
-    
-    <item>
-      <title>goのinterfaceのstub生成する君</title>
-      <link>https://kyoh86.work/posts/2016-10-06_08-48-48/</link>
-      <pubDate>Thu, 06 Oct 2016 08:48:48 +0900</pubDate>
-      
-      <guid>https://kyoh86.work/posts/2016-10-06_08-48-48/</guid>
-      <description>本題 ATOMのパッケージ作ったよ！（宣伝） 何のために？ GoでDIとかゴニョゴニョしてると、しばしばinterfaceの実装を書くシーンに直面</description>
-    </item>
-    
-    <item>
-      <title>ECS上のgo製プログラムのプロファイル覗き見る</title>
-      <link>https://kyoh86.work/posts/2016-09-14_15-42-22/</link>
-      <pubDate>Wed, 14 Sep 2016 15:42:22 +0900</pubDate>
-      
-      <guid>https://kyoh86.work/posts/2016-09-14_15-42-22/</guid>
-      <description>SSHトンネリングに必要な情報を得るための手順が多くて忘れるのでメモ。 うっかりsudo忘れる。 前提 goのpprofについては http://blog.livedoor.jp/sonots/archives/39879160.html とか http://qiita.com/ikawaha/items/e3b35f09fb49e9217924 とか参照</description>
-    </item>
-    
-    <item>
-      <title>golintと闘いたいけど心の折れてしまった勇者のための隠しダンジョン</title>
-      <link>https://kyoh86.work/posts/2016-02-09_01-21-41/</link>
-      <pubDate>Tue, 09 Feb 2016 01:21:41 +0900</pubDate>
-      
-      <guid>https://kyoh86.work/posts/2016-02-09_01-21-41/</guid>
-      <description>結論 Pull-Request時にCIで差分lintかけるといい感じ。 背景 Goでの開発においては、型付け言語の利点を最大限に活かしたいところで</description>
-    </item>
-    
-    <item>
-      <title>golangでellipsis</title>
-      <link>https://kyoh86.work/posts/2016-02-01_11-05-36/</link>
-      <pubDate>Mon, 01 Feb 2016 11:05:36 +0900</pubDate>
-      
-      <guid>https://kyoh86.work/posts/2016-02-01_11-05-36/</guid>
-      <description>Goで文字の省略処理（Ellipsis）しようとしたら、初歩的なことで躓いたのでメモ程度に。 結論 package main // Ellipsis a text func Ellipsis(length int, text string) string { r := []rune(text) if len(r) &amp;gt; length { return</description>
-    </item>
-    
-    <item>
-      <title>go で AggregationException(.NET)的なことをする</title>
-      <link>https://kyoh86.work/posts/2015-12-24_10-53-07/</link>
-      <pubDate>Thu, 24 Dec 2015 10:53:07 +0900</pubDate>
-      
-      <guid>https://kyoh86.work/posts/2015-12-24_10-53-07/</guid>
-      <description>おはようございます。皆さん、せい・・聖夜は如何お過ごしの予定でしょうか。 さてさて、Goのエラー処理についてはやいやい言われていますね。 エラー</description>
-    </item>
-    
-    <item>
-      <title>gopkg.in絡みで困ることになる・・・のかもしれない？？</title>
-      <link>https://kyoh86.work/posts/2015-12-18_17-55-22/</link>
-      <pubDate>Fri, 18 Dec 2015 17:55:22 +0900</pubDate>
-      
-      <guid>https://kyoh86.work/posts/2015-12-18_17-55-22/</guid>
-      <description>gopkg.in便利ね gopkg.in便利なんですが、何かのトラブルの種になっている気配があるので起稿。 詳細については未調査につき、何らかの</description>
-    </item>
-    
-    <item>
-      <title>GitHubのPullRequest一覧イマイチ使いづらくね？→捗るツール作ったった</title>
-      <link>https://kyoh86.work/posts/2015-12-17_00-03-03/</link>
-      <pubDate>Thu, 17 Dec 2015 00:03:03 +0900</pubDate>
-      
-      <guid>https://kyoh86.work/posts/2015-12-17_00-03-03/</guid>
-      <description>tl;dr Require status checks to pass before merging to master デプロイはjenkinsおじさんをひっぱたくだけのかんたんなお仕事 デプロイするときに、_このデプロイで何が変わるのか_を</description>
-    </item>
-    
-    <item>
-      <title>簡易リバースプロキシ「ichigo」でWebアプリ開発が捗る話</title>
-      <link>https://kyoh86.work/posts/2015-12-07_02-30-43/</link>
-      <pubDate>Mon, 07 Dec 2015 02:30:43 +0900</pubDate>
-      
-      <guid>https://kyoh86.work/posts/2015-12-07_02-30-43/</guid>
-      <description>概要 自社サービスの開発中、必要にかられてGOで簡単なリバースプロキシツールを作った話を書いてみます。 前提 自社サービスの開発を、次のような構成</description>
+      <guid>https://kyoh86.work/tools/richgo/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/kyoh86/richgo&#34; target=&#34;_blank&#34;&gt;Rich-Go&lt;/a&gt; will enrich &lt;code&gt;go test&lt;/code&gt; outputs with text decorations.&lt;/p&gt;</description>
     </item>
     
   </channel>

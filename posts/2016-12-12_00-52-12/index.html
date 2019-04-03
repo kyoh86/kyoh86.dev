@@ -98,7 +98,7 @@ if (!doNotTrack) {
 
 <h2 id="ソースで語れよ">ソースで語れよ</h2>
 
-<p><a href="https://github.com/kyoh86/dotfiles">https://github.com/kyoh86/dotfiles</a></p>
+<p><a href="https://github.com/kyoh86/dotfiles" target="_blank">https://github.com/kyoh86/dotfiles</a></p>
 
 <p>はい。</p>
 
@@ -107,16 +107,16 @@ if (!doNotTrack) {
 
 <h2 id="はじめに-fzf-ありがとう">はじめに：<code>fzf</code>ありがとう</h2>
 
-<p><a href="https://github.com/junegunn/fzf">fzf</a>ほんと便利。pecoより、色々機能が強くて便利。
+<p><a href="https://github.com/junegunn/fzf" target="_blank">fzf</a>ほんと便利。pecoより、色々機能が強くて便利。
 とはいえ強い機能は殆ど使いこなせてないんですが…。</p>
 
 <p>zsh神（勝手に崇めてる）こと @b4b4r07 さんも記事を書いてますね。</p>
 
-<p><a href="http://qiita.com/b4b4r07/items/9e1bbffb1be70b6ce033">http://qiita.com/b4b4r07/items/9e1bbffb1be70b6ce033</a></p>
+<p><a href="http://qiita.com/b4b4r07/items/9e1bbffb1be70b6ce033" target="_blank">http://qiita.com/b4b4r07/items/9e1bbffb1be70b6ce033</a></p>
 
 <h2 id="リポジトリ選んで-cd-しちゃう君">リポジトリ選んで<code>cd</code>しちゃう君</h2>
 
-<p><a href="https://github.com/kyoh86/dotfiles/blob/master/function/cd-ghq-repository">https://github.com/kyoh86/dotfiles/blob/master/function/cd-ghq-repository</a></p>
+<p><a href="https://github.com/kyoh86/dotfiles/blob/master/function/cd-ghq-repository" target="_blank">https://github.com/kyoh86/dotfiles/blob/master/function/cd-ghq-repository</a></p>
 
 <p>ローカルのリポジトリが増えてくると、ディレクトリ選んで <code>cd</code> するのも大変なので、特定のパスルールに則っておいて、リポジトリセレクタのように <code>fzf</code> で移動できるととても便利です。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">command ls -d $GOPATH/src/github.com/{wacul,wcl48,kyoh86}/*(N-/) \
@@ -125,14 +125,14 @@ if (!doNotTrack) {
 <p>僕は普段 <code>golang</code> 使いなので、 <code>${GOPATH}</code> 配下の特定パスルールで <code>ls -d hoge/*(N-/)</code> してしまって、あとは <code>fzf</code> で絞り込んでいます。
 <code>ghq list</code> なんかも悪くは無いんですが、いかんせんthird-partyのリポジトリと自分のリポジトリを分けて管理するのが面倒くさいのと、単純に毎回.git探してしまうのは些か重すぎるので、<code>ls</code>で簡略しています。</p>
 
-<p><code>anyframe-action-execute</code> は、<code>fzf/peco</code>の薄いラッパー<a href="https://github.com/mollifier/anyframe">anyframe</a> の1機能です。fzfからパイプして何も考えずにcallできるので、使っています。
+<p><code>anyframe-action-execute</code> は、<code>fzf/peco</code>の薄いラッパー<a href="https://github.com/mollifier/anyframe" target="_blank">anyframe</a> の1機能です。fzfからパイプして何も考えずにcallできるので、使っています。
 こちらも作者のzsh神（勝手に拝んでる）こと @mollifier さんが詳細を記事にしてくださってます。</p>
 
-<p><a href="http://qiita.com/mollifier/items/81b18c012d7841ab33c3">http://qiita.com/mollifier/items/81b18c012d7841ab33c3</a></p>
+<p><a href="http://qiita.com/mollifier/items/81b18c012d7841ab33c3" target="_blank">http://qiita.com/mollifier/items/81b18c012d7841ab33c3</a></p>
 
 <h2 id="launchctlのサービス名検索する君">launchctlのサービス名検索する君</h2>
 
-<p><a href="https://github.com/kyoh86/dotfiles/blob/master/function/insert-launchctl">https://github.com/kyoh86/dotfiles/blob/master/function/insert-launchctl</a></p>
+<p><a href="https://github.com/kyoh86/dotfiles/blob/master/function/insert-launchctl" target="_blank">https://github.com/kyoh86/dotfiles/blob/master/function/insert-launchctl</a></p>
 
 <p>Macだと、launchctlで色々なデーモン・サービスを起動、終了するシーンがあるかとおもいます。が、あのlaunchctlの長いサービス名を覚えられないことが多々。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">launchctl stop homebrew.mxcl.mongodb</pre></div>
@@ -151,7 +151,7 @@ bindkey &#39;^x^l&#39; insert-launchctl</pre></div>
 
 <p><code>peco/fzf</code> 系では鉄板のネタですね。</p>
 
-<p><a href="https://github.com/kyoh86/dotfiles/blob/master/function/put-history">https://github.com/kyoh86/dotfiles/blob/master/function/put-history</a></p>
+<p><a href="https://github.com/kyoh86/dotfiles/blob/master/function/put-history" target="_blank">https://github.com/kyoh86/dotfiles/blob/master/function/put-history</a></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">history -n 1 | grep -v &#39;.\{200,\}&#39; | awk &#39;!a[$0]++&#39; \
   | fzf --no-sort --query=&#34;$LBUFFER&#34; \
   | anyframe-action-put</pre></div>
@@ -167,7 +167,7 @@ bindkey &#39;^x^l&#39; insert-launchctl</pre></div>
 
 <p>めんどうなので、 <code>brew</code> も <code>cask</code> も <code>mas</code> も、インストールしている内容を自動的に <code>dotfiles</code> 配下に保存するようにしています。</p>
 
-<p><a href="https://github.com/kyoh86/dotfiles/blob/master/dots/userjob">https://github.com/kyoh86/dotfiles/blob/master/dots/userjob</a></p>
+<p><a href="https://github.com/kyoh86/dotfiles/blob/master/dots/userjob" target="_blank">https://github.com/kyoh86/dotfiles/blob/master/dots/userjob</a></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-userjob" data-lang="userjob"># Update mas-cli:
 if [ -f /usr/local/bin/mas ] ; then
   echo &#39;#!/bin/sh&#39; &gt; ~/.install_mas
@@ -193,7 +193,7 @@ fi</code></pre></div>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">ln -fs ${dotfiles}/userjob ~/.userjob</pre></div>
 <p>とホームディレクトリにリンクしておき、<code>plist</code> を登録してlaunchctlで入らせれば、1時間に1回、brewとcaskとmasでインストールされている内容を、~/.install_xxx というファイルで保存してくれます。</p>
 
-<p><a href="https://github.com/kyoh86/dotfiles/blob/master/plist/userjob.plist">https://github.com/kyoh86/dotfiles/blob/master/plist/userjob.plist</a></p>
+<p><a href="https://github.com/kyoh86/dotfiles/blob/master/plist/userjob.plist" target="_blank">https://github.com/kyoh86/dotfiles/blob/master/plist/userjob.plist</a></p>
 
 <p>さらに、dotfiles配下にそれぞれ</p>
 
@@ -258,6 +258,15 @@ ln -fs ${dotfiles}/install_mas ~/.install_mas</pre></div>
 		<input type="hidden" name="sitesearch" value="https://kyoh86.work/" />
 	</form>
 </div>
+<div class="widget-recent widget">
+	<h4 class="widget__title"></h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/tools/gogh/">Gogh</a></li>
+			<li class="widget__item"><a class="widget__link" href="/tools/richgo/">Richgo</a></li>
+		</ul>
+	</div>
+</div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title"></h4>
 	<div class="widget__content">
@@ -277,11 +286,13 @@ ln -fs ${dotfiles}/install_mas ~/.install_mas</pre></div>
 		<a class="widget-taglist__link widget__link btn" href="/tags/php" title="P h p">P h p (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/perl6" title="Perl6">Perl6 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/semanticversioning" title="Semantic versioning">Semantic versioning (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tool" title="Tool">Tool (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/vscode" title="V s code">V s code (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/visualstudiocode" title="Visual studio code">Visual studio code (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/web" title="Web">Web (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/zsh" title="Zsh">Zsh (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/cli" title="Cli">Cli (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/go" title="Go">Go (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/golang" title="Golang">Golang (13)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/homebrew" title="Homebrew">Homebrew (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/jxa" title="J x a">J x a (1)</a>

@@ -113,15 +113,15 @@ JSON Schemaは、JSONドキュメントがどのように見えるか、情報�
 
 <h2 id="読者への注意">読者への注意</h2>
 
-<p>このドラフトのIssueリストは &lt;<a href="https://github.com/json-schema-org/json-schema-spec/issues&gt;">https://github.com/json-schema-org/json-schema-spec/issues&gt;</a> にあります。
-追加情報については &lt;<a href="http://json-schema.org&gt;">http://json-schema.org&gt;</a> を参照してください。
+<p>このドラフトのIssueリストは &lt;<a href="https://github.com/json-schema-org/json-schema-spec/issues&gt;" target="_blank">https://github.com/json-schema-org/json-schema-spec/issues&gt;</a> にあります。
+追加情報については &lt;<a href="http://json-schema.org&gt;" target="_blank">http://json-schema.org&gt;</a> を参照してください。
 フィードバックは前述のIssueリスト、ホームページに記載された連絡先、または著者にメールでお知らせください。</p>
 
 <h2 id="この文書のステータス">この文書のステータス</h2>
 
 <p>このInternet Draftは、BCP78およびBCP79の規定に完全に準拠して提出されています。</p>
 
-<p>インターネットドラフトは、インターネットエンジニアリングタスクフォース（IETF）の作業文書です。他のグループがインターネットドラフトとして作業文書を配布することもできることに注意してください。現在のインターネットドラフトのリストは<a href="http://datatracker.ietf.org/drafts/current/にあります。">http://datatracker.ietf.org/drafts/current/にあります。</a></p>
+<p>インターネットドラフトは、インターネットエンジニアリングタスクフォース（IETF）の作業文書です。他のグループがインターネットドラフトとして作業文書を配布することもできることに注意してください。現在のインターネットドラフトのリストは<a href="http://datatracker.ietf.org/drafts/current/にあります。" target="_blank">http://datatracker.ietf.org/drafts/current/にあります。</a></p>
 
 <p>インターネットドラフトは、最大6か月間有効なドラフト文書であり、いつでも他の文書によって更新、置き換え、または廃止される可能性があります。参考資料としてインターネットドラフトを使用したり、「進行中の作業」以外のものを引用することは不適切です。</p>
 
@@ -147,9 +147,9 @@ JSON Schemaは、JSONドキュメントがどのように見えるか、情報�
 
 <h2 id="2-表記と用語">2.表記と用語</h2>
 
-<p>この文書内の&rdquo;MUST&rdquo; &ldquo;MUST NOT&rdquo; &ldquo;REQUIRED&rdquo; &ldquo;SHALL&rdquo; &ldquo;SHALL NOT&rdquo; &ldquo;SHOULD&rdquo; &ldquo;SHOULD NOT&rdquo; &ldquo;RECOMMENDED&rdquo; &ldquo;MAY&rdquo; &ldquo;OPTIONAL&rdquo;といったキーワードは、<a href="http://json-schema.org/latest/json-schema-core.html#RFC2119">RFC 2119</a>に沿って解釈しなくてはなりません。</p>
+<p>この文書内の&rdquo;MUST&rdquo; &ldquo;MUST NOT&rdquo; &ldquo;REQUIRED&rdquo; &ldquo;SHALL&rdquo; &ldquo;SHALL NOT&rdquo; &ldquo;SHOULD&rdquo; &ldquo;SHOULD NOT&rdquo; &ldquo;RECOMMENDED&rdquo; &ldquo;MAY&rdquo; &ldquo;OPTIONAL&rdquo;といったキーワードは、<a href="http://json-schema.org/latest/json-schema-core.html#RFC2119" target="_blank">RFC 2119</a>に沿って解釈しなくてはなりません。</p>
 
-<p>同様に、この文書内の&rdquo;JSON&rdquo;, &ldquo;JSON text&rdquo;, &ldquo;JSON value&rdquo;, &ldquo;member&rdquo;, &ldquo;element&rdquo;, &ldquo;object&rdquo;, &ldquo;array&rdquo;, &ldquo;number&rdquo;, &ldquo;string&rdquo;, &ldquo;boolean&rdquo;, &ldquo;true&rdquo;, &ldquo;false&rdquo;, &ldquo;null&rdquo;といったキーワードは、<a href="http://json-schema.org/latest/json-schema-core.html#RFC7159">RFC 7159</a>に沿って解釈しなくてはなりません。</p>
+<p>同様に、この文書内の&rdquo;JSON&rdquo;, &ldquo;JSON text&rdquo;, &ldquo;JSON value&rdquo;, &ldquo;member&rdquo;, &ldquo;element&rdquo;, &ldquo;object&rdquo;, &ldquo;array&rdquo;, &ldquo;number&rdquo;, &ldquo;string&rdquo;, &ldquo;boolean&rdquo;, &ldquo;true&rdquo;, &ldquo;false&rdquo;, &ldquo;null&rdquo;といったキーワードは、<a href="http://json-schema.org/latest/json-schema-core.html#RFC7159" target="_blank">RFC 7159</a>に沿って解釈しなくてはなりません。</p>
 
 <h2 id="3-概要">3.概要</h2>
 
@@ -159,13 +159,13 @@ JSON Schemaは、JSONドキュメントがどのように見えるか、情報�
 
 <p>JSON Schemaは、JSONドキュメントの構造（必要なプロパティや長さの制限など）を記述します。アプリケーションは、この情報を使用してインスタンスを検証（制約が満たされていることを確認）したり、制約を満たしたユーザー入力をインターフェイスに送信することができます。</p>
 
-<p>バリデーションの動作とキーワードは、別の文書 <a href="http://json-schema.org/latest/json-schema-core.html#json-schema-validation">json-schema-validation</a> で定義しています。</p>
+<p>バリデーションの動作とキーワードは、別の文書 <a href="http://json-schema.org/latest/json-schema-core.html#json-schema-validation" target="_blank">json-schema-validation</a> で定義しています。</p>
 
 <h3 id="3-2-ハイパーメディアとリンク">3.2. ハイパーメディアとリンク</h3>
 
 <p>JSON Hyper-Schema は、JSONドキュメントのハイパーテキスト構造を定義します。これには、インスタンスから他のリソースへのリンク関係、インスタンスのマルチメディアデータとしての解釈、およびAPIの使用に必要な送信データの定義が含まれます。</p>
 
-<p>JSON Hyper-Schemaの動作やキーワードは、別の文書 <a href="http://json-schema.org/latest/json-schema-core.html#json-hyper-schema">json-hyper-schema</a> で定義しています。</p>
+<p>JSON Hyper-Schemaの動作やキーワードは、別の文書 <a href="http://json-schema.org/latest/json-schema-core.html#json-hyper-schema" target="_blank">json-hyper-schema</a> で定義しています。</p>
 
 <h2 id="4-定義">4.定義</h2>
 
@@ -245,7 +245,7 @@ JSON Schemaは、JSONドキュメントがどのように見えるか、情報�
 
 <h3 id="5-1-json値">5.1. JSON値</h3>
 
-<p>インスタンスは、<a href="http://json-schema.org/latest/json-schema-core.html#RFC7159">RFC7159</a>に定める任意の有効なJSON値を取ることができます。JSON Schemaは、JSONのあらゆる型を記述することができ、例えばnullを含むJSON値を記述できます。</p>
+<p>インスタンスは、<a href="http://json-schema.org/latest/json-schema-core.html#RFC7159" target="_blank">RFC7159</a>に定める任意の有効なJSON値を取ることができます。JSON Schemaは、JSONのあらゆる型を記述することができ、例えばnullを含むJSON値を記述できます。</p>
 
 <h3 id="5-2-言語独立性">5.2. 言語独立性</h3>
 
@@ -269,7 +269,7 @@ JSON Schemaは、JSONドキュメントがどのように見えるか、情報�
 
 <p><code>$schema</code> キーワードは、JSON Schemaのバージョン識別子として、またその特定のバージョンを定義するスキーマを記述した JSON Schema リソースの場所として解釈されます。</p>
 
-<p>JSON Schemaドキュメントのルートスキーマは、このプロパティを記述すべきです（SHOULD）。このキーワードの値は、<a href="http://json-schema.org/latest/json-schema-core.html#RFC3986">RFC3986</a>に定義される絶対URIであり、正規化されていなければなりません。そしてスキーマ自体は、このURIによって識別されるメタスキーマに対して有効でなければなりません（MUST）。</p>
+<p>JSON Schemaドキュメントのルートスキーマは、このプロパティを記述すべきです（SHOULD）。このキーワードの値は、<a href="http://json-schema.org/latest/json-schema-core.html#RFC3986" target="_blank">RFC3986</a>に定義される絶対URIであり、正規化されていなければなりません。そしてスキーマ自体は、このURIによって識別されるメタスキーマに対して有効でなければなりません（MUST）。</p>
 
 <p>このプロパティの値は、他のドキュメントや他の人に定義されています。JSON Schemaの実装では、JSON Schemaの現在の草案とそれ以前に公開された草案の妥当性を考慮してサポートを実装するべきです（SHOULD）。</p>
 
@@ -285,7 +285,7 @@ JSON Schemaは、JSONドキュメントがどのように見えるか、情報�
 
 <h3 id="8-1-initial-base-uri">8.1. Initial base URI</h3>
 
-<p><a href="https://www.ietf.org/rfc/rfc3986.txt">RFC3986 Section 5.1</a>defines how to determine the default base URI of a document.</p>
+<p><a href="https://www.ietf.org/rfc/rfc3986.txt" target="_blank">RFC3986 Section 5.1</a>defines how to determine the default base URI of a document.</p>
 
 <p>Informatively, the initial base URI of a schema is the URI it was found at, or a suitable substitute URI if none is known.</p>
 
@@ -295,7 +295,7 @@ JSON Schemaは、JSONドキュメントがどのように見えるか、情報�
 
 <p><code>id</code>キーワードは、スキーマのURIと、スキーマ内の他のURI参照が解決されるベースURIを定義します。<code>id</code>キーワード自体は、オブジェクト全体のベースURIに対して解決されます。</p>
 
-<p>このキーワードの値は、文字列でなければなりませんし、<a href="https://www.ietf.org/rfc/rfc3986.txt">RFC3986</a>に定められた有効なURIでなければなりません。さらにこの値は正規化されるべきであり（SHOULD NOT）、空のフラグメント <code>&quot;#&quot;</code> または空の文字列 <code>&quot;&quot;</code> であるべきではありません（SHOULD NOT）。</p>
+<p>このキーワードの値は、文字列でなければなりませんし、<a href="https://www.ietf.org/rfc/rfc3986.txt" target="_blank">RFC3986</a>に定められた有効なURIでなければなりません。さらにこの値は正規化されるべきであり（SHOULD NOT）、空のフラグメント <code>&quot;#&quot;</code> または空の文字列 <code>&quot;&quot;</code> であるべきではありません（SHOULD NOT）。</p>
 
 <p>JSON Schema ドキュメントのルートスキーマには、絶対URI（スキームを含むが、フラグメントは含まない）を持つ <code>id</code> キーワードが必要です（SHOULD）。</p>
 
@@ -316,33 +316,33 @@ JSON Schemaは、JSONドキュメントがどのように見えるか、情報�
         }
     }
 }</code></pre></div>
-<p>上記の例における各スキーマはそれぞれ以下に示すように、ルートスキーマからの相対的なJSON Pointer(<a href="http://json-schema.org/latest/json-schema-core.html#RFC6901">RFC6901</a>)と　base　URI を持ち、どちらでも一意に識別できます。</p>
+<p>上記の例における各スキーマはそれぞれ以下に示すように、ルートスキーマからの相対的なJSON Pointer(<a href="http://json-schema.org/latest/json-schema-core.html#RFC6901" target="_blank">RFC6901</a>)と　base　URI を持ち、どちらでも一意に識別できます。</p>
 
 <ul>
 <li># (document root)
 
 <ul>
-<li><a href="http://example.com/root.json#">http://example.com/root.json#</a></li>
+<li><a href="http://example.com/root.json#" target="_blank">http://example.com/root.json#</a></li>
 </ul></li>
 <li>#/definitions/A
 
 <ul>
-<li><a href="http://example.com/root.json#foo">http://example.com/root.json#foo</a></li>
+<li><a href="http://example.com/root.json#foo" target="_blank">http://example.com/root.json#foo</a></li>
 </ul></li>
 <li>#/definitions/B
 
 <ul>
-<li><a href="http://example.com/other.json">http://example.com/other.json</a></li>
+<li><a href="http://example.com/other.json" target="_blank">http://example.com/other.json</a></li>
 </ul></li>
 <li>#/definitions/B/definitions/X
 
 <ul>
-<li><a href="http://example.com/other.json#bar">http://example.com/other.json#bar</a></li>
+<li><a href="http://example.com/other.json#bar" target="_blank">http://example.com/other.json#bar</a></li>
 </ul></li>
 <li>#/definitions/B/definitions/Y
 
 <ul>
-<li><a href="http://example.com/t/inner.json">http://example.com/t/inner.json</a></li>
+<li><a href="http://example.com/t/inner.json" target="_blank">http://example.com/t/inner.json</a></li>
 </ul></li>
 <li>#/definitions/C
 
@@ -539,6 +539,15 @@ HTTPサーバーはJSON Schemaが長期間キャッシュされるヘッダー�
 		<input type="hidden" name="sitesearch" value="https://kyoh86.work/" />
 	</form>
 </div>
+<div class="widget-recent widget">
+	<h4 class="widget__title"></h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/tools/gogh/">Gogh</a></li>
+			<li class="widget__item"><a class="widget__link" href="/tools/richgo/">Richgo</a></li>
+		</ul>
+	</div>
+</div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title"></h4>
 	<div class="widget__content">
@@ -558,11 +567,13 @@ HTTPサーバーはJSON Schemaが長期間キャッシュされるヘッダー�
 		<a class="widget-taglist__link widget__link btn" href="/tags/php" title="P h p">P h p (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/perl6" title="Perl6">Perl6 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/semanticversioning" title="Semantic versioning">Semantic versioning (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tool" title="Tool">Tool (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/vscode" title="V s code">V s code (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/visualstudiocode" title="Visual studio code">Visual studio code (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/web" title="Web">Web (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/zsh" title="Zsh">Zsh (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/cli" title="Cli">Cli (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/go" title="Go">Go (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/golang" title="Golang">Golang (13)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/homebrew" title="Homebrew">Homebrew (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/jxa" title="J x a">J x a (1)</a>

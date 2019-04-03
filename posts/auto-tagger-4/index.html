@@ -93,7 +93,7 @@ if (!doNotTrack) {
 
 <p>まずは、形態素解析を使って文章→単語（形態素）の分割部分を作る。</p>
 
-<p><a href="/posts/auto-tagger-2/#構成">先の構成図</a>で言うところの、 <code>MorphoAnalyzer</code> である。</p>
+<p><a href="/posts/auto-tagger-2/#構成" target="_blank">先の構成図</a>で言うところの、 <code>MorphoAnalyzer</code> である。</p>
 
 <h2 id="インストール">インストール</h2>
 
@@ -101,7 +101,7 @@ if (!doNotTrack) {
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">brew install mecab</code></pre></div>
 <h2 id="試しに使ってみる">試しに使ってみる</h2>
 
-<p>まずはものは試し、お定まり（？）の <a href="https://www.aozora.gr.jp/cards/000035/files/1567_14913.html">走れメロス</a> をぶち込んでみる。</p>
+<p>まずはものは試し、お定まり（？）の <a href="https://www.aozora.gr.jp/cards/000035/files/1567_14913.html" target="_blank">走れメロス</a> をぶち込んでみる。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ echo <span style="color:#e6db74">&#34;メロスは激怒した。必ず、かの邪智暴虐の王を除かなければならぬと決意した。&#34;</span> | mecab
 メロス  名詞,一般,*,*,*,*,*
 は      助詞,係助詞,*,*,*,*,は,ハ,ワ
@@ -171,7 +171,7 @@ EOS</code></pre></div>
 EOS</code></pre></div>
 <p>結果は同じ…というかこれ、文字列で結果返ってくるのか。使いにくいな！</p>
 
-<p>公式の <a href="https://taku910.github.io/mecab/#parse">とりあえず解析してみる</a> を参考にすると、
+<p>公式の <a href="https://taku910.github.io/mecab/#parse" target="_blank">とりあえず解析してみる</a> を参考にすると、
 各列は左から、</p>
 
 <blockquote>
@@ -182,8 +182,8 @@ EOS</code></pre></div>
 
 <h2 id="出力をプログラムチックに扱いやすくする">出力をプログラムチックに扱いやすくする</h2>
 
-<p>活用とか読みとか発音は要らないので、 <a href="https://taku910.github.io/mecab/format.html">出力フォーマット</a> をいじってみる。
-ついでに、品詞も「名詞」とか「形容詞」といった文字列で扱うのはあまりにもナンセンスなので、 <a href="https://taku910.github.io/mecab/posid.html">品詞ID</a> で出力したほうが扱いやすい。</p>
+<p>活用とか読みとか発音は要らないので、 <a href="https://taku910.github.io/mecab/format.html" target="_blank">出力フォーマット</a> をいじってみる。
+ついでに、品詞も「名詞」とか「形容詞」といった文字列で扱うのはあまりにもナンセンスなので、 <a href="https://taku910.github.io/mecab/posid.html" target="_blank">品詞ID</a> で出力したほうが扱いやすい。</p>
 
 <p>出力フォーマットなどの指定は、 <code>Tagger</code> の引数にCLIに指定するのと同じ感じで渡せばいいらしい。
 これCLI呼んでるだけだろ…</p>
@@ -355,6 +355,15 @@ _features: Dict[int, Feature] <span style="color:#f92672">=</span> {
 		<input type="hidden" name="sitesearch" value="https://kyoh86.work/" />
 	</form>
 </div>
+<div class="widget-recent widget">
+	<h4 class="widget__title"></h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/tools/gogh/">Gogh</a></li>
+			<li class="widget__item"><a class="widget__link" href="/tools/richgo/">Richgo</a></li>
+		</ul>
+	</div>
+</div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title"></h4>
 	<div class="widget__content">
@@ -374,11 +383,13 @@ _features: Dict[int, Feature] <span style="color:#f92672">=</span> {
 		<a class="widget-taglist__link widget__link btn" href="/tags/php" title="P h p">P h p (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/perl6" title="Perl6">Perl6 (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/semanticversioning" title="Semantic versioning">Semantic versioning (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tool" title="Tool">Tool (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/vscode" title="V s code">V s code (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/visualstudiocode" title="Visual studio code">Visual studio code (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/web" title="Web">Web (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/zsh" title="Zsh">Zsh (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/cli" title="Cli">Cli (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/go" title="Go">Go (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/golang" title="Golang">Golang (13)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/homebrew" title="Homebrew">Homebrew (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/jxa" title="J x a">J x a (1)</a>

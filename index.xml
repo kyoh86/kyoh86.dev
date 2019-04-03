@@ -382,5 +382,23 @@ Categories of posts:
       <description>概要 自社サービスの開発中、必要にかられてGOで簡単なリバースプロキシツールを作った話を書いてみます。 前提 自社サービスの開発を、次のような構成</description>
     </item>
     
+    <item>
+      <title>Gogh</title>
+      <link>https://kyoh86.work/tools/gogh/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://kyoh86.work/tools/gogh/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/kyoh86/gogh&#34; target=&#34;_blank&#34;&gt;gogh&lt;/a&gt; is the GO GitHub project manager&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Richgo</title>
+      <link>https://kyoh86.work/tools/richgo/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://kyoh86.work/tools/richgo/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/kyoh86/richgo&#34; target=&#34;_blank&#34;&gt;Rich-Go&lt;/a&gt; will enrich &lt;code&gt;go test&lt;/code&gt; outputs with text decorations.&lt;/p&gt;</description>
+    </item>
+    
   </channel>
 </rss>
