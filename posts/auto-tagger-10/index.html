@@ -1,30 +1,31 @@
 <!DOCTYPE html>
-<html lang="ja-jp">
-<head><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
- <title>自動タグ付け機能でも作ってみる - 10: 動かしてみる </title>
+<html class="no-js" lang="ja-jp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>自動タグ付け機能でも作ってみる - 10: 動かしてみる - kyoh86 works</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<meta name="generator" content="Hugo 0.54.0" />
+	<meta property="og:title" content="自動タグ付け機能でも作ってみる - 10: 動かしてみる" />
+<meta property="og:description" content="動かしてみる 一通り役者は揃ったので、全部つなぎこんでみる。 core.py main.py で、実際Wikipediaのテキストデータから単語の出現頻度データをとって、d" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kyoh86.work/posts/auto-tagger-10/" />
+<meta property="article:published_time" content="2018-05-14T00:38:41&#43;09:00"/>
+<meta property="article:modified_time" content="2018-05-14T00:38:41&#43;09:00"/>
 
+	<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="自動タグ付け機能でも作ってみる - 10: 動かしてみる"/>
+<meta name="twitter:description" content="動かしてみる 一通り役者は揃ったので、全部つなぎこんでみる。 core.py main.py で、実際Wikipediaのテキストデータから単語の出現頻度データをとって、d"/>
 
-
-<meta name="description" content="Works of kyoh86">
-
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="all,follow">
-<meta name="googlebot" content="index,follow,snippet,archive">
-<meta name="theme-color" content="#4d4d4d">
-<link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosansjapanese.css" />
-<script defer src="https://use.fontawesome.com/releases/v5.0.12/js/all.js" integrity="sha384-Voup2lBiiyZYkRto2XWqbzxHXwzcm4A5RfdfG6466bu5LqjwwrjXCMBQBLMWh7qR" crossorigin="anonymous"></script>
-
-<link href="https://kyoh86.work/css/style.css" rel="stylesheet" type='text/css' media='all'>
-
-<link href="https://kyoh86.work/css/custom.css" rel="stylesheet" type='text/css' media='all'>
-<link rel="shortcut icon" href="https://kyoh86.work/img/favicon.ico" type="image/x-icon">
-<link rel="icon" href="https://kyoh86.work/img/favicon.ico" type="image/x-icon">
-
-<script src="https://kyoh86.work/js/lib/plantuml.js"></script>
-
-
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+	<link rel="shortcut icon" href="/favicon.ico">
+		
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -37,299 +38,169 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 </head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container">
+		<div class="logo">
+			<a class="logo__link" href="/" title="kyoh86 works" rel="home">
+				<div class="logo__title">kyoh86 works</div>
+				<div class="logo__tagline">技術とか写真とか料理とか</div>
+			</a>
+		</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1"></span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">Home</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/posts">Blog</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about">About</a>
+		</li>
+	</ul>
+</nav>
 
-
-<body class="post-template-default singular singular-post standard">
-
-  <div id="overflow-container" class="overflow-container">
-    <a class="skip-content" href="#main">Skip to content</a>
-    <header id="site-header" class="site-header" role="banner">
-      <div class="top-navigation">
-        <div class="container">
-
-  <div id="menu-secondary" class="menu-container menu-secondary" role="navigation">
-    <button id="toggle-secondary-navigation" class="toggle-secondary-navigation" aria-label="menu"><i class="fas fa-plus"></i></button>
-    <div class="menu">
-      <ul id="menu-secondary-items" class="menu-secondary-items">
-        
-        <li id="menu-item" class="menu-item">
-          <a href="/categories/tech">tech</a>
-        </li>
-        
-      </ul>
-    </div>
-  </div>
-
-    <ul class="social-media-icons">
-    
-      <li>
-        <a class="facebook" target="_blank"
-           href="https://www.facebook.com/kyoh.86" >
-          <i class="fab fa-facebook" title="facebook"></i>
-          <span class="screen-reader-text">facebook</span>
-        </a>
-      </li>
-    
-
-    
-      <li>
-        <a class="fa-layers" target="_blank"
-           href="https://qiita.com/kyoh86" >
-          <i class="fas fa-square"></i>
-          <i class="fas fa-search" style="color:#111" data-fa-transform="grow-3"></i>
-          <span class="screen-reader-text">googleplus</span>
-        </a>
-      </li>
-    
-
-    
-      <li>
-        <a class="googleplus" target="_blank"
-           href="https://plus.google.com/u/0/100199074642864423892" >
-          <i class="fab fa-google-plus" title="googleplus"></i>
-          <span class="screen-reader-text">googleplus</span>
-        </a>
-      </li>
-    
-
-
-    
-      <li>
-      <a href="https://twitter.com/kyoh86"  class="twitter" target="_blank">
-          <i class="fab fa-twitter-square" title="twitter"></i>
-          <span class="screen-reader-text">twitter</span>
-      </a>
-      </li>
-    
-
-    
-      <li>
-      <a href="https://www.instagram.com/kyoh86"  class="twitter" target="_blank">
-          <i class="fab fa-instagram" title="instagram"></i>
-          <span class="screen-reader-text">instagram</span>
-      </a>
-      </li>
-    
-
-    
-
-    
-      <li>
-      <a href="https://www.linkedin.com/in/kyoh86/" class="linkedin" target="_blank">
-          <i class="fab fa-linkedin" title="linkedin"></i>
-          <span class="screen-reader-text">linkedin</span>
-      </a>
-      </li>
-    
-
-    
-      <li>
-      <a href="https://stackoverflow.com/users/3610769/kyoh86"  class="stackoverflow" target="_blank">
-          <i class="fab fa-stack-overflow" title="stackoverflow"></i>
-          <span class="screen-reader-text">stackoverflow</span>
-      </a>
-      </li>
-    
-
-
-    
-      <li>
-      <a href="https://github.com/kyoh86"  class="github" target="_blank">
-          <i class="fab fa-github" title="github"></i>
-          <span class="screen-reader-text">github</span>
-      </a>
-      </li>
-    
-  </ul>
-
-
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">自動タグ付け機能でも作ってみる - 10: 動かしてみる</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
+	<time class="meta__text" datetime="2018-05-14T00:38:41">May 14, 2018</time>
 </div>
-
-      </div>
-
-      <div class="container">
-        <div id="title-info" class="title-info">
-  <div class="site-title">
-    
-    <a href="/"> kyoh86.work </a>
-    </div>
-  </div>
-  <button id="toggle-navigation" class="toggle-navigation" aria-label="menu">
-    <i class="fas fa-bars"></i>
-  </button>
-
-  <div id="menu-primary-tracks" class="menu-primary-tracks"></div>
-  <div id="menu-primary" class="menu-container menu-primary" role="navigation">
-    
-    <p class="site-description">Works of kyoh86</p>
-    
-
-    <div class="menu">
-      <ul id="menu-primary-items" class="menu-primary-items">
-        
-        
-        <li id="menu-item" class="menu-item">
-          <a href="https://kyoh86.work/">Home</a>
-        </li>
-        
-        <li id="menu-item" class="menu-item">
-          <a href="https://kyoh86.work/about">About</a>
-        </li>
-        
-        
-      </ul>
-    </div>
-
-  </div>
-
-      </div>
-    </header>
-
-    <div id="main" class="main" role="main">
-      
-  <div class="loop-container">
-    <nav class="navigation pagination" role="navigation">
-      <h2 class="screen-reader-text">Posts navigation</h2>
-      <div class="nav-links">
-        
-        <a class="prev page-numbers" href="https://kyoh86.work/posts/auto-tagger-9/">自動タグ付け機能でも作ってみる - 9: Markdownをパースする</a>
-        
-        
-      </div>
-    </nav>
-    
-    <div class="post entry">
-    
-      <div class="entry-meta">
-        <span class="date">May 14</span>
-        
-      </div>
-
-      <div class='entry-header'>
-        <h1 class='entry-title'> 自動タグ付け機能でも作ってみる - 10: 動かしてみる</h1>
-      </div>
-      <div class="entry-container">
-        <div class="entry-content">
-          <article>
-            
+</div>
+		</header><div class="content post__content clearfix">
+			
 
 <h2 id="動かしてみる">動かしてみる</h2>
 
 <p>一通り役者は揃ったので、全部つなぎこんでみる。</p>
 
 <ul>
-<li>[core.py](<a href="https://github.com/kyoh86/gen-tags/blob/master/gen_tags/core.py]">https://github.com/kyoh86/gen-tags/blob/master/gen_tags/core.py]</a></li>
-<li>[<strong>main</strong>.py](<a href="https://github.com/kyoh86/gen-tags/blob/master/gen_tags/__main__.py]">https://github.com/kyoh86/gen-tags/blob/master/gen_tags/__main__.py]</a></li>
+<li><a href="https://github.com/kyoh86/gen-tags/blob/master/gen_tags/core.py">core.py</a></li>
+<li><a href="https://github.com/kyoh86/gen-tags/blob/master/gen_tags/__main__.py"><strong>main</strong>.py</a></li>
 </ul>
 
 <p>で、実際Wikipediaのテキストデータから単語の出現頻度データをとって、dumpしてみる。</p>
-<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ python -m gen_tags --verbose --dicdir /usr/local/lib/mecab/dic/mecab-ipadic-neologd --document-format text --dump ./wikipedia.pickles /var/wikipedia/ja/wiki_*
-<span style="color:#3677a9">23</span>:04:45 processing    <span style="color:#3677a9">0</span>/2962(  <span style="color:#3677a9">0</span>.00%): /var/wikipedia/ja/wiki_aaa
-<span style="color:#3677a9">23</span>:04:50 processing    <span style="color:#3677a9">1</span>/2962(  <span style="color:#3677a9">0</span>.03%): /var/wikipedia/ja/wiki_aab
-<span style="color:#3677a9">23</span>:04:58 processing    <span style="color:#3677a9">2</span>/2962(  <span style="color:#3677a9">0</span>.07%): /var/wikipedia/ja/wiki_aac
-<span style="color:#3677a9">23</span>:05:01 processing    <span style="color:#3677a9">3</span>/2962(  <span style="color:#3677a9">0</span>.10%): /var/wikipedia/ja/wiki_aad
-<span style="color:#3677a9">23</span>:05:03 processing    <span style="color:#3677a9">4</span>/2962(  <span style="color:#3677a9">0</span>.14%): /var/wikipedia/ja/wiki_aae
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ python -m gen_tags --verbose --dicdir /usr/local/lib/mecab/dic/mecab-ipadic-neologd --document-format text --dump ./wikipedia.pickles /var/wikipedia/ja/wiki_*
+<span style="color:#ae81ff">23</span>:04:45 processing    <span style="color:#ae81ff">0</span>/2962<span style="color:#f92672">(</span>  <span style="color:#ae81ff">0</span>.00%<span style="color:#f92672">)</span>: /var/wikipedia/ja/wiki_aaa
+<span style="color:#ae81ff">23</span>:04:50 processing    <span style="color:#ae81ff">1</span>/2962<span style="color:#f92672">(</span>  <span style="color:#ae81ff">0</span>.03%<span style="color:#f92672">)</span>: /var/wikipedia/ja/wiki_aab
+<span style="color:#ae81ff">23</span>:04:58 processing    <span style="color:#ae81ff">2</span>/2962<span style="color:#f92672">(</span>  <span style="color:#ae81ff">0</span>.07%<span style="color:#f92672">)</span>: /var/wikipedia/ja/wiki_aac
+<span style="color:#ae81ff">23</span>:05:01 processing    <span style="color:#ae81ff">3</span>/2962<span style="color:#f92672">(</span>  <span style="color:#ae81ff">0</span>.10%<span style="color:#f92672">)</span>: /var/wikipedia/ja/wiki_aad
+<span style="color:#ae81ff">23</span>:05:03 processing    <span style="color:#ae81ff">4</span>/2962<span style="color:#f92672">(</span>  <span style="color:#ae81ff">0</span>.14%<span style="color:#f92672">)</span>: /var/wikipedia/ja/wiki_aae
 :
 :
-<span style="color:#3677a9">23</span>:54:32 processing <span style="color:#3677a9">2957</span>/2962( <span style="color:#3677a9">99</span>.83%): /var/wikipedia/ja/wiki_ejt
-<span style="color:#3677a9">23</span>:54:33 processing <span style="color:#3677a9">2958</span>/2962( <span style="color:#3677a9">99</span>.86%): /var/wikipedia/ja/wiki_eju
-<span style="color:#3677a9">23</span>:54:33 processing <span style="color:#3677a9">2959</span>/2962( <span style="color:#3677a9">99</span>.90%): /var/wikipedia/ja/wiki_ejv
-<span style="color:#3677a9">23</span>:54:35 processing <span style="color:#3677a9">2960</span>/2962( <span style="color:#3677a9">99</span>.93%): /var/wikipedia/ja/wiki_ejw
-<span style="color:#3677a9">23</span>:54:35 processing <span style="color:#3677a9">2961</span>/2962( <span style="color:#3677a9">99</span>.97%): /var/wikipedia/ja/wiki_ejx</code></pre></div>
+<span style="color:#ae81ff">23</span>:54:32 processing <span style="color:#ae81ff">2957</span>/2962<span style="color:#f92672">(</span> <span style="color:#ae81ff">99</span>.83%<span style="color:#f92672">)</span>: /var/wikipedia/ja/wiki_ejt
+<span style="color:#ae81ff">23</span>:54:33 processing <span style="color:#ae81ff">2958</span>/2962<span style="color:#f92672">(</span> <span style="color:#ae81ff">99</span>.86%<span style="color:#f92672">)</span>: /var/wikipedia/ja/wiki_eju
+<span style="color:#ae81ff">23</span>:54:33 processing <span style="color:#ae81ff">2959</span>/2962<span style="color:#f92672">(</span> <span style="color:#ae81ff">99</span>.90%<span style="color:#f92672">)</span>: /var/wikipedia/ja/wiki_ejv
+<span style="color:#ae81ff">23</span>:54:35 processing <span style="color:#ae81ff">2960</span>/2962<span style="color:#f92672">(</span> <span style="color:#ae81ff">99</span>.93%<span style="color:#f92672">)</span>: /var/wikipedia/ja/wiki_ejw
+<span style="color:#ae81ff">23</span>:54:35 processing <span style="color:#ae81ff">2961</span>/2962<span style="color:#f92672">(</span> <span style="color:#ae81ff">99</span>.97%<span style="color:#f92672">)</span>: /var/wikipedia/ja/wiki_ejx</code></pre></div>
 <p>50分程で完了。</p>
 
 <p>今度はこのデータを使って、このブログの記事のキーワードを見つけてみる。</p>
-<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#a61717;background-color:#e3d2d2">$</span> python -m gen_tags --dicdir /usr/local/lib/mecab/dic/mecab-ipadic-neologd --restore ./wikipedia.pickles --show-keywords ../hugo/content/**/*.md
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">$</span> python <span style="color:#f92672">-</span>m gen_tags <span style="color:#f92672">--</span>dicdir <span style="color:#f92672">/</span>usr<span style="color:#f92672">/</span>local<span style="color:#f92672">/</span>lib<span style="color:#f92672">/</span>mecab<span style="color:#f92672">/</span>dic<span style="color:#f92672">/</span>mecab<span style="color:#f92672">-</span>ipadic<span style="color:#f92672">-</span>neologd <span style="color:#f92672">--</span>restore <span style="color:#f92672">./</span>wikipedia<span style="color:#f92672">.</span>pickles <span style="color:#f92672">--</span>show<span style="color:#f92672">-</span>keywords <span style="color:#f92672">../</span>hugo<span style="color:#f92672">/</span>content<span style="color:#f92672">/**/*.</span>md
 Traceback (most recent call last):
-  File <span style="color:#ed9d13">&#34;/Users/yamada/.pyenv/versions/3.6.5/Python.framework/Versions/3.6/lib/python3.6/runpy.py&#34;</span>, line <span style="color:#3677a9">193</span>, <span style="color:#6ab825;font-weight:bold">in</span> _run_module_as_main
-    <span style="color:#ed9d13">&#34;__main__&#34;</span>, mod_spec)
-  File <span style="color:#ed9d13">&#34;/Users/yamada/.pyenv/versions/3.6.5/Python.framework/Versions/3.6/lib/python3.6/runpy.py&#34;</span>, line <span style="color:#3677a9">85</span>, <span style="color:#6ab825;font-weight:bold">in</span> _run_code
-    <span style="color:#6ab825;font-weight:bold">exec</span>(code, run_globals)
-  File <span style="color:#ed9d13">&#34;/Users/yamada/go/src/github.com/kyoh86/gen-tags/gen_tags/__main__.py&#34;</span>, line <span style="color:#3677a9">74</span>, <span style="color:#6ab825;font-weight:bold">in</span> &lt;module&gt;
+  File <span style="color:#e6db74">&#34;/Users/yamada/.pyenv/versions/3.6.5/Python.framework/Versions/3.6/lib/python3.6/runpy.py&#34;</span>, line <span style="color:#ae81ff">193</span>, <span style="color:#f92672">in</span> _run_module_as_main
+    <span style="color:#e6db74">&#34;__main__&#34;</span>, mod_spec)
+  File <span style="color:#e6db74">&#34;/Users/yamada/.pyenv/versions/3.6.5/Python.framework/Versions/3.6/lib/python3.6/runpy.py&#34;</span>, line <span style="color:#ae81ff">85</span>, <span style="color:#f92672">in</span> _run_code
+    <span style="color:#66d9ef">exec</span>(code, run_globals)
+  File <span style="color:#e6db74">&#34;/Users/yamada/go/src/github.com/kyoh86/gen-tags/gen_tags/__main__.py&#34;</span>, line <span style="color:#ae81ff">74</span>, <span style="color:#f92672">in</span> <span style="color:#f92672">&lt;</span>module<span style="color:#f92672">&gt;</span>
     main()
-  File <span style="color:#ed9d13">&#34;/Users/yamada/go/src/github.com/kyoh86/gen-tags/gen_tags/__main__.py&#34;</span>, line <span style="color:#3677a9">69</span>, <span style="color:#6ab825;font-weight:bold">in</span> main
-    restore=args.restore,
-  File <span style="color:#ed9d13">&#34;/Users/yamada/go/src/github.com/kyoh86/gen-tags/gen_tags/core.py&#34;</span>, line <span style="color:#3677a9">56</span>, <span style="color:#6ab825;font-weight:bold">in</span> run
-    <span style="color:#6ab825;font-weight:bold">for</span> path, words <span style="color:#6ab825;font-weight:bold">in</span> ranker.weighted_keywords().items():
-  File <span style="color:#ed9d13">&#34;/Users/yamada/go/src/github.com/kyoh86/gen-tags/gen_tags/keyword_ranker.py&#34;</span>, line <span style="color:#3677a9">92</span>, <span style="color:#6ab825;font-weight:bold">in</span> weighted_keywords
-    (self.stored_doc_count + doc_count) / (<span style="color:#24909d">len</span>(freq) + self.stored_word_freq[word]))
-<span style="color:#bbb">KeyError</span>: Word(word=<span style="color:#ed9d13">&#39;kyoh&#39;</span>, feature_id=<span style="color:#ed9d13">&#39;45&#39;</span>, weight=<span style="color:#3677a9">0</span>)</code></pre></div>
+  File <span style="color:#e6db74">&#34;/Users/yamada/go/src/github.com/kyoh86/gen-tags/gen_tags/__main__.py&#34;</span>, line <span style="color:#ae81ff">69</span>, <span style="color:#f92672">in</span> main
+    restore<span style="color:#f92672">=</span>args<span style="color:#f92672">.</span>restore,
+  File <span style="color:#e6db74">&#34;/Users/yamada/go/src/github.com/kyoh86/gen-tags/gen_tags/core.py&#34;</span>, line <span style="color:#ae81ff">56</span>, <span style="color:#f92672">in</span> run
+    <span style="color:#66d9ef">for</span> path, words <span style="color:#f92672">in</span> ranker<span style="color:#f92672">.</span>weighted_keywords()<span style="color:#f92672">.</span>items():
+  File <span style="color:#e6db74">&#34;/Users/yamada/go/src/github.com/kyoh86/gen-tags/gen_tags/keyword_ranker.py&#34;</span>, line <span style="color:#ae81ff">92</span>, <span style="color:#f92672">in</span> weighted_keywords
+    (self<span style="color:#f92672">.</span>stored_doc_count <span style="color:#f92672">+</span> doc_count) <span style="color:#f92672">/</span> (len(freq) <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>stored_word_freq[word]))
+<span style="color:#a6e22e">KeyError</span>: Word(word<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;kyoh&#39;</span>, feature_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;45&#39;</span>, weight<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)</code></pre></div>
 <p>怒られてしまった。Wikipedia側に無い単語 (<code>kyoh</code>) で <code>stored_word_freq</code> を参照しようとして落ちている。
 そりゃそうなので、<code>[word]</code> ではなく <code>.get(word, 0)</code> で代える。</p>
-<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ python -m gen_tags --dicdir /usr/local/lib/mecab/dic/mecab-ipadic-neologd --restore ./wikipedia.pickles --show-keywords ../hugo/content/**/*.md
-../hugo/content/posts/2015-12-18_17-55-22.md, gopkg, <span style="color:#3677a9">45</span>,    <span style="color:#3677a9">0</span>.91
-../hugo/content/posts/2015-12-18_17-55-22.md, foo, <span style="color:#3677a9">42</span>,    <span style="color:#3677a9">0</span>.30
-../hugo/content/posts/2015-12-18_17-55-22.md, bravo, <span style="color:#3677a9">41</span>,    <span style="color:#3677a9">0</span>.30
-../hugo/content/posts/2015-12-18_17-55-22.md, bar, <span style="color:#3677a9">45</span>,    <span style="color:#3677a9">0</span>.25
-../hugo/content/posts/2015-12-18_17-55-22.md, goimport, <span style="color:#3677a9">45</span>,    <span style="color:#3677a9">0</span>.23
-../hugo/content/posts/2015-12-18_17-55-22.md, xXXXX, <span style="color:#3677a9">38</span>,    <span style="color:#3677a9">0</span>.23
-../hugo/content/posts/2015-12-18_17-55-22.md, hoge, <span style="color:#3677a9">41</span>,    <span style="color:#3677a9">0</span>.22
-../hugo/content/posts/2015-12-18_17-55-22.md, ./..., <span style="color:#3677a9">4</span>,    <span style="color:#3677a9">0</span>.21
-../hugo/content/posts/2015-12-18_17-55-22.md, github, <span style="color:#3677a9">41</span>,    <span style="color:#3677a9">0</span>.20
-../hugo/content/posts/2015-12-18_17-55-22.md, yo., <span style="color:#3677a9">41</span>,    <span style="color:#3677a9">0</span>.17
-../hugo/content/posts/2016-02-01_11-05-36.md, string, <span style="color:#3677a9">45</span>,    <span style="color:#3677a9">0</span>.65
-../hugo/content/posts/2016-02-01_11-05-36.md, FuncMap, <span style="color:#3677a9">38</span>,    <span style="color:#3677a9">0</span>.45
-../hugo/content/posts/2016-02-01_11-05-36.md, Ellipsis, <span style="color:#3677a9">45</span>,    <span style="color:#3677a9">0</span>.41
-../hugo/content/posts/2016-02-01_11-05-36.md, params, <span style="color:#3677a9">45</span>,    <span style="color:#3677a9">0</span>.41
-../hugo/content/posts/2016-02-01_11-05-36.md, 放り込め, <span style="color:#3677a9">31</span>,    <span style="color:#3677a9">0</span>.41
-../hugo/content/posts/2016-02-01_11-05-36.md, func, <span style="color:#3677a9">45</span>,    <span style="color:#3677a9">0</span>.35
-../hugo/content/posts/2016-02-01_11-05-36.md, len, <span style="color:#3677a9">42</span>,    <span style="color:#3677a9">0</span>.30
-../hugo/content/posts/2016-02-01_11-05-36.md, template, <span style="color:#3677a9">45</span>,    <span style="color:#3677a9">0</span>.28
-../hugo/content/posts/2016-02-01_11-05-36.md, 鬼門, <span style="color:#3677a9">38</span>,    <span style="color:#3677a9">0</span>.26
-../hugo/content/posts/2016-02-01_11-05-36.md, string, <span style="color:#3677a9">38</span>,    <span style="color:#3677a9">0</span>.25
-:(中略)
-../hugo/content/posts/2016-10-06_08-48-48.md, interface, <span style="color:#3677a9">41</span>,    <span style="color:#3677a9">0</span>.51
-../hugo/content/posts/2016-10-06_08-48-48.md, Impl, <span style="color:#3677a9">38</span>,    <span style="color:#3677a9">0</span>.37
-../hugo/content/posts/2016-10-06_08-48-48.md, スタブ, <span style="color:#3677a9">38</span>,    <span style="color:#3677a9">0</span>.27
-../hugo/content/posts/2016-10-06_08-48-48.md, impl, <span style="color:#3677a9">45</span>,    <span style="color:#3677a9">0</span>.25
-../hugo/content/posts/2016-10-06_08-48-48.md, ctrl, <span style="color:#3677a9">38</span>,    <span style="color:#3677a9">0</span>.24
-../hugo/content/posts/2016-10-06_08-48-48.md, キーバインド, <span style="color:#3677a9">41</span>,    <span style="color:#3677a9">0</span>.19
-../hugo/content/posts/2016-10-06_08-48-48.md, スニペット, <span style="color:#3677a9">41</span>,    <span style="color:#3677a9">0</span>.18
-../hugo/content/posts/2016-10-06_08-48-48.md, gif, <span style="color:#3677a9">41</span>,    <span style="color:#3677a9">0</span>.18
-../hugo/content/posts/2016-10-06_08-48-48.md, Go, <span style="color:#3677a9">41</span>,    <span style="color:#3677a9">0</span>.11
-../hugo/content/posts/2016-10-06_08-48-48.md, go, <span style="color:#3677a9">45</span>,    <span style="color:#3677a9">0</span>.11
-../hugo/content/posts/2016-12-12_00-52-12.md, dotfiles, <span style="color:#3677a9">45</span>,    <span style="color:#3677a9">0</span>.36
-../hugo/content/posts/2016-12-12_00-52-12.md, kyoh, <span style="color:#3677a9">45</span>,    <span style="color:#3677a9">0</span>.24
-../hugo/content/posts/2016-12-12_00-52-12.md, fzf, <span style="color:#3677a9">45</span>,    <span style="color:#3677a9">0</span>.19
-../hugo/content/posts/2016-12-12_00-52-12.md, github, <span style="color:#3677a9">41</span>,    <span style="color:#3677a9">0</span>.19
-../hugo/content/posts/2016-12-12_00-52-12.md, fzf, <span style="color:#3677a9">38</span>,    <span style="color:#3677a9">0</span>.17
-../hugo/content/posts/2016-12-12_00-52-12.md, blob, <span style="color:#3677a9">41</span>,    <span style="color:#3677a9">0</span>.16
-../hugo/content/posts/2016-12-12_00-52-12.md, install, <span style="color:#3677a9">45</span>,    <span style="color:#3677a9">0</span>.13
-../hugo/content/posts/2016-12-12_00-52-12.md, launchctl, <span style="color:#3677a9">45</span>,    <span style="color:#3677a9">0</span>.13
-../hugo/content/posts/2016-12-12_00-52-12.md, launchctl, <span style="color:#3677a9">38</span>,    <span style="color:#3677a9">0</span>.13
-../hugo/content/posts/2016-12-12_00-52-12.md, peco, <span style="color:#3677a9">42</span>,    <span style="color:#3677a9">0</span>.11
-:(中略)
-../hugo/content/posts/2016-02-08_14-34-13.md, brew, <span style="color:#3677a9">45</span>,    <span style="color:#3677a9">0</span>.64
-../hugo/content/posts/2016-02-08_14-34-13.md, outdated, <span style="color:#3677a9">38</span>,    <span style="color:#3677a9">0</span>.58
-../hugo/content/posts/2016-02-08_14-34-13.md, upgrade, <span style="color:#3677a9">41</span>,    <span style="color:#3677a9">0</span>.42
-../hugo/content/posts/2016-02-08_14-34-13.md, xargs, <span style="color:#3677a9">38</span>,    <span style="color:#3677a9">0</span>.26
-../hugo/content/posts/2016-02-08_14-34-13.md, Elasticsearch, <span style="color:#3677a9">41</span>,    <span style="color:#3677a9">0</span>.24
-../hugo/content/posts/2016-02-08_14-34-13.md, fzf, <span style="color:#3677a9">45</span>,    <span style="color:#3677a9">0</span>.24
-../hugo/content/posts/2016-02-08_14-34-13.md, まァ, <span style="color:#3677a9">2</span>,    <span style="color:#3677a9">0</span>.24
-../hugo/content/posts/2016-02-08_14-34-13.md, peco, <span style="color:#3677a9">42</span>,    <span style="color:#3677a9">0</span>.24
-../hugo/content/posts/2016-02-08_14-34-13.md, homebrew, <span style="color:#3677a9">41</span>,    <span style="color:#3677a9">0</span>.23
-../hugo/content/posts/2016-02-08_14-34-13.md, Mongo, <span style="color:#3677a9">45</span>,    <span style="color:#3677a9">0</span>.21
-../hugo/content/posts/2016-02-09_01-21-41.md, git, <span style="color:#3677a9">41</span>,    <span style="color:#3677a9">0</span>.22
-../hugo/content/posts/2016-02-09_01-21-41.md, linter, <span style="color:#3677a9">38</span>,    <span style="color:#3677a9">0</span>.20
-../hugo/content/posts/2016-02-09_01-21-41.md, lint, <span style="color:#3677a9">38</span>,    <span style="color:#3677a9">0</span>.17
-../hugo/content/posts/2016-02-09_01-21-41.md, branch, <span style="color:#3677a9">45</span>,    <span style="color:#3677a9">0</span>.15
-../hugo/content/posts/2016-02-09_01-21-41.md, Request, <span style="color:#3677a9">45</span>,    <span style="color:#3677a9">0</span>.15
-../hugo/content/posts/2016-02-09_01-21-41.md, Pull, <span style="color:#3677a9">38</span>,    <span style="color:#3677a9">0</span>.14
-../hugo/content/posts/2016-02-09_01-21-41.md, checkout, <span style="color:#3677a9">38</span>,    <span style="color:#3677a9">0</span>.14
-../hugo/content/posts/2016-02-09_01-21-41.md, プルリクエスト, <span style="color:#3677a9">38</span>,    <span style="color:#3677a9">0</span>.12
-../hugo/content/posts/2016-02-09_01-21-41.md, ですが, <span style="color:#3677a9">26</span>,    <span style="color:#3677a9">0</span>.10
-../hugo/content/posts/2016-02-09_01-21-41.md, new, <span style="color:#3677a9">38</span>,    <span style="color:#3677a9">0</span>.09
-../hugo/content/posts/2016-05-09_22-33-33.md, Qiita, <span style="color:#3677a9">41</span>,    <span style="color:#3677a9">4</span>.36
-../hugo/content/posts/2016-05-09_22-33-33.md, なんで, <span style="color:#3677a9">34</span>,    <span style="color:#3677a9">0</span>.86
-../hugo/content/posts/2016-05-09_22-33-33.md, 愛, <span style="color:#3677a9">38</span>,    <span style="color:#3677a9">0</span>.05
-../hugo/content/posts/2016-05-09_22-33-33.md, 参考, <span style="color:#3677a9">36</span>,    <span style="color:#3677a9">0</span>.03
-../hugo/content/posts/2016-05-09_22-33-33.md, 生まれる, <span style="color:#3677a9">31</span>,    <span style="color:#3677a9">0</span>.01
-../hugo/content/posts/2016-05-09_22-33-33.md, 生まれ, <span style="color:#3677a9">31</span>,    <span style="color:#3677a9">0</span>.00
-../hugo/content/posts/2016-05-09_22-33-33.md, -, <span style="color:#3677a9">4</span>,    <span style="color:#3677a9">0</span>.00
-../hugo/content/posts/2016-05-09_22-33-33.md, の, <span style="color:#3677a9">63</span>,    <span style="color:#3677a9">0</span>.00
-../hugo/content/posts/2016-05-09_22-33-33.md, か, <span style="color:#3677a9">22</span>,    <span style="color:#3677a9">0</span>.00
-../hugo/content/posts/2016-05-09_22-33-33.md, が, <span style="color:#3677a9">13</span>,    <span style="color:#3677a9">0</span>.00
-: (後略)</code></pre></div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ python -m gen_tags --dicdir /usr/local/lib/mecab/dic/mecab-ipadic-neologd --restore ./wikipedia.pickles --show-keywords ../hugo/content/**/*.md
+../hugo/content/posts/2015-12-18_17-55-22.md, gopkg, <span style="color:#ae81ff">45</span>,    <span style="color:#ae81ff">0</span>.91
+../hugo/content/posts/2015-12-18_17-55-22.md, foo, <span style="color:#ae81ff">42</span>,    <span style="color:#ae81ff">0</span>.30
+../hugo/content/posts/2015-12-18_17-55-22.md, bravo, <span style="color:#ae81ff">41</span>,    <span style="color:#ae81ff">0</span>.30
+../hugo/content/posts/2015-12-18_17-55-22.md, bar, <span style="color:#ae81ff">45</span>,    <span style="color:#ae81ff">0</span>.25
+../hugo/content/posts/2015-12-18_17-55-22.md, goimport, <span style="color:#ae81ff">45</span>,    <span style="color:#ae81ff">0</span>.23
+../hugo/content/posts/2015-12-18_17-55-22.md, xXXXX, <span style="color:#ae81ff">38</span>,    <span style="color:#ae81ff">0</span>.23
+../hugo/content/posts/2015-12-18_17-55-22.md, hoge, <span style="color:#ae81ff">41</span>,    <span style="color:#ae81ff">0</span>.22
+../hugo/content/posts/2015-12-18_17-55-22.md, ./..., <span style="color:#ae81ff">4</span>,    <span style="color:#ae81ff">0</span>.21
+../hugo/content/posts/2015-12-18_17-55-22.md, github, <span style="color:#ae81ff">41</span>,    <span style="color:#ae81ff">0</span>.20
+../hugo/content/posts/2015-12-18_17-55-22.md, yo., <span style="color:#ae81ff">41</span>,    <span style="color:#ae81ff">0</span>.17
+../hugo/content/posts/2016-02-01_11-05-36.md, string, <span style="color:#ae81ff">45</span>,    <span style="color:#ae81ff">0</span>.65
+../hugo/content/posts/2016-02-01_11-05-36.md, FuncMap, <span style="color:#ae81ff">38</span>,    <span style="color:#ae81ff">0</span>.45
+../hugo/content/posts/2016-02-01_11-05-36.md, Ellipsis, <span style="color:#ae81ff">45</span>,    <span style="color:#ae81ff">0</span>.41
+../hugo/content/posts/2016-02-01_11-05-36.md, params, <span style="color:#ae81ff">45</span>,    <span style="color:#ae81ff">0</span>.41
+../hugo/content/posts/2016-02-01_11-05-36.md, 放り込め, <span style="color:#ae81ff">31</span>,    <span style="color:#ae81ff">0</span>.41
+../hugo/content/posts/2016-02-01_11-05-36.md, func, <span style="color:#ae81ff">45</span>,    <span style="color:#ae81ff">0</span>.35
+../hugo/content/posts/2016-02-01_11-05-36.md, len, <span style="color:#ae81ff">42</span>,    <span style="color:#ae81ff">0</span>.30
+../hugo/content/posts/2016-02-01_11-05-36.md, template, <span style="color:#ae81ff">45</span>,    <span style="color:#ae81ff">0</span>.28
+../hugo/content/posts/2016-02-01_11-05-36.md, 鬼門, <span style="color:#ae81ff">38</span>,    <span style="color:#ae81ff">0</span>.26
+../hugo/content/posts/2016-02-01_11-05-36.md, string, <span style="color:#ae81ff">38</span>,    <span style="color:#ae81ff">0</span>.25
+:<span style="color:#f92672">(</span>中略<span style="color:#f92672">)</span>
+../hugo/content/posts/2016-10-06_08-48-48.md, interface, <span style="color:#ae81ff">41</span>,    <span style="color:#ae81ff">0</span>.51
+../hugo/content/posts/2016-10-06_08-48-48.md, Impl, <span style="color:#ae81ff">38</span>,    <span style="color:#ae81ff">0</span>.37
+../hugo/content/posts/2016-10-06_08-48-48.md, スタブ, <span style="color:#ae81ff">38</span>,    <span style="color:#ae81ff">0</span>.27
+../hugo/content/posts/2016-10-06_08-48-48.md, impl, <span style="color:#ae81ff">45</span>,    <span style="color:#ae81ff">0</span>.25
+../hugo/content/posts/2016-10-06_08-48-48.md, ctrl, <span style="color:#ae81ff">38</span>,    <span style="color:#ae81ff">0</span>.24
+../hugo/content/posts/2016-10-06_08-48-48.md, キーバインド, <span style="color:#ae81ff">41</span>,    <span style="color:#ae81ff">0</span>.19
+../hugo/content/posts/2016-10-06_08-48-48.md, スニペット, <span style="color:#ae81ff">41</span>,    <span style="color:#ae81ff">0</span>.18
+../hugo/content/posts/2016-10-06_08-48-48.md, gif, <span style="color:#ae81ff">41</span>,    <span style="color:#ae81ff">0</span>.18
+../hugo/content/posts/2016-10-06_08-48-48.md, Go, <span style="color:#ae81ff">41</span>,    <span style="color:#ae81ff">0</span>.11
+../hugo/content/posts/2016-10-06_08-48-48.md, go, <span style="color:#ae81ff">45</span>,    <span style="color:#ae81ff">0</span>.11
+../hugo/content/posts/2016-12-12_00-52-12.md, dotfiles, <span style="color:#ae81ff">45</span>,    <span style="color:#ae81ff">0</span>.36
+../hugo/content/posts/2016-12-12_00-52-12.md, kyoh, <span style="color:#ae81ff">45</span>,    <span style="color:#ae81ff">0</span>.24
+../hugo/content/posts/2016-12-12_00-52-12.md, fzf, <span style="color:#ae81ff">45</span>,    <span style="color:#ae81ff">0</span>.19
+../hugo/content/posts/2016-12-12_00-52-12.md, github, <span style="color:#ae81ff">41</span>,    <span style="color:#ae81ff">0</span>.19
+../hugo/content/posts/2016-12-12_00-52-12.md, fzf, <span style="color:#ae81ff">38</span>,    <span style="color:#ae81ff">0</span>.17
+../hugo/content/posts/2016-12-12_00-52-12.md, blob, <span style="color:#ae81ff">41</span>,    <span style="color:#ae81ff">0</span>.16
+../hugo/content/posts/2016-12-12_00-52-12.md, install, <span style="color:#ae81ff">45</span>,    <span style="color:#ae81ff">0</span>.13
+../hugo/content/posts/2016-12-12_00-52-12.md, launchctl, <span style="color:#ae81ff">45</span>,    <span style="color:#ae81ff">0</span>.13
+../hugo/content/posts/2016-12-12_00-52-12.md, launchctl, <span style="color:#ae81ff">38</span>,    <span style="color:#ae81ff">0</span>.13
+../hugo/content/posts/2016-12-12_00-52-12.md, peco, <span style="color:#ae81ff">42</span>,    <span style="color:#ae81ff">0</span>.11
+:<span style="color:#f92672">(</span>中略<span style="color:#f92672">)</span>
+../hugo/content/posts/2016-02-08_14-34-13.md, brew, <span style="color:#ae81ff">45</span>,    <span style="color:#ae81ff">0</span>.64
+../hugo/content/posts/2016-02-08_14-34-13.md, outdated, <span style="color:#ae81ff">38</span>,    <span style="color:#ae81ff">0</span>.58
+../hugo/content/posts/2016-02-08_14-34-13.md, upgrade, <span style="color:#ae81ff">41</span>,    <span style="color:#ae81ff">0</span>.42
+../hugo/content/posts/2016-02-08_14-34-13.md, xargs, <span style="color:#ae81ff">38</span>,    <span style="color:#ae81ff">0</span>.26
+../hugo/content/posts/2016-02-08_14-34-13.md, Elasticsearch, <span style="color:#ae81ff">41</span>,    <span style="color:#ae81ff">0</span>.24
+../hugo/content/posts/2016-02-08_14-34-13.md, fzf, <span style="color:#ae81ff">45</span>,    <span style="color:#ae81ff">0</span>.24
+../hugo/content/posts/2016-02-08_14-34-13.md, まァ, <span style="color:#ae81ff">2</span>,    <span style="color:#ae81ff">0</span>.24
+../hugo/content/posts/2016-02-08_14-34-13.md, peco, <span style="color:#ae81ff">42</span>,    <span style="color:#ae81ff">0</span>.24
+../hugo/content/posts/2016-02-08_14-34-13.md, homebrew, <span style="color:#ae81ff">41</span>,    <span style="color:#ae81ff">0</span>.23
+../hugo/content/posts/2016-02-08_14-34-13.md, Mongo, <span style="color:#ae81ff">45</span>,    <span style="color:#ae81ff">0</span>.21
+../hugo/content/posts/2016-02-09_01-21-41.md, git, <span style="color:#ae81ff">41</span>,    <span style="color:#ae81ff">0</span>.22
+../hugo/content/posts/2016-02-09_01-21-41.md, linter, <span style="color:#ae81ff">38</span>,    <span style="color:#ae81ff">0</span>.20
+../hugo/content/posts/2016-02-09_01-21-41.md, lint, <span style="color:#ae81ff">38</span>,    <span style="color:#ae81ff">0</span>.17
+../hugo/content/posts/2016-02-09_01-21-41.md, branch, <span style="color:#ae81ff">45</span>,    <span style="color:#ae81ff">0</span>.15
+../hugo/content/posts/2016-02-09_01-21-41.md, Request, <span style="color:#ae81ff">45</span>,    <span style="color:#ae81ff">0</span>.15
+../hugo/content/posts/2016-02-09_01-21-41.md, Pull, <span style="color:#ae81ff">38</span>,    <span style="color:#ae81ff">0</span>.14
+../hugo/content/posts/2016-02-09_01-21-41.md, checkout, <span style="color:#ae81ff">38</span>,    <span style="color:#ae81ff">0</span>.14
+../hugo/content/posts/2016-02-09_01-21-41.md, プルリクエスト, <span style="color:#ae81ff">38</span>,    <span style="color:#ae81ff">0</span>.12
+../hugo/content/posts/2016-02-09_01-21-41.md, ですが, <span style="color:#ae81ff">26</span>,    <span style="color:#ae81ff">0</span>.10
+../hugo/content/posts/2016-02-09_01-21-41.md, new, <span style="color:#ae81ff">38</span>,    <span style="color:#ae81ff">0</span>.09
+../hugo/content/posts/2016-05-09_22-33-33.md, Qiita, <span style="color:#ae81ff">41</span>,    <span style="color:#ae81ff">4</span>.36
+../hugo/content/posts/2016-05-09_22-33-33.md, なんで, <span style="color:#ae81ff">34</span>,    <span style="color:#ae81ff">0</span>.86
+../hugo/content/posts/2016-05-09_22-33-33.md, 愛, <span style="color:#ae81ff">38</span>,    <span style="color:#ae81ff">0</span>.05
+../hugo/content/posts/2016-05-09_22-33-33.md, 参考, <span style="color:#ae81ff">36</span>,    <span style="color:#ae81ff">0</span>.03
+../hugo/content/posts/2016-05-09_22-33-33.md, 生まれる, <span style="color:#ae81ff">31</span>,    <span style="color:#ae81ff">0</span>.01
+../hugo/content/posts/2016-05-09_22-33-33.md, 生まれ, <span style="color:#ae81ff">31</span>,    <span style="color:#ae81ff">0</span>.00
+../hugo/content/posts/2016-05-09_22-33-33.md, -, <span style="color:#ae81ff">4</span>,    <span style="color:#ae81ff">0</span>.00
+../hugo/content/posts/2016-05-09_22-33-33.md, の, <span style="color:#ae81ff">63</span>,    <span style="color:#ae81ff">0</span>.00
+../hugo/content/posts/2016-05-09_22-33-33.md, か, <span style="color:#ae81ff">22</span>,    <span style="color:#ae81ff">0</span>.00
+../hugo/content/posts/2016-05-09_22-33-33.md, が, <span style="color:#ae81ff">13</span>,    <span style="color:#ae81ff">0</span>.00
+: <span style="color:#f92672">(</span>後略<span style="color:#f92672">)</span></code></pre></div>
 <p>出たには出たのだけど、精度がかなり悪そうである。</p>
 
 <h2 id="問題点を洗ってみる">問題点を洗ってみる</h2>
@@ -342,233 +213,141 @@ Traceback (most recent call last):
 <p>前者は、最後のキーワードを選ぶところで品詞単位で選べばなんとかなりそう。
 インラインコードの方はどうしようかかなり悩ましい…</p>
 
-          </article>
-        </div>
-        <div class='entry-meta-bottom'>
+		</div>
+		
+	</article>
+</main>
 
-          
-            <div class="entry-tags"><p><span>Tags</span>
-              
-                <a href="/tags/atom" title="View all posts tagged ATOM">ATOM</a>
-              
-                <a href="/tags/applescript" title="View all posts tagged AppleScript">AppleScript</a>
-              
-                <a href="/tags/csv" title="View all posts tagged CSV">CSV</a>
-              
-                <a href="/tags/ecs" title="View all posts tagged ECS">ECS</a>
-              
-                <a href="/tags/excel" title="View all posts tagged Excel">Excel</a>
-              
-                <a href="/tags/git" title="View all posts tagged Git">Git</a>
-              
-                <a href="/tags/github" title="View all posts tagged GitHub">GitHub</a>
-              
-                <a href="/tags/go" title="View all posts tagged Go">Go</a>
-              
-                <a href="/tags/json" title="View all posts tagged JSON">JSON</a>
-              
-                <a href="/tags/json-schema" title="View all posts tagged JSON-schema">JSON-schema</a>
-              
-                <a href="/tags/javascript" title="View all posts tagged JavaScript">JavaScript</a>
-              
-                <a href="/tags/mongodb" title="View all posts tagged MongoDB">MongoDB</a>
-              
-                <a href="/tags/osx" title="View all posts tagged OSX">OSX</a>
-              
-                <a href="/tags/php" title="View all posts tagged PHP">PHP</a>
-              
-                <a href="/tags/perl6" title="View all posts tagged Perl6">Perl6</a>
-              
-                <a href="/tags/semanticversioning" title="View all posts tagged SemanticVersioning">SemanticVersioning</a>
-              
-                <a href="/tags/vscode" title="View all posts tagged VSCode">VSCode</a>
-              
-                <a href="/tags/visualstudiocode" title="View all posts tagged VisualStudioCode">VisualStudioCode</a>
-              
-                <a href="/tags/web" title="View all posts tagged Web">Web</a>
-              
-                <a href="/tags/zsh" title="View all posts tagged Zsh">Zsh</a>
-              
-                <a href="/tags/cli" title="View all posts tagged cli">cli</a>
-              
-                <a href="/tags/golang" title="View all posts tagged golang">golang</a>
-              
-                <a href="/tags/homebrew" title="View all posts tagged homebrew">homebrew</a>
-              
-                <a href="/tags/jxa" title="View all posts tagged jXA">jXA</a>
-              
-                <a href="/tags/memo" title="View all posts tagged memo">memo</a>
-              
-                <a href="/tags/pecoshellanyframezsh" title="View all posts tagged peco,shell,anyframe,zsh">peco,shell,anyframe,zsh</a>
-              
-                <a href="/tags/postfix" title="View all posts tagged postfix">postfix</a>
-              
-                <a href="/tags/proxy" title="View all posts tagged proxy">proxy</a>
-              
-                <a href="/tags/python" title="View all posts tagged python">python</a>
-              
-                <a href="/tags/scaffold" title="View all posts tagged scaffold">scaffold</a>
-              
-                <a href="/tags/semver" title="View all posts tagged semver">semver</a>
-              
-                <a href="/tags/shell" title="View all posts tagged shell">shell</a>
-              
-                <a href="/tags/tag" title="View all posts tagged tag">tag</a>
-              
-                <a href="/tags/%E3%82%A2%E3%82%A4%E3%83%87%E3%82%A3%E3%82%A2" title="View all posts tagged アイディア">アイディア</a>
-              
-                <a href="/tags/%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3" title="View all posts tagged バージョン">バージョン</a>
-              
-                <a href="/tags/%E3%83%9D%E3%82%A8%E3%83%A0" title="View all posts tagged ポエム">ポエム</a>
-              
-                <a href="/tags/%E3%83%A1%E3%83%A2" title="View all posts tagged メモ">メモ</a>
-              
-                <a href="/tags/%E8%87%AA%E7%84%B6%E8%A8%80%E8%AA%9E%E5%87%A6%E7%90%86" title="View all posts tagged 自然言語処理">自然言語処理</a>
-              
-            </p></div>
-          
-        </div>
-      </div>
-    </div>
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="kyoh86 avatar" src="/img/panda.png" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name"></span>
+	</div>
+	<div class="authorbox__description">
+		コーヒー・蕎麦・インコをこよなく愛し、あわよくば爬虫類も愛でたいダメプログラマー→マネジメント。
+	</div>
+</div>
 
-    <nav class="navigation pagination" role="navigation">
-      <h2 class="screen-reader-text">Posts navigation</h2>
-      <div class="nav-links">
-        
-        <a class="prev page-numbers" href="https://kyoh86.work/posts/auto-tagger-9/">自動タグ付け機能でも作ってみる - 9: Markdownをパースする</a>
-        
-        
-      </div>
-    </nav>
-
-    <section class="comments">
-    
-    </section>
-  </div>
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/posts/auto-tagger-9/" rel="prev"><span class="post-nav__caption">«&thinsp;</span><p class="post-nav__post-title">自動タグ付け機能でも作ってみる - 9: Markdownをパースする</p></a>
+	</div>
+</nav>
 
 
-    </div>
-
-    <footer id="site-footer" class="site-footer" role="contentinfo">
-  <h1>
-    
-      <a href=""> kyoh86.work </a>
-    
-  </h1>
-
-  
-    <p class="site-description">Works of kyoh86</p>
-  
-
-  <div class="menu-footer" role="navigation">
-    <div class="menu">
-      <ul class="menu-footer-items">
-        
-      </ul>
-    </div>
-  </div>
-
-    <ul class="social-media-icons">
-    
-      <li>
-        <a class="facebook" target="_blank"
-           href="https://www.facebook.com/kyoh.86" >
-          <i class="fab fa-facebook" title="facebook"></i>
-          <span class="screen-reader-text">facebook</span>
-        </a>
-      </li>
-    
-
-    
-      <li>
-        <a class="fa-layers" target="_blank"
-           href="https://qiita.com/kyoh86" >
-          <i class="fas fa-square"></i>
-          <i class="fas fa-search" style="color:#111" data-fa-transform="grow-3"></i>
-          <span class="screen-reader-text">googleplus</span>
-        </a>
-      </li>
-    
-
-    
-      <li>
-        <a class="googleplus" target="_blank"
-           href="https://plus.google.com/u/0/100199074642864423892" >
-          <i class="fab fa-google-plus" title="googleplus"></i>
-          <span class="screen-reader-text">googleplus</span>
-        </a>
-      </li>
-    
-
-
-    
-      <li>
-      <a href="https://twitter.com/kyoh86"  class="twitter" target="_blank">
-          <i class="fab fa-twitter-square" title="twitter"></i>
-          <span class="screen-reader-text">twitter</span>
-      </a>
-      </li>
-    
-
-    
-      <li>
-      <a href="https://www.instagram.com/kyoh86"  class="twitter" target="_blank">
-          <i class="fab fa-instagram" title="instagram"></i>
-          <span class="screen-reader-text">instagram</span>
-      </a>
-      </li>
-    
-
-    
-
-    
-      <li>
-      <a href="https://www.linkedin.com/in/kyoh86/" class="linkedin" target="_blank">
-          <i class="fab fa-linkedin" title="linkedin"></i>
-          <span class="screen-reader-text">linkedin</span>
-      </a>
-      </li>
-    
-
-    
-      <li>
-      <a href="https://stackoverflow.com/users/3610769/kyoh86"  class="stackoverflow" target="_blank">
-          <i class="fab fa-stack-overflow" title="stackoverflow"></i>
-          <span class="screen-reader-text">stackoverflow</span>
-      </a>
-      </li>
-    
-
-
-    
-      <li>
-      <a href="https://github.com/kyoh86"  class="github" target="_blank">
-          <i class="fab fa-github" title="github"></i>
-          <span class="screen-reader-text">github</span>
-      </a>
-      </li>
-    
-  </ul>
-
-
-  <div class="design-credit">
-    
-      <p>&copy; 2018 kyoh86</p>
-    
-  </div>
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="" value="" name="q" aria-label="">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="https://kyoh86.work/" />
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title"></h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/auto-tagger-10/">自動タグ付け機能でも作ってみる - 10: 動かしてみる</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/auto-tagger-9/">自動タグ付け機能でも作ってみる - 9: Markdownをパースする</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/auto-tagger-8/">自動タグ付け機能でも作ってみる - 8: Dump/Restoreを実装する</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/auto-tagger-7/">自動タグ付け機能でも作ってみる - 7: BM25の実装</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/auto-tagger-6/">自動タグ付け機能でも作ってみる - 6: Wikipediaの出力を形態素解析してみる</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title"></h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/atom" title="A t o m">A t o m (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/applescript" title="Apple script">Apple script (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/csv" title="C s v">C s v (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ecs" title="E c s">E c s (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/excel" title="Excel">Excel (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/git" title="Git">Git (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/github" title="Git hub">Git hub (4)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/go" title="Go">Go (14)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/json" title="J s o n">J s o n (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/json-schema" title="J s o n schema">J s o n schema (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/javascript" title="Java script">Java script (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mongodb" title="Mongo d b">Mongo d b (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/osx" title="O s x">O s x (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/php" title="P h p">P h p (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/perl6" title="Perl6">Perl6 (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/semanticversioning" title="Semantic versioning">Semantic versioning (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vscode" title="V s code">V s code (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/visualstudiocode" title="Visual studio code">Visual studio code (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/web" title="Web">Web (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/zsh" title="Zsh">Zsh (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cli" title="Cli">Cli (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/golang" title="Golang">Golang (13)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/homebrew" title="Homebrew">Homebrew (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/jxa" title="J x a">J x a (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/memo" title="Memo">Memo (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/pecoshellanyframezsh" title="Peco,shell,anyframe,zsh">Peco,shell,anyframe,zsh (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/postfix" title="Postfix">Postfix (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/proxy" title="Proxy">Proxy (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/python" title="Python">Python (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/scaffold" title="Scaffold">Scaffold (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/semver" title="Semver">Semver (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/shell" title="Shell">Shell (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tag" title="Tag">Tag (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%e3%82%a2%e3%82%a4%e3%83%87%e3%82%a3%e3%82%a2" title="アイディア">アイディア (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%e3%83%90%e3%83%bc%e3%82%b8%e3%83%a7%e3%83%b3" title="バージョン">バージョン (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%e3%83%9d%e3%82%a8%e3%83%a0" title="ポエム">ポエム (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%e3%83%a1%e3%83%a2" title="メモ">メモ (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/%e8%87%aa%e7%84%b6%e8%a8%80%e8%aa%9e%e5%87%a6%e7%90%86" title="自然言語処理">自然言語処理 (1)</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title"></h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Facebook" rel="noopener noreferrer" href="https://facebook.com/kyoh.86" target="_blank">
+				<svg class="widget-social__link-icon icon icon-facebook" width="24" height="24" viewBox="0 0 352 352"><path d="m0 32v288c0 17.5 14.5 32 32 32h288c17.5 0 32-14.5 32-32v-288c0-17.5-14.5-32-32-32h-288c-17.5 0-32 14.5-32 32zm320 0v288h-83v-108h41.5l6-48h-47.5v-31c0-14 3.5-23.5 23.5-23.5h26v-43.5c-4.4-.6-19.8-1.5-37.5-1.5-36.9 0-62 22.2-62 63.5v36h-42v48h42v108h-155v-288z"/></svg>
+				<span>Facebook</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Twitter" rel="noopener noreferrer" href="https://twitter.com/kyoh86" target="_blank">
+				<svg class="widget-social__link-icon icon icon-twitter" width="24" height="24" viewBox="0 0 384 312"><path d="m384 36.9c-14.1 6.3-29.3 10.5-45.2 12.4 16.3-9.7 28.8-25.2 34.6-43.6-15.2 9-32.1 15.6-50 19.1-14.4-15.2-34.9-24.8-57.5-24.8-43.5 0-78.8 35.3-78.8 78.8 0 6.2.7 12.2 2 17.9-65.5-3.3-123.5-34.6-162.4-82.3-6.7 11.6-10.6 25.2-10.6 39.6 0 27.3 13.9 51.4 35 65.6-12.9-.4-25.1-4-35.7-9.9v1c0 38.2 27.2 70 63.2 77.2-6.6 1.8-13.6 2.8-20.8 2.8-5.1 0-10-.5-14.8-1.4 10 31.3 39.1 54.1 73.6 54.7-27 21.1-60.9 33.7-97.8 33.7-6.4 0-12.6-.4-18.8-1.1 34.9 22.4 76.3 35.4 120.8 35.4 144.9 0 224.1-120 224.1-224.1 0-3.4-.1-6.8-.2-10.2 15.4-11.1 28.7-25 39.3-40.8z"/></svg>
+				<span>Twitter</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Instagram" rel="noopener noreferrer" href="https://www.instagram.com/kyoh86" target="_blank">
+				<svg class="widget-social__link-icon icon icon-instagram" width="24" height="24" viewBox="0 0 256 256"><circle cx="193" cy="59" r="15"/><path fill-rule="evenodd" d="M101 0h54c41 0 58.4 3.9 74.5 17C256.2 37.5 256 74.8 256 97.7v60c0 26.7 0 60.4-26.5 81.4-16 13.4-33.5 16.9-74.5 16.9h-54c-41 0-57.5-3.5-74.5-16.9C1 218.9.5 186.3.1 160.5L0 155V97.7c0-23-.2-60.2 26.5-80.7C45 2 60 0 101 0zm4.9 23h44.3c45.8 0 58.3 3.5 70.3 17.5 11.8 13.2 12 30.1 12.5 62.9V156c.2 20.8.3 45.8-12.5 59.5-12 14-24.5 17.5-70.3 17.5h-44.3c-45.9 0-57.3-3.5-70.4-17.5-12.2-13-12.3-36.5-12.4-56.7v-55.6c.4-32.6.7-49.6 12.4-62.7C48 26.5 60 23 105.9 23zm19.6 144.5a42 42 0 1 0 0-84 42 42 0 0 0 0 84zm0 22.5a64.5 64.5 0 1 0 0-129 64.5 64.5 0 0 0 0 129z"/></svg>
+				<span>Instagram</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="LinkedIn" rel="noopener noreferrer" href="https://linkedin.com/in/kyoh86" target="_blank">
+				<svg class="widget-social__link-icon icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
+				<span>LinkedIn</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/kyoh86" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2019 kyoh86.
+			<span class="footer__copyright-credits"></span>
+		</div>
+	</div>
 </footer>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
-    });
-</script>
-<script type="text/javascript" async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-
-  </div>
-  <script src="https://kyoh86.work/js/jquery.min.js"></script>
-<script src="https://kyoh86.work/js/jquerymigrate.js"></script>
-<script src="https://kyoh86.work/js/production.min.js"></script>
-
-</body>
+	</div>
+<script async defer src="/js/menu.js"></script></body>
 </html>

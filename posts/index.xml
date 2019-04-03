@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on kyoh86.work</title>
+    <title>Posts on kyoh86 works</title>
     <link>https://kyoh86.work/posts/</link>
-    <description>Recent content in Posts on kyoh86.work</description>
+    <description>Recent content in Posts on kyoh86 works</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <lastBuildDate>Mon, 14 May 2018 00:38:41 +0900</lastBuildDate>
@@ -17,7 +17,7 @@
       <pubDate>Mon, 14 May 2018 00:38:41 +0900</pubDate>
       
       <guid>https://kyoh86.work/posts/auto-tagger-10/</guid>
-      <description>動かしてみる 一通り役者は揃ったので、全部つなぎこんでみる。 [core.py](https://github.com/kyoh86/gen-tags/blob/master/gen_tags/core.py] [main.py](https://github.com/kyoh86/gen-tags/blob/master/gen_tags/__main__.py] で、実際Wikipediaのテキストデータから単語の出現頻度データをとって、d</description>
+      <description>動かしてみる 一通り役者は揃ったので、全部つなぎこんでみる。 core.py main.py で、実際Wikipediaのテキストデータから単語の出現頻度データをとって、d</description>
     </item>
     
     <item>
