@@ -25,7 +25,7 @@
 <script src="https://kyoh86.work/js/lib/plantuml.js"></script>
 
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
@@ -226,7 +226,7 @@ if (!doNotTrack) {
 <div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ellipsis.go" data-lang="ellipsis.go"><span style="color:#6ab825;font-weight:bold">package</span> main
 
 <span style="color:#999;font-style:italic">// Ellipsis a text
-</span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">func</span> Ellipsis(length <span style="color:#6ab825;font-weight:bold">int</span>, text <span style="color:#6ab825;font-weight:bold">string</span>) <span style="color:#6ab825;font-weight:bold">string</span> {
+</span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">func</span> <span style="color:#447fcf">Ellipsis</span>(length <span style="color:#6ab825;font-weight:bold">int</span>, text <span style="color:#6ab825;font-weight:bold">string</span>) <span style="color:#6ab825;font-weight:bold">string</span> {
 	r := []<span style="color:#24909d">rune</span>(text)
 	<span style="color:#6ab825;font-weight:bold">if</span> <span style="color:#24909d">len</span>(r) &gt; length {
 		<span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#24909d">string</span>(r[<span style="color:#3677a9">0</span>:length]) + <span style="color:#ed9d13">&#34;...&#34;</span>
@@ -261,13 +261,13 @@ if (!doNotTrack) {
 	<span style="color:#ed9d13">&#34;text/template&#34;</span>
 )
 
-<span style="color:#6ab825;font-weight:bold">func</span> main() {
+<span style="color:#6ab825;font-weight:bold">func</span> <span style="color:#447fcf">main</span>() {
 	<span style="color:#6ab825;font-weight:bold">var</span> buf bytes.Buffer
-	template.New(<span style="color:#ed9d13">&#34;text&#34;</span>).
-		Funcs(template.FuncMap{<span style="color:#ed9d13">&#34;ellipsis&#34;</span>: Ellipse}).
-		Parse(<span style="color:#ed9d13">`</span><span style="color:#cd2828;font-weight:bold">{{</span><span style="color:#bbb">.value</span><span style="color:#666"> </span>|<span style="color:#666"> </span>ellipsis<span style="color:#666"> </span>5<span style="color:#cd2828;font-weight:bold">}}</span><span style="color:#ed9d13">`</span>).
-		Execute(buf, <span style="color:#6ab825;font-weight:bold">map</span>[<span style="color:#6ab825;font-weight:bold">string</span>]<span style="color:#6ab825;font-weight:bold">string</span>{<span style="color:#ed9d13">&#34;value&#34;</span>: <span style="color:#ed9d13">&#34;みんみんみらくる☆&#34;</span>})
-	fmt.Println(buf.String())
+	template.<span style="color:#447fcf">New</span>(<span style="color:#ed9d13">&#34;text&#34;</span>).
+		<span style="color:#447fcf">Funcs</span>(template.FuncMap{<span style="color:#ed9d13">&#34;ellipsis&#34;</span>: Ellipse}).
+		<span style="color:#447fcf">Parse</span>(<span style="color:#ed9d13">`</span><span style="color:#cd2828;font-weight:bold">{{</span><span style="color:#bbb">.value</span><span style="color:#666"> </span>|<span style="color:#666"> </span>ellipsis<span style="color:#666"> </span>5<span style="color:#cd2828;font-weight:bold">}}</span><span style="color:#ed9d13">`</span>).
+		<span style="color:#447fcf">Execute</span>(buf, <span style="color:#6ab825;font-weight:bold">map</span>[<span style="color:#6ab825;font-weight:bold">string</span>]<span style="color:#6ab825;font-weight:bold">string</span>{<span style="color:#ed9d13">&#34;value&#34;</span>: <span style="color:#ed9d13">&#34;みんみんみらくる☆&#34;</span>})
+	fmt.<span style="color:#447fcf">Println</span>(buf.<span style="color:#447fcf">String</span>())
 }</code></pre></div>
           </article>
         </div>

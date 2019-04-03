@@ -25,7 +25,7 @@
 <script src="https://kyoh86.work/js/lib/plantuml.js"></script>
 
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
@@ -246,12 +246,12 @@ Wikipediaからダウンロードした全記事分のデータを展開してPl
 <h2 id="wikiextractor-の出力を-lt-root-gt-で包む">WikiExtractor の出力を&lt;root&gt;で包む</h2>
 
 <p>XMLはルートとなるオブジェクトが無いと成立しないので、まずはユルいTextIOのラッパーでも書いてみる。</p>
-<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">typing</span> <span style="color:#6ab825;font-weight:bold">import</span> Any, IO, Optional, TextIO
-<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">io</span> <span style="color:#6ab825;font-weight:bold">import</span> TextIOBase, StringIO
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">typing</span> <span style="color:#6ab825;font-weight:bold">import</span> Any, IO, Optional, TextIO
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">io</span> <span style="color:#6ab825;font-weight:bold">import</span> TextIOBase, StringIO
 
 
 <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">wrap_root</span>(stream: TextIO) -&gt; IO[Any]:
-    <span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf">wrapper</span>(TextIOBase):
+    <span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">wrapper</span>(TextIOBase):
 
         <span style="color:#6ab825;font-weight:bold">def</span> __init__(self, base: TextIO) -&gt; None:
             self.head = True
@@ -283,7 +283,7 @@ Wikipediaからダウンロードした全記事分のデータを展開してPl
 </span><span style="color:#ed9d13">&lt;doc id=&#34;...&#34; url=&#34;...&#34;&gt;プレーンテキスト...&lt;/doc&gt;
 </span><span style="color:#ed9d13">&#39;&#39;&#39;</span>)
 
-    <span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf">sys</span>
+    <span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf;text-decoration:underline">sys</span>
 
     wrapped = wrap_root(source)
     text = wrapped.read()
@@ -301,15 +301,15 @@ Wikipediaからダウンロードした全記事分のデータを展開してPl
 
 <p>1つ1つのファイルもそう小さくはないので、一度にパースするよりは <a href="https://docs.python.jp/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.iterparse">iterparse</a> したいところ。
 ということで、ザックリ書くと、こう。</p>
-<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">xml.etree.ElementTree</span> <span style="color:#6ab825;font-weight:bold">import</span> iterparse
-<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">typing</span> <span style="color:#6ab825;font-weight:bold">import</span> Any, TextIO
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">xml.etree.ElementTree</span> <span style="color:#6ab825;font-weight:bold">import</span> iterparse
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">typing</span> <span style="color:#6ab825;font-weight:bold">import</span> Any, TextIO
 
-<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">.text_storage</span> <span style="color:#6ab825;font-weight:bold">import</span> TextStorage
-<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">.wrap_root</span> <span style="color:#6ab825;font-weight:bold">import</span> wrap_root
-<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">.parser</span> <span style="color:#6ab825;font-weight:bold">import</span> Parser
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">.text_storage</span> <span style="color:#6ab825;font-weight:bold">import</span> TextStorage
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">.wrap_root</span> <span style="color:#6ab825;font-weight:bold">import</span> wrap_root
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">.parser</span> <span style="color:#6ab825;font-weight:bold">import</span> Parser
 
 
-<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf">XMLParser</span>(Parser):
+<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">XMLParser</span>(Parser):
     <span style="color:#6ab825;font-weight:bold">def</span> __init__(self, path: <span style="color:#24909d">str</span>, storage: TextStorage) -&gt; None:
         <span style="color:#24909d">super</span>().__init__()
         self.path = path
@@ -327,11 +327,11 @@ Wikipediaからダウンロードした全記事分のデータを展開してPl
 
 
 <span style="color:#6ab825;font-weight:bold">if</span> __name__ == <span style="color:#ed9d13">&#39;__main__&#39;</span>:
-    <span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">.word</span> <span style="color:#6ab825;font-weight:bold">import</span> Word
-    <span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">.word_storage</span> <span style="color:#6ab825;font-weight:bold">import</span> WordStorage
-    <span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">.morpho_analyzer</span> <span style="color:#6ab825;font-weight:bold">import</span> MorphoAnalyzer
+    <span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">.word</span> <span style="color:#6ab825;font-weight:bold">import</span> Word
+    <span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">.word_storage</span> <span style="color:#6ab825;font-weight:bold">import</span> WordStorage
+    <span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">.morpho_analyzer</span> <span style="color:#6ab825;font-weight:bold">import</span> MorphoAnalyzer
 
-    <span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf">WordPrinter</span>(WordStorage):
+    <span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">WordPrinter</span>(WordStorage):
         <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">push</span>(self, path: <span style="color:#24909d">str</span>, word: Word) -&gt; None:
             <span style="color:#6ab825;font-weight:bold">print</span>(<span style="color:#ed9d13">&#39;{}: {}({})&#39;</span>.format(path, word.word, word.feature_id))
 
@@ -389,13 +389,13 @@ xml.etree.ElementTree.ParseError: not well-formed (invalid token): line <span st
 TextParserを作る。</p>
 
 <p>TextParserには何も難しいポイントはない。受け取ったStreamから1行ずつ <code>MorphoAnalyzer (TextStorage)</code> に渡してやればいいだけだ。</p>
-<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">typing</span> <span style="color:#6ab825;font-weight:bold">import</span> Any, TextIO
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">typing</span> <span style="color:#6ab825;font-weight:bold">import</span> Any, TextIO
 
-<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">.text_storage</span> <span style="color:#6ab825;font-weight:bold">import</span> TextStorage
-<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">.parser</span> <span style="color:#6ab825;font-weight:bold">import</span> Parser
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">.text_storage</span> <span style="color:#6ab825;font-weight:bold">import</span> TextStorage
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">.parser</span> <span style="color:#6ab825;font-weight:bold">import</span> Parser
 
 
-<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf">TextParser</span>(Parser):
+<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">TextParser</span>(Parser):
     <span style="color:#6ab825;font-weight:bold">def</span> __init__(self, path: <span style="color:#24909d">str</span>, storage: TextStorage) -&gt; None:
         <span style="color:#24909d">super</span>().__init__()
         self.path = path
@@ -413,11 +413,11 @@ TextParserを作る。</p>
 
 
 <span style="color:#6ab825;font-weight:bold">if</span> __name__ == <span style="color:#ed9d13">&#39;__main__&#39;</span>:
-    <span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">.word</span> <span style="color:#6ab825;font-weight:bold">import</span> Word
-    <span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">.word_storage</span> <span style="color:#6ab825;font-weight:bold">import</span> WordStorage
-    <span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">.morpho_analyzer</span> <span style="color:#6ab825;font-weight:bold">import</span> MorphoAnalyzer
+    <span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">.word</span> <span style="color:#6ab825;font-weight:bold">import</span> Word
+    <span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">.word_storage</span> <span style="color:#6ab825;font-weight:bold">import</span> WordStorage
+    <span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">.morpho_analyzer</span> <span style="color:#6ab825;font-weight:bold">import</span> MorphoAnalyzer
 
-    <span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf">WordPrinter</span>(WordStorage):
+    <span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">WordPrinter</span>(WordStorage):
         <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">push</span>(self, path: <span style="color:#24909d">str</span>, word: Word) -&gt; None:
             <span style="color:#6ab825;font-weight:bold">print</span>(<span style="color:#ed9d13">&#39;{}: {}({})&#39;</span>.format(path, word.word, word.feature_id))
 

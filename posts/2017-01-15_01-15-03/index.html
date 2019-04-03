@@ -25,7 +25,7 @@
 <script src="https://kyoh86.work/js/lib/plantuml.js"></script>
 
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
@@ -273,38 +273,38 @@ go <span style="color:#24909d">test</span> ./...</code></pre></div>
 <p>設定は、YAML形式で次のような形で記載します。
 すべての項目は、設定しなければデフォルト／または先に読み込んだ設定ファイルの内容が反映されます。</p>
 <div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#999;font-style:italic"># ラベルの見せ方</span><span style="color:#666">
-</span><span style="color:#666"></span>labelType:<span style="color:#666"> </span>(long<span style="color:#666"> </span><span style="color:#ed9d13">| short | none)</span><span style="color:#666">
+</span><span style="color:#666"></span>labelType:<span style="color:#666"> </span>(long<span style="color:#666"> </span>|<span style="color:#666"> </span>short<span style="color:#666"> </span>|<span style="color:#666"> </span>none)<span style="color:#666">
 </span><span style="color:#666">
 </span><span style="color:#666"></span><span style="color:#999;font-style:italic"># ビルドログの見た目</span><span style="color:#666">
 </span><span style="color:#666"></span>buildStyle:<span style="color:#666">
 </span><span style="color:#666">  </span><span style="color:#999;font-style:italic"># 出力しない</span><span style="color:#666">
-</span><span style="color:#666">  </span>hide:<span style="color:#666"> </span>(<span style="color:#6ab825;font-weight:bold">true</span><span style="color:#666"> </span><span style="color:#ed9d13">| false)
-</span><span style="color:#ed9d13">  # 太字
-</span><span style="color:#ed9d13">  bold: (true | false)
-</span><span style="color:#ed9d13">  # 淡い字、または細い字
-</span><span style="color:#ed9d13">  faint: (true | false)
-</span><span style="color:#ed9d13">  # 斜体
-</span><span style="color:#ed9d13">  italic: (true | false)
-</span><span style="color:#ed9d13">  # アンダーライン
-</span><span style="color:#ed9d13">  underline: (true | false)
-</span><span style="color:#ed9d13">  # 点滅（ゆっくり）
-</span><span style="color:#ed9d13">  blinkSlow: (true | false)
-</span><span style="color:#ed9d13">  # 点滅（はやい）
-</span><span style="color:#ed9d13">  blinkRapid: (true | false)
-</span><span style="color:#ed9d13">  # 前景色と背景色を入れ替える
-</span><span style="color:#ed9d13">  inverse: (true | false)
-</span><span style="color:#ed9d13">  # 前景色と背景色を同色にする
-</span><span style="color:#ed9d13">  conceal: (true | false)
-</span><span style="color:#ed9d13">  # 取り消し線を引く
-</span><span style="color:#ed9d13">  crossOut: (true | false)
-</span><span style="color:#ed9d13">  frame: (true | false)
-</span><span style="color:#ed9d13">  encircle: (true | false)
-</span><span style="color:#ed9d13">  # アッパーライン
-</span><span style="color:#ed9d13">  overline: (true | false)
-</span><span style="color:#ed9d13">  # 文字前景色
-</span><span style="color:#ed9d13">  foreground: (#xxxxxx | rgb(0-256,0-256,0-256) | rgb(0x00-0xFF,0x00-0xFF,0x00-0xFF) | (name of colors))
-</span><span style="color:#ed9d13">  # 文字背景色
-</span><span style="color:#ed9d13">  background: # Same format as `foreground`</span><span style="color:#666">
+</span><span style="color:#666">  </span>hide:<span style="color:#666"> </span>(<span style="color:#6ab825;font-weight:bold">true</span><span style="color:#666"> </span>|<span style="color:#666"> </span><span style="color:#6ab825;font-weight:bold">false</span>)<span style="color:#666">
+</span><span style="color:#666">  </span><span style="color:#999;font-style:italic"># 太字</span><span style="color:#666">
+</span><span style="color:#666">  </span>bold:<span style="color:#666"> </span>(<span style="color:#6ab825;font-weight:bold">true</span><span style="color:#666"> </span>|<span style="color:#666"> </span><span style="color:#6ab825;font-weight:bold">false</span>)<span style="color:#666">
+</span><span style="color:#666">  </span><span style="color:#999;font-style:italic"># 淡い字、または細い字</span><span style="color:#666">
+</span><span style="color:#666">  </span>faint:<span style="color:#666"> </span>(<span style="color:#6ab825;font-weight:bold">true</span><span style="color:#666"> </span>|<span style="color:#666"> </span><span style="color:#6ab825;font-weight:bold">false</span>)<span style="color:#666">
+</span><span style="color:#666">  </span><span style="color:#999;font-style:italic"># 斜体</span><span style="color:#666">
+</span><span style="color:#666">  </span>italic:<span style="color:#666"> </span>(<span style="color:#6ab825;font-weight:bold">true</span><span style="color:#666"> </span>|<span style="color:#666"> </span><span style="color:#6ab825;font-weight:bold">false</span>)<span style="color:#666">
+</span><span style="color:#666">  </span><span style="color:#999;font-style:italic"># アンダーライン</span><span style="color:#666">
+</span><span style="color:#666">  </span>underline:<span style="color:#666"> </span>(<span style="color:#6ab825;font-weight:bold">true</span><span style="color:#666"> </span>|<span style="color:#666"> </span><span style="color:#6ab825;font-weight:bold">false</span>)<span style="color:#666">
+</span><span style="color:#666">  </span><span style="color:#999;font-style:italic"># 点滅（ゆっくり）</span><span style="color:#666">
+</span><span style="color:#666">  </span>blinkSlow:<span style="color:#666"> </span>(<span style="color:#6ab825;font-weight:bold">true</span><span style="color:#666"> </span>|<span style="color:#666"> </span><span style="color:#6ab825;font-weight:bold">false</span>)<span style="color:#666">
+</span><span style="color:#666">  </span><span style="color:#999;font-style:italic"># 点滅（はやい）</span><span style="color:#666">
+</span><span style="color:#666">  </span>blinkRapid:<span style="color:#666"> </span>(<span style="color:#6ab825;font-weight:bold">true</span><span style="color:#666"> </span>|<span style="color:#666"> </span><span style="color:#6ab825;font-weight:bold">false</span>)<span style="color:#666">
+</span><span style="color:#666">  </span><span style="color:#999;font-style:italic"># 前景色と背景色を入れ替える</span><span style="color:#666">
+</span><span style="color:#666">  </span>inverse:<span style="color:#666"> </span>(<span style="color:#6ab825;font-weight:bold">true</span><span style="color:#666"> </span>|<span style="color:#666"> </span><span style="color:#6ab825;font-weight:bold">false</span>)<span style="color:#666">
+</span><span style="color:#666">  </span><span style="color:#999;font-style:italic"># 前景色と背景色を同色にする</span><span style="color:#666">
+</span><span style="color:#666">  </span>conceal:<span style="color:#666"> </span>(<span style="color:#6ab825;font-weight:bold">true</span><span style="color:#666"> </span>|<span style="color:#666"> </span><span style="color:#6ab825;font-weight:bold">false</span>)<span style="color:#666">
+</span><span style="color:#666">  </span><span style="color:#999;font-style:italic"># 取り消し線を引く</span><span style="color:#666">
+</span><span style="color:#666">  </span>crossOut:<span style="color:#666"> </span>(<span style="color:#6ab825;font-weight:bold">true</span><span style="color:#666"> </span>|<span style="color:#666"> </span><span style="color:#6ab825;font-weight:bold">false</span>)<span style="color:#666">
+</span><span style="color:#666">  </span>frame:<span style="color:#666"> </span>(<span style="color:#6ab825;font-weight:bold">true</span><span style="color:#666"> </span>|<span style="color:#666"> </span><span style="color:#6ab825;font-weight:bold">false</span>)<span style="color:#666">
+</span><span style="color:#666">  </span>encircle:<span style="color:#666"> </span>(<span style="color:#6ab825;font-weight:bold">true</span><span style="color:#666"> </span>|<span style="color:#666"> </span><span style="color:#6ab825;font-weight:bold">false</span>)<span style="color:#666">
+</span><span style="color:#666">  </span><span style="color:#999;font-style:italic"># アッパーライン</span><span style="color:#666">
+</span><span style="color:#666">  </span>overline:<span style="color:#666"> </span>(<span style="color:#6ab825;font-weight:bold">true</span><span style="color:#666"> </span>|<span style="color:#666"> </span><span style="color:#6ab825;font-weight:bold">false</span>)<span style="color:#666">
+</span><span style="color:#666">  </span><span style="color:#999;font-style:italic"># 文字前景色</span><span style="color:#666">
+</span><span style="color:#666">  </span>foreground:<span style="color:#666"> </span>(<span style="color:#999;font-style:italic">#xxxxxx | rgb(0-256,0-256,0-256) | rgb(0x00-0xFF,0x00-0xFF,0x00-0xFF) | (name of colors))</span><span style="color:#666">
+</span><span style="color:#666">  </span><span style="color:#999;font-style:italic"># 文字背景色</span><span style="color:#666">
+</span><span style="color:#666">  </span>background:<span style="color:#666"> </span><span style="color:#999;font-style:italic"># Same format as `foreground`</span><span style="color:#666">
 </span><span style="color:#666">
 </span><span style="color:#666"></span><span style="color:#999;font-style:italic"># テスト開始ログの見た目</span><span style="color:#666">
 </span><span style="color:#666"></span>startStyle:<span style="color:#666">

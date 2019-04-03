@@ -25,7 +25,7 @@
 <script src="https://kyoh86.work/js/lib/plantuml.js"></script>
 
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
@@ -235,17 +235,17 @@ if (!doNotTrack) {
 <li><code>WordStorage</code></li>
 <li><code>TextStorage</code></li>
 </ul>
-<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">collections</span> <span style="color:#6ab825;font-weight:bold">import</span> namedtuple
-<span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf">MeCab</span>
-<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">abc</span> <span style="color:#6ab825;font-weight:bold">import</span> ABCMeta, abstractmethod
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">collections</span> <span style="color:#6ab825;font-weight:bold">import</span> namedtuple
+<span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf;text-decoration:underline">MeCab</span>
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">abc</span> <span style="color:#6ab825;font-weight:bold">import</span> ABCMeta, abstractmethod
 
-<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">shlex</span> <span style="color:#6ab825;font-weight:bold">import</span> quote
-<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">typing</span> <span style="color:#6ab825;font-weight:bold">import</span> Optional, List
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">shlex</span> <span style="color:#6ab825;font-weight:bold">import</span> quote
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">typing</span> <span style="color:#6ab825;font-weight:bold">import</span> Optional, List
 
 <span style="color:#ed9d13">&#39;&#39;&#39;
 </span><span style="color:#ed9d13">語（形態素）。
 </span><span style="color:#ed9d13">&#39;&#39;&#39;</span>
-<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf">Word</span>(namedtuple(<span style="color:#ed9d13">&#39;Word&#39;</span>, (
+<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Word</span>(namedtuple(<span style="color:#ed9d13">&#39;Word&#39;</span>, (
     <span style="color:#ed9d13">&#39;word&#39;</span>,                <span style="color:#999;font-style:italic"># 原形</span>
     <span style="color:#ed9d13">&#39;feature_id&#39;</span>,          <span style="color:#999;font-style:italic"># 素性ID</span>
 ))):
@@ -255,7 +255,7 @@ if (!doNotTrack) {
 <span style="color:#ed9d13">&#39;&#39;&#39;
 </span><span style="color:#ed9d13">語（形態素）を受けて保存しておくStorageのインターフェイス
 </span><span style="color:#ed9d13">&#39;&#39;&#39;</span>
-<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf">WordStorage</span>(metaclass=ABCMeta):
+<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">WordStorage</span>(metaclass=ABCMeta):
     <span style="color:#ffa500">@abstractmethod</span>
     <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">push</span>(self, path: <span style="color:#24909d">str</span>, word: Word) -&gt; None:
         <span style="color:#6ab825;font-weight:bold">pass</span>
@@ -264,7 +264,7 @@ if (!doNotTrack) {
 <span style="color:#ed9d13">&#39;&#39;&#39;
 </span><span style="color:#ed9d13">語（形態素）を受けて保存しておくStorageのインターフェイス
 </span><span style="color:#ed9d13">&#39;&#39;&#39;</span>
-<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf">TextStorage</span>(metaclass=ABCMeta):
+<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">TextStorage</span>(metaclass=ABCMeta):
     <span style="color:#ffa500">@abstractmethod</span>
     <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">push</span>(self, path: <span style="color:#24909d">str</span>, text: <span style="color:#24909d">str</span>) -&gt; None:
         <span style="color:#6ab825;font-weight:bold">pass</span></code></pre></div>
@@ -275,10 +275,10 @@ if (!doNotTrack) {
 
 <p>また、neologdのWikiによると、<a href="https://github.com/neologd/mecab-ipadic-neologd/wiki/Regexp.ja#%E8%A7%A3%E6%9E%90%E5%89%8D%E3%81%AB%E8%A1%8C%E3%81%86%E3%81%93%E3%81%A8%E3%81%8C%E6%9C%9B%E3%81%BE%E3%81%97%E3%81%84%E6%96%87%E5%AD%97%E5%88%97%E3%81%AE%E6%AD%A3%E8%A6%8F%E5%8C%96%E5%87%A6%E7%90%86">解析前に行うことが望ましい文字列の正規化処理</a> というのがあるらしいので、
 Pythonコードごと拝借して、mypyと喧嘩しないように型アノテーションを追加しておく。</p>
-<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf">re</span>
-<span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf">unicodedata</span>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf;text-decoration:underline">re</span>
+<span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf;text-decoration:underline">unicodedata</span>
 
-<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">typing</span> <span style="color:#6ab825;font-weight:bold">import</span> Dict
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">typing</span> <span style="color:#6ab825;font-weight:bold">import</span> Dict
 
 <span style="color:#ed9d13">&#39;&#39;&#39;
 </span><span style="color:#ed9d13">copied from https://github.com/neologd/mecab-ipadic-neologd/wiki/Regexp.ja#python-written-by-hideaki-t--overlast
@@ -381,7 +381,7 @@ Pythonコードごと拝借して、mypyと喧嘩しないように型アノテ�
 </ol>
 
 <p><code>MorphoAnalyzer</code> の出来上がり。</p>
-<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf">MorphoAnalyzer</span>(TextStorage):
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">MorphoAnalyzer</span>(TextStorage):
     <span style="color:#6ab825;font-weight:bold">def</span> __init__(self, storage: WordStorage, mecab_dicdir: Optional[<span style="color:#24909d">str</span>] = None, use_base: <span style="color:#24909d">bool</span> = False) -&gt; None:
         node_format: <span style="color:#24909d">str</span> = <span style="color:#ed9d13">&#39;%m</span><span style="color:#ed9d13">\\</span><span style="color:#ed9d13">t%h</span><span style="color:#ed9d13">\\</span><span style="color:#ed9d13">n&#39;</span>
         args: List[<span style="color:#24909d">str</span>] = [

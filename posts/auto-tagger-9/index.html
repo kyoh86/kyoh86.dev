@@ -25,7 +25,7 @@
 <script src="https://kyoh86.work/js/lib/plantuml.js"></script>
 
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
@@ -307,18 +307,18 @@ if (!doNotTrack) {
 <p>という構成で良さそう。</p>
 
 <p>BaseRendererで構築しているrender_mapに手を入れて、上記のリストごとに呼び出すメソッドをマッピングしてやればいいだろう。</p>
-<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">typing</span> <span style="color:#6ab825;font-weight:bold">import</span> TextIO, Any
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">typing</span> <span style="color:#6ab825;font-weight:bold">import</span> TextIO, Any
 
-<span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf">frontmatter</span>
-<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">mistletoe.base_renderer</span> <span style="color:#6ab825;font-weight:bold">import</span> BaseRenderer
-<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">mistletoe.span_token</span> <span style="color:#6ab825;font-weight:bold">import</span> RawText
-<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">mistletoe.block_token</span> <span style="color:#6ab825;font-weight:bold">import</span> Document
+<span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf;text-decoration:underline">frontmatter</span>
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">mistletoe.base_renderer</span> <span style="color:#6ab825;font-weight:bold">import</span> BaseRenderer
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">mistletoe.span_token</span> <span style="color:#6ab825;font-weight:bold">import</span> RawText
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">mistletoe.block_token</span> <span style="color:#6ab825;font-weight:bold">import</span> Document
 
-<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">.text_storage</span> <span style="color:#6ab825;font-weight:bold">import</span> TextStorage
-<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">.parser</span> <span style="color:#6ab825;font-weight:bold">import</span> Parser
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">.text_storage</span> <span style="color:#6ab825;font-weight:bold">import</span> TextStorage
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">.parser</span> <span style="color:#6ab825;font-weight:bold">import</span> Parser
 
 
-<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf">MarkdownParser</span>(BaseRenderer, Parser):
+<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">MarkdownParser</span>(BaseRenderer, Parser):
     <span style="color:#6ab825;font-weight:bold">def</span> __init__(self, path: <span style="color:#24909d">str</span>, storage: TextStorage) -&gt; None:
         <span style="color:#24909d">super</span>().__init__()
         self.path = path
@@ -359,9 +359,9 @@ if (!doNotTrack) {
 
 
 <span style="color:#6ab825;font-weight:bold">if</span> __name__ == <span style="color:#ed9d13">&#39;__main__&#39;</span>:
-    <span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">io</span> <span style="color:#6ab825;font-weight:bold">import</span> StringIO
+    <span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">io</span> <span style="color:#6ab825;font-weight:bold">import</span> StringIO
 
-    <span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf">TextPrinter</span>(TextStorage):
+    <span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">TextPrinter</span>(TextStorage):
         <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">push</span>(self, path: <span style="color:#24909d">str</span>, text: <span style="color:#24909d">str</span>) -&gt; None:
             <span style="color:#6ab825;font-weight:bold">print</span>(text)
 

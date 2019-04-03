@@ -25,7 +25,7 @@
 <script src="https://kyoh86.work/js/lib/plantuml.js"></script>
 
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
@@ -239,13 +239,13 @@ if (!doNotTrack) {
 </span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">type</span> Errors []<span style="color:#6ab825;font-weight:bold">error</span>
 
 <span style="color:#999;font-style:italic">// Push : エラーを追加する
-</span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">func</span> (a *Errors) Push(item <span style="color:#6ab825;font-weight:bold">error</span>) {
+</span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">func</span> (a *Errors) <span style="color:#447fcf">Push</span>(item <span style="color:#6ab825;font-weight:bold">error</span>) {
 	<span style="color:#6ab825;font-weight:bold">if</span> item == <span style="color:#6ab825;font-weight:bold">nil</span> {
 		<span style="color:#6ab825;font-weight:bold">return</span>
 	}
 	<span style="color:#6ab825;font-weight:bold">if</span> arr, ok := item.(Errors); ok &amp;&amp; arr != <span style="color:#6ab825;font-weight:bold">nil</span> {
 		<span style="color:#6ab825;font-weight:bold">for</span> _, child := <span style="color:#6ab825;font-weight:bold">range</span> arr {
-			a.Push(child)
+			a.<span style="color:#447fcf">Push</span>(child)
 		}
 	} <span style="color:#6ab825;font-weight:bold">else</span> {
 		*a = <span style="color:#24909d">append</span>(*a, item)
@@ -253,23 +253,23 @@ if (!doNotTrack) {
 }
 
 <span style="color:#999;font-style:italic">// IsEmpty : エラーが空かどうか取得する
-</span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">func</span> (a *Errors) IsEmpty() <span style="color:#6ab825;font-weight:bold">bool</span> {
+</span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">func</span> (a *Errors) <span style="color:#447fcf">IsEmpty</span>() <span style="color:#6ab825;font-weight:bold">bool</span> {
 	<span style="color:#6ab825;font-weight:bold">return</span> a == <span style="color:#6ab825;font-weight:bold">nil</span> || <span style="color:#24909d">len</span>(*a) == <span style="color:#3677a9">0</span>
 }
 
 <span style="color:#999;font-style:italic">// Error : エラー出力を得る
-</span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">func</span> (a Errors) Error() <span style="color:#6ab825;font-weight:bold">string</span> {
+</span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">func</span> (a Errors) <span style="color:#447fcf">Error</span>() <span style="color:#6ab825;font-weight:bold">string</span> {
 	array := <span style="color:#24909d">make</span>([]<span style="color:#6ab825;font-weight:bold">string</span>, <span style="color:#24909d">len</span>(a))
 	<span style="color:#6ab825;font-weight:bold">for</span> i, item := <span style="color:#6ab825;font-weight:bold">range</span> a {
-		array[i] = item.Error()
+		array[i] = item.<span style="color:#447fcf">Error</span>()
 	}
-	buf, _ := json.MarshalIndent(array, <span style="color:#ed9d13">&#34;&#34;</span>, <span style="color:#ed9d13">&#34;  &#34;</span>)
+	buf, _ := json.<span style="color:#447fcf">MarshalIndent</span>(array, <span style="color:#ed9d13">&#34;&#34;</span>, <span style="color:#ed9d13">&#34;  &#34;</span>)
 	<span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#24909d">string</span>(buf)
 }
 
 <span style="color:#999;font-style:italic">// Err : 空の場合は nil 、それ以外の場合は自身を返す
-</span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">func</span> (a Errors) Err() <span style="color:#6ab825;font-weight:bold">error</span> {
-	<span style="color:#6ab825;font-weight:bold">if</span> a.IsEmpty() {
+</span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">func</span> (a Errors) <span style="color:#447fcf">Err</span>() <span style="color:#6ab825;font-weight:bold">error</span> {
+	<span style="color:#6ab825;font-weight:bold">if</span> a.<span style="color:#447fcf">IsEmpty</span>() {
 		<span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#6ab825;font-weight:bold">nil</span>
 	}
 	<span style="color:#6ab825;font-weight:bold">return</span> a
@@ -286,18 +286,18 @@ if (!doNotTrack) {
 	<span style="color:#ed9d13">&#34;github.com/kyoh86/qiita/util&#34;</span>
 )
 
-<span style="color:#6ab825;font-weight:bold">func</span> main() {
-	nofbzz, err := SekaiNoNabeatsu(<span style="color:#3677a9">100</span>)
-	fmt.Println(<span style="color:#ed9d13">&#34;まともに言えた数：&#34;</span>)
+<span style="color:#6ab825;font-weight:bold">func</span> <span style="color:#447fcf">main</span>() {
+	nofbzz, err := <span style="color:#447fcf">SekaiNoNabeatsu</span>(<span style="color:#3677a9">100</span>)
+	fmt.<span style="color:#447fcf">Println</span>(<span style="color:#ed9d13">&#34;まともに言えた数：&#34;</span>)
 	<span style="color:#6ab825;font-weight:bold">for</span> _, n := <span style="color:#6ab825;font-weight:bold">range</span> nofbzz {
-		fmt.Println(n)
+		fmt.<span style="color:#447fcf">Println</span>(n)
 	}
-	fmt.Println(<span style="color:#ed9d13">&#34;アホまたは犬：&#34;</span>)
-	fmt.Println(err)
+	fmt.<span style="color:#447fcf">Println</span>(<span style="color:#ed9d13">&#34;アホまたは犬：&#34;</span>)
+	fmt.<span style="color:#447fcf">Println</span>(err)
 }
 
 <span style="color:#999;font-style:italic">// SekaiNoNabeatsu は、3の倍数だけアホになり、5の倍数だけ犬っぽくなります
-</span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">func</span> SekaiNoNabeatsu(num <span style="color:#6ab825;font-weight:bold">int</span>) ([]<span style="color:#6ab825;font-weight:bold">int</span>, <span style="color:#6ab825;font-weight:bold">error</span>) {
+</span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">func</span> <span style="color:#447fcf">SekaiNoNabeatsu</span>(num <span style="color:#6ab825;font-weight:bold">int</span>) ([]<span style="color:#6ab825;font-weight:bold">int</span>, <span style="color:#6ab825;font-weight:bold">error</span>) {
 	<span style="color:#6ab825;font-weight:bold">var</span> ret []<span style="color:#6ab825;font-weight:bold">int</span>
 	<span style="color:#6ab825;font-weight:bold">var</span> errs = <span style="color:#24909d">new</span>(util.Errors)
 
@@ -306,16 +306,16 @@ if (!doNotTrack) {
 		buzz := i % <span style="color:#3677a9">5</span>
 		<span style="color:#6ab825;font-weight:bold">switch</span> {
 		<span style="color:#6ab825;font-weight:bold">case</span> fizz == <span style="color:#3677a9">0</span> &amp;&amp; buzz == <span style="color:#3677a9">0</span>:
-			errs.Push(errors.New(<span style="color:#ed9d13">&#34;くぅ〜ん&#34;</span> + strings.Repeat(<span style="color:#ed9d13">&#34;！&#34;</span>, i/<span style="color:#3677a9">5</span>/<span style="color:#3677a9">3</span>)))
+			errs.<span style="color:#447fcf">Push</span>(errors.<span style="color:#447fcf">New</span>(<span style="color:#ed9d13">&#34;くぅ〜ん&#34;</span> + strings.<span style="color:#447fcf">Repeat</span>(<span style="color:#ed9d13">&#34;！&#34;</span>, i/<span style="color:#3677a9">5</span>/<span style="color:#3677a9">3</span>)))
 		<span style="color:#6ab825;font-weight:bold">case</span> fizz == <span style="color:#3677a9">0</span> &amp;&amp; buzz != <span style="color:#3677a9">0</span>:
-			errs.Push(errors.New(<span style="color:#ed9d13">&#34;さぁ〜ん&#34;</span> + strings.Repeat(<span style="color:#ed9d13">&#34;！&#34;</span>, i/<span style="color:#3677a9">3</span>)))
+			errs.<span style="color:#447fcf">Push</span>(errors.<span style="color:#447fcf">New</span>(<span style="color:#ed9d13">&#34;さぁ〜ん&#34;</span> + strings.<span style="color:#447fcf">Repeat</span>(<span style="color:#ed9d13">&#34;！&#34;</span>, i/<span style="color:#3677a9">3</span>)))
 		<span style="color:#6ab825;font-weight:bold">case</span> fizz != <span style="color:#3677a9">0</span> &amp;&amp; buzz == <span style="color:#3677a9">0</span>:
-			errs.Push(errors.New(<span style="color:#ed9d13">&#34;わん&#34;</span> + strings.Repeat(<span style="color:#ed9d13">&#34;！&#34;</span>, i/<span style="color:#3677a9">5</span>)))
+			errs.<span style="color:#447fcf">Push</span>(errors.<span style="color:#447fcf">New</span>(<span style="color:#ed9d13">&#34;わん&#34;</span> + strings.<span style="color:#447fcf">Repeat</span>(<span style="color:#ed9d13">&#34;！&#34;</span>, i/<span style="color:#3677a9">5</span>)))
 		<span style="color:#6ab825;font-weight:bold">default</span>:
 			ret = <span style="color:#24909d">append</span>(ret, i)
 		}
 	}
-	<span style="color:#6ab825;font-weight:bold">return</span> ret, errs.Err()
+	<span style="color:#6ab825;font-weight:bold">return</span> ret, errs.<span style="color:#447fcf">Err</span>()
 }</code></pre></div>
 <p>みたいな感じ。ナベアツの仕様については仕様通りと言い張ります。</p>
 
@@ -330,19 +330,19 @@ if (!doNotTrack) {
 
 <p>なのでUtility追加しましょう。</p>
 <div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-errors.go" data-lang="errors.go"><span style="color:#999;font-style:italic">// SPush : 文字列でエラーを作成し、追加する
-</span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">func</span> (a *Errors) SPush(text <span style="color:#6ab825;font-weight:bold">string</span>) {
-	a.Push(errors.New(text))
+</span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">func</span> (a *Errors) <span style="color:#447fcf">SPush</span>(text <span style="color:#6ab825;font-weight:bold">string</span>) {
+	a.<span style="color:#447fcf">Push</span>(errors.<span style="color:#447fcf">New</span>(text))
 }
 
 <span style="color:#999;font-style:italic">// Pushf : 書式付き文字列でエラーを作成し、追加する
-</span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">func</span> (a *Errors) Pushf(format <span style="color:#6ab825;font-weight:bold">string</span>, p ...<span style="color:#6ab825;font-weight:bold">interface</span>{}) {
-	a.Push(fmt.Errorf(format, p...))
+</span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">func</span> (a *Errors) <span style="color:#447fcf">Pushf</span>(format <span style="color:#6ab825;font-weight:bold">string</span>, p ...<span style="color:#6ab825;font-weight:bold">interface</span>{}) {
+	a.<span style="color:#447fcf">Push</span>(fmt.<span style="color:#447fcf">Errorf</span>(format, p...))
 }
 
-<span style="color:#6ab825;font-weight:bold">func</span> (a Errors) Len() <span style="color:#6ab825;font-weight:bold">int</span>      { <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#24909d">len</span>(a) }
-<span style="color:#6ab825;font-weight:bold">func</span> (a Errors) Swap(i, j <span style="color:#6ab825;font-weight:bold">int</span>) { a[i], a[j] = a[j], a[i] }
-<span style="color:#6ab825;font-weight:bold">func</span> (a Errors) Less(i, j <span style="color:#6ab825;font-weight:bold">int</span>) <span style="color:#6ab825;font-weight:bold">bool</span> {
-	<span style="color:#6ab825;font-weight:bold">return</span> a[i].Error() &lt; a[j].Error()
+<span style="color:#6ab825;font-weight:bold">func</span> (a Errors) <span style="color:#447fcf">Len</span>() <span style="color:#6ab825;font-weight:bold">int</span>      { <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#24909d">len</span>(a) }
+<span style="color:#6ab825;font-weight:bold">func</span> (a Errors) <span style="color:#447fcf">Swap</span>(i, j <span style="color:#6ab825;font-weight:bold">int</span>) { a[i], a[j] = a[j], a[i] }
+<span style="color:#6ab825;font-weight:bold">func</span> (a Errors) <span style="color:#447fcf">Less</span>(i, j <span style="color:#6ab825;font-weight:bold">int</span>) <span style="color:#6ab825;font-weight:bold">bool</span> {
+	<span style="color:#6ab825;font-weight:bold">return</span> a[i].<span style="color:#447fcf">Error</span>() &lt; a[j].<span style="color:#447fcf">Error</span>()
 }</code></pre></div>
 <p>色々やってきましたが、セカイのナベアツの面白さは、数字を下から読み上げていって、唐突にアホになったり犬になったりするから面白いんだなぁ、と冷静になりました。
 最後にこのプログラムの出力を貼って厳かな気持ちで終わりたいと思います。</p>

@@ -25,7 +25,7 @@
 <script src="https://kyoh86.work/js/lib/plantuml.js"></script>
 
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
@@ -310,8 +310,8 @@ IDFとNDLの定義が変わる。</p>
 <h2 id="restore-したデータを重み算出に使う"><code>restore</code> したデータを重み算出に使う</h2>
 
 <p><code>KeywordRanker</code> の <code>weighted_keywords</code> において、 <code>stored_*</code> を計算に組み込んでおく。</p>
-<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#fff">@@ -78,16 +78,22 @@ class KeywordRanker(WordStorage):
-</span><span style="color:#fff"></span>         すべての文書の平均単語数の逆数
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#fff;text-decoration:underline">@@ -78,16 +78,22 @@ class KeywordRanker(WordStorage):
+</span><span style="color:#fff;text-decoration:underline"></span>         すべての文書の平均単語数の逆数
          (文書の総数) / (総単語数)
          &#39;&#39;&#39;
 <span style="color:#d22323">-        adli = doc_count / self.word_count

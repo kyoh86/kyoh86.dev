@@ -25,7 +25,7 @@
 <script src="https://kyoh86.work/js/lib/plantuml.js"></script>
 
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
@@ -284,15 +284,15 @@ $$</p>
 <h2 id="単語集計の実装">単語集計の実装</h2>
 
 <p>後者2つは他の集計するべき項目に従属しているので、簡略化すると&hellip;</p>
-<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">math</span> <span style="color:#6ab825;font-weight:bold">import</span> log
-<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">typing</span> <span style="color:#6ab825;font-weight:bold">import</span> Dict, List
-<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">collections</span> <span style="color:#6ab825;font-weight:bold">import</span> defaultdict <span style="color:#6ab825;font-weight:bold">as</span> dd
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">math</span> <span style="color:#6ab825;font-weight:bold">import</span> log
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">typing</span> <span style="color:#6ab825;font-weight:bold">import</span> Dict, List
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">collections</span> <span style="color:#6ab825;font-weight:bold">import</span> defaultdict <span style="color:#6ab825;font-weight:bold">as</span> dd
 
-<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">.word</span> <span style="color:#6ab825;font-weight:bold">import</span> Word
-<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">.word_storage</span> <span style="color:#6ab825;font-weight:bold">import</span> WordStorage
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">.word</span> <span style="color:#6ab825;font-weight:bold">import</span> Word
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">.word_storage</span> <span style="color:#6ab825;font-weight:bold">import</span> WordStorage
 
 
-<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf">KeywordRanker</span>(WordStorage):
+<span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">KeywordRanker</span>(WordStorage):
 
     <span style="color:#6ab825;font-weight:bold">def</span> __init__(self) -&gt; None:
         <span style="color:#24909d">super</span>().__init__()
@@ -349,7 +349,7 @@ $$</p>
 
     <span style="color:#6ab825;font-weight:bold">return</span> ret</code></pre></div>
 <p>ただし、重みを単語 (<code>Word</code>) に突っ込んでいるので、 <code>Word</code> クラスの定義に <code>weight</code> を追加している。</p>
-<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf">Word</span>(namedtuple(<span style="color:#ed9d13">&#39;Word&#39;</span>, (
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Word</span>(namedtuple(<span style="color:#ed9d13">&#39;Word&#39;</span>, (
     <span style="color:#ed9d13">&#39;word&#39;</span>,                <span style="color:#999;font-style:italic"># 原形</span>
     <span style="color:#ed9d13">&#39;feature_id&#39;</span>,          <span style="color:#999;font-style:italic"># 素性ID</span>
     <span style="color:#ed9d13">&#39;weight&#39;</span>,              <span style="color:#999;font-style:italic"># 重み付け</span>

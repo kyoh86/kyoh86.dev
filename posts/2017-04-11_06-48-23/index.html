@@ -25,7 +25,7 @@
 <script src="https://kyoh86.work/js/lib/plantuml.js"></script>
 
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
@@ -227,16 +227,16 @@ if (!doNotTrack) {
 
 <span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#ed9d13">&#34;fmt&#34;</span>
 
-<span style="color:#6ab825;font-weight:bold">func</span> readme() {
+<span style="color:#6ab825;font-weight:bold">func</span> <span style="color:#447fcf">readme</span>() {
 	values := []<span style="color:#6ab825;font-weight:bold">string</span>{<span style="color:#ed9d13">&#34;a&#34;</span>, <span style="color:#ed9d13">&#34;b&#34;</span>, <span style="color:#ed9d13">&#34;c&#34;</span>}
 	<span style="color:#6ab825;font-weight:bold">var</span> funcs []<span style="color:#6ab825;font-weight:bold">func</span>()
 	<span style="color:#6ab825;font-weight:bold">for</span> _, val := <span style="color:#6ab825;font-weight:bold">range</span> values {
 		funcs = <span style="color:#24909d">append</span>(funcs, <span style="color:#6ab825;font-weight:bold">func</span>() {
-			fmt.Println(val)
+			fmt.<span style="color:#447fcf">Println</span>(val)
 		})
 	}
 	<span style="color:#6ab825;font-weight:bold">for</span> _, f := <span style="color:#6ab825;font-weight:bold">range</span> funcs {
-		f()
+		<span style="color:#447fcf">f</span>()
 	}
 	<span style="color:#999;font-style:italic">/*output:
 </span><span style="color:#999;font-style:italic">	  c

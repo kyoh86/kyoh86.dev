@@ -25,7 +25,7 @@
 <script src="https://kyoh86.work/js/lib/plantuml.js"></script>
 
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
@@ -256,30 +256,30 @@ GitHubのPull-RequestとCIツールを組み合わせれば、</p>
 <h1 id="解決策">解決策</h1>
 
 <p>用意するものは<a href="https://github.com/kyoh86/gogh">gogh</a>だけ<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>です。</p>
-<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lint.sh" data-lang="lint.sh"><span style="color:#40ffff">owner</span>=                    <span style="color:#999;font-style:italic"># 対象リポジトリ名（オーナー名）を設定
-</span><span style="color:#999;font-style:italic"></span><span style="color:#40ffff">repos</span>=                    <span style="color:#999;font-style:italic"># 対象リポジトリ名を設定
-</span><span style="color:#999;font-style:italic"></span><span style="color:#40ffff">min_confidence</span>=<span style="color:#3677a9">0</span>.9        <span style="color:#999;font-style:italic"># 警告のレベル
-</span><span style="color:#999;font-style:italic"></span><span style="color:#40ffff">head</span>=<span style="color:#6ab825;font-weight:bold">$(</span>git rev-parse --abbrev-ref @<span style="color:#6ab825;font-weight:bold">)</span> <span style="color:#999;font-style:italic"># 現在のブランチを取得
-</span><span style="color:#999;font-style:italic"></span><span style="color:#6ab825;font-weight:bold">if</span> [ -n <span style="color:#ed9d13">&#34;</span><span style="color:#ed9d13">${</span><span style="color:#40ffff">head</span><span style="color:#ed9d13">}</span><span style="color:#ed9d13">&#34;</span> ]
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lint.sh" data-lang="lint.sh"><span style="color:#40ffff">owner</span>=                    <span style="color:#999;font-style:italic"># 対象リポジトリ名（オーナー名）を設定</span>
+<span style="color:#40ffff">repos</span>=                    <span style="color:#999;font-style:italic"># 対象リポジトリ名を設定</span>
+<span style="color:#40ffff">min_confidence</span>=<span style="color:#3677a9">0</span>.9        <span style="color:#999;font-style:italic"># 警告のレベル</span>
+<span style="color:#40ffff">head</span>=<span style="color:#6ab825;font-weight:bold">$(</span>git rev-parse --abbrev-ref @<span style="color:#6ab825;font-weight:bold">)</span> <span style="color:#999;font-style:italic"># 現在のブランチを取得</span>
+<span style="color:#6ab825;font-weight:bold">if</span> [ -n <span style="color:#ed9d13">&#34;</span><span style="color:#ed9d13">${</span><span style="color:#40ffff">head</span><span style="color:#ed9d13">}</span><span style="color:#ed9d13">&#34;</span> ]
 <span style="color:#6ab825;font-weight:bold">then</span>
-  <span style="color:#999;font-style:italic"># 現在のブランチをheadとするpull-requestを探す
-</span><span style="color:#999;font-style:italic"></span>  <span style="color:#40ffff">base</span>=<span style="color:#6ab825;font-weight:bold">$(</span>gogh pr ls --repo <span style="color:#ed9d13">${</span><span style="color:#40ffff">owner</span><span style="color:#ed9d13">}</span>/<span style="color:#ed9d13">${</span><span style="color:#40ffff">repos</span><span style="color:#ed9d13">}</span> --head <span style="color:#ed9d13">${</span><span style="color:#40ffff">owner</span><span style="color:#ed9d13">}</span>:<span style="color:#ed9d13">${</span><span style="color:#40ffff">head</span><span style="color:#ed9d13">}</span> --state open --row-format <span style="color:#ed9d13">$&#39;{{.Base.Ref}}&#39;</span><span style="color:#6ab825;font-weight:bold">)</span>
+  <span style="color:#999;font-style:italic"># 現在のブランチをheadとするpull-requestを探す</span>
+  <span style="color:#40ffff">base</span>=<span style="color:#6ab825;font-weight:bold">$(</span>gogh pr ls --repo <span style="color:#ed9d13">${</span><span style="color:#40ffff">owner</span><span style="color:#ed9d13">}</span>/<span style="color:#ed9d13">${</span><span style="color:#40ffff">repos</span><span style="color:#ed9d13">}</span> --head <span style="color:#ed9d13">${</span><span style="color:#40ffff">owner</span><span style="color:#ed9d13">}</span>:<span style="color:#ed9d13">${</span><span style="color:#40ffff">head</span><span style="color:#ed9d13">}</span> --state open --row-format <span style="color:#ed9d13">$&#39;{{.Base.Ref}}&#39;</span><span style="color:#6ab825;font-weight:bold">)</span>
   <span style="color:#6ab825;font-weight:bold">if</span> [ -z <span style="color:#ed9d13">&#34;</span><span style="color:#ed9d13">${</span><span style="color:#40ffff">base</span><span style="color:#ed9d13">}</span><span style="color:#ed9d13">&#34;</span> ]
   <span style="color:#6ab825;font-weight:bold">then</span>
-    <span style="color:#999;font-style:italic"># pull-requestが見つからなければそのまま終了
-</span><span style="color:#999;font-style:italic"></span>    <span style="color:#24909d">echo</span> <span style="color:#ed9d13">&#34;pull-request is not found&#34;</span>
+    <span style="color:#999;font-style:italic"># pull-requestが見つからなければそのまま終了</span>
+    <span style="color:#24909d">echo</span> <span style="color:#ed9d13">&#34;pull-request is not found&#34;</span>
   <span style="color:#6ab825;font-weight:bold">else</span>
-    <span style="color:#999;font-style:italic"># pull-requestのbaseブランチと、差分のあるファイルの一覧を取得
-</span><span style="color:#999;font-style:italic"></span>    <span style="color:#40ffff">tmpfile</span>=<span style="color:#6ab825;font-weight:bold">$(</span>mktemp<span style="color:#6ab825;font-weight:bold">)</span>
+    <span style="color:#999;font-style:italic"># pull-requestのbaseブランチと、差分のあるファイルの一覧を取得</span>
+    <span style="color:#40ffff">tmpfile</span>=<span style="color:#6ab825;font-weight:bold">$(</span>mktemp<span style="color:#6ab825;font-weight:bold">)</span>
     git fetch origin <span style="color:#ed9d13">${</span><span style="color:#40ffff">base</span><span style="color:#ed9d13">}</span>:<span style="color:#ed9d13">${</span><span style="color:#40ffff">base</span><span style="color:#ed9d13">}</span>
     git diff <span style="color:#ed9d13">${</span><span style="color:#40ffff">base</span><span style="color:#ed9d13">}</span>...<span style="color:#ed9d13">${</span><span style="color:#40ffff">head</span><span style="color:#ed9d13">}</span> --name-only | grep -v &gt; <span style="color:#ed9d13">${</span><span style="color:#40ffff">tmpfile</span><span style="color:#ed9d13">}</span>
 
-    <span style="color:#999;font-style:italic"># golintを実行して、差分のあるファイルに関する部分だけを抽出する
-</span><span style="color:#999;font-style:italic"></span>    <span style="color:#40ffff">lint</span>=<span style="color:#6ab825;font-weight:bold">$(</span>golint --min_confidence=<span style="color:#ed9d13">${</span><span style="color:#40ffff">min_confidence</span><span style="color:#ed9d13">}</span> ./... | grep -F -f <span style="color:#ed9d13">${</span><span style="color:#40ffff">tmpfile</span><span style="color:#ed9d13">}</span><span style="color:#6ab825;font-weight:bold">)</span>
+    <span style="color:#999;font-style:italic"># golintを実行して、差分のあるファイルに関する部分だけを抽出する</span>
+    <span style="color:#40ffff">lint</span>=<span style="color:#6ab825;font-weight:bold">$(</span>golint --min_confidence=<span style="color:#ed9d13">${</span><span style="color:#40ffff">min_confidence</span><span style="color:#ed9d13">}</span> ./... | grep -F -f <span style="color:#ed9d13">${</span><span style="color:#40ffff">tmpfile</span><span style="color:#ed9d13">}</span><span style="color:#6ab825;font-weight:bold">)</span>
     rm <span style="color:#ed9d13">${</span><span style="color:#40ffff">tmpfile</span><span style="color:#ed9d13">}</span>
 
-    <span style="color:#999;font-style:italic"># lintの結果、何かしらの出力があればエラーとする
-</span><span style="color:#999;font-style:italic"></span>    <span style="color:#6ab825;font-weight:bold">if</span> [ -n <span style="color:#ed9d13">&#34;</span><span style="color:#ed9d13">${</span><span style="color:#40ffff">lint</span><span style="color:#ed9d13">}</span><span style="color:#ed9d13">&#34;</span> ]
+    <span style="color:#999;font-style:italic"># lintの結果、何かしらの出力があればエラーとする</span>
+    <span style="color:#6ab825;font-weight:bold">if</span> [ -n <span style="color:#ed9d13">&#34;</span><span style="color:#ed9d13">${</span><span style="color:#40ffff">lint</span><span style="color:#ed9d13">}</span><span style="color:#ed9d13">&#34;</span> ]
     <span style="color:#6ab825;font-weight:bold">then</span>
       <span style="color:#24909d">echo</span> <span style="color:#ed9d13">&#34;</span><span style="color:#ed9d13">${</span><span style="color:#40ffff">lint</span><span style="color:#ed9d13">}</span><span style="color:#ed9d13">&#34;</span>
       <span style="color:#24909d">exit</span> <span style="color:#3677a9">1</span>

@@ -25,7 +25,7 @@
 <script src="https://kyoh86.work/js/lib/plantuml.js"></script>
 
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
@@ -234,10 +234,10 @@ if (!doNotTrack) {
 
 <span style="color:#6ab825;font-weight:bold">var</span> datum <span style="color:#6ab825;font-weight:bold">map</span>[<span style="color:#6ab825;font-weight:bold">string</span>]<span style="color:#6ab825;font-weight:bold">string</span>
 <span style="color:#6ab825;font-weight:bold">var</span> err <span style="color:#6ab825;font-weight:bold">error</span>
-reader := lcsv.NewReader(strings.NewReader(values))
+reader := lcsv.<span style="color:#447fcf">NewReader</span>(strings.<span style="color:#447fcf">NewReader</span>(values))
 <span style="color:#6ab825;font-weight:bold">for</span> err == <span style="color:#6ab825;font-weight:bold">nil</span> {
-    datum, err = reader.Read()
-    fmt.Println(datum)
+    datum, err = reader.<span style="color:#447fcf">Read</span>()
+    fmt.<span style="color:#447fcf">Println</span>(datum)
 }
 <span style="color:#999;font-style:italic">/* Output:
 </span><span style="color:#999;font-style:italic">map[name:John country:US sex:male]
@@ -253,11 +253,11 @@ reader := lcsv.NewReader(strings.NewReader(values))
 <div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#6ab825;font-weight:bold">var</span> key <span style="color:#6ab825;font-weight:bold">string</span>
 <span style="color:#6ab825;font-weight:bold">var</span> options <span style="color:#6ab825;font-weight:bold">map</span>[<span style="color:#6ab825;font-weight:bold">string</span>]<span style="color:#6ab825;font-weight:bold">string</span>
 tagValue := <span style="color:#ed9d13">`required,default=example.com`</span>
-decoder := lcsv.NewDecoder(lcsv.Separator(<span style="color:#ed9d13">&#39;,&#39;</span>), lcsv.Unquoted(), lcsv.LabelSeparator(<span style="color:#ed9d13">&#39;=&#39;</span>))
-<span style="color:#6ab825;font-weight:bold">if</span> err := decoder.Decode(tagValue, options); err != <span style="color:#6ab825;font-weight:bold">nil</span> {
+decoder := lcsv.<span style="color:#447fcf">NewDecoder</span>(lcsv.<span style="color:#447fcf">Separator</span>(<span style="color:#ed9d13">&#39;,&#39;</span>), lcsv.<span style="color:#447fcf">Unquoted</span>(), lcsv.<span style="color:#447fcf">LabelSeparator</span>(<span style="color:#ed9d13">&#39;=&#39;</span>))
+<span style="color:#6ab825;font-weight:bold">if</span> err := decoder.<span style="color:#447fcf">Decode</span>(tagValue, options); err != <span style="color:#6ab825;font-weight:bold">nil</span> {
     <span style="color:#24909d">panic</span>(err)
 }
-fmt.Println(options)
+fmt.<span style="color:#447fcf">Println</span>(options)
 <span style="color:#999;font-style:italic">/* Output:
 </span><span style="color:#999;font-style:italic">map[required: default:example.com]
 </span><span style="color:#999;font-style:italic">*/</span></code></pre></div>

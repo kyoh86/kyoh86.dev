@@ -25,7 +25,7 @@
 <script src="https://kyoh86.work/js/lib/plantuml.js"></script>
 
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
@@ -264,7 +264,7 @@ EOS</code></pre></div>
 <h2 id="pythonから使ってみる">Pythonから使ってみる</h2>
 
 <p>Pythonで呼び出すとどうかな。</p>
-<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf">MeCab</span>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf;text-decoration:underline">MeCab</span>
 
 
 <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">mecab_tryout</span>() -&gt; None:
@@ -318,8 +318,8 @@ EOS</code></pre></div>
 
 <p>出力フォーマットなどの指定は、 <code>Tagger</code> の引数にCLIに指定するのと同じ感じで渡せばいいらしい。
 これCLI呼んでるだけだろ…</p>
-<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf">MeCab</span>
-<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf">typing</span> <span style="color:#6ab825;font-weight:bold">import</span> List
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf;text-decoration:underline">MeCab</span>
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">typing</span> <span style="color:#6ab825;font-weight:bold">import</span> List
 
 
 <span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">mecab_tryout</span>() -&gt; None:
@@ -372,7 +372,7 @@ EOS</code></pre></div>
 <h2 id="出力やデバッグのことも考える">出力やデバッグのことも考える</h2>
 
 <p>品詞ID→品詞名の一覧も作っておく。先の公式の「品詞ID」からコピペしただけだけど。</p>
-<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf">Feature</span>(<span style="color:#24909d">object</span>):
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Feature</span>(<span style="color:#24909d">object</span>):
     <span style="color:#6ab825;font-weight:bold">def</span> __init__(self, clazz: <span style="color:#24909d">str</span>, subclazz: List[<span style="color:#24909d">str</span>] = []) -&gt; None:
         self.clazz = clazz
         self.subclazz = subclazz

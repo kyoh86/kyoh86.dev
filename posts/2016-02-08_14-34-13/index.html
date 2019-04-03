@@ -25,7 +25,7 @@
 <script src="https://kyoh86.work/js/lib/plantuml.js"></script>
 
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
@@ -224,8 +224,8 @@ if (!doNotTrack) {
 かといって<code>outdated</code>なパッケージを放置するのも気持ち悪いですよね。</p>
 
 <p>そんな「<code>brew upgrade</code>で全てのパッケージをアップデートしたら色々死ぬわ！」という場合によく使うのでメモ書き。</p>
-<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">$ brew update &amp;&amp; brew outdated <span style="color:#999;font-style:italic"># 更新が必要なパッケージの一覧を取得、確認。
-</span><span style="color:#999;font-style:italic"></span>  ...
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">$ brew update &amp;&amp; brew outdated <span style="color:#999;font-style:italic"># 更新が必要なパッケージの一覧を取得、確認。</span>
+  ...
   ...
 $ brew outdated <span style="color:#ed9d13">\
 </span><span style="color:#ed9d13"></span>    | awk <span style="color:#ed9d13">&#39;{print $1}&#39;</span> <span style="color:#ed9d13">\
