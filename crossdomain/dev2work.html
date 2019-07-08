@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Dev→Workにクロスドメイン</title>
+  </head>
+  <body>
+    <h1>Dev→Workにクロスドメイン</h1>
+    <p>
+    kyoh86.dev: 一方通行。Work側にallowLinker: true入れないとエラーになるのではないか？
+    </p>
+
+    <!-- Google Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-70974996-6', 'auto', {allowLinker: true});
+    ga("require", "linker");
+    ga("linker:autoLink", ["kyoh86.work"]);
+    ga('send', 'pageview');
+    </script>
+    <!-- End Google Analytics -->
+
+    <a href="https://kyoh86.work/crossdomain/dev2work_allow.html">allowLinker: true入れたやつ</a>
+    <a href="https://kyoh86.work/crossdomain/dev2work_plain.html">allowLinker: true入れてないやつ</a>
+  </body>
+</html>
