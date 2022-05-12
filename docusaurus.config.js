@@ -12,7 +12,7 @@ const config = {
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
-  favicon: "img/favicon.ico",
+  favicon: "img/kyoh86.ico",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -58,7 +58,7 @@ const config = {
         title: "日曜日のたわごと",
         logo: {
           alt: "My Site Logo",
-          src: "img/logo.svg",
+          src: "img/kyoh86.svg",
         },
         items: [
           // {
