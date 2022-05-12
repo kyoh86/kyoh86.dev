@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkkyoh_86_dev=self.webpackChunkkyoh_86_dev||[]).push([[535],{5641:function(e){e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"Welcome","permalink":"/2022/05/12/welcome"}]}')}}]);

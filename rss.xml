@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>日曜日のたわごと Blog</title>
+        <link>https://kyoh86.dev/</link>
+        <description>日曜日のたわごと Blog</description>
+        <lastBuildDate>Thu, 12 May 2022 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <item>
+            <title><![CDATA[Welcome]]></title>
+            <link>https://kyoh86.dev/2022/05/12/welcome</link>
+            <guid>/2022/05/12/welcome</guid>
+            <pubDate>Thu, 12 May 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[hello.]]></description>
+            <content:encoded><![CDATA[<p>hello.</p>]]></content:encoded>
+            <category>hello</category>
+        </item>
+    </channel>
+</rss>
