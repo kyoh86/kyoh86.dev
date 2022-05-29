@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkkyoh_86_dev=self.webpackChunkkyoh_86_dev||[]).push([[252],{8456:function(e){e.exports=JSON.parse('{"label":"writing","permalink":"/tags/writing","allTagsPath":"/tags","count":1}')}}]);

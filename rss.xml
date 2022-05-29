@@ -4,10 +4,19 @@
         <title>日曜日のたわごと Blog</title>
         <link>https://kyoh86.dev/</link>
         <description>日曜日のたわごと Blog</description>
-        <lastBuildDate>Thu, 12 May 2022 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 29 May 2022 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[書くという行為]]></title>
+            <link>https://kyoh86.dev/2022/05/29/writing</link>
+            <guid>/2022/05/29/writing</guid>
+            <pubDate>Sun, 29 May 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[最近、文章を書くという行為をしていなかったので、改めて始めていこうと思う。]]></description>
+            <content:encoded><![CDATA[<p>最近、文章を書くという行為をしていなかったので、改めて始めていこうと思う。</p><h2 class="anchor anchorWithStickyNavbar_mojV" id="注意点">注意点<a class="hash-link" href="#注意点" title="Direct link to heading">​</a></h2><p>日本語での文章を基本とするが、いくつか自分なりの注意点を記載していく。</p><h3 class="anchor anchorWithStickyNavbar_mojV" id="主語はできるだけ僕">主語はできるだけ「僕」<a class="hash-link" href="#主語はできるだけ僕" title="Direct link to heading">​</a></h3><ul><li>主語が大きくなるのを避ける</li><li>大きくぶれないように統一を心がける</li></ul><h3 class="anchor anchorWithStickyNavbar_mojV" id="副詞を省略しない">副詞を省略しない<a class="hash-link" href="#副詞を省略しない" title="Direct link to heading">​</a></h3><ul><li>読んだ際の誤解を避ける</li><li>例<ul><li>仕事行く→仕事に行く</li><li>今日何食べるか→今日は何を食べるか</li></ul></li></ul><h3 class="anchor anchorWithStickyNavbar_mojV" id="文末の動名詞を避ける">文末の動名詞を避ける<a class="hash-link" href="#文末の動名詞を避ける" title="Direct link to heading">​</a></h3><ul><li>サ変動詞が続くなら「する」「した」を続ける</li><li>読んだ際の誤解を避ける</li><li>例: 現状を調査→現状を調査した</li></ul>]]></content:encoded>
+            <category>writing</category>
+        </item>
         <item>
             <title><![CDATA[Welcome]]></title>
             <link>https://kyoh86.dev/2022/05/12/welcome</link>
