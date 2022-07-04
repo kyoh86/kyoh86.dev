@@ -48,11 +48,11 @@ WACULのMinecraftサーバーは、Bedrock Editionでしか接続できません
 ### Bedrock EditionとJava Editionの見分け方
 
 ⭕ Bedrock Editionの場合は、下の画像のようにタイトル画面には特に何のEditionとも書かれていません。
-<img src="https://i.gyazo.com/84ca1f0574fc56f0c8a46e924187a622.jpg" width="680" height="425">
+<img src="https://i.gyazo.com/84ca1f0574fc56f0c8a46e924187a622.jpg" width="680" height="425" />
 
 ❌ Java Editionだと、下の画像のようにタイトル画面に **JAVA EDITION** と書かれています。  
 
-<img src="https://i.gyazo.com/249813a8114be460e008ed999a2a7784.jpg" width="680" height="390">
+<img src="https://i.gyazo.com/249813a8114be460e008ed999a2a7784.jpg" width="680" height="390" />
 
 ### Windows PC用の購入
 
