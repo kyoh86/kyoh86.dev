@@ -71,11 +71,11 @@ Xboxゲーマータグがわからない方は、スマホやパソコンのブ�
 1. スイッチ本体の「設定」を開きます。
 
 2. 「インターネット」の一番上にある「インターネット設定」を開きます。
-    - <img src="https://napoan.com/wp-content/uploads/2022/02/497c5ae4-udrkithkrm.jpeg">
+    - <img src="https://i.gyazo.com/6229a520a63929689f0efd349384aa21.jpg" width="640" height="360" />
 3. 接続できるネットワークの一覧が出てきます。チェックが付いているネットワークを選んで、「設定の変更」に進みます。
-    - <img src="https://napoan.com/wp-content/uploads/2022/02/b6577e5e-ecutvntocb.jpeg">
+    - <img src="https://i.gyazo.com/46f57eba8c1e01a4ba6173991554ca3e.jpg" width="640" height="360" />
 4. 「DNS設定」という項目を、以下のように変更します。
-    - <img src="https://napoan.com/wp-content/uploads/2022/02/93ea8e0b-4ra4unkg_y.jpeg">
+    - <img src="https://i.gyazo.com/0587bf53852cb1ba6738ba3a337dec50.jpg" width="640" height="360" />
     - DNS設定: 手動
     - 優先DNS: `104.238.130.180`
     - 代替DNS: `008.008.008.008`
@@ -93,7 +93,7 @@ Xboxゲーマータグがわからない方は、スマホやパソコンのブ�
 
 マインクラフトの起動画面から、右上の「サーバー」というタブを開き、特集サーバーの **どれでもいいので、適当に** 参加してください。すると、 `Server List` という画面が表示されます。
 
-<img src="https://napoan.com/wp-content/uploads/2022/02/275e7195-jhkvaquhen.jpeg">
+<img src="https://i.gyazo.com/8c83c02060a61936369a8c4d753d0ded.jpg" width="640" height="360" />
 
 > `Server List` という画面が表示されず、いきなりゲーム画面に入ってしまった場合は、スイッチ本体の設定変更に失敗しているかもしれません。もう一度設定を確認してください。
 
