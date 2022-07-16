@@ -2,7 +2,7 @@
 
 マインクラフトのサーバーで遊ぶ上で有益な情報たち:
 
-## [参加方法](./mc-wacul-entry.md)
+## [参加方法](./mc-wacul-entry)
 
 リンク先を参照
 
@@ -17,7 +17,7 @@ Discordでの音声会話でつながりながら作業するのがおすすめ�
 
 Discord ヘルプ: https://support.discord.com/hc/ja
 
-## [拠点の案内](./mc-wacul-hq.md)
+## [拠点の案内](./mc-wacul-hq)
 
 リンク先参照
 
