@@ -35,11 +35,20 @@ jobs:
             - name: Update apt repository
               # see: https://github.com/bedrock-viz/bedrock-viz/blob/master/Dockerfile
               run: |
-                  apt-get update
+                  sudo apt-get update
 
             - name: Setup toolchains
               # see: https://github.com/bedrock-viz/bedrock-viz/blob/master/Dockerfile
-              run: apt-get install -y cmake g++ git libboost-program-options-dev libpng++-dev zlib1g-dev libpng16-16 libboost-program-options-dev
+              run: |
+                  sudo apt-get install -y \
+                      cmake \
+                      g++ \
+                      git \
+                      libboost-program-options-dev \
+                      libpng++-dev \
+                      zlib1g-dev \
+                      libpng16-16 \
+                      libboost-program-options-dev
               env:
                   DEBIAN_FRONTEND: noninteractive
 
