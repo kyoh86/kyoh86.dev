@@ -1,3 +1,5 @@
+name: Build World map of the Minecraft for WACUL
+
 on:
   schedule:
     - "0 5 * * *"
@@ -5,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: Build Minecraft for WACUL World Map
+    name: Build World map of the Minecraft for WACUL
     runs-on: ubuntu-latest
     steps:
       - name: Get original files
