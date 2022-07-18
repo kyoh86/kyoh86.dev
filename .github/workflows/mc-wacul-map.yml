@@ -1,0 +1,70 @@
+on:
+  schedule:
+    - "0 5 * * *"
+
+jobs:
+  build:
+    name: Build Minecraft for WACUL World Map
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get original files
+        uses: actions/checkout@v3
+
+      - name: Get world data from Bedrock-Server
+        run: |
+          echo "$SSH_KEY" > mc_wacul_key
+          chmod 0600 mc_wacul_key
+          ssh-keyscan -f mc_wacul_key "${SSH_HOST}" >> ~/.ssh/known_hosts
+          scp -i mc_wacul_key -r "${SSH_USER}@${SSH_HOST}:/opt/minecraft_be_server/worlds/love" ./love
+        env:
+          SSH_KEY: ${{ secrets.MC_WACUL_KEY }}
+          SSH_USER: ${{ secrets.MC_WACUL_USER }}
+          SSH_HOST: ${{ secrets.MC_WACUL_HOST }}
+
+      - name: Get Bedrock Viz Sources
+        uses: actions/checkout@v3
+        with:
+          repository: bedrock-viz/bedrock-viz
+          path: bedrock-viz
+          submodules: true
+
+      - name: Update apt repository
+        # see: https://github.com/bedrock-viz/bedrock-viz/blob/master/Dockerfile
+        run:
+          apt-get update
+
+      - name: Setup toolchains
+        # see: https://github.com/bedrock-viz/bedrock-viz/blob/master/Dockerfile
+        run: apt-get install -y cmake g++ git libboost-program-options-dev libpng++-dev zlib1g-dev libpng16-16 libboost-program-options-dev
+        env:
+          DEBIAN_FRONTEND: noninteractive
+
+      - name: Install Bedrock Viz
+        # see: https://github.com/bedrock-viz/bedrock-viz/blob/master/docs/BUILD.md
+        run: |
+          cd bedrock-viz
+          git apply -p0 patches/leveldb-1.22.patch
+          git apply -p0 patches/pugixml-disable-install.patch
+          mkdir build
+          cd build
+          cmake ..
+          make
+          make install
+          command -v bedrock-viz
+
+      - name: Build Map
+        run: |
+          rm -rf static/mc-wacul-world
+          bedrock-viz --db ./love --out static/mc-wacul-world --html-all
+      
+      - name: Commit & push
+        run: |
+          git add -N .
+          if ! git diff --exit-code --quiet
+          then
+            git config user.name github-actions
+            git config user.email github-actions@github.com
+            git add .
+            git commit -m "Update mc-wacul world map"
+            git push
+          fi
