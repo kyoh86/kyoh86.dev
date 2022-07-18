@@ -66,9 +66,6 @@ jobs:
                   sudo make install
                   command -v bedrock-viz
 
-            - name: Cleanup Bedrock Viz Source
-              run: rm -rf bedrock-viz
-
             - name: Build Map
               run: |
                   bedrock-viz --db ./love --out mc-wacul-map/public --html-all
