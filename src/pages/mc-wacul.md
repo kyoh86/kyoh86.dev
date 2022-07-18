@@ -27,3 +27,7 @@ Discord ヘルプ: https://support.discord.com/hc/ja
 https://docs.google.com/spreadsheets/d/15Y1UtC1EUp2GSWEUTecVF_tIxpNu0vUgZz1cJb1Qdp0/edit#gid=178256797
 
 編集権限が欲しい人は、Googleアカウントを管理者（山田）までご連絡ください。
+
+また、ざっくりとした全体像はこちらから見ることができます。
+（最初にEというボタンをクリックしてから、ズームインしたりズームアウトすると色々見れて便利です）
+https://mc-wacul-map.web.app/#
