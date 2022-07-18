@@ -66,6 +66,9 @@ jobs:
                   sudo make install
                   command -v bedrock-viz
 
+            - name: Cleanup Bedrock Viz Source
+              run: rm -rf bedrock-viz
+
             - name: Build Map
               run: |
                   rm -rf static/mc-wacul-world
