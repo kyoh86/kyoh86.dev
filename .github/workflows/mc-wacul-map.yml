@@ -60,6 +60,7 @@ jobs:
                   git apply -p0 patches/pugixml-disable-install.patch
                   mkdir build
                   cd build
+                  mkdir -p /usr/local/share/bedrock-viz
                   cmake ..
                   make
                   make install
