@@ -17,6 +17,7 @@ jobs:
               run: |
                   echo "$SSH_KEY" > mc_wacul_key
                   chmod 0600 mc_wacul_key
+                  mkdir -p ~/.ssh
                   ssh-keyscan -f mc_wacul_key "${SSH_HOST}" >> ~/.ssh/known_hosts
                   scp -i mc_wacul_key -r "${SSH_USER}@${SSH_HOST}:/opt/minecraft_be_server/worlds/love" ./love
               env:
