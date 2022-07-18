@@ -71,17 +71,12 @@ jobs:
 
             - name: Build Map
               run: |
-                  rm -rf static/mc-wacul-world
-                  bedrock-viz --db ./love --out static/mc-wacul-world --html-all
-            
-            - name: Commit & push
-              run: |
-                  git add -N .
-                  if ! git diff --exit-code --quiet
-                  then
-                      git config user.name github-actions
-                      git config user.email github-actions@github.com
-                      git add .
-                      git commit -m "Update mc-wacul world map"
-                      git push
-                  fi
+                  bedrock-viz --db ./love --out mc-wacul-map/public --html-all
+
+            - name: Deploy to Firebase Hosting on PR
+              uses: FirebaseExtended/action-hosting-deploy@v0
+              with:
+                  entryPoint: mc-wacul-map
+                  repoToken: '${{ secrets.GITHUB_TOKEN }}'
+                  firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_MC_WACUL_MAP }}'
+                  projectId: mc-wacul-map
