@@ -1,3 +1,8 @@
+# Generated pages
+
+public/
+!public/404.html
+
 # Logs
 logs
 *.log

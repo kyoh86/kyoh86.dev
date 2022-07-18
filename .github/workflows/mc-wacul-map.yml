@@ -77,3 +77,4 @@ jobs:
                   repoToken: '${{ secrets.GITHUB_TOKEN }}'
                   firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_MC_WACUL_MAP }}'
                   projectId: mc-wacul-map
+                  channelId: live
