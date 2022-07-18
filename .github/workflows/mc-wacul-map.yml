@@ -1,6 +1,7 @@
 on:
   schedule:
     - "0 5 * * *"
+  workflow_dispatch: {}
 
 jobs:
   build:
