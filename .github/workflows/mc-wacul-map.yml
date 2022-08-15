@@ -25,9 +25,8 @@ jobs:
                 cp ./.github/workflows/mc-wacul-map-bedrock-viz.patch ./bedrock-viz
                 cd bedrock-viz
                 ls -la ./
-                patch ./mc-wacul-map-bedrock-viz.patch
+                git apply ./mc-wacul-map-bedrock-viz.patch
                 git diff
-                exit 1
 
             - name: Get world data from Bedrock-Server
               run: |
