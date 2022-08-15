@@ -13,18 +13,6 @@ jobs:
             - name: Get original files
               uses: actions/checkout@v3
 
-            - name: Get world data from Bedrock-Server
-              run: |
-                  echo "$SSH_KEY" > mc_wacul_key
-                  chmod 0600 mc_wacul_key
-                  mkdir -p ~/.ssh
-                  ssh-keyscan -f mc_wacul_key "${SSH_HOST}" >> ~/.ssh/known_hosts
-                  scp -i mc_wacul_key -r "${SSH_USER}@${SSH_HOST}:/opt/minecraft_be_server/worlds/love" ./love
-              env:
-                  SSH_KEY: ${{ secrets.MC_WACUL_KEY }}
-                  SSH_USER: ${{ secrets.MC_WACUL_USER }}
-                  SSH_HOST: ${{ secrets.MC_WACUL_HOST }}
-
             - name: Get Bedrock Viz Sources
               uses: actions/checkout@v3
               with:
@@ -37,6 +25,19 @@ jobs:
                 cp ./.github/workflows/mc-wacul-map-bedrock-viz.patch ./bedrock-viz
                 cd bedrock-viz
                 patch ./mc-wacul-map-bedrock-viz.patch
+                git diff
+
+            - name: Get world data from Bedrock-Server
+              run: |
+                  echo "$SSH_KEY" > mc_wacul_key
+                  chmod 0600 mc_wacul_key
+                  mkdir -p ~/.ssh
+                  ssh-keyscan -f mc_wacul_key "${SSH_HOST}" >> ~/.ssh/known_hosts
+                  scp -i mc_wacul_key -r "${SSH_USER}@${SSH_HOST}:/opt/minecraft_be_server/worlds/love" ./love
+              env:
+                  SSH_KEY: ${{ secrets.MC_WACUL_KEY }}
+                  SSH_USER: ${{ secrets.MC_WACUL_USER }}
+                  SSH_HOST: ${{ secrets.MC_WACUL_HOST }}
 
             - name: Update apt repository
               # see: https://github.com/bedrock-viz/bedrock-viz/blob/master/Dockerfile
