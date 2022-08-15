@@ -32,6 +32,12 @@ jobs:
                   path: bedrock-viz
                   submodules: true
 
+            - name: Patch Bedrock Viz Centerize
+              run: |
+                cp ./.github/workflows/mc-wacul-map-bedrock-viz.patch ./bedrock-viz
+                cd bedrock-viz
+                patch ./mc-wacul-map-bedrock-viz.patch
+
             - name: Update apt repository
               # see: https://github.com/bedrock-viz/bedrock-viz/blob/master/Dockerfile
               run: |
