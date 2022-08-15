@@ -24,7 +24,7 @@ jobs:
               run: |
                 cp ./.github/workflows/mc-wacul-map-bedrock-viz.patch ./bedrock-viz
                 cd bedrock-viz
-                ls -la ./bedrock-viz
+                ls -la ./
                 patch ./mc-wacul-map-bedrock-viz.patch
                 git diff
                 exit 1
