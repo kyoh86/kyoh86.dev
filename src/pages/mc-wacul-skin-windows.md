@@ -36,3 +36,9 @@ https://www.minecraftskins.com/ で探すのが良いでしょう。
    左はスリムな体系、右側はガッチリした体系になります。（スキンによっては、体系に合わない場合があります）
     - <img src="https://i.gyazo.com/e08f46913449ebfbfc318bccf15407be.png" width="960" />
 8. 起動画面まで戻ります。
+
+## 関連するページ
+
+- [WACUL マインクラフト サーバー ガイド（トップ）](./mc-wacul)
+    - [初めての参加方法](./mc-wacul-entry)
+    - [ワールドガイド](./mc-wacul-guidance)

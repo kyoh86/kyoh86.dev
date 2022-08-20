@@ -47,3 +47,10 @@ Xbox、PS4などでもプレイできるようですが、サーバー管理者�
 
 - [ウインドウズ環境](./mc-wacul-entry-windows)
 - [スイッチ環境](./mc-wacul-entry-switch)
+
+
+## 関連するページ
+
+- [WACUL マインクラフト サーバー ガイド（トップ）](./mc-wacul)
+    - 初めての参加方法（このページ）
+    - [ワールドガイド](./mc-wacul-guidance)
