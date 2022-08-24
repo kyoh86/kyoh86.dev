@@ -3,6 +3,7 @@ name: Build World map of the Minecraft for WACUL
 on:
     schedule:
         - cron: "10 19 * * *"
+        - cron: "10 9 * * *"
     workflow_dispatch: {}
 
 jobs:
