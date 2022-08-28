@@ -35,7 +35,7 @@ jobs:
                   chmod 0600 mc_wacul_key
                   mkdir -p ~/.ssh
                   ssh-keyscan -f mc_wacul_key "${SSH_HOST}" >> ~/.ssh/known_hosts
-                  scp -i mc_wacul_key -r "${SSH_USER}@${SSH_HOST}:/opt/minecraft_be_server/worlds/love" ./love
+                  scp -i mc_wacul_key -r "${SSH_USER}@${SSH_HOST}:/opt/minecraft_be_server/worlds/wacul" ./wacul
               env:
                   SSH_KEY: ${{ secrets.MC_WACUL_KEY }}
                   SSH_USER: ${{ secrets.MC_WACUL_USER }}
@@ -77,7 +77,7 @@ jobs:
 
             - name: Build Map
               run: |
-                  bedrock-viz --db ./love --out mc-wacul-map/public --html-all --slime-chunk=0 --biome --grid
+                  bedrock-viz --db ./wacul --out mc-wacul-map/public --html-all --slime-chunk=0 --biome --grid
 
             - name: Deploy to Firebase Hosting on PR
               uses: FirebaseExtended/action-hosting-deploy@v0
