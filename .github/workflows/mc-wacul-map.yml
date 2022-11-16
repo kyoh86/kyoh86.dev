@@ -1,89 +1,79 @@
 name: Build World map of the Minecraft for WACUL
-
 on:
-    schedule:
-        - cron: "05 19 * * *"
-        - cron: "35 10 * * *"
-    workflow_dispatch: {}
-
+  schedule:
+    - cron: "05 19 * * *"
+    - cron: "35 10 * * *"
+  workflow_dispatch: {}
 jobs:
-    build:
-        name: Build World map of the Minecraft for WACUL
-        runs-on: ubuntu-latest
-        steps:
-            - name: Get original files
-              uses: actions/checkout@v3
-
-            - name: Get Bedrock Viz Sources
-              uses: actions/checkout@v3
-              with:
-                  repository: bedrock-viz/bedrock-viz
-                  path: bedrock-viz
-                  submodules: true
-
-            - name: Patch Bedrock Viz Centerize
-              run: |
-                cp ./.github/workflows/mc-wacul-map-bedrock-viz.patch ./bedrock-viz
-                cd bedrock-viz
-                ls -la ./
-                git apply ./mc-wacul-map-bedrock-viz.patch
-                git diff
-
-            - name: Get world data from Bedrock-Server
-              run: |
-                  echo "$SSH_KEY" > mc_wacul_key
-                  chmod 0600 mc_wacul_key
-                  mkdir -p ~/.ssh
-                  ssh-keyscan -f mc_wacul_key "${SSH_HOST}" >> ~/.ssh/known_hosts
-                  scp -i mc_wacul_key -r "${SSH_USER}@${SSH_HOST}:/opt/minecraft_be_server/worlds/wacul" ./wacul
-              env:
-                  SSH_KEY: ${{ secrets.MC_WACUL_KEY }}
-                  SSH_USER: ${{ secrets.MC_WACUL_USER }}
-                  SSH_HOST: ${{ secrets.MC_WACUL_HOST }}
-
-            - name: Update apt repository
-              # see: https://github.com/bedrock-viz/bedrock-viz/blob/master/Dockerfile
-              run: |
-                  sudo apt-get update
-
-            - name: Setup toolchains
-              # see: https://github.com/bedrock-viz/bedrock-viz/blob/master/Dockerfile
-              run: |
-                  sudo apt-get install -y \
-                      cmake \
-                      g++ \
-                      git \
-                      libboost-program-options-dev \
-                      libpng++-dev \
-                      zlib1g-dev \
-                      libpng16-16 \
-                      libboost-program-options-dev
-              env:
-                  DEBIAN_FRONTEND: noninteractive
-
-            - name: Install Bedrock Viz
-              # see: https://github.com/bedrock-viz/bedrock-viz/blob/master/docs/BUILD.md
-              run: |
-                  cd bedrock-viz
-                  git apply -p0 patches/leveldb-1.22.patch
-                  git apply -p0 patches/pugixml-disable-install.patch
-                  mkdir build
-                  cd build
-                  sudo mkdir -p /usr/local/share/bedrock-viz
-                  sudo cmake ..
-                  sudo make
-                  sudo make install
-                  command -v bedrock-viz
-
-            - name: Build Map
-              run: |
-                  bedrock-viz --db ./wacul --out mc-wacul-map/public --html-all --slime-chunk=0 --biome --grid
-
-            - name: Deploy to Firebase Hosting on PR
-              uses: FirebaseExtended/action-hosting-deploy@v0
-              with:
-                  entryPoint: mc-wacul-map
-                  repoToken: '${{ secrets.GITHUB_TOKEN }}'
-                  firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_MC_WACUL_MAP }}'
-                  projectId: mc-wacul-map
-                  channelId: live
+  build:
+    name: Build World map of the Minecraft for WACUL
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get original files
+        uses: actions/checkout@v3
+      - name: Get Bedrock Viz Sources
+        uses: actions/checkout@v3
+        with:
+          repository: bedrock-viz/bedrock-viz
+          path: bedrock-viz
+          submodules: true
+      - name: Patch Bedrock Viz Centerize
+        run: |
+          cp ./.github/workflows/mc-wacul-map-bedrock-viz.patch ./bedrock-viz
+          cd bedrock-viz
+          ls -la ./
+          git apply ./mc-wacul-map-bedrock-viz.patch
+          git diff
+      - name: Get world data from Bedrock-Server
+        run: |
+          echo "$SSH_KEY" > mc_wacul_key
+          chmod 0600 mc_wacul_key
+          mkdir -p ~/.ssh
+          ssh-keyscan -f mc_wacul_key "${SSH_HOST}" >> ~/.ssh/known_hosts
+          scp -i mc_wacul_key -r "${SSH_USER}@${SSH_HOST}:/opt/minecraft_be_server/worlds/wacul" ./wacul
+        env:
+          SSH_KEY: ${{ secrets.MC_WACUL_KEY }}
+          SSH_USER: ${{ secrets.MC_WACUL_USER }}
+          SSH_HOST: ${{ secrets.MC_WACUL_HOST }}
+      - name: Update apt repository
+        # see: https://github.com/bedrock-viz/bedrock-viz/blob/master/Dockerfile
+        run: |
+          sudo apt-get update
+      - name: Setup toolchains
+        # see: https://github.com/bedrock-viz/bedrock-viz/blob/master/Dockerfile
+        run: |
+          sudo apt-get install -y \
+              cmake \
+              g++ \
+              git \
+              libboost-program-options-dev \
+              libpng++-dev \
+              zlib1g-dev \
+              libpng16-16 \
+              libboost-program-options-dev
+        env:
+          DEBIAN_FRONTEND: noninteractive
+      - name: Install Bedrock Viz
+        # see: https://github.com/bedrock-viz/bedrock-viz/blob/master/docs/BUILD.md
+        run: |
+          cd bedrock-viz
+          git apply -p0 patches/leveldb-1.22.patch
+          git apply -p0 patches/pugixml-disable-install.patch
+          mkdir build
+          cd build
+          sudo mkdir -p /usr/local/share/bedrock-viz
+          sudo cmake ..
+          sudo make
+          sudo make install
+          command -v bedrock-viz
+      - name: Build Map
+        run: |
+          bedrock-viz --db ./wacul --out mc-wacul-map/public --html-all --slime-chunk=0 --biome --grid
+      - name: Deploy to Firebase Hosting on PR
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          entryPoint: mc-wacul-map
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_MC_WACUL_MAP }}'
+          projectId: mc-wacul-map
+          channelId: live
