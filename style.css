@@ -105,24 +105,24 @@ h1 {
     fill: currentColor;
 }
 
-.projects {
+.projects,.notes {
     margin-top: 4rem;
 }
 
-.projects h2 {
+.projects h2, .notes h2 {
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 1.5rem;
     color: var(--text-primary);
 }
 
-.project-list {
+.project-list, .note-list {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
-.project-link {
+.project-link, .note-link {
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -136,25 +136,25 @@ h1 {
     text-align: left;
 }
 
-.project-link:hover {
+.project-link:hover, .note-link:hover {
     border-color: var(--accent);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.project-icon {
+.project-icon, .note-icon {
     font-size: 2rem;
     flex-shrink: 0;
 }
 
-.project-info h3 {
+.project-info h3, .note-info h3 {
     font-size: 1.125rem;
     font-weight: 600;
     margin-bottom: 0.25rem;
     color: var(--text-primary);
 }
 
-.project-info p {
+.project-info p, .note-info p {
     font-size: 0.875rem;
     color: var(--text-secondary);
     line-height: 1.5;
@@ -164,24 +164,24 @@ h1 {
     h1 {
         font-size: 2.5rem;
     }
-    
+
     .tagline {
         font-size: 1.125rem;
     }
-    
+
     .bio p {
         font-size: 1rem;
     }
-    
-    .project-link {
+
+    .project-link, .note-link {
         padding: 1rem;
     }
-    
-    .project-icon {
+
+    .project-icon, .note-icon {
         font-size: 1.5rem;
     }
-    
-    .project-info h3 {
+
+    .project-info h3, .note-info h3 {
         font-size: 1rem;
     }
 }
