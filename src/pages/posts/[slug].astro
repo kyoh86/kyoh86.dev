@@ -49,7 +49,53 @@ const formatDate = (date: Date) =>
 		background: #ffffff;
 	}
 
+	:global(body.post-page)::before,
+	:global(body.post-page)::after {
+		position: fixed;
+		bottom: 0;
+		z-index: 0;
+		width: 30vw;
+		height: 22.5vh;
+		min-height: 7.5rem;
+		pointer-events: none;
+		content: '';
+		background-image:
+			linear-gradient(to top, transparent 0%, rgb(255 255 255 / 78%) 100%),
+			url('/IMG_0884.jpg');
+		background-repeat: no-repeat;
+		background-size: cover;
+		opacity: 0.42;
+	}
+
+	:global(body.post-page)::before {
+		left: 0;
+		background-position: left 55%;
+		-webkit-mask-image:
+			linear-gradient(to right, #000 0%, rgb(0 0 0 / 70%) 35%, transparent 100%),
+			linear-gradient(to top, #000 0%, #000 70%, transparent 100%);
+		-webkit-mask-composite: source-in;
+		mask-image:
+			linear-gradient(to right, #000 0%, rgb(0 0 0 / 70%) 35%, transparent 100%),
+			linear-gradient(to top, #000 0%, #000 70%, transparent 100%);
+		mask-composite: intersect;
+	}
+
+	:global(body.post-page)::after {
+		right: 0;
+		background-position: right 55%;
+		-webkit-mask-image:
+			linear-gradient(to left, #000 0%, rgb(0 0 0 / 70%) 35%, transparent 100%),
+			linear-gradient(to top, #000 0%, #000 70%, transparent 100%);
+		-webkit-mask-composite: source-in;
+		mask-image:
+			linear-gradient(to left, #000 0%, rgb(0 0 0 / 70%) 35%, transparent 100%),
+			linear-gradient(to top, #000 0%, #000 70%, transparent 100%);
+		mask-composite: intersect;
+	}
+
 	main {
+		position: relative;
+		z-index: 1;
 		width: min(100% - 2rem, 44rem);
 		margin: 0 auto;
 		padding: 3rem 0;
