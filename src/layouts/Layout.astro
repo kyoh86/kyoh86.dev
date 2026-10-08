@@ -1,4 +1,6 @@
 ---
+import { Font } from 'astro:assets';
+
 interface Props {
 	title: string;
 	description?: string;
@@ -23,6 +25,7 @@ const {
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="description" content={description} />
 		<meta name="generator" content={Astro.generator} />
+		<Font cssVariable="--font-symbols" />
 		<title>{title}</title>
 	</head>
 	<body class={bodyClass}>
