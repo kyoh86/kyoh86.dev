@@ -3,7 +3,8 @@ import { defineConfig, fontProviders } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-  fonts: [
+	site: 'https://kyoh86.dev',
+	fonts: [
     {
       provider: fontProviders.googleicons(),
       name: 'Material Symbols Outlined',

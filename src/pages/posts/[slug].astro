@@ -22,7 +22,13 @@ const formatDate = (date: Date) =>
 	}).format(date);
 ---
 
-<Layout title={`${post.data.title} - kyoh86`} description={post.data.description} bodyClass="post-page">
+<Layout
+	title={`${post.data.title} - kyoh86`}
+	description={post.data.description}
+	bodyClass="post-page"
+	canonicalPath={`/posts/${post.id}/`}
+	ogType="article"
+>
 	<main>
 		<article>
 			<header>

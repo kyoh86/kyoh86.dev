@@ -6,6 +6,9 @@ interface Props {
 	description?: string;
 	lang?: string;
 	bodyClass?: string;
+	canonicalPath?: string;
+	ogType?: 'website' | 'article';
+	ogImage?: string;
 }
 
 const {
@@ -13,7 +16,14 @@ const {
 	description = "kyoh86's personal website",
 	lang = 'ja',
 	bodyClass,
+	canonicalPath = Astro.url.pathname,
+	ogType = 'website',
+	ogImage = '/og/default.png',
 } = Astro.props;
+
+const siteUrl = Astro.site ?? new URL('https://kyoh86.dev');
+const canonicalUrl = new URL(canonicalPath, siteUrl).toString();
+const ogImageUrl = new URL(ogImage, siteUrl).toString();
 ---
 
 <!doctype html>
@@ -21,10 +31,21 @@ const {
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/png" href="/icn_panda_01_520.png" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="description" content={description} />
 		<meta name="generator" content={Astro.generator} />
+		<link rel="canonical" href={canonicalUrl} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content={ogType} />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:image" content={ogImageUrl} />
+		<meta property="og:site_name" content="kyoh86" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImageUrl} />
 		<Font cssVariable="--font-symbols" />
 		<title>{title}</title>
 	</head>
