@@ -1,5 +1,10 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+
+const recentPosts = (await getCollection('posts', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
 ---
 
 <Layout title="kyoh86" description="kyoh86's personal website" bodyClass="home-page">
@@ -11,36 +16,10 @@ import Layout from '../layouts/Layout.astro';
       </header>
 
       <section class="bio">
-        <p>Passionate about building elegant solutions with clean code.</p>
+        <p>Pragmatic in process, elegant in outcome.</p>
       </section>
 
       <section class="link-container">
-        <section class="link-category">
-          <h2>Socials</h2>
-          <div class="link-list">
-            <a href="https://github.com/kyoh86" target="_blank" rel="noopener noreferrer" class="link">
-              <span class="icon" aria-hidden="true">code</span>
-              <div class="link-info">
-                <h3>GitHub</h3>
-                <p>&#64;kyoh86</p>
-              </div>
-            </a>
-            <a href="https://x.com/kyoh86" target="_blank" rel="noopener noreferrer" class="link">
-              <span class="icon" aria-hidden="true">raven</span>
-              <div class="link-info">
-                <h3>X(Twitter)</h3>
-                <p>&#64;kyoh86 - 特に気遣うことなくなんとなく</p>
-              </div>
-            </a>
-            <a href="https://x.com/kyoh86anim" target="_blank" rel="noopener noreferrer" class="link">
-              <span class="icon" aria-hidden="true">pets</span>
-              <div class="link-info">
-                <h3>X(Twitter)</h3>
-                <p>&#64;kyoh86anim - ペット・虫関係用</p>
-              </div>
-            </a>
-          </div>
-        </section>
 
         <section class="link-category">
           <h2>Projects</h2>
@@ -63,6 +42,27 @@ import Layout from '../layouts/Layout.astro';
         </section>
 
         <section class="link-category">
+          <h2>Posts</h2>
+          <div class="link-list">
+            {
+              recentPosts.map((post) => (
+                <a href={`/posts/${post.id}/`} class="link">
+                  <span class="icon" aria-hidden="true">article</span>
+                  <div class="link-info">
+                    <h3>{post.data.title}</h3>
+                    {post.data.description && <p>{post.data.description}</p>}
+                  </div>
+                </a>
+              ))
+            }
+            <a href="/posts/" class="all-posts-link">
+              <span class="icon" aria-hidden="true">read_more</span>
+              <span>すべてのPosts</span>
+            </a>
+          </div>
+        </section>
+
+        <section class="link-category">
           <h2>Notes</h2>
           <div class="link-list">
             <a href="/pane-layout/" class="link">
@@ -70,6 +70,33 @@ import Layout from '../layouts/Layout.astro';
               <div class="link-info">
                 <h3>Neovim/tmuxのペイン配置について</h3>
                 <p>ペインとかウインドウの操作むずすぎて嫌なので色々考えたメモ</p>
+              </div>
+            </a>
+          </div>
+        </section>
+
+        <section class="link-category">
+          <h2>Socials</h2>
+          <div class="link-list">
+            <a href="https://github.com/kyoh86" target="_blank" rel="noopener noreferrer" class="link">
+              <span class="icon" aria-hidden="true">code</span>
+              <div class="link-info">
+                <h3>GitHub</h3>
+                <p>&#64;kyoh86</p>
+              </div>
+            </a>
+            <a href="https://x.com/kyoh86" target="_blank" rel="noopener noreferrer" class="link">
+              <span class="icon" aria-hidden="true">raven</span>
+              <div class="link-info">
+                <h3>X(Twitter)</h3>
+                <p>&#64;kyoh86 - 特に気遣うことなくなんとなく</p>
+              </div>
+            </a>
+            <a href="https://x.com/kyoh86anim" target="_blank" rel="noopener noreferrer" class="link">
+              <span class="icon" aria-hidden="true">pets</span>
+              <div class="link-info">
+                <h3>X(Twitter)</h3>
+                <p>&#64;kyoh86anim - ペット・虫関係用</p>
               </div>
             </a>
           </div>
@@ -147,6 +174,22 @@ import Layout from '../layouts/Layout.astro';
     border-radius: 0.5rem;
   }
 
+  .all-posts-link {
+    justify-self: end;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    margin-top: -0.25rem;
+    color: #4b5563;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .all-posts-link:hover {
+    color: #1f2937;
+  }
+
   .icon {
     flex: 0 0 auto;
     width: 1.5rem;
@@ -164,6 +207,11 @@ import Layout from '../layouts/Layout.astro';
       'wght' 400,
       'GRAD' 0,
       'opsz' 24;
+  }
+
+  .all-posts-link .icon {
+    width: 1.125rem;
+    font-size: 1.125rem;
   }
 
   .link-info h3 {

@@ -10,7 +10,7 @@ export default defineConfig({
       cssVariable: '--font-symbols',
       options: {
         experimental: {
-          glyphs: ['code', 'mic', 'splitscreen', 'travel_explore', 'raven', 'pets'],
+					glyphs: ['article', 'code', 'mic', 'pets', 'raven', 'read_more', 'splitscreen', 'travel_explore'],
         },
       },
     },

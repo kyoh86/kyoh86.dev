@@ -1,0 +1,80 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('posts', ({ data }) => !data.draft);
+
+	return posts.map((post) => ({
+		params: { slug: post.id },
+		props: { post },
+	}));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const formatDate = (date: Date) =>
+	new Intl.DateTimeFormat('ja-JP', {
+		year: 'numeric',
+		month: 'long',
+		day: 'numeric',
+	}).format(date);
+---
+
+<Layout title={`${post.data.title} - kyoh86`} description={post.data.description} bodyClass="post-page">
+	<main>
+		<article>
+			<header>
+				<a href="/posts/" class="back-link">Posts</a>
+				<h1>{post.data.title}</h1>
+				<time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+			</header>
+			<Content />
+		</article>
+	</main>
+</Layout>
+
+<style>
+	:global(body) {
+		margin: 0;
+		font-family: system-ui, sans-serif;
+		color: #1f2937;
+		background: #ffffff;
+	}
+
+	main {
+		width: min(100% - 2rem, 44rem);
+		margin: 0 auto;
+		padding: 3rem 0;
+	}
+
+	.back-link {
+		color: #4b5563;
+		text-decoration: none;
+	}
+
+	h1 {
+		margin: 0.5rem 0;
+		font-size: 2.5rem;
+		line-height: 1.1;
+	}
+
+	time {
+		color: #4b5563;
+	}
+
+	article {
+		line-height: 1.8;
+	}
+
+	article :global(a) {
+		color: #2563eb;
+	}
+
+	article :global(code) {
+		padding: 0.125rem 0.25rem;
+		background: #f3f4f6;
+		border-radius: 0.25rem;
+	}
+</style>
