@@ -1,23 +1,31 @@
+---
+interface Props {
+	title: string;
+	description?: string;
+	lang?: string;
+	bodyClass?: string;
+}
+
+const {
+	title,
+	description = "kyoh86's personal website",
+	lang = 'ja',
+	bodyClass,
+} = Astro.props;
+---
+
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
+		<meta name="description" content={description} />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title}</title>
 	</head>
-	<body>
+	<body class={bodyClass}>
 		<slot />
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
