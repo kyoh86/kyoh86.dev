@@ -36,6 +36,7 @@ const ogImageUrl = new URL(ogImage, siteUrl).toString();
 		<meta name="description" content={description} />
 		<meta name="generator" content={Astro.generator} />
 		<link rel="canonical" href={canonicalUrl} />
+		<link rel="alternate" type="application/rss+xml" title="kyoh86 Posts" href={new URL('/rss.xml', siteUrl).toString()} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:type" content={ogType} />
