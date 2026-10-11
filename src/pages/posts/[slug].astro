@@ -28,7 +28,7 @@ if (cover && (cover.width !== 1200 || cover.height !== 630)) {
 	);
 }
 
-const ogImage = cover?.src;
+const ogImage = `/og/posts/${post.id}.png`;
 
 const formatDate = (date: Date) =>
 	new Intl.DateTimeFormat('ja-JP', {
