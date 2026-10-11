@@ -28,6 +28,8 @@ if (cover && (cover.width !== 1200 || cover.height !== 630)) {
 	);
 }
 
+const ogImage = cover?.src;
+
 const formatDate = (date: Date) =>
 	new Intl.DateTimeFormat('ja-JP', {
 		year: 'numeric',
@@ -42,6 +44,7 @@ const formatDate = (date: Date) =>
 	bodyClass="post-page"
 	canonicalPath={`/posts/${post.id}/`}
 	ogType="article"
+	ogImage={ogImage}
 >
 	<main>
 		<article>
