@@ -4,7 +4,7 @@ description: "僕がソメワケササクレヤモリと出会った時の話"
 pubDate: 2026-10-11
 tags: ["reptile"]
 draft: false
-# cover: "./2026-10-11_somewake-first/hoge.png" # 1200 x 630 px only
+cover: "./2026-10-11_somewake-first/cover.jpg" # 1200 x 630 px only
 ---
 
 2026年1月の終わり、近所のホームセンターで見かけたレオパード・ゲッコー（ヒョウモントカゲモドキ）は、ひどくやつれている様に見えた。

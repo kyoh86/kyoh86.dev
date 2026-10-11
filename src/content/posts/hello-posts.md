@@ -4,7 +4,7 @@ description: "爬虫類に僕が魅入られているというはなし"
 pubDate: 2026-10-09
 tags: ["reptile"]
 draft: false
-# cover: "./hello-posts/hoge.png" # 1200 x 630 px only
+cover: "./hello-posts/cover.jpg" # 1200 x 630 px only
 ---
 
 もふもふって可愛い。犬、猫、いたち、ねずみ。
