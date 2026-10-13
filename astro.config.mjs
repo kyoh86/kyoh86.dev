@@ -1,9 +1,11 @@
 // @ts-check
+import mdx from '@astrojs/mdx';
 import { defineConfig, fontProviders } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://kyoh86.dev',
+	integrations: [mdx()],
 	fonts: [
     {
       provider: fontProviders.googleicons(),

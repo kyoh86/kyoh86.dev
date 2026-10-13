@@ -7,11 +7,13 @@
   },
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "node scripts/update-amazon-products.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/mdx": "^8.0.3",
     "@astrojs/rss": "^4.0.19",
     "astro": "^7.3.7"
   },

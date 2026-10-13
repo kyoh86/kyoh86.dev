@@ -21,6 +21,9 @@ export async function getStaticPaths() {
 const { post, newerPost, olderPost } = Astro.props;
 const { Content } = await render(post);
 const cover = post.data.cover;
+const hasAffiliateLink =
+	/<AmazonLink\b/.test(post.body) ||
+	/\b(?:link\.amazon|amzn\.to|(?:www\.)?amazon\.co\.jp)\b/.test(post.body);
 
 if (cover && (cover.width !== 1200 || cover.height !== 630)) {
 	throw new Error(
@@ -53,6 +56,11 @@ const formatDate = (date: Date) =>
 				<h1>{post.data.title}</h1>
 				<time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
 			</header>
+			{
+				hasAffiliateLink && (
+					<p class="affiliate-note">このサイトはアフィリエイトを利用しています。</p>
+				)
+			}
 			{cover && <Image src={cover} alt="" aria-hidden="true" class="cover" />}
 			<Content />
 		</article>
@@ -154,6 +162,17 @@ const formatDate = (date: Date) =>
 
 	time {
 		color: #4b5563;
+	}
+
+	.affiliate-note {
+		margin: 1.5rem 0 0;
+		padding: 0.75rem 1rem;
+		color: #4b5563;
+		font-size: 0.875rem;
+		line-height: 1.6;
+		background: #f9fafb;
+		border: 1px solid #e5e7eb;
+		border-radius: 0.5rem;
 	}
 
 	.cover {
