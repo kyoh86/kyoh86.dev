@@ -25,6 +25,10 @@ const imageHeight = Astro.props.imageSrc ? undefined : product?.image?.height;
 	href={href}
 	target="_blank"
 	rel="sponsored noopener noreferrer"
+	data-amazon-link
+	data-amazon-asin={asin}
+	data-amazon-title={title}
+	data-amazon-layout={imageLayout}
 >
 	{
 		imageSrc ? (
@@ -46,6 +50,23 @@ const imageHeight = Astro.props.imageSrc ? undefined : product?.image?.height;
 		<span class="amazon-link__cta">Amazonで見る</span>
 	</span>
 </a>
+
+<script>
+	document.addEventListener('click', (event) => {
+		const link = event.target instanceof Element
+			? event.target.closest<HTMLAnchorElement>('a[data-amazon-link]')
+			: null;
+
+		if (!link || typeof window.gtag !== 'function') return;
+
+		window.gtag('event', 'amazon_link_click', {
+			asin: link.dataset.amazonAsin,
+			item_name: link.dataset.amazonTitle,
+			link_url: link.href,
+			image_layout: link.dataset.amazonLayout,
+		});
+	});
+</script>
 
 <style>
 	.amazon-link {

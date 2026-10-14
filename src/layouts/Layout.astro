@@ -42,11 +42,11 @@ if (googleTagId && !/^[A-Z]+-[A-Z0-9]+$/i.test(googleTagId)) {
 					<script async src={`https://www.googletagmanager.com/gtag/js?id=${googleTagId}`} />
 					<script is:inline define:vars={{ googleTagId }}>
 						window.dataLayer = window.dataLayer || [];
-						function gtag() {
+						window.gtag = function gtag() {
 							dataLayer.push(arguments);
-						}
-						gtag('js', new Date());
-						gtag('config', googleTagId);
+						};
+						window.gtag('js', new Date());
+						window.gtag('config', googleTagId);
 					</script>
 				</>
 			)
