@@ -24,6 +24,11 @@ const {
 const siteUrl = Astro.site ?? new URL('https://kyoh86.dev');
 const canonicalUrl = new URL(canonicalPath, siteUrl).toString();
 const ogImageUrl = new URL(ogImage, siteUrl).toString();
+const googleTagId = import.meta.env.PUBLIC_GOOGLE_TAG_ID ?? 'G-4RS020GXGP';
+
+if (googleTagId && !/^[A-Z]+-[A-Z0-9]+$/i.test(googleTagId)) {
+	throw new Error('PUBLIC_GOOGLE_TAG_ID must look like G-XXXXXXXXXX');
+}
 ---
 
 <!doctype html>
@@ -31,6 +36,21 @@ const ogImageUrl = new URL(ogImage, siteUrl).toString();
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		{
+			googleTagId && (
+				<>
+					<script async src={`https://www.googletagmanager.com/gtag/js?id=${googleTagId}`} />
+					<script is:inline define:vars={{ googleTagId }}>
+						window.dataLayer = window.dataLayer || [];
+						function gtag() {
+							dataLayer.push(arguments);
+						}
+						gtag('js', new Date());
+						gtag('config', googleTagId);
+					</script>
+				</>
+			)
+		}
 		<link rel="icon" type="image/png" href="/icn_panda_01_520.png" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="description" content={description} />
