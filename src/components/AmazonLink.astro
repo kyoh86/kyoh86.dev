@@ -6,6 +6,7 @@ interface Props {
 	title?: string;
 	imageSrc?: string;
 	imageAlt?: string;
+	imageLayout?: 'thumb' | 'large';
 }
 
 const asin = Astro.props.asin.trim();
@@ -14,11 +15,17 @@ const href = product?.detailPageURL ?? `https://link.amazon/${asin}`;
 const title = Astro.props.title || product?.title || `Amazon商品 ${asin}`;
 const imageSrc = Astro.props.imageSrc ?? product?.image?.url;
 const imageAlt = Astro.props.imageAlt ?? '';
+const imageLayout = Astro.props.imageLayout ?? 'thumb';
 const imageWidth = Astro.props.imageSrc ? undefined : product?.image?.width;
 const imageHeight = Astro.props.imageSrc ? undefined : product?.image?.height;
 ---
 
-<a class="amazon-link" href={href} target="_blank" rel="sponsored noopener noreferrer">
+<a
+	class:list={['amazon-link', `amazon-link--${imageLayout}`]}
+	href={href}
+	target="_blank"
+	rel="sponsored noopener noreferrer"
+>
 	{
 		imageSrc ? (
 			<img
@@ -54,6 +61,11 @@ const imageHeight = Astro.props.imageSrc ? undefined : product?.image?.height;
 		border-radius: 0.5rem;
 	}
 
+	.amazon-link--large {
+		grid-template-columns: 1fr;
+		align-items: stretch;
+	}
+
 	.amazon-link:hover {
 		border-color: #f59e0b;
 	}
@@ -78,6 +90,16 @@ const imageHeight = Astro.props.imageSrc ? undefined : product?.image?.height;
 		font-weight: 700;
 		background: #fbbf24;
 		border-radius: 0.375rem;
+	}
+
+	.amazon-link--large .amazon-link__image {
+		width: 100%;
+		max-height: 22rem;
+	}
+
+	.amazon-link--large .amazon-link__source {
+		width: 100%;
+		min-height: 8rem;
 	}
 
 	.amazon-link__body {
@@ -119,6 +141,10 @@ const imageHeight = Astro.props.imageSrc ? undefined : product?.image?.height;
 		.amazon-link__image {
 			height: auto;
 			max-height: 8rem;
+		}
+
+		.amazon-link--large .amazon-link__image {
+			max-height: none;
 		}
 	}
 </style>
