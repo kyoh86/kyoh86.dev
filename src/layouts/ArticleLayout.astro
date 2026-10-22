@@ -1,0 +1,143 @@
+---
+import Layout from './Layout.astro';
+import type { ComponentProps } from 'astro/types';
+
+type Props = Omit<ComponentProps<typeof Layout>, 'bodyClass' | 'ogType'>;
+---
+
+<Layout {...Astro.props} bodyClass="article-page" ogType="article">
+	<main>
+		<article>
+			<slot />
+		</article>
+		<slot name="after-article" />
+	</main>
+</Layout>
+
+<style>
+	:global(body) {
+		margin: 0;
+		font-family: system-ui, sans-serif;
+		color: #1f2937;
+		background: #ffffff;
+	}
+
+	:global(body.article-page)::before,
+	:global(body.article-page)::after {
+		position: fixed;
+		bottom: 0;
+		z-index: 0;
+		width: 30vw;
+		height: 22.5vh;
+		min-height: 7.5rem;
+		pointer-events: none;
+		content: '';
+		background-image:
+			linear-gradient(to top, transparent 0%, rgb(255 255 255 / 78%) 100%),
+			url('/IMG_0884.jpg');
+		background-repeat: no-repeat;
+		background-size: cover;
+		opacity: 0.42;
+	}
+
+	:global(body.article-page)::before {
+		left: 0;
+		background-position: left 55%;
+		-webkit-mask-image:
+			linear-gradient(to right, #000 0%, rgb(0 0 0 / 70%) 35%, transparent 100%),
+			linear-gradient(to top, #000 0%, #000 70%, transparent 100%);
+		-webkit-mask-composite: source-in;
+		mask-image:
+			linear-gradient(to right, #000 0%, rgb(0 0 0 / 70%) 35%, transparent 100%),
+			linear-gradient(to top, #000 0%, #000 70%, transparent 100%);
+		mask-composite: intersect;
+	}
+
+	:global(body.article-page)::after {
+		right: 0;
+		background-position: right 55%;
+		-webkit-mask-image:
+			linear-gradient(to left, #000 0%, rgb(0 0 0 / 70%) 35%, transparent 100%),
+			linear-gradient(to top, #000 0%, #000 70%, transparent 100%);
+		-webkit-mask-composite: source-in;
+		mask-image:
+			linear-gradient(to left, #000 0%, rgb(0 0 0 / 70%) 35%, transparent 100%),
+			linear-gradient(to top, #000 0%, #000 70%, transparent 100%);
+		mask-composite: intersect;
+	}
+
+	main {
+		position: relative;
+		z-index: 1;
+		width: min(100% - 2rem, 44rem);
+		margin: 0 auto;
+		padding: 3rem 0;
+	}
+
+	article :global(.back-link) {
+		color: #4b5563;
+		text-decoration: none;
+	}
+
+	article :global(h1) {
+		margin: 0.5rem 0;
+		font-size: clamp(1.8rem, 5vw, 2.5rem);
+		line-height: 1.35;
+		overflow-wrap: anywhere;
+	}
+
+	article :global(time) {
+		color: #4b5563;
+	}
+
+	article :global(.affiliate-note) {
+		margin: 1.5rem 0 0;
+		padding: 0.75rem 1rem;
+		color: #4b5563;
+		font-size: 0.875rem;
+		line-height: 1.6;
+		background: #f9fafb;
+		border: 1px solid #e5e7eb;
+		border-radius: 0.5rem;
+	}
+
+	article :global(.cover) {
+		display: block;
+		width: 100%;
+		height: auto;
+		margin: 2rem 0;
+		border-radius: 0.5rem;
+	}
+
+	article {
+		line-height: 1.8;
+	}
+
+	article :global(a:not(.amazon-link):not(.back-link)) {
+		color: #2563eb;
+	}
+
+	article :global(code) {
+		padding: 0.125rem 0.25rem;
+		background: #f3f4f6;
+		border-radius: 0.25rem;
+	}
+
+	article :global(h2) {
+		margin: 3rem 0 1.25rem;
+		padding-bottom: 0.5rem;
+		border-bottom: 1px solid #e5e7eb;
+		font-size: 1.5rem;
+		line-height: 1.5;
+	}
+
+	article :global(h3) {
+		margin: 2rem 0 0.75rem;
+		font-size: 1.2rem;
+		line-height: 1.5;
+	}
+
+	article :global(p) {
+		margin: 1rem 0;
+	}
+</style>

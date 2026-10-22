@@ -2,7 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import { Image } from 'astro:assets';
 import DraftBadge from '../../components/DraftBadge.astro';
-import Layout from '../../layouts/Layout.astro';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
 
 export async function getStaticPaths() {
 	const posts = (await getCollection('posts', ({ data }) => import.meta.env.DEV || !data.draft)).sort(
@@ -42,162 +42,49 @@ const formatDate = (date: Date) =>
 	}).format(date);
 ---
 
-<Layout
+<ArticleLayout
 	title={`${post.data.title} - kyoh86`}
 	description={post.data.description}
-	bodyClass="post-page"
 	canonicalPath={`/posts/${post.id}/`}
-	ogType="article"
 	ogImage={ogImage}
 >
-	<main>
-		<article>
-			<header>
-				<a href="/posts/" class="back-link">Posts</a>
-				<h1>{post.data.title}{post.data.draft && <DraftBadge />}</h1>
-				<time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
-			</header>
-			{
-				hasAffiliateLink && (
-					<p class="affiliate-note">このサイトはアフィリエイトを利用しています。</p>
-				)
-			}
-			{cover && <Image src={cover} alt="" aria-hidden="true" class="cover" />}
-			<Content />
-		</article>
-		<nav class="post-nav" aria-label="Post navigation">
-			{
-				olderPost ? (
-					<a href={`/posts/${olderPost.id}/`} class="post-nav-link">
-						<span>前の記事</span>
-						<strong>{olderPost.data.title}</strong>
-					</a>
-				) : (
-					<span class="post-nav-placeholder" aria-hidden="true" />
-				)
-			}
-			{
-				newerPost ? (
-					<a href={`/posts/${newerPost.id}/`} class="post-nav-link next">
-						<span>次の記事</span>
-						<strong>{newerPost.data.title}</strong>
-					</a>
-				) : (
-					<span class="post-nav-placeholder" aria-hidden="true" />
-				)
-			}
-		</nav>
-	</main>
-</Layout>
+	<header>
+		<a href="/posts/" class="back-link">Posts</a>
+		<h1>{post.data.title}{post.data.draft && <DraftBadge />}</h1>
+		<time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+	</header>
+	{
+		hasAffiliateLink && (
+			<p class="affiliate-note">このサイトはアフィリエイトを利用しています。</p>
+		)
+	}
+	{cover && <Image src={cover} alt="" aria-hidden="true" class="cover" />}
+	<Content />
+	<nav slot="after-article" class="post-nav" aria-label="Post navigation">
+		{
+			olderPost ? (
+				<a href={`/posts/${olderPost.id}/`} class="post-nav-link">
+					<span>前の記事</span>
+					<strong>{olderPost.data.title}</strong>
+				</a>
+			) : (
+				<span class="post-nav-placeholder" aria-hidden="true" />
+			)
+		}
+		{
+			newerPost ? (
+				<a href={`/posts/${newerPost.id}/`} class="post-nav-link next">
+					<span>次の記事</span>
+					<strong>{newerPost.data.title}</strong>
+				</a>
+			) : (
+				<span class="post-nav-placeholder" aria-hidden="true" />
+			)
+		}
+	</nav>
+</ArticleLayout>
 
 <style>
-	:global(body) {
-		margin: 0;
-		font-family: system-ui, sans-serif;
-		color: #1f2937;
-		background: #ffffff;
-	}
-
-	:global(body.post-page)::before,
-	:global(body.post-page)::after {
-		position: fixed;
-		bottom: 0;
-		z-index: 0;
-		width: 30vw;
-		height: 22.5vh;
-		min-height: 7.5rem;
-		pointer-events: none;
-		content: '';
-		background-image:
-			linear-gradient(to top, transparent 0%, rgb(255 255 255 / 78%) 100%),
-			url('/IMG_0884.jpg');
-		background-repeat: no-repeat;
-		background-size: cover;
-		opacity: 0.42;
-	}
-
-	:global(body.post-page)::before {
-		left: 0;
-		background-position: left 55%;
-		-webkit-mask-image:
-			linear-gradient(to right, #000 0%, rgb(0 0 0 / 70%) 35%, transparent 100%),
-			linear-gradient(to top, #000 0%, #000 70%, transparent 100%);
-		-webkit-mask-composite: source-in;
-		mask-image:
-			linear-gradient(to right, #000 0%, rgb(0 0 0 / 70%) 35%, transparent 100%),
-			linear-gradient(to top, #000 0%, #000 70%, transparent 100%);
-		mask-composite: intersect;
-	}
-
-	:global(body.post-page)::after {
-		right: 0;
-		background-position: right 55%;
-		-webkit-mask-image:
-			linear-gradient(to left, #000 0%, rgb(0 0 0 / 70%) 35%, transparent 100%),
-			linear-gradient(to top, #000 0%, #000 70%, transparent 100%);
-		-webkit-mask-composite: source-in;
-		mask-image:
-			linear-gradient(to left, #000 0%, rgb(0 0 0 / 70%) 35%, transparent 100%),
-			linear-gradient(to top, #000 0%, #000 70%, transparent 100%);
-		mask-composite: intersect;
-	}
-
-	main {
-		position: relative;
-		z-index: 1;
-		width: min(100% - 2rem, 44rem);
-		margin: 0 auto;
-		padding: 3rem 0;
-	}
-
-	.back-link {
-		color: #4b5563;
-		text-decoration: none;
-	}
-
-	h1 {
-		margin: 0.5rem 0;
-		font-size: 2.5rem;
-		line-height: 1.1;
-	}
-
-	time {
-		color: #4b5563;
-	}
-
-	.affiliate-note {
-		margin: 1.5rem 0 0;
-		padding: 0.75rem 1rem;
-		color: #4b5563;
-		font-size: 0.875rem;
-		line-height: 1.6;
-		background: #f9fafb;
-		border: 1px solid #e5e7eb;
-		border-radius: 0.5rem;
-	}
-
-	.cover {
-		display: block;
-		width: 100%;
-		height: auto;
-		margin: 2rem 0;
-		border-radius: 0.5rem;
-	}
-
-	article {
-		line-height: 1.8;
-	}
-
-	article :global(a) {
-		color: #2563eb;
-	}
-
-	article :global(code) {
-		padding: 0.125rem 0.25rem;
-		background: #f3f4f6;
-		border-radius: 0.25rem;
-	}
-
 	.post-nav {
 		display: grid;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
