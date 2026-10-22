@@ -1,23 +1,17 @@
 ---
-import { getAmazonProduct } from '../lib/amazon-products';
-
 interface Props {
-	asin: string;
+	href: string;
 	title?: string;
 	imageSrc?: string;
 	imageAlt?: string;
 	imageLayout?: 'thumb' | 'large';
 }
 
-const asin = Astro.props.asin.trim();
-const product = getAmazonProduct(asin);
-const href = product?.detailPageURL ?? `https://link.amazon/${asin}`;
-const title = Astro.props.title || product?.title || `Amazon商品 ${asin}`;
-const imageSrc = Astro.props.imageSrc ?? product?.image?.url;
+const href = Astro.props.href.trim();
+const title = Astro.props.title || 'Amazonで見る';
+const imageSrc = Astro.props.imageSrc;
 const imageAlt = Astro.props.imageAlt ?? '';
 const imageLayout = Astro.props.imageLayout ?? 'thumb';
-const imageWidth = Astro.props.imageSrc ? undefined : product?.image?.width;
-const imageHeight = Astro.props.imageSrc ? undefined : product?.image?.height;
 ---
 
 <a
@@ -26,7 +20,6 @@ const imageHeight = Astro.props.imageSrc ? undefined : product?.image?.height;
 	target="_blank"
 	rel="sponsored noopener noreferrer"
 	data-amazon-link
-	data-amazon-asin={asin}
 	data-amazon-title={title}
 	data-amazon-layout={imageLayout}
 >
@@ -36,8 +29,6 @@ const imageHeight = Astro.props.imageSrc ? undefined : product?.image?.height;
 				class="amazon-link__image"
 				src={imageSrc}
 				alt={imageAlt}
-				width={imageWidth}
-				height={imageHeight}
 				loading="lazy"
 				decoding="async"
 			/>
@@ -60,7 +51,6 @@ const imageHeight = Astro.props.imageSrc ? undefined : product?.image?.height;
 		if (!link || typeof window.gtag !== 'function') return;
 
 		window.gtag('event', 'amazon_link_click', {
-			asin: link.dataset.amazonAsin,
 			item_name: link.dataset.amazonTitle,
 			link_url: link.href,
 			image_layout: link.dataset.amazonLayout,
