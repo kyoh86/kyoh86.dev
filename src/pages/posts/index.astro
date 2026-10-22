@@ -1,8 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
+import DraftBadge from '../../components/DraftBadge.astro';
 import Layout from '../../layouts/Layout.astro';
 
-const posts = (await getCollection('posts', ({ data }) => !data.draft)).sort(
+const posts = (await getCollection('posts', ({ data }) => import.meta.env.DEV || !data.draft)).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 
@@ -26,7 +27,7 @@ const formatDate = (date: Date) =>
 				posts.map((post) => (
 					<a href={`/posts/${post.id}/`} class="post-link">
 						<div>
-							<h2>{post.data.title}</h2>
+							<h2>{post.data.title}{post.data.draft && <DraftBadge />}</h2>
 							{post.data.description && <p>{post.data.description}</p>}
 						</div>
 						<time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
