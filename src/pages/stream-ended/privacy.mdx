@@ -1,0 +1,24 @@
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+
+<ArticleLayout title="Stream Ended プライバシーポリシー" description="Stream Endedが扱う認証情報と配信状態、保存と削除の方法。" canonicalPath="/stream-ended/privacy/">
+
+<p><a href="/stream-ended/">Stream Ended</a> / <a href="/stream-ended/terms/">利用規約</a></p>
+
+<h1>Stream Ended プライバシーポリシー</h1>
+<p>Stream Endedは、kyoh86が提供するWindowsアプリです。YouTube API Services（YouTube Data API）とTwitch APIを使用して、連携したアカウントの配信状態を確認し、Windowsに通知します。</p>
+
+<h2>取得する情報と利用目的</h2>
+<p>YouTubeでは連携したアカウントの配信枠IDと配信状態を取得し、配信終了を検知します。Twitchではログイン名、チャンネルID、配信の有無を取得します。これらは監視対象の特定、状態表示、終了や予定超過の通知に使います。ログインにはサービスが発行するOAuthトークンを使います。</p>
+
+<h2>保存・送信・共有</h2>
+<p>再認可に使うリフレッシュトークンとTwitchのログイン名を、Windowsの現在のユーザーで暗号化し、端末上の <code>%LOCALAPPDATA%\StreamEnded\settings.dat</code> に保存します。配信枠の状態や確認時刻は、アプリの起動中にメモリー内で扱います。認証と配信状態の確認のために、連携したサービスへAPIリクエストを送ります。アプリは取得した情報を開発者のサーバーへ送信せず、販売や広告に利用しません。</p>
+<p>Google APIから受け取った情報の使用と転送は、Limited Use要件を含む <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a> に従います。各サービスによる情報の取り扱いは、<a href="https://policies.google.com/privacy">Googleのプライバシーポリシー</a>と<a href="https://www.twitch.tv/p/legal/privacy-notice/">Twitchのプライバシー通知</a>をご覧ください。</p>
+<p>この紹介サイトはアプリとは別に、Google Analyticsでページの利用状況を計測します。アプリのOAuthトークンや配信状態はサイトに送信されません。</p>
+
+<h2>連携解除と削除</h2>
+<p>メイン画面で各サービスの「連携を解除」を押すと、監視を停止し、保存した連携情報を削除します。サービス側の許可は、<a href="https://myaccount.google.com/connections">Googleアカウントの接続設定</a>または<a href="https://www.twitch.tv/settings/connections">Twitchの接続設定</a>から取り消せます。アプリの設定をまとめて削除するには、アプリを終了して上記の設定ファイルを削除してください。</p>
+
+<h2>お問い合わせ</h2>
+<p>プライバシーやデータ削除に関するお問い合わせは、<a href="https://x.com/kyoh86">@kyoh86</a>までお願いします。</p>
+
+</ArticleLayout>

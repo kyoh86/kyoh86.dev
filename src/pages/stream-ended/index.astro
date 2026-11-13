@@ -1,0 +1,50 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title="Stream Ended" description="YouTube・Twitchで配信が終わったら通知するWindows常駐アプリ。" ogImage="/stream-ended/stream-ended-logo.png">
+  <main>
+    <nav aria-label="サイト"><a href="/">kyoh86.dev</a></nav>
+    <header>
+      <img class="logo" src="/stream-ended/stream-ended-logo.png" alt="Stream Ended" width="2376" height="464" />
+      <h1>配信が終わったら、<br />ちゃんと知らせる。</h1>
+      <p>OBSで配信を止めたあと、YouTubeやTwitch側で終了を確認すると、Windowsに通知します。</p>
+      <p class="download"><strong>ダウンロード準備中</strong><span>Windows x64</span></p>
+    </header>
+
+    <section aria-labelledby="features">
+      <h2 id="features">配信のあとに、できること</h2>
+      <dl>
+        <div><dt>配信先ごとに終了を確認</dt><dd>YouTubeとTwitchの状態をひと目で確認できます。配信映像を再生せず、公式APIで状態を確認します。</dd></div>
+        <div><dt>毎回のURL入力は不要</dt><dd>最初に使うサービスを連携するだけ。Windowsへのサインイン時にトレイで監視を始められます。</dd></div>
+        <div><dt>終了予定を過ぎたら通知</dt><dd>終了予定時刻を設定した回は、その時刻を過ぎても配信中なら通知します。</dd></div>
+      </dl>
+    </section>
+
+    <footer>
+      <img src="/stream-ended/stream-ended.png" width="32" height="32" alt="" />
+      <a href="/stream-ended/privacy/">プライバシーポリシー</a>
+      <a href="/stream-ended/terms/">利用規約</a>
+    </footer>
+  </main>
+</Layout>
+
+<style>
+  :global(body) { margin: 0; background: #f5f9f8; color: #142538; font-family: system-ui, sans-serif; }
+  main { max-width: 62rem; margin: 0 auto; padding: 1.5rem clamp(1.25rem, 6vw, 4rem); }
+  a { color: #205c53; text-underline-offset: .22em; }
+  header { margin: 1.5rem 0 3.5rem; padding: clamp(1.5rem, 7vw, 5rem); background: #e4f2ed; border-radius: 1.5rem; }
+  .logo { display: block; width: min(100%, 18rem); height: auto; }
+  h1 { font-size: clamp(1.75rem, 6vw, 3.75rem); line-height: 1.25; margin: 1.4rem 0 1rem; }
+  p, dd { line-height: 1.8; }
+  header > p { max-width: 32rem; }
+  .download, footer { display: flex; flex-wrap: wrap; align-items: center; gap: .7rem 1rem; }
+  .download { margin: 1.7rem 0 0; }
+  .download strong { background: #fff; padding: .4rem .8rem; border-radius: .5rem; }
+  .download span { font-size: .9rem; }
+  h2 { font-size: 1.4rem; }
+  dl { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: 1rem; }
+  dl div { background: #fff; border: 1px solid #dbe8e4; border-radius: 1rem; padding: 1.25rem; }
+  dt { font-weight: 700; margin-bottom: .5rem; }
+  dd { margin: 0; }
+  footer { margin-top: 3rem; border-top: 1px solid #dbe8e4; padding: 1.25rem 0; font-size: .9rem; }
+</style>
