@@ -7,17 +7,26 @@ import Layout from '../../layouts/Layout.astro';
     <header>
       <img class="logo" src="/stream-ended/stream-ended-logo.png" alt="Stream Ended" width="2376" height="464" />
       <h1>配信が終わったら、<br />ちゃんと知らせる。</h1>
-      <p>OBSで配信を止めたあと、YouTubeやTwitch側で終了を確認すると、Windowsに通知します。</p>
-      <p class="download"><a href="https://github.com/kyoh86/stream-ended/releases/latest/download/StreamEnded-Setup-x64.exe">Windows x64版をダウンロード</a></p>
+      <p>配信を終えたつもりでも、「まだ配信中かも」と気になることはありませんか？ Stream Endedは、YouTubeやTwitchで配信が終了したことを確認すると、Windowsに通知します。</p>
+      <p class="download"><a href="https://github.com/kyoh86/stream-ended/releases/latest/download/StreamEnded-Setup-x64.exe">GitHubからWindows x64版をダウンロード</a></p>
     </header>
 
     <section aria-labelledby="features">
       <h2 id="features">配信のあとに、できること</h2>
       <dl>
-        <div><dt>配信先ごとに終了を確認</dt><dd>YouTubeとTwitchの状態をひと目で確認できます。配信映像を再生せず、公式APIで状態を確認します。</dd></div>
-        <div><dt>毎回のURL入力は不要</dt><dd>最初に使うサービスを連携するだけ。Windowsへのサインイン時にトレイで監視を始められます。</dd></div>
+        <div><dt>配信先ごとに終了を確認</dt><dd>YouTubeとTwitchに同時配信しても、どちらが終了したかをメイン画面で確認できます。映像や音声の再生は不要です。</dd></div>
+        <div><dt>毎回のURL入力は不要</dt><dd>最初に使うサービスにログインするだけ。配信枠が変わっても、連携済みのアカウントを確認します。</dd></div>
         <div><dt>終了予定を過ぎたら通知</dt><dd>終了予定時刻を設定した回は、その時刻を過ぎても配信中なら通知します。</dd></div>
       </dl>
+    </section>
+
+    <section class="getting-started" aria-labelledby="getting-started">
+      <h2 id="getting-started">使い方</h2>
+      <ol>
+        <li>Stream Endedを開き、配信に使うYouTubeまたはTwitchのアカウントを連携します。</li>
+        <li>OBSなどでいつもどおり配信します。メイン画面を閉じても、通知領域で監視が続きます。</li>
+        <li>配信を止めたあと、Windowsの終了通知を確認します。通知を見逃したときは、通知領域のアイコンから配信先ごとの状態を確認できます。</li>
+      </ol>
     </section>
 
     <footer>
@@ -46,5 +55,8 @@ import Layout from '../../layouts/Layout.astro';
   dl div { background: #fff; border: 1px solid #dbe8e4; border-radius: 1rem; padding: 1.25rem; }
   dt { font-weight: 700; margin-bottom: .5rem; }
   dd { margin: 0; }
+  .getting-started { margin-top: 3rem; }
+  ol { padding-inline-start: 1.5rem; line-height: 1.8; }
+  li + li { margin-top: .5rem; }
   footer { margin-top: 3rem; border-top: 1px solid #dbe8e4; padding: 1.25rem 0; font-size: .9rem; }
 </style>
