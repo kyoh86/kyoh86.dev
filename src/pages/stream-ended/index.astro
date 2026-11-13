@@ -35,12 +35,17 @@ import Layout from '../../layouts/Layout.astro';
         <li><strong>いつもどおり配信を止める。</strong> Stream Endedは、メイン画面を閉じても通知領域で配信先の状態を確認します。</li>
         <li><strong>終了通知を見る。</strong> Windowsに「配信終了を確認しました」と出たら、通知に配信先の名前があることを確認します。通知を見逃したら、通知領域のアイコンから状態を確認できます。</li>
       </ol>
-      <figure class="notification-example">
+      <figure class="screenshot">
         <img src="/stream-ended/notification-example.png" width="592" height="204" loading="lazy"
           alt="Windowsのテスト通知に「配信終了を確認しました（テスト）」と、配信先の「YouTube・Twitch」が表示されている。" />
         <figcaption>終了通知の表示例（テスト通知）</figcaption>
       </figure>
       <p>終了通知が見当たらなければ、席を離れる前にアプリを開いて配信先の状態を確認してください。「配信中」なら、配信ソフトや配信先で停止します。</p>
+      <figure class="screenshot">
+        <img src="/stream-ended/live-status-example.png" width="537" height="304" loading="lazy"
+          alt="Stream EndedのYouTube欄に「配信中」と最終確認時刻が表示されている。" />
+        <figcaption>メイン画面の表示例。YouTube欄の「配信中」を確認します。</figcaption>
+      </figure>
     </section>
 
     <footer>
@@ -73,9 +78,9 @@ import Layout from '../../layouts/Layout.astro';
   .usage { margin: 1rem 0 1.25rem; }
   .usage img { display: block; width: 100%; height: auto; border-radius: 1rem; }
   .usage figcaption { margin-top: .6rem; font-weight: 700; }
-  .notification-example { margin: 1rem 0; }
-  .notification-example img { display: block; max-width: 100%; height: auto; border-radius: .75rem; }
-  .notification-example figcaption { margin-top: .5rem; font-size: .9rem; }
+  .screenshot { margin: 1rem 0; }
+  .screenshot img { display: block; max-width: 100%; height: auto; border-radius: .75rem; }
+  .screenshot figcaption { margin-top: .5rem; font-size: .9rem; }
   ol { padding-inline-start: 1.5rem; line-height: 1.8; }
   li + li { margin-top: .5rem; }
   footer { margin-top: 3rem; border-top: 1px solid #dbe8e4; padding: 1.25rem 0; font-size: .9rem; }
