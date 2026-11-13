@@ -8,7 +8,7 @@ import Layout from '../../layouts/Layout.astro';
       <img class="logo" src="/stream-ended/stream-ended-logo.png" alt="Stream Ended" width="2376" height="464" />
       <h1>配信が終わったら、<br />ちゃんと知らせる。</h1>
       <p>OBSで配信を止めたあと、YouTubeやTwitch側で終了を確認すると、Windowsに通知します。</p>
-      <p class="download"><strong>ダウンロード準備中</strong><span>Windows x64</span></p>
+      <p class="download"><a href="https://github.com/kyoh86/stream-ended/releases/latest/download/StreamEnded-Setup-x64.exe">Windows x64版をダウンロード</a></p>
     </header>
 
     <section aria-labelledby="features">
@@ -39,8 +39,8 @@ import Layout from '../../layouts/Layout.astro';
   header > p { max-width: 32rem; }
   .download, footer { display: flex; flex-wrap: wrap; align-items: center; gap: .7rem 1rem; }
   .download { margin: 1.7rem 0 0; }
-  .download strong { background: #fff; padding: .4rem .8rem; border-radius: .5rem; }
-  .download span { font-size: .9rem; }
+  .download a { background: #205c53; color: #fff; padding: .65rem 1rem; border-radius: .5rem; font-weight: 700; text-decoration: none; }
+  .download a:hover { text-decoration: underline; }
   h2 { font-size: 1.4rem; }
   dl { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: 1rem; }
   dl div { background: #fff; border: 1px solid #dbe8e4; border-radius: 1rem; padding: 1.25rem; }
