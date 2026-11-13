@@ -25,11 +25,17 @@ import Layout from '../../layouts/Layout.astro';
 
     <section class="getting-started" aria-labelledby="getting-started">
       <h2 id="getting-started">使い方</h2>
+      <figure class="usage">
+        <img src="/stream-ended/check-stream-end.webp" width="1400" height="700" loading="lazy"
+          alt="左は配信中の赤いランプを見て不安そうな配信者。右は緑のチェックが付いた終了通知を見てほっとする同じ配信者。" />
+        <figcaption>配信を止めたら、席を離れる前に終了通知を確認。</figcaption>
+      </figure>
       <ol>
-        <li>Stream Endedを開き、配信に使うYouTubeまたはTwitchのアカウントを連携します。</li>
-        <li>OBSなどでいつもどおり配信します。メイン画面を閉じても、通知領域で監視が続きます。</li>
-        <li>配信を止めたあと、Windowsの終了通知を確認します。通知を見逃したときは、通知領域のアイコンから配信先ごとの状態を確認できます。</li>
+        <li><strong>最初に連携。</strong> Stream Endedを開き、配信に使うYouTubeやTwitchにログインします。</li>
+        <li><strong>いつもどおり配信を止める。</strong> Stream Endedは、メイン画面を閉じても通知領域で配信先の状態を確認します。</li>
+        <li><strong>終了通知を見る。</strong> Windowsに「配信終了を確認しました」と出たら、通知に配信先の名前があることを確認します。通知を見逃したら、通知領域のアイコンから状態を確認できます。</li>
       </ol>
+      <p>画面に「配信中」と表示されていたら、配信ソフトや配信先で停止を確認してください。</p>
     </section>
 
     <footer>
@@ -59,6 +65,9 @@ import Layout from '../../layouts/Layout.astro';
   dt { font-weight: 700; margin-bottom: .5rem; }
   dd { margin: 0; }
   .getting-started { margin-top: 3rem; }
+  .usage { margin: 1rem 0 1.25rem; }
+  .usage img { display: block; width: 100%; height: auto; border-radius: 1rem; }
+  .usage figcaption { margin-top: .6rem; font-weight: 700; }
   ol { padding-inline-start: 1.5rem; line-height: 1.8; }
   li + li { margin-top: .5rem; }
   footer { margin-top: 3rem; border-top: 1px solid #dbe8e4; padding: 1.25rem 0; font-size: .9rem; }
