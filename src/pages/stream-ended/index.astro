@@ -7,7 +7,7 @@ import Layout from '../../layouts/Layout.astro';
     <header>
       <img class="logo" src="/stream-ended/stream-ended-logo.png" alt="Stream Ended" width="2376" height="464" />
       <h1>配信が終わったら、<br />ちゃんと知らせる。</h1>
-      <p>配信を終えたつもりでも、「まだ配信中かも」と気になることはありませんか？ Stream Endedは、YouTubeやTwitchで配信が終了したことを確認すると、Windowsに通知します。</p>
+      <p>配信を終えたつもりで席を離れたあとも、マイクやカメラが配信され続けることがあります。Stream Endedは、YouTubeやTwitchで配信が終了したことを確認すると、Windowsに通知します。</p>
       <p class="download">
         <a class="primary-download" href="https://github.com/kyoh86/stream-ended/releases/latest/download/StreamEnded-Setup-x64.exe">GitHubからWindows x64版をダウンロード</a>
         <span>Microsoft Store版は公開待ち</span>
@@ -26,8 +26,8 @@ import Layout from '../../layouts/Layout.astro';
     <section class="getting-started" aria-labelledby="getting-started">
       <h2 id="getting-started">使い方</h2>
       <figure class="usage">
-        <img src="/stream-ended/check-stream-end.webp" width="1400" height="700" loading="lazy"
-          alt="左は配信中の赤いランプを見て不安そうな配信者。右は緑のチェックが付いた終了通知を見てほっとする同じ配信者。" />
+        <img src="/stream-ended/confirm-before-leaving.webp" width="1400" height="700" loading="lazy"
+          alt="左は空席の前で赤い配信ランプが点いたままの画面。右は席を離れる前に緑のチェックが付いた終了通知を見る配信者。" />
         <figcaption>配信を止めたら、席を離れる前に終了通知を確認。</figcaption>
       </figure>
       <ol>
@@ -35,7 +35,7 @@ import Layout from '../../layouts/Layout.astro';
         <li><strong>いつもどおり配信を止める。</strong> Stream Endedは、メイン画面を閉じても通知領域で配信先の状態を確認します。</li>
         <li><strong>終了通知を見る。</strong> Windowsに「配信終了を確認しました」と出たら、通知に配信先の名前があることを確認します。通知を見逃したら、通知領域のアイコンから状態を確認できます。</li>
       </ol>
-      <p>画面に「配信中」と表示されていたら、配信ソフトや配信先で停止を確認してください。</p>
+      <p>終了通知が見当たらなければ、席を離れる前にアプリを開いて配信先の状態を確認してください。「配信中」なら、配信ソフトや配信先で停止します。</p>
     </section>
 
     <footer>
