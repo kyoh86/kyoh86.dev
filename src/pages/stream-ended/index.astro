@@ -8,7 +8,10 @@ import Layout from '../../layouts/Layout.astro';
       <img class="logo" src="/stream-ended/stream-ended-logo.png" alt="Stream Ended" width="2376" height="464" />
       <h1>配信が終わったら、<br />ちゃんと知らせる。</h1>
       <p>配信を終えたつもりでも、「まだ配信中かも」と気になることはありませんか？ Stream Endedは、YouTubeやTwitchで配信が終了したことを確認すると、Windowsに通知します。</p>
-      <p class="download"><a href="https://github.com/kyoh86/stream-ended/releases/latest/download/StreamEnded-Setup-x64.exe">GitHubからWindows x64版をダウンロード</a></p>
+      <p class="download">
+        <a class="primary-download" href="https://apps.microsoft.com/detail/9N6FDZFXBWT6">Microsoft Storeで入手</a>
+        <a href="https://github.com/kyoh86/stream-ended/releases/latest/download/StreamEnded-Setup-x64.exe">GitHubからWindows x64版をダウンロード</a>
+      </p>
     </header>
 
     <section aria-labelledby="features">
@@ -48,7 +51,7 @@ import Layout from '../../layouts/Layout.astro';
   header > p { max-width: 32rem; }
   .download, footer { display: flex; flex-wrap: wrap; align-items: center; gap: .7rem 1rem; }
   .download { margin: 1.7rem 0 0; }
-  .download a { background: #205c53; color: #fff; padding: .65rem 1rem; border-radius: .5rem; font-weight: 700; text-decoration: none; }
+  .primary-download { background: #205c53; color: #fff; padding: .65rem 1rem; border-radius: .5rem; font-weight: 700; text-decoration: none; }
   .download a:hover { text-decoration: underline; }
   h2 { font-size: 1.4rem; }
   dl { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: 1rem; }
