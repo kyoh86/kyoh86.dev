@@ -1,13 +1,18 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 ---
-<Layout title="Stream Ended" description="YouTube・Twitchで配信が終わったら通知するWindows常駐アプリ。" ogImage="/stream-ended/stream-ended-logo.png">
+<Layout title="Stream Ended" description="OBSで配信を止めたあと、YouTube・Twitch側でも終了を確認して通知するWindows常駐アプリ。" ogImage="/stream-ended/stream-ended-logo.png">
   <main>
     <nav aria-label="サイト"><a href="/">kyoh86.dev</a></nav>
     <header>
       <img class="logo" src="/stream-ended/stream-ended-logo.png" alt="Stream Ended" width="2376" height="464" />
       <h1>配信が終わったら、<br />ちゃんと知らせる。</h1>
-      <p>配信を終えたつもりで席を離れたあとも、マイクやカメラが配信され続けることがあります。Stream Endedは、YouTubeやTwitchで配信が終了したことを確認すると、Windowsに通知します。</p>
+      <p>OBSで配信を止めたら、配信先でもダブルチェック。映像を受け取る側のYouTube・Twitchに問い合わせ、終了を確認できたらWindowsに通知します。OBSの表示に不具合があっても、配信先でまだライブになっているかを確かめられます。</p>
+      <ol class="confirmation-flow" aria-label="配信終了を確認する流れ">
+        <li><strong>OBS</strong><span>配信者が停止を押す</span></li>
+        <li><strong>YouTube・Twitch</strong><span>Stream Endedが配信先の状態を確認</span></li>
+        <li><strong>Windows</strong><span>終了を確認できたら通知</span></li>
+      </ol>
       <p class="download">
         <a class="primary-download" href="https://github.com/kyoh86/stream-ended/releases/latest/download/StreamEnded-Setup-x64.exe">GitHubからWindows x64版をダウンロード</a>
         <span>Microsoft Store版は公開待ち</span>
@@ -17,10 +22,16 @@ import Layout from '../../layouts/Layout.astro';
     <section aria-labelledby="features">
       <h2 id="features">配信のあとに、できること</h2>
       <dl>
-        <div><dt>配信先ごとに終了を確認</dt><dd>YouTubeとTwitchに同時配信しても、どちらが終了したかをメイン画面で確認できます。映像や音声の再生は不要です。</dd></div>
+        <div><dt>配信先ごとに終了を確認</dt><dd>YouTubeとTwitchに同時配信しても、どちらが終了したかをメイン画面で確認できます。</dd></div>
         <div><dt>毎回のURL入力は不要</dt><dd>最初に使うサービスにログインするだけ。配信枠が変わっても、連携済みのアカウントを確認します。</dd></div>
         <div><dt>終了予定を過ぎたら通知</dt><dd>終了予定時刻を設定した回は、その時刻を過ぎても配信中なら通知します。</dd></div>
       </dl>
+    </section>
+
+    <section aria-labelledby="bandwidth">
+      <h2 id="bandwidth">映像を再生せずに終了を確認</h2>
+      <p>視聴ページで6 Mbpsの配信を再生し続けると、1時間で約2.7 GBを受信します。Stream Endedは約30秒ごとに配信状態だけを取得します。YouTubeとTwitchの応答が30秒あたり合計10 KBなら、平均約2.7 kbps、1時間で約1.2 MBです。</p>
+      <p><small>いずれも仮定に基づく計算例です。再生の通信量は画質などで変わり、アプリの実際の通信量には接続や認証の通信も加わります。</small></p>
     </section>
 
     <section class="getting-started" aria-labelledby="getting-started">
@@ -65,6 +76,15 @@ import Layout from '../../layouts/Layout.astro';
   h1 { font-size: clamp(1.75rem, 6vw, 3.75rem); line-height: 1.25; margin: 1.4rem 0 1rem; }
   p, dd { line-height: 1.8; }
   header > p { max-width: 32rem; }
+  .confirmation-flow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.75rem; padding: 0; margin: 1.5rem 0 0; list-style: none; }
+  .confirmation-flow li { position: relative; margin: 0; padding: .8rem; background: #fff; border: 1px solid #dbe8e4; border-radius: .75rem; }
+  .confirmation-flow li + li::before { content: "→" / ""; position: absolute; left: -1.45rem; top: 50%; transform: translateY(-50%); color: #205c53; }
+  .confirmation-flow strong, .confirmation-flow span { display: block; }
+  .confirmation-flow span { font-size: .9rem; }
+  @media (max-width: 42rem) {
+    .confirmation-flow { grid-template-columns: 1fr; gap: 1.4rem; }
+    .confirmation-flow li + li::before { content: "↓" / ""; left: 50%; top: -1.4rem; transform: translateX(-50%); }
+  }
   .download, footer { display: flex; flex-wrap: wrap; align-items: center; gap: .7rem 1rem; }
   .download { margin: 1.7rem 0 0; }
   .primary-download { background: #205c53; color: #fff; padding: .65rem 1rem; border-radius: .5rem; font-weight: 700; text-decoration: none; }
